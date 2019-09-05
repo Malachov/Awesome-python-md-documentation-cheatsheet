@@ -6,8 +6,8 @@ Cheatsheet of all stuff that i ever needed in python. It's written in markdown s
 
 
 ## Numba
-from numba import njit
+  from numba import njit
 
-** První možnost - na všechny funkce**
-@njit()
-def func():  # atd...
+  ** První možnost - na všechny funkce**
+  @njit()
+  def func():  # atd...
