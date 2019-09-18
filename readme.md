@@ -1,4 +1,7 @@
-﻿- [General](#general)
+This is python user documentation created in markdown so it can be visualized in IDE. How it can look is on this printscreen.
+![Printscreen of documentation use](https://raw.githubusercontent.com/Malachov/Awesome-python-md-documentation-cheatsheet/master/printscreen.png)
+
+- [General](#general)
   - [Show installed libraries](#show-installed-libraries)
   - [Virtual env](#virtual-env)
   - [Requirements - bulk libraries install](#requirements---bulk-libraries-install)
