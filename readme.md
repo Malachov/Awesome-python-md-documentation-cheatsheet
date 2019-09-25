@@ -5,6 +5,7 @@ This is python user documentation created in markdown so it can be visualized in
 
 Feel free to colab...
 
+- [Awesome-python-md-documentation](#awesome-python-md-documentation)
 - [General](#general)
   - [Show installed libraries](#show-installed-libraries)
   - [Virtual env](#virtual-env)
@@ -100,12 +101,13 @@ Feel free to colab...
     - [Remove outliers](#remove-outliers)
     - [Resample dataframe](#resample-dataframe)
 - [Numpy Array](#numpy-array)
-  - [Convert](#convert)
-      - [Onlu column - not retain shape](#onlu-column---not-retain-shape)
+    - [Convert](#convert)
+    - [Slicing](#slicing)
+      - [Only column - not retain shape](#only-column---not-retain-shape)
       - [Columns with same shape](#columns-with-same-shape)
     - [Only rows](#only-rows)
     - [Matrix from two arrays](#matrix-from-two-arrays)
-  - [Join two matrixes - add columns](#join-two-matrixes---add-columns)
+    - [Join two matrixes - add columns](#join-two-matrixes---add-columns)
     - [Find minimum value](#find-minimum-value)
     - [Find index of smallest value](#find-index-of-smallest-value)
     - [Convert to other format](#convert-to-other-format)
@@ -123,7 +125,7 @@ Feel free to colab...
     - [Remove non unique values](#remove-non-unique-values)
     - [Reshape](#reshape)
     - [Transpose](#transpose)
-  - [Find index (one) with max / min value](#find-index-one-with-max--min-value)
+    - [Find index (one) with max / min value](#find-index-one-with-max--min-value)
     - [Fill with Nan values](#fill-with-nan-values)
     - [Check if Nan values](#check-if-nan-values)
 - [LOOPZ](#loopz)
@@ -922,7 +924,7 @@ Přístup k prvkům
 
     a = ar[1, 2]  # 5
 
-## Convert
+### Convert
     datta.tolist() # Převede na list -- mozna to je omyl s dataframem
 
 On one dimensional list
@@ -930,13 +932,13 @@ On one dimensional list
     qw = np.array(data).reshape(-1)
 qw = qw.tolist()
 
-###Slicing
+### Slicing
     a = np.array([[1,2,3],[3,4,5],[4,5,6]]) 
     #    [[1 2 3]
     #    [3 4 5]
     #    [4 5 6]] 
 
-#### Onlu column - not retain shape
+#### Only column - not retain shape
     a = a[:, 1]  # [2 4 5]
 
 #### Columns with same shape
@@ -950,7 +952,7 @@ qw = qw.tolist()
 ### Matrix from two arrays
     np.vstack([a,a])
 
-## Join two matrixes - add columns
+### Join two matrixes - add columns
     a = np.array([1, 2, 3])
     b = np.array([2, 3, 4])
     np.stack((a, b))  # array([[1, 2, 3],
@@ -1060,7 +1062,7 @@ Axis 0 is for sums on columns
 ### Transpose
     data.transpose(1,0,2)  # From (10, 100, 1000) create (10, 1000, 100)
 
-## Find index (one) with max / min value
+### Find index (one) with max / min value
     np.argmax(a)  # or argmin. Also can use parameter axis
 
 ### Fill with Nan values
