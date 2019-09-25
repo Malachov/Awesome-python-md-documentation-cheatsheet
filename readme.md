@@ -5,6 +5,12 @@ This is python user documentation created in markdown so it can be visualized in
 
 Feel free to colab...
 
+It's also in jupyter notebook ipynb version. It's derived from original md with notedown, so modify markdown. To convert type in cmd opened in folder (or in some other shell):
+
+pip install notedown
+notedown input.md > output.ipynb
+
+
 - [Awesome-python-md-documentation](#awesome-python-md-documentation)
 - [General](#general)
   - [Show installed libraries](#show-installed-libraries)
@@ -14,7 +20,9 @@ Feel free to colab...
   - [Multiline comment](#multiline-comment)
   - [Documentation - docstrings](#documentation---docstrings)
     - [reStructured text](#restructured-text)
-    - [docBlockR](#docblockr)
+- ["""Function to find optimal parameters of function](#%22%22%22function-to-find-optimal-parameters-of-function)
+  - [Output:](#output)
+  - [Arguments:](#arguments)
   - [Multi line code](#multi-line-code)
     - [Show where python is installed](#show-where-python-is-installed)
 - [Logical conditions](#logical-conditions)
@@ -25,6 +33,7 @@ Feel free to colab...
 - [Variables](#variables)
   - [Declaration of more variables at once](#declaration-of-more-variables-at-once)
     - [Swap variables values](#swap-variables-values)
+    - [Check if variable exist](#check-if-variable-exist)
   - [Import variables from other modules](#import-variables-from-other-modules)
     - [Find name of variable, list or dictionary](#find-name-of-variable-list-or-dictionary)
 - [DATA TYPES](#data-types)
@@ -32,6 +41,7 @@ Feel free to colab...
     - [If exist](#if-exist)
   - [String](#string)
     - [Format](#format)
+    - [Newest and fastest format- f'strings'](#newest-and-fastest-format--fstrings)
     - [String to code](#string-to-code)
     - [Join - concatenate](#join---concatenate)
 - [List](#list)
@@ -43,7 +53,7 @@ Feel free to colab...
     - [Multiple list](#multiple-list)
     - [Find index](#find-index)
     - [Access members](#access-members)
-      - [Slices](#slices)
+    - [Slices](#slices)
     - [Reverse](#reverse)
     - [Iterate in reverse order](#iterate-in-reverse-order)
     - [Nested lists](#nested-lists)
@@ -85,6 +95,7 @@ Feel free to colab...
     - [Subset of columns](#subset-of-columns)
     - [Column to new dataframe](#column-to-new-dataframe)
     - [Subset of rows and columns](#subset-of-rows-and-columns)
+    - [Logical conditions](#logical-conditions-1)
     - [Concat 2 columns](#concat-2-columns)
     - [Find index from column name](#find-index-from-column-name)
     - [Zvolit index ze sloupce](#zvolit-index-ze-sloupce)
@@ -105,7 +116,7 @@ Feel free to colab...
     - [Slicing](#slicing)
       - [Only column - not retain shape](#only-column---not-retain-shape)
       - [Columns with same shape](#columns-with-same-shape)
-    - [Only rows](#only-rows)
+      - [Only rows](#only-rows)
     - [Matrix from two arrays](#matrix-from-two-arrays)
     - [Join two matrixes - add columns](#join-two-matrixes---add-columns)
     - [Find minimum value](#find-minimum-value)
@@ -125,6 +136,7 @@ Feel free to colab...
     - [Remove non unique values](#remove-non-unique-values)
     - [Reshape](#reshape)
     - [Transpose](#transpose)
+    - [Generate sin](#generate-sin)
     - [Find index (one) with max / min value](#find-index-one-with-max--min-value)
     - [Fill with Nan values](#fill-with-nan-values)
     - [Check if Nan values](#check-if-nan-values)
@@ -148,8 +160,8 @@ Feel free to colab...
     - [Global variables](#global-variables)
   - [Funkcions map(), filter(), reduce()](#funkcions-map-filter-reduce)
     - [Reduce - Input sequention into function](#reduce---input-sequention-into-function)
-- [Generator](#generator)
-- [Dekorator](#dekorator)
+- [Generators](#generators)
+- [Dekorators](#dekorators)
 - [Module](#module)
 - [Classes](#classes)
     - [Create object](#create-object)
@@ -191,6 +203,7 @@ Feel free to colab...
     - [\__name__ - If file is runned from inside or is imported](#name---if-file-is-runned-from-inside-or-is-imported)
 - [Date and time](#date-and-time)
 - [Plots, graphs](#plots-graphs)
+  - [Plotly](#plotly)
     - [Plotly timeseries](#plotly-timeseries)
     - [From matplotlib to plotly](#from-matplotlib-to-plotly)
     - [Save picture](#save-picture)
@@ -215,7 +228,7 @@ Feel free to colab...
   - [Youtube](#youtube)
   - [Show all images from folder](#show-all-images-from-folder)
 - [Requests - API - GET, POST](#requests---api---get-post)
-- [Pictures](#pictures)
+- [Images, pictures](#images-pictures)
   - [Show image](#show-image)
   - [Resize](#resize)
   - [Save](#save)
@@ -236,40 +249,48 @@ Feel free to colab...
   - [Standard deviation](#standard-deviation)
   - [Add shape - matrix dimensions (rows, columns etc.)](#add-shape---matrix-dimensions-rows-columns-etc)
   - [Number of members - count](#number-of-members---count)
-    - [Bins](#bins)
-    - [Cumulative sum](#cumulative-sum)
-    - [Derivation](#derivation)
-    - [Latex dislay](#latex-dislay)
+  - [Bins](#bins)
+  - [Cumulative sum](#cumulative-sum)
+  - [Derivation](#derivation)
+  - [Latex dislay](#latex-dislay)
+  - [Symbolic python - sympy](#symbolic-python---sympy)
+    - [Substitute](#substitute)
+    - [Simplify](#simplify)
+    - [Evaluate](#evaluate)
+    - [Lambdify](#lambdify)
   - [Integration](#integration)
     - [Unbounded integral](#unbounded-integral)
     - [Bounded integral](#bounded-integral)
   - [Round](#round)
   - [Modulo](#modulo)
   - [Power (x on y)](#power-x-on-y)
-    - [Describe - Statistical values of list](#describe---statistical-values-of-list)
-    - [Statistical values of array](#statistical-values-of-array)
+  - [Describe - Statistical values of list](#describe---statistical-values-of-list)
+  - [Statistical values of array](#statistical-values-of-array)
+  - [Correlation](#correlation)
     - [Correlation matrix - values](#correlation-matrix---values)
     - [Correlation matrix - plot](#correlation-matrix---plot)
     - [Correlation (Pearson corr. matrix)](#correlation-pearson-corr-matrix)
     - [Correlation coefficent](#correlation-coefficent)
-    - [Test of normal distribution](#test-of-normal-distribution)
+  - [Test of normal distribution](#test-of-normal-distribution)
 - [Machine learning](#machine-learning)
     - [Standardization: mean = 0 and std = 1](#standardization-mean--0-and-std--1)
     - [Normalization (-1,1)](#normalization--11)
 - [Signal processig and controll](#signal-processig-and-controll)
-- [Miscellaneou](#miscellaneou)
+- [Miscellaneous](#miscellaneous-1)
   - [Function for change relative path](#function-for-change-relative-path)
   - [Measure time](#measure-time)
     - [Measure time of function with inputs](#measure-time-of-function-with-inputs)
     - [Measure time on multiline](#measure-time-on-multiline)
     - [Measure between two lines](#measure-between-two-lines)
   - [Show bytcode](#show-bytcode)
+  - [The \__call__ method (Allow input of object to function)](#the-call-method-allow-input-of-object-to-function)
 - [Performance](#performance)
   - [Type hinting](#type-hinting)
   - [Numba](#numba)
     - [Cuda in Numba](#cuda-in-numba)
   - [Dask](#dask)
     - [Dask formats](#dask-formats)
+  - [Show task structure](#show-task-structure)
   - [Force to empty memory](#force-to-empty-memory)
   - [Max execution time python](#max-execution-time-python)
   - [Profiling](#profiling)
@@ -280,99 +301,108 @@ Feel free to colab...
 # General
 
 ## Show installed libraries
-    pip list
+pip list
+
 
 Show outdated libraries
 
-    pip list --outdated
+pip list --outdated
 
 ## Virtual env
-    pip install virtualenv
-    virtualenv daniel  # Vytvoří novou virtuálku
-    C:\VSCODE\Diplomka\pokus\Scripts\activate.bat  # Activate virtual env
+pip install virtualenv
+virtualenv daniel  # Vytvoří novou virtuálku
+C:\VSCODE\Diplomka\pokus\Scripts\activate.bat  # Activate virtual env
 
 ## Requirements - bulk libraries install
 Create requirements
 
-    pipreqs --encoding=utf8 C:\VSCODE\Diplomka
+pipreqs --encoding=utf8 C:\VSCODE\Diplomka
 
 Deprecated
 
-    (pip freeze > requirements.txt)
+(pip freeze > requirements.txt)
 
 How to use
 
-    pip install -r /path/to/requirements.txt
+pip install -r /path/to/requirements.txt
 
 ## One line comment
-    # This is comment
+```python
+# This is comment
+```
 
 ## Multiline comment
-    """ Víceřádkové komentáře používají tři uvozovky nebo apostrofy
-    a jsou často využívány jako dokumentační komentáře k metodám
-    """
+```python
+""" Víceřádkové komentáře používají tři uvozovky nebo apostrofy
+a jsou často využívány jako dokumentační komentáře k metodám
+"""
+```
 
 ## Documentation - docstrings
 Posible modes - DocBlockR, ReST, Numpy, Google
 
 ### reStructured text
-    Section Header
-    ==============
+```markdown
+Section Header
+==============
 
-    Subsection Header
-    -----------------
+Subsection Header
+-----------------
 
-    - A bullet list item
+- A bullet list item
 
-    - A sub item
+- A sub item
 
-    1) An enumerated list item
+1) An enumerated list item
 
-    .. image:: /path/to/image.jpg
+.. image:: /path/to/image.jpg
 
-    A sentence with links to `Wikipedia`_
+A sentence with links to `Wikipedia`_
 
-    .. _Wikipedia: https://www.wikipedia.org/
+.. _Wikipedia: https://www.wikipedia.org/
 
-    +------------------------+------------+----------+
-    | Header row, column 1   | Header 2   | Header 3 |
-    +========================+============+==========+
-    | body row 1, column 1   | column 2   | column 3 |
-    +------------------------+------------+----------+
-    | body row 2             | Cells may span        |
-    +------------------------+-----------------------+
++------------------------+------------+----------+
+| Header row, column 1   | Header 2   | Header 3 |
++========================+============+==========+
+| body row 1, column 1   | column 2   | column 3 |
++------------------------+------------+----------+
+| body row 2             | Cells may span        |
++------------------------+-----------------------+
 
 Literal - no linebreaks etc.
 
-    ::
+::
 
-    some literal text.
+some literal text.
 
 
 Python code in docstrings
 
-    .. code:: python
+.. code:: python
 
-    print("A literal block directive explicitly marked as python code")
+print("A literal block directive explicitly marked as python code")
 
 ### docBlockR
-    """Function to find optimal parameters of function
-    ======
-    Output:
-    ------
-        Optimized parameters {dict}
+```python
+"""Function to find optimal parameters of function
+======
+Output:
+------
+    Optimized parameters {dict}
 
-    Arguments:
-    ------
-        model {func} -- Function to be optimized (eg: ridgeregression)
-        kwargs {dict} -- Initial arguments (eg: {"alpha": 0.1, "n_steps_in": 10})
-        kwargs_limits {dict} -- Bounds of arguments (eg: {"alpha": [0.1, 1], "n_steps_in":[2, 30]})
-        data {list, array, dataframe col} -- Data on which function is optimized (eg: data1)
-        fragments {int} -- Number of optimized intervals (default: 10)
-        predicts {int} -- Number of predicted values (default: 7)
-    """
+Arguments:
+------
+    model {func} -- Function to be optimized (eg: ridgeregression)
+    kwargs {dict} -- Initial arguments (eg: {"alpha": 0.1, "n_steps_in": 10})
+    kwargs_limits {dict} -- Bounds of arguments (eg: {"alpha": [0.1, 1], "n_steps_in":[2, 30]})
+    data {list, array, dataframe col} -- Data on which function is optimized (eg: data1)
+    fragments {int} -- Number of optimized intervals (default: 10)
+    predicts {int} -- Number of predicted values (default: 7)
+"""
+```
 
 ## Multi line code
+
     poi = { "1": 3,
             "2": 4, 
             "6": 8 }
@@ -383,26 +413,26 @@ or use brackets or \\
             + 3 + 4 )
 
     a = 1 + 2 \
-        + 3 + 4
+        + 3 + 
 
-Function example
-
-    f = some_function(  '1' + '2'
-                        + '3' - '4')
+    f = range(  1 + 2
+            + '3' - '4')  # Function example
 
 ### Show where python is installed
-    where python
+where python
 
 # Logical conditions
 ## Not
+
     not True # => False
     is not
     !=
 
 ## Greater than, lower than
-    >=
+\>=
 
 ## And, or
+
     0 and 2 # => 0
     -5 or 0 # => -5
     0 == False # => True
@@ -429,8 +459,10 @@ None, 0, and empty string/list/dictionary is False, everything else True
     bool({}) # => False
 
 # Variables
+
     y = int(2.8)
 
+    x = 1
     x += 1 # Zkrácený zápis x = x + 1. Pozor, žádné x++ neexisuje
 
 Int divided by int
@@ -438,24 +470,25 @@ Int divided by int
     3 // 2  # = 1
 
 ## Declaration of more variables at once
+
     a = b = c = 1
 
     a,b,c = 1,2,"john"
 
 ### Swap variables values
+
     e, d = d, e # d is now 5, e is now 4
 
     name = ['mike', 'john', 'steve']  
-
     age = [20, 32, 19]
 
     for x,y in zip(name, age):
-
-    globals()[x] = y  # mike = 20 ...
+        globals()[x] = y  # mike = 20 ...
 
     uname = ['u{}'.format(n) for n in range(7)] # [u1, u2, u3...]
 
-###Check if variable exist
+### Check if variable exist
+
     if 'myVar' in locals():
 
 ## Import variables from other modules
@@ -463,33 +496,41 @@ Creat config.py
 
 There for example
 
-    x=1
+    x = 1
 
 In main then use
 
-    confi.x = 2 ....
+config.x = 2 ....
 
 ### Find name of variable, list or dictionary
+
     my_var_name = [k for k,v in globals().items() if v == promenna][0]
 
 # DATA TYPES
+
     type(a)  # Return type
 
 ### Type of variable as condition
+
     if isinstance(o, str):  # Check if it's string (or int etc...)
 
 More types at once
 
-    isinstance(y,  (np.ndarray, np.generic)  )
+    import numpy as np  
+    y = np.array([1])
+    isinstance(y, (np.ndarray, np.generic))  # pd.DataFrame For dataframe
+
     if a is list: # Zjistí, zda jde přímo o string
-    pd.DataFrame  # For dataframe
+        pass
 
 Also work if object is includes in class
 
 ### If exist
+
     if callable(objekt)
 
 ## String
+
 Strings " or ' and can contain UTF8 symbols
 
     "This is string."
@@ -519,15 +560,17 @@ Old
 Newer
 
     '{} {}'.format('one', 'two')
+
 Format can be used multiple times
 
     "{0} {1} stříkaček stříkalo přes {0} {1} střech".format("tři sta třicet tři", "stříbrných")
 
 You can use named arguments
 
-"{jmeno} si dal {jidlo}".format(jmeno="Franta", jidlo="guláš") # => "Franta si dal guláš"
+   "{jmeno} si dal {jidlo}".format(jmeno="Franta", jidlo="guláš") # => "Franta si dal guláš"
 
-###Newest and fastest format- f'strings'
+### Newest and fastest format- f'strings'
+
     f"Hello, {name}. You are {2 * 17}. Also functions {name.lower()}."
     If you use """ no escape symbols will be used
 
@@ -535,14 +578,17 @@ Also can use dictionaries, but "" is necesarry
 Dont use # in f strings
 
 ### String to code
+
     exec(mycode)
     x = eval("2+2") # number ze stringu
 
 ### Join - concatenate
+
     words = ["this", 'is', 'a', 'list', 'of', "strings"]
     ' '.join(words)  #returns "This is a list of strings"
 
 # List
+
     sez = []
     sez.append(1) # sez je nyní [1]
     a.insert(2, 2) # do indexu 2 vloží 2
@@ -555,16 +601,22 @@ Dont use # in f strings
 
 If list a = list b and we change one of them, the other also change therefor
 
-    Listb = lista.copy()
+    lista = [1, 2, 3]
+    listb = lista.copy()
+    listb[2] = 5
+    print(lista)  # [1, 2, 5]
 
 ### Check if list is empty or not
+
     if a:
     if not a:
 
 ### Create list from 0 to 10
+
     l = range(10) #  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9]
 
 ### Create list - List comprehension
+
     [x*5 for x in range(5)] #[0, 5, 10, 15, 20]
     [x for x in range(5) if x%2 == 0] #[0, 2, 4]
     [a if a else  2  for a in  [0,1,0,3]]
@@ -579,21 +631,26 @@ List comprehension from more entities
     [x for x in [3, 4, 5, 6, 7] if x > 5]  # => [6, 7]
 
 ### One value more times
+
     listOfStr = ['Hi'] * 3 # ['Hi', 'Hi', 'Hi']
 
 ### Multiple list
+
     my_list =  [1,  2,  3,  4,  5]
     my_new_list =  [i *  5  for i in my_list]
 
 ### Find index
+
     a.index(3)
 
 ### Access members
+
     sez = [1, 2, 3, 4]
     sez[0]  # => 1
     sez[-1]  # => 3
 
-#### Slices
+### Slices
+
     sez[1:3]  # => [2, 4]
     sez[2:]  # => [4, 3]
     sez[:3] # => [1, 2, 4]
@@ -603,19 +660,23 @@ Every second member
     sez[::2] # =>[1, 4]
 
 ### Reverse
+
     sez[::-1] # => [3, 4, 2, 1]
 Or
 
     a.reverse()
 
 ### Iterate in reverse order
+
     for i in reversed(a):
 
 ### Nested lists
+
     t = [[1,2], [3,4]]
     print(t[1][1])  # 4
 
 ### Every first member of nested lists
+
     L = [[[0,1,2],[3,4,5],[6,7,8]],  [[0,1,2],[3,4,5],[6,7,8]],  [[0,1,2],[3,4,5],[6,7,8]]]
     R = [[x[0]  for x in sl ]  for sl in L ]
     Lst = [[1,2,3],[11,12,13],[21,22,23]]
@@ -625,16 +686,20 @@ Or
     list(zip(*lst))[0]
 
 ### Remove member
+
     del sez[2] # sez je nyní [1, 2, 3]
 
 ### Minimum
+
     youngest = min(ages)
 
 ### Find maximum and it's index
+
     m = max(a)
     [i for i, j in enumerate(a) if j == m] # pro a = [1,2,0]  # 1
 
 ### Sum
+
     suma = sum(ages)
 
 ### If member exist
@@ -642,20 +707,25 @@ Or
     1 in sez # => True
 
 ### Length of list
+
     len(sez) # => 6
 
 ### Every value just once
+
     t =  [1,  2,  3,  1,  2,  5,  6,  7,  8]
     list(set(t))  # [1,  2,  3,  5,  6,  7,  8]
 
 ### Intersection and inclusive
+
     Zip(List1a2, Listb1b2) # {(a1, b1), (a2, b2)}
     j2 = [i for i in j if i >=  5]
 
 ### Add first with first, second with second
+
     [a + b for a, b in zip(list1, list2)]
 
 ### List of functions
+
     def func1():return 1
     def func2():return 2
     def func3():return 3
@@ -663,9 +733,11 @@ Or
     [f() for f in fl] # [1, 2, 3]
 
 ### How many times members in list
+
     print( collections.Counter(['a', 'b', 'c', 'a', 'b', 'b']))
 
 ## Deque
+
 You can iterate from both sides
 
     append(x)  # Add x to the right side of the deque.
@@ -681,6 +753,7 @@ You can iterate from both sides
 
 
 ## Tuple
+
 Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
 
     tuple = (1, 2, 3)
@@ -688,19 +761,23 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
     tuple[0] = 3  # Raise TypeError
 
 # Dictionary
+
     empty_dic = {}
     dic = {"jedna": 1, "dva": 2, "tři": 3}
     dict_variable = {key:value for (key,value) in dictonary.items()}
 
 ### Add value
+
     Slovnik['čtyři'] = 4  # If key is already there it's updated
 
 ### Create dictionary from two lists
+
     name = ['mike', 'john', 'steve']  
     age = [20, 32, 19]
     dic=dict(zip(name, age))
 
 ### Miscelanious
+
     del thisdict['b'] # vymaze seznam
     thisdict.has_key('e') returns False
     thisdict.items() returns [('a', 1), ('c', 'eggs')]
@@ -713,27 +790,33 @@ You need list sometimes not iterables
     list(dic.keys())
 
 ### Last key in dictionary
+
     max(stats)
 
 ### For cycle for all keys
+
     for s in stats:
         print(s)
 
 ### Maximum value and its index
+
     stats = {'a':1000, 'b':3000, 'c': 100}
     maxname = max(stats, key=stats.get))
     maxvalue = stats(maxname)
 
 ### Values
+
     list(dic.values()) # => [3, 2, 1]
     "jedna" in dic # => True if value is in dictionary
     dic.get("čtyři") # => None - don't raise error if key not in dic
     dic.setdefault("pět", 5) # dic["pět"] default 5
 
 ### Find key from value
+
     list(modelsnames.keys())[list(modelsnames.values()).index(prear)]
 
 ### For cycle for dictionaries
+
     for k in dict: # Iteruje přes všechny klíče
         print(k)
 
@@ -741,17 +824,21 @@ You need list sometimes not iterables
         print(k,v)
 
 ## Join two dictionaries
+
     c = {**a, **b}
 
 ### Enumerate in dictionaries
+
     for i, (j, k) in enumerate(aa.items()):
 
 ### Dictionary as arguments into function
+
     t = (47,11)
     d = {'x':'extract','y':'yes'}
     f(*t, **d) # It's the same as f(47, 11, x=extract, y=yes)
 
 ### Nested dictionaries - for examples name of functions and it's parameters
+
     models = {"AR (Autoregression)": ar, "Linear neural unit": autoregLNU}
     modelsparameters = {"AR (Autoregression)": {"predicts": predicts}, "Linear neural unit": {"predicts": predicts}}
     modelscomplet = zip(models.keys(), models.values(), modelsparameters.values())
@@ -761,6 +848,7 @@ You need list sometimes not iterables
         modelsresults.append({i: j(data0, **k)})
 
 ### Nested dictionaries - Find minimum
+
     for key, value in best_of_data.items():
         for inkey, invalue in value.items():
             if invalue < top:
@@ -769,10 +857,12 @@ You need list sometimes not iterables
                 top = invalue
 
 ### Dictionary comprehension
+
     {x: x**2 for x in range(1, 5)} # => {1: 1, 2: 4, 3: 9, 4: 16}
     {pismeno for pismeno in "abeceda"} # => {"d", "a", "c", "e", "b"}
 
 # Set
+
 It is not oredered and every value is just once!
 
     empty_set = set()
@@ -798,6 +888,7 @@ If member exist
     9 in set # => False
 
 # Iterator
+
     iterator = iter(iterable)
 
 Next value
@@ -805,9 +896,11 @@ Next value
     next(iterator) # => "jedna"
 
 # Dataframe
+
 Panda library is necessary
 
 ### Import from csv
+
     data = pd.read_csv(
         "data/files/complex_data_example.tsv",
         sep='\t' # Tab-separated value file.
@@ -820,9 +913,11 @@ Panda library is necessary
 )
 
 ### Access column
+
     df['name']
 
 ### Subset of columns
+
 With name
 
     df1 = df[['a','b']]
@@ -833,28 +928,34 @@ with index
     df1 = df.iloc[:,0:2]
 
 ### Column to new dataframe
+
     df.pop('class')
     column_for_prediction_dataframe = data_for_predictions_full[[predicted_column_name]]
 
 ### Subset of rows and columns
+
     df1 = df.loc['Jirka']
     df1 = df.iloc[0]  # First row
 
-###Logical conditions
+### Logical conditions
+
     df = data.loc[data['Name'] == Marko]
     df = corr_column.loc[:, corr_column['aa'] >= 0.5]
 
 ### Concat 2 columns
+
     df1['state_and_code'] = df1['State'] + df1['State_code']
 
 ### Find index from column name
     a = df.columns.get_loc("pear")
 
 ### Zvolit index ze sloupce
+
     Df.set_index('date', inplace=True)
     df.reset_index(level=None, drop=False, inplace=False)
 
 ### Create
+
 one column dataframe
 
     s2 = pd.Series([1,2,3,4])
@@ -874,13 +975,16 @@ from array
         columns=data[0,1:])
 
 ### Convert into array
+
     df['a'].values
     b=dat.iloc[:,1:].values # každý sloupec zvlast
 
 ### Convert into list
+
     df['a'].values.tolist()
 
 ### Date and time and datetime, range
+
 Convert from datetime to time, the same to datetime
 
     dataframe['DimTimeId'] = dataframe['EventStart'].dt.time
@@ -894,103 +998,126 @@ Datetime from values
     start = pd.Timestamp(year=year, month=month, day=day, hour=hour)
 
 ### Join 2 dataframes - Add rows
+
     df3 = pd.concat([df1, df2])
 
 ### Join 2 dataframes - Add columns
+
     df3 = pd.append([df1, df2]) # může být , ignore_index
 
 ### Transpose - Rows into columns
+
     df = df.T
 
 ### Save into CSV
+
     Df.to_csv('newcsv.csv') # bez názvů , header=False
 
 ### Group by
+
     tips.groupby('day').agg({'tip': np.mean, 'day': np.size})
 
 ### Moving average
+
     df['STD'] = pd.rolling_std(dff, 2)
 
 ### Remove outliers
+
     df = df[ (df['STD'] < df_std) ]
 
 ### Resample dataframe
+
     series.resample('3T').sum() # Méně řádků na výstupu
 
 # Numpy Array
+
 Create
 
     ar = np.array([1,2,3], [4, 5, 6])
-
-Přístup k prvkům
-
-    a = ar[1, 2]  # 5
+    a = ar[1, 2]  # 5 - Access array
 
 ### Convert
+
     datta.tolist() # Převede na list -- mozna to je omyl s dataframem
 
 On one dimensional list
 
     qw = np.array(data).reshape(-1)
-qw = qw.tolist()
+    qw = qw.tolist()
 
 ### Slicing
+
     a = np.array([[1,2,3],[3,4,5],[4,5,6]]) 
     #    [[1 2 3]
     #    [3 4 5]
     #    [4 5 6]] 
 
 #### Only column - not retain shape
+
     a = a[:, 1]  # [2 4 5]
 
 #### Columns with same shape
+
     a = a[:, 1:2]  #   [[2]
                         [4]
                         [5]]
 
-### Only rows
+#### Only rows
+
     a = a[1, :]
 
 ### Matrix from two arrays
+
     np.vstack([a,a])
 
 ### Join two matrixes - add columns
+
     a = np.array([1, 2, 3])
     b = np.array([2, 3, 4])
     np.stack((a, b))  # array([[1, 2, 3],
                       #        [2, 3, 4]])
 
 ### Find minimum value
+
     min = amin(a, axis=1)
 
 ### Find index of smallest value
+
     ind = np.unravel_index(np.argmin(models_parameters), shape=models_parameters.shape)
 
 ### Convert to other format
+
     arr.astype(int) # convert on np.int
     arr.item() # from np.int convert on int
 
 ### Create zero matrix of given shape
+
     zeros = numpy.zeros_like
 
 ### Replace all values with logical condition
+
     x[x > .5] = .5
 
 ### Delete member
+
     test = np.delete(test, 1, axis=0) # There need to pe variable before!  axis 0 are rows, 1 are columns
 
 ### Delete Nan values
+
     asd = asd[~np.isnan(asd)]
 
 ### Delete all rows where are Nan
+
     x = x[~np.isnan(x).any(axis=1)]
 
 ### Add column
+
     x = np.array([[10,20,30], [40,50,60]])
     y = np.array([[100], [200]])
     print(np.append(x, y, axis=1))
 
 ### Join two arrays into one
+
     a = np.array([[1, 2], [3, 4]])
     b = np.array([[5, 6]])
     np.concatenate((a, b), axis=0)
@@ -1004,6 +1131,7 @@ qw = qw.tolist()
                                             # array([1, 2, 3, 4, 5, 6])
 
 ### Miscellaneous
+
     X = np.append(X, 3)  # Add element to the end
     a = np.insert(a,3,[11,12])  # Into a on index 3 insert [11,12], next parameter can be axis
     np.delete`(*arr*, *obj*, *axis=None*)
@@ -1017,27 +1145,32 @@ qw = qw.tolist()
                 #  [ 4. 2.]]
 
 ### Sums
+
 Axis 0 is for sums on columns
 
     np.sum([[0, 1], [0, 5]], axis=0)  # array([0, 6])
     np.sum([[0, 1], [0, 5]], axis=1)  # array([1, 5])
 
 ### Dot product / multiplication
+
     x = np.array([1,2,3])
     w = np.array([1,2,3])
     v = x*w # [1, 4, 9]
     v = np.dot(x, w) # 14
 
 ### Shape
+
     z = np.array([[1, 2, 3, 4],
                   [5, 6, 7, 8],
                   [9, 10, 11, 12]])
     z.shape  # (3, 4)
 
 ### Remove non unique values
+
     unique = np.unique(array, axis=0)
 
 ### Reshape
+
     reshape -1 add members automatically
     z.reshape(-1) # array([ 1,  2,  3,  4,  5,  6])
     z.reshape(-1,1)
@@ -1062,19 +1195,30 @@ Axis 0 is for sums on columns
         # array([1, 4, 2, 5, 3, 6])
 
 ### Transpose
+
     data.transpose(1,0,2)  # From (10, 100, 1000) create (10, 1000, 100)
 
+### Generate sin
+
+  x = np.arange(0,4*np.pi,0.1)   # start,stop,step
+  y = np.sin(x)
+
 ### Find index (one) with max / min value
+
     np.argmax(a)  # or argmin. Also can use parameter axis
 
 ### Fill with Nan values
+
     z = np.zeros(N)
     z.fill(np.nan)
 
 ### Check if Nan values
+
     if not np.isnan(z[i]):
 
 ### Zip for arrays
+
+
   def azip(*args):
     iters = [iter(arg) for arg in args]
     for i in itertools.count():
@@ -1083,6 +1227,7 @@ Axis 0 is for sums on columns
 # LOOPZ
 ## IF
 ### Zda existuje proměnná
+
     if f:
         print("f exist")
     if promenna > 10:
@@ -1096,9 +1241,11 @@ Axis 0 is for sums on columns
     pass 3 # Do nothing
 
 ### Ternary operator - If in argument
+
     state = "nice" if is_nice else "not nice"
 
 ## FOR
+
     for zvire in ["pes", "kočka", "myš"]:
         print("zvire")
     for i in range(4):
@@ -1110,38 +1257,47 @@ Axis 0 is for sums on columns
         print(colors[i])
 
 ### Return indexes and elements
+
     ints = [8, 23, 45, 12, 78]
     for idx, val in enumerate(ints):
         print(idx, val)
 
 ## Generate list of elements from u1 to u5
+
     uname = ['u{}'.format(n) for n in range(1, 6)]
 
 ## Generate values with strings
+
     for k in range(5):
         exec(f'cat_{k} = k*2')
 
 ### For in list comprehension
+
     [x*5 for x in range(5)] #[0, 5, 10, 15, 20]
 
 ### Generate list with for cycle and if
+
     [x for x in range(5) if x%2 == 0]  #[0, 2, 4]
     [a if a else  2  for a in  [0,1,0,3]]
 
 ### Generate list with more parameters
+
     [a + b for a, b in zip(list1, list2)]
 
 ### Nested lists
+
     a = [[1,2,3],[2,3,4],[5,6,7]]
     print(a[1][1])   
 
 ## WHILE
+
     x = 0
     while x < 4:
         print(x)
         x += 1
 
 # Functions
+
     def secist(x, y):  # Create new function with def
         print("x je {} a y je {}".format(x, y))
         return x + y  # Return values with return
@@ -1157,6 +1313,7 @@ Axis 0 is for sums on columns
         print(args, kwargs) # print() vypíše všechny své parametry oddělené mezerou
 
 ### Jump out of function - return
+
     def print():
         a = 8
         if a > 5:
@@ -1164,6 +1321,7 @@ Axis 0 is for sums on columns
         print(2)
 
 ### Default parameter
+
     def funkce(y, lags=50): If we use lags in call, it will be overwritten
     vypis_vse(1, 2, a=3, b=4) # Use: (1, 2) {"a": 3, "b": 4}
     tuple = (1, 2, 3, 4)
@@ -1174,6 +1332,7 @@ Axis 0 is for sums on columns
     vypis_vse(*tuple, **dic)  # Is like vypis_vse(1, 2, 3, 4, a=3, b=4)
 
 ### Global variables
+
     x = 5
     def nastavX(cislo):  # Local variable override global
         x = cislo  # => 43
@@ -1193,7 +1352,8 @@ Functions are objects
     pricist_10(3)  # => 13
 
 ## Funkcions map(), filter(), reduce()
-** From functional programming**
+
+From the functional programming
 
 Map call funtion (first parameter) on all objects (second parameter)
 
@@ -1206,11 +1366,13 @@ Filter create list (First paratemer), where function is true (second parameter)
     print(less_than_zero)  # [-5, -4, -3, -2, -1]
 
 ### Reduce - Input sequention into function
+
     from functools import reduce
     def do_sum(x1, x2): return x1 + x2
     reduce(do_sum, [1, 2, 3, 4]) # 10
 
-# Generator
+# Generators
+
 Generators are functions, that instead return have yield
 
     def multiplier_2(sequention):
@@ -1220,7 +1382,8 @@ Generators are functions, that instead return have yield
 Generator generate values one after one, when it\s needed. Instead of been generated all at once
 Example of generator is range(10000)
 
-# Dekorator
+# Dekorators
+
 Dekorators are functions, that wrap other functions, by that
 it can change it's behaviour.
 
@@ -1237,6 +1400,7 @@ it can change it's behaviour.
     pozdrav("Pepo")  # Return 3x: Měj se Pepo!
 
 # Module
+
 Module in python is file with .py on the end.
 You can creat your own and import it.
 
@@ -1247,6 +1411,7 @@ You can creat your own and import it.
     dir(module)  #  Show objects in module
 
 # Classes
+
     class Clovek(object):  # Class Human is child (it inherits from) class object
 
         druh = "H. sapiens"  # Class variable - it's shared with all objects
@@ -1279,20 +1444,24 @@ Example of class method
     date2 = Date.from_string('11-09-2012')
 
 ### Create object
+
     d = Clovek(jmeno="David")
     a = Clovek("Adéla")
     print(d.rekni("ahoj"))  # "David: ahoj"
     print(a.rekni("nazdar"))  # "Adéla: nazdar"
 
 ### Call class method
+
     d.vrat_druh() # => "H. sapiens"
 
 ### Change atribute of class
+
     Clovek.druh = "H. neanderthalensis"
     d.vrat_druh() # => "H. neanderthalensis"
     a.vrat_druh() # => "H. neanderthalensis"
 
 ### Call static method
+
     Clovek.odkaslej_si() # => "*ehm*"
 
 # FILE I/O
@@ -1301,13 +1470,16 @@ Example of class method
     from analyze import analyze  # First name of file, than function
 
 ### Find script's adress
+
     os.path.dirname(__file__)
 
 ### Import variables from file in the same folder
+
     import file  # Then call file.value
     from file import * # Now call just variable
 
 ## If file or dir exists
+
     from pathlib import Path
     my_file = Path("/path/to/file")
     if my_file.is_file():  # File exists
@@ -1315,6 +1487,7 @@ Example of class method
     if my_file.exists():   # File or dir exists
 
 ## Pathlib - new and correct way
+
     from pathlib import Path
     path = pathlib.Path.cwd()
 
@@ -1322,14 +1495,17 @@ Example of class method
     file_to_open = data_folder / "raw_data.txt"
 
 ### Pathlib as string
+
     path.as_posix()
 
 ### Find all adress
+
     path = pathlib.Path('test.md')
     path.resolve() # ('/home/gahjelle/realpython/test.md')
     path.resolve().parent == pathlib.Path.cwd() # False
 
 ### Work with file
+
     filename = Path("source_data/text_files/raw_data.txt")
 
     print(filename.name) # prints "raw_data.txt"
@@ -1342,11 +1518,13 @@ Example of class method
 
 **Next rows just historical - Do not do it that way**
 ## Relative path
-    *../data/test_file.csv # ..znamená parent složka*
-    *from os import path*
-    *file_path = path.relpath("data/data.txt")*
+
+    ../data/test_file.csv # ..znamená parent složka
+    from os import path
+    file_path = path.relpath("data/data.txt")
 
 ## Absolute path
+
     os.path.abspath(\__file__)
 
 ## Add path to files and modules
@@ -1369,11 +1547,12 @@ Use relative imports with dots
     os.chdir(r"C:\Users\...")
 
 ## Change current working directiory 
+
     cwd = os.getcwd() + r"\diplomka"
     os.chdir(cwd)
 
 ## Full adress
-**Use normal slash!!**
+Use normal slash!
 
     import os
     data_folder = "folder/nextfolder/"
@@ -1401,9 +1580,11 @@ You can also do
     abs_file_path = os.path.join(script_dir, rel_path)
 
 ## Show all files in folder
+
     all_files = os.listdir("test/")
 
 ## Load all files with certain suffix
+
     import glob
     imgs=glob.glob("*.png")  # Všechny obrázky ze složky
 
@@ -1416,9 +1597,11 @@ You can also do
         print name
 
 ## Filter for one type data
+
     txt_files = filter(lambda x: x[-4:]  ==  '.txt', all_files)
 
 # Work with files
+
     f = open("test.txt") # open file in current directory
     f = open("C:/Python33/README.txt") # specifying full path
     'r'  Open a file for reading. (default)
@@ -1449,6 +1632,7 @@ You can also do
     x=loadtxt('realna_data_klapky.txt')
 
 ## Pickling
+
 Save file in binary format
 
     import pickle
@@ -1462,6 +1646,7 @@ Load files
 Result is e = {"a": 1, "b": 2}**
 
 # Try -- Except
+
     try:
         print(znam)
     except:
@@ -1489,34 +1674,38 @@ Print founded error
         print(error)
 
 ##  Try for all errors
+
     except Exception as e:
 
 ## Raise exception
+
     raise Exception('x should not exceed 5. The value of x was: {}'.format(x))
 
 ## Assert - Require something or error
+
     assert (x > 4), 'What happened'
 
 # Warnings
+
     import warnings
     warnings.warn("Warning...........Message")
 
-    warnings.filterwarnings('error', message=r".*HessianInversionWarning*")  # Errory budou brány jako chyby u upozornění, kde je slovo HessianInversionWarning"
-    warnings.filterwarnings('always', category=DeprecationWarning)  # Errory typu category budou vždy ukázány
+    warnings.filterwarnings('error', message=r".*HessianInversionWarning*")  # Warnings with word 'HessianInversionWarning' will be caused as errors
+    warnings.filterwarnings('always', category=DeprecationWarning)  # Errory of category depracation will be show everytime
     warnings.filterwarnings('ignore')  # Errory budou vždy ignorovány
 
-    "default"
-    print the first occurrence of matching warnings for each location (module + line number) where the warning is issued
+ "default" will print the first occurrence of matching warnings for each location (module + line number) where the warning is issued
 
-    "error"
-    "ignore"
-    "always"
-    "module"
-    print the first occurrence of matching warnings for each module where the warning is issued (regardless of line number)
+ "once"
+ "error"
+ "ignore"
+ "always"
+ "module"
+ print the first occurrence of matching warnings for each module where the warning is issued (regardless of line number)
 
-    "once"
 
 # Regular expressions
+
     import re
 
     [] 	A set of characters 	"[a-m]" 	
@@ -1555,12 +1744,15 @@ Print founded error
 
 # Built in functions
 ### Print
+
     print('as', a, 'fegg') # používáme čárky, jde pak spojit string s proměnnou
 
 ### Range
+
     x=range(n+1) # x=0,1,2,...,n
 
 ### Reverse range
+
     for i in reversed(range(5)):
         print(i) # 4, 3, 2, 1
 
@@ -1569,17 +1761,20 @@ Print founded error
     if __name__ == "__main__":
 
 # Date and time
+
     now = dt.datetime.now() #datum i čas
     time.sleep(1) # počká 1 vteřinu
 
 # Plots, graphs
-##Plotly
+
+## Plotly
+
     import plotly as py
 
     fig = dict( data=data, layout=layout )
     py.offline.plot( fig, filename='d3-cloropleth-map' )
 
-Nebo
+or
 
     init_notebook_mode(connected=True)
     cf.go_offline()
@@ -1587,6 +1782,7 @@ Nebo
     data_ft_date.iplot(xTitle='Dates',yTitle='Returns',title='Returns')
 
 ### Plotly timeseries
+
     py.plot([{
         'x': data_for_predicts_csv_trimmed.index,
         'y': data_for_predicts_csv_trimmed[col],
@@ -1594,17 +1790,21 @@ Nebo
     }  for col in data_for_predicts_csv_trimmed.columns])
 
 ### From matplotlib to plotly
+
     plot_mpl(fig)
 
 ### Save picture
+
     import plotly.io as pio
     static_image_bytes = pio.to_image(fig, format='png')
 
 ## Matplotlib
 ### Simple plot
+
     pyplot.plot(test)
 
 ### Load txt and plot it
+
     from numpy import loadtxt # pro jeden sloupeček čísel
     from matplotlib.pyplot import *
     x=loadtxt('realna_data_klapky.txt')
@@ -1614,6 +1814,7 @@ Nebo
     plt.savefig('fig1.png', dpi =  300) # uloží graf
 
 ### Histogram
+
     figure(figsize=(20,5))
     nbins=int(round(1+3.3*log(N))) # Sturge's rule, ale zalezi na datech, atd
     xlabel("x");ylabel("cetnosti"),title("cetnosti hodnoty x v intervalech");grid()
@@ -1622,6 +1823,7 @@ Nebo
     print "intervaly =",a[1]
 
 ### Curves and points
+
     x=arange(-600,100) #
     mu=m1;sigma=sqrt(s2);print "mu=",mu,"sigma=",sigma
     f=1/(sigma*sqrt(2*pi))*exp(-(((x-mu)/sigma)**2)/2)
@@ -1631,6 +1833,7 @@ Nebo
     legend()
 
 ### Two graphs
+
     N=1000 # velikost výběru
     x=random.uniform(-10,10,N)
     x=random.randn(N)*1000-300
@@ -1652,6 +1855,7 @@ Third number is which graph is it - first, second etc.
     subplots_adjust(wspace=.3) # Větší rozestupy mezi grafy
 
 ### More plots with one legend
+
     plt.figure(figsize=(12,7))
     plt.subplot(3, 1, 1)
     plt.plot(t, yy, label='Predikce'); plt.xlabel('t')
@@ -1660,6 +1864,7 @@ Third number is which graph is it - first, second etc.
     plt.ylabel("u4 predikované")
 
 ### More plots with for cycle
+
     for i in range(1,7):
     plt.subplot(3, 2, i)
     plt.plot(oknomean[i]);plt.grid(); plt.xlabel('t')
@@ -1670,6 +1875,7 @@ Third number is which graph is it - first, second etc.
     plt.show()
 
 ### Scatterplot
+
     import numpy as np
     import matplotlib.pyplot as plt
     N = 60
@@ -1689,6 +1895,7 @@ Third number is which graph is it - first, second etc.
     plt.show()
 
 ### Text plot
+
     import matplotlib.pyplot as plt
     fig = [plt.figure](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure "View documentation for matplotlib.pyplot.figure")(figsize=(5, 1.5))
 
@@ -1699,11 +1906,13 @@ Third number is which graph is it - first, second etc.
     [plt.show](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show "View documentation for matplotlib.pyplot.show")()
 
 ## Table
+
     from prettytable import PrettyTable
     x.field_names = ["City name", "Area", "Population", "Annual Rainfall"]
     x.add_row(["Adelaide", 1295, 1158259, 600.5])
 
 ## Symbolic functions
+
     import sympy as smp
     from sympy.plotting import plot as Plot
     z=smp.Symbol("z")
@@ -1715,43 +1924,50 @@ Third number is which graph is it - first, second etc.
 
 # Libraries
 ## If pip cannot be installed by SSL errorr
+
     pip install ipykernel --upgrade pip --trusted-host pypi.org
 
 # Jupyter
+
     jupyter kernelspec list # Ukáže seznam kernelů
     jupyter kernelspec uninstall nazev # Odinstaluje kernel
 
 ## Autoreload
+
 Load imported module everytime
 
 Reload all modules imported with %aimport every time before executing the Python code typed.
 
-    %autoreload 1
+%autoreload 1
 
 Reload all modules (except those excluded by %aimport) every time before executing the Python code typed.
 
-    %autoreload 2
+%autoreload 2
 
 Sometimes its necessary to import concrete modules
 
-    %aimport modul1, modul2
+%aimport modul1, modul2
 
 
 ## Link
-    ‚''
-    [Youtubeplaylist](<https://www.youtube.com/>)
-    ‚''
+
+‚''
+[Youtubeplaylist](<https://www.youtube.com/>)
+‚''
 
 ## Image
-    ‚''
-    <img src="img/Gini.png" width=400>
-    ‚''
+
+‚''
+<img src="img/Gini.png" width=400>
+‚''
 
 ## Youtube
+
     from IPython.display import YouTubeVideo
     YouTubeVideo('7VeUPuFGJHk')
 
 ## Show all images from folder
+
     import os
     from IPython.display import display, Image
     names = [f for f in os.listdir('../images/ml_demonstrations/') if f.endswith('.png')]
@@ -1773,42 +1989,53 @@ r.encoding  # 'utf-8'
 r.text  # '{"login":"hroncok"...'
 r.json()  # {'avatar_url': 'https://avatars.githubusercontent.com/u/2401856?v=3', ...}
 
-# Pictures
+# Images, pictures
+
     from PIL import Image
     from resizeimage import resizeimage
 
 ## Show image
+
     ax1.imshow(img)
 
 ## Resize
+
     img = Image.open(im)
     img = resizeimage.resize_contain(img, [100,100]) # nebo
     img = img.resize((1250,890),Image.ANTIALIAS) # antialias
 
 ## Save
+
     img.save(soubor[0]+'_resized_'+soubor, img.format)
     img.close()
 
 ## Convert to black and white
+
     img = img.convert('L') #Převede na černobílý
 
 ## Convert image to matrix
+
     img=np.array(img)
 
 # Mahematics, statistics, linear algebra
+
 ## Square root
+
 y = 9**(1/2)  # 3
 
 ## Random numbers in normal distribution
+
     w = np.random.randn(3)
 
 ## Random number everytime the same
+
     np.random.seed(5)
 
     w = np.random.randn(3)  # [ 0.44122749 -0.33087015  2.43077119]
     w = np.random.randn(3)  # [ 0.44122749 -0.33087015  2.43077119]
 
 ## Random numbers in normal distribution matrix shape
+
     s = np.random.normal(mu, sigma, 1000)
     numpy.random.randn(3, 4) #[ 1.33262386 -0.88922967 -0.07056098]
 
@@ -1817,30 +2044,38 @@ y = 9**(1/2)  # 3
         #     [ -0.19289416 -0.42746963 -1.80435223 0.02751727]]
 
 ## Eigen values
+
     np.linalg.eig(mat)
 
 ## Inverse matrix
+
     np.linalg.inv(mat)
 
 ## Determinant
+
     np.linalg.det(mat)
 
 ## Ones matrix
+
     np.ones([[3,3]])
 
 ## Matrix transpozition
+
     A.T
 
 ## Points generation
-    t = np.linspace(0,20,1000) #generuje řadu čísel se stejnými intervaly (Začátek konec, počet)
+
+    t = np.linspace(0,20,1000)  # Generate numbers with the same interval (beginning, end, number)
 
     t = np.arange(start, stop, step)
     t = np.arange(3)  # 0, 1, 2
 
 ## Mean
+
     np.mean(data)
 
 ## Standard deviation
+
     np.std(data)
 
 Or
@@ -1850,26 +2085,61 @@ Or
     std = statistics.stdev(sample)
 
 ## Add shape - matrix dimensions (rows, columns etc.)
+
     y.shape
 
 ## Number of members - count
+
     y.size
 
-### Bins
+## Bins
+
     binss = numpy.histogram(data, bins)  # binss[0] hodnoty binss[1]
 
-### Cumulative sum
+## Cumulative sum
+
     y = np.cumsum(x)
 
-### Derivation
+## Derivation
+
     z = np.diff(y)                      
 
-### Latex dislay
+## Latex dislay
+
     from IPython.display import display, Math, Latex
     display(Math(r'F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx'))
 
+## Symbolic python - sympy
+
+### Substitute
+
+  expr = cos(x)
+  expr.subs(x, 0)  # 1
+
+### Simplify
+
+  str_expr = "x**2 + 3*x - 1/2"
+  expr = sympify(str_expr)
+
+### Evaluate
+
+  expr = sqrt(8)
+  expr.evalf()  # 2.82842712474619
+
+### Lambdify
+
+    import numpy
+    a = numpy.arange(10) # doctest:+SKIP
+    expr = sin(x)
+    f = lambdify(x, expr, "numpy") # doctest:+SKIP
+    f(a) # doctest:+SKIP
+        # [ 0.          0.84147098  0.90929743  0.14112001 -0.7568025  -0.95892427
+         -0.2794155   0.6569866   0.98935825  0.41211849]
+
 ## Integration
+
 ### Unbounded integral
+
 For some functions with we need to load from SymPy exp(). Otherwise use numpy functions.
 
     import sympy as smp
@@ -1881,26 +2151,34 @@ For some functions with we need to load from SymPy exp(). Otherwise use numpy fu
     disp("\int " + dfrac(f)+"dx=",intf) # po \int musim byt mezera
 
 ### Bounded integral
+
     intf=smp.integrate(f,(x,0,1))
     disp("\int_0^1" + dfrac(f)+" dx=",intf.evalf())
 
 ## Round
+
     x = round(5.76543, 2)
 
 ## Modulo
+
     7 % 3 # => 1
 
 ## Power (x on y)
+
     2**4 # => 16
 
-### Describe - Statistical values of list
+## Describe - Statistical values of list
+
     List.describe()
 
-### Statistical values of array
+## Statistical values of array
+
     from scipy import stats
     print(stats.describe(data[1]))
+## Correlation
 
 ### Correlation matrix - values
+
     x = dat.corr()
 
 ### Correlation matrix - plot
@@ -1909,13 +2187,16 @@ For some functions with we need to load from SymPy exp(). Otherwise use numpy fu
     plt.show()
 
 ### Correlation (Pearson corr. matrix)
+
     scoreTable = dat.corr(method='pearson')
     dat.corr(method='pearson').style.format("{:.2}").background_gradient(cmap=plt.get_cmap('coolwarm'), axis=1)
 
 ### Correlation coefficent
+
     np.corrcoef(data, data_n)
 
-### Test of normal distribution
+## Test of normal distribution
+
     from statsmodels.stats.stattools import jarque_bera
     score, pvalue, _, _ = jarque_bera(mdl.resid)
     if pvalue < 0.10:
@@ -1924,7 +2205,9 @@ For some functions with we need to load from SymPy exp(). Otherwise use numpy fu
         print 'The residuals seem normally distributed.'
 
 # Machine learning
+
 ### Standardization: mean = 0 and std = 1
+
     from sklearn import preprocessing
     clustervar['ALCEVR1']=preprocessing.scale(clustervar['ALCEVR1'].astype('float64'))
 
@@ -1946,13 +2229,16 @@ Denormalization
     ach = scaler.inverse_transform(scaled)
 
 ### Normalization (-1,1)
+
     datat = data.reshape(-1, 1) # občas je per = preprocessing.MinMaxScaler(feature_range=(-1, 1))
     rescaledXT = scaler.fit_transform(datastand)
 
 # Signal processig and controll
-# Miscellaneou
+
+# Miscellaneous
 
 ## Function for change relative path
+
 import os
 
 try:
@@ -1963,15 +2249,18 @@ except:
     pass
 
 ## Measure time
+
     import timeit
     timeit.timeit(moje funkce)
 
 ### Measure time of function with inputs
+
     import timeit, functools
     t = timeit.Timer(functools.partial(autoregLNU, trainall[0]))
     print (t.timeit(20))
 
 ### Measure time on multiline
+
     t = timeit.Timer(''' ‚''
     from models import ar, autoregLNU
     from data_prep import split
@@ -1980,6 +2269,7 @@ except:
     print(t.timeit(3))  # 3 - measure three times
 
 ### Measure between two lines
+
     import time
     start = time.time()
     print("hello")
@@ -1987,15 +2277,16 @@ except:
     print(end - start)
 
 ## Show bytcode
+
     import dis
     dis.dis("dict()")
 
     import numpy as np...
-    1           0 LOAD_NAME                0 (dict)
-                  2 CALL_FUNCTION            0
-                  4 RETURN_VALUE
+    #        1           0 LOAD_NAME                0 (dict)
+    #              2 CALL_FUNCTION            0
+    #              4 RETURN_VALUE
 
-##The \__call__ method (Allow input of object to function)
+## The \__call__ method (Allow input of object to function)
 
 The \__call__ method can be used to turn the instances of the class into callables. Functions are callable objects. A callable object is an object which can be used and behaves like a function but might not be a function. By using the \__call__ method it is possible to define classes in a way that the instances will be callable objects. The \__call__ method is called, if the instance is called "like a function", i.e. using brackets. The following example defines a class with which we can create abitrary polynomial functions:
 
@@ -2047,7 +2338,7 @@ Creating instance of the object
 
 a =  Address("hyderabad",  "500082")
 
-before creating the instance of the class **"__new__"** method will be called. This method takes  parameter **"class", "args", "kwargs" **and  It will bind the *data type* to given class. After it will call the **"__init__"** method with arguments and keyword arguments.
+before creating the instance of the class '__new__' method will be called. This method takes  parameter "class", "args", "kwargs" and  It will bind the *data type* to given class. After it will call the **"__init__"** method with arguments and keyword arguments.
 
     a =  Address.__new__(Address)
     type(a)
@@ -2124,7 +2415,7 @@ Comparison Operators
     >=                    object.__ge__(self, other)\
     >                      object.__gt__(self, other)
 
-Let's take an example to override the functionality "+" [__add__] operator
+Let's take an example to override the functionality "+" '[__add__]' operator
 
     class  Vector(object):
     def __init__(self,  *args):
@@ -2149,7 +2440,9 @@ When statement "v3 = v1 + v2 " executes "__add__" is called and it returns a new
 
 
 # Performance
+
 ## Type hinting
+
     def sentence_has_animal(sentence: str) -> bool:
       return "animal" in sentence
     sentence_has_animal("Donald had a farm without animals")
@@ -2157,6 +2450,7 @@ When statement "v3 = v1 + v2 " executes "__add__" is called and it returns a new
 
 ## Numba
     from numba import njit
+
 
 Works on all functions
 
@@ -2178,17 +2472,20 @@ Or direct data formats
     def function(a, b):
 
 ### Cuda in Numba
+
     from numba import cuda
     @cuda.jit(device=True)
     def function(a, b):
 
 ## Dask
+
     @delay
     def sq(x):
         return x**2# Now you can use these functions any way you want, Dask will 
     result.compute()
 
 ### Dask formats
+
     import dask.array as da  # Arrays implement the Numpy API
     x = da.random.random(size=(10000, 10000),
                         chunks=(1000, 1000))
@@ -2202,14 +2499,17 @@ Or direct data formats
     lr = LogisticRegression()
     lr.fit(train, test)
 
-##Show task structure
+## Show task structure
+
     .visualize()
 
 ## Force to empty memory
+
     import gc
     gc.collect()
 
 ## Max execution time python
+
     def watchdog(timeout, code, *args, **kwargs):
         "Time-limited execution."
         def tracer(frame, event, arg, start=time.time()):
@@ -2255,6 +2555,7 @@ Or
         time.sleep(10)
 
 ## Profiling
+
     import cProfile
     print(cProfile.run(‘whatever statements you want to run’))
 
@@ -2263,9 +2564,11 @@ I would suggest putting your statements in a function, so that this call can be 
     print(cProfile.run(‘your_function(input)’))
 
 # Whole sections
+
 ## Encoding JSON with Python
 
-Python comes pre-equipped with a JSON encoder and decoder to make it very simple to play nice with JSON in your applications
+Python comes pre-equipped wi
+th a JSON encoder and decoder to make it very simple to play nice with JSON in your applications
 
 The simplest way to encode JSON is with a dictionary. This basic dictionary holds random values of various datatypes.
 
@@ -2292,6 +2595,7 @@ json_data = json.dumps(data, sort_keys=True)
 print(json_data)  # {"a":  0,  "b":  9.6,  "c":  "Hello World",  "d":  {"e":  [89,  90]}}
 
 # Pypi export / create own library
+
 Put on github, add licence, create release. In computer create setup.py
 
     from setuptools import setup, find_packages
@@ -2360,6 +2664,7 @@ Put on github, add licence, create release. In computer create setup.py
 Next create setup.cfg
 
 # Inside of setup.cfg
+
     [metadata]
     description-file = README.md
 
