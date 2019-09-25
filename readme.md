@@ -128,6 +128,7 @@ Feel free to colab...
     - [Find index (one) with max / min value](#find-index-one-with-max--min-value)
     - [Fill with Nan values](#fill-with-nan-values)
     - [Check if Nan values](#check-if-nan-values)
+    - [Zip for arrays](#zip-for-arrays)
 - [LOOPZ](#loopz)
   - [IF](#if)
     - [Zda existuje proměnná](#zda-existuje-prom%c4%9bnn%c3%a1)
@@ -255,7 +256,8 @@ Feel free to colab...
 - [Machine learning](#machine-learning)
     - [Standardization: mean = 0 and std = 1](#standardization-mean--0-and-std--1)
     - [Normalization (-1,1)](#normalization--11)
-- [Miscellaneous](#miscellaneous-1)
+- [Signal processig and controll](#signal-processig-and-controll)
+- [Miscellaneou](#miscellaneou)
   - [Function for change relative path](#function-for-change-relative-path)
   - [Measure time](#measure-time)
     - [Measure time of function with inputs](#measure-time-of-function-with-inputs)
@@ -1071,6 +1073,12 @@ Axis 0 is for sums on columns
 
 ### Check if Nan values
     if not np.isnan(z[i]):
+
+### Zip for arrays
+  def azip(*args):
+    iters = [iter(arg) for arg in args]
+    for i in itertools.count():
+      yield tuple([it.next() for it in iters])
 
 # LOOPZ
 ## IF
@@ -1938,11 +1946,11 @@ Denormalization
     ach = scaler.inverse_transform(scaled)
 
 ### Normalization (-1,1)
-    datat = data.reshape(-1, 1) # občas je potřeba
-    scaler = preprocessing.MinMaxScaler(feature_range=(-1, 1))
+    datat = data.reshape(-1, 1) # občas je per = preprocessing.MinMaxScaler(feature_range=(-1, 1))
     rescaledXT = scaler.fit_transform(datastand)
 
-# Miscellaneous
+# Signal processig and controll
+# Miscellaneou
 
 ## Function for change relative path
 import os
