@@ -298,9 +298,9 @@ How to use
 pip install -r /path/to/requirements.txt
 
 ## One line comment
-```python
-# This is comment
-```
+
+    # This is comment
+
 
 ## Multiline comment
 ```python
@@ -352,8 +352,10 @@ Python code in docstrings
 .. code:: python
 
 print("A literal block directive explicitly marked as python code")
+```
 
 ### docBlockR
+
 ```python
 """Function to find optimal parameters of function
 ======
@@ -486,7 +488,7 @@ config.x = 2 ....
 
 # DATA TYPES
 
-    type(var)  # Return type
+    a = type(var)  # Return type
 
 ### Type of variable as condition
 
@@ -506,14 +508,15 @@ config.x = 2 ....
 
 ### If exist
 
-    if callable(a)
+    if callable(a):
+        pass
 
 ## String
 
     # Strings " or ' and can contain UTF8 symbols
 
-    "This is string."
-    'This is also string.'
+    a = "This is string."
+    a = 'This is also string.'
 
     # In python 3
 
@@ -521,36 +524,37 @@ config.x = 2 ....
 
     # Strings can use + but don't use
 
-    "Hello " + "world!" # => "Hello world!"
+    a = "Hello " + "world!" # => "Hello world!"
 
     # Can be concatenated without '+'
 
-    "Hello " "world!" # => "Hello world!"
+    a = "Hello " "world!" # => "Hello world!"
 
     # String is list of symbols
 
-    "This is list"[0] # => 'T'
+    a = "This is list"[0] # => 'T'
 
 ### Format
 
     # Old
 
-    '%s  %s' % ('one', 'two')
+    a = '%s  %s' % ('one', 'two')
 
     # Newer
 
-    '{} {}'.format('one', 'two')
+    a = '{} {}'.format('one', 'two')
 
-    Format can be used multiple times
+    # Format can be used multiple times
 
-    "{0} {1} stříkaček stříkalo přes {0} {1} střech".format("tři sta třicet tři", "stříbrných")
+    a = "{0} {1} stříkaček stříkalo přes {0} {1} střech".format("tři sta třicet tři", "stříbrných")
 
-    You can use named arguments
+    # You can use named arguments
 
-    "{jmeno} si dal {jidlo}".format(jmeno="Franta", jidlo="guláš") # => "Franta si dal guláš"
+    a = "{jmeno} si dal {jidlo}".format(jmeno="Franta", jidlo="guláš") # => "Franta si dal guláš"
 
 ### Newest and fastest format- f'strings'
 
+    name = 'Peter'
     f"Hello, {name}. You are {2 * 17}. Also functions {name.lower()}."
 
 If you use """ no escape symbols will be used
@@ -569,9 +573,6 @@ Dont use # in f strings
 
     words = ["this", 'is', 'a', 'list', 'of', "strings"]
     ' '.join(words)  #returns "This is a list of strings"
-
-
-    %reset  # just for remove variables and clear memory
 
 # List
 
@@ -610,10 +611,6 @@ Dont use # in f strings
 
     lst[::2] # =>[1, 4]
 
-### Remove member
-
-    del lst[2] # lst is now [1, 2, 3]
-
 ### Minimum
 
     youngest = min(lst)
@@ -638,15 +635,15 @@ Dont use # in f strings
 ### Every value just once
 
     t =  [1,  2,  3,  1,  2,  5,  6,  7,  8]
-    list(set(t))  # [1,  2,  3,  5,  6,  7,  8]
+    lst = list(set(t))  # [1,  2,  3,  5,  6,  7,  8]
 
 ### Reverse
 
-    lst[::-1] # => [3, 4, 2, 1]
+    rev = lst[::-1] # => [3, 4, 2, 1]
 
     # Or
 
-    a.reverse()
+    rev = t.reverse()
 
 ### Iterate in reverse order
 
@@ -655,8 +652,10 @@ Dont use # in f strings
 
 ### Check if list is empty or not
 
+    a = 6
     if a:
         pass
+
     if not a:
         pass
 
@@ -678,11 +677,11 @@ Dont use # in f strings
 
 ### Zip lists
 
-    zip(List1, Listb1) # {(a1, b1), (a2, b2)}
+    zip(list_1, list_2) # {(a1, b1), (a2, b2)}
 
 ### Logical condition on lists
 
-    j2 = [i for i in j if i >=  5]
+    j2 = [i for i in list_1 if i >=  5]
 
 ### One value more times
 
@@ -799,7 +798,7 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
 ### Maximum value and its index
 
     stats = {'a':1000, 'b':3000, 'c': 100}
-    maxname = max(stats, key=stats.get))
+    maxname = max(stats, key=stats.get)
     maxvalue = stats[axname]
 
 ### Values
@@ -872,7 +871,7 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
 It is not oredered and every value is just once!
 
     empty_set = set()
-    set = {1, 1, 2, 2, 3, 4}  # {1, 2, 3, 4}
+    sett = {1, 1, 2, 2, 3, 4}  # {1, 2, 3, 4}
     set.add(5)  # {1, 2, 3, 4, 5}
     jina_set = {3, 4, 5, 6}
 
@@ -909,6 +908,7 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
 ### Import from csv
 
+    '''
     import pandas as pd
     data = pd.read_csv(
         "data/files/complex_data_example.tsv",
@@ -919,7 +919,8 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
         parse_dates=['birth_date'],  # Intepret the birth_date column as a date
         skiprows=10,  # Skip the first 10 rows of the file
         na_values=['.', '??']  # Take any '.' or '??' values as NA
-)
+    )
+    '''
 
 ### Save into CSV
 
@@ -927,6 +928,7 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
 ### Create
 
+    import pandas as pd
     # one column dataframe
 
     s2 = pd.Series([1,2,3,4])
@@ -938,17 +940,17 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
     # from list
 
     data = [['tom', 10], ['nick', 15], ['juli', 14]]
-    df = pd.DataFrame(data, columns = ['name', 'age'])
+    df = pd.DataFrame(data, columns = ['name', 'age', 'index'])
 
     # from dictionary
 
     dict = {'a': 1, 'b': 2}
-    newdatf = DataFrame.from_dict(dict, orient='index')
+    newdatf = pd.DataFrame.from_dict(dict, orient='index')
 
     # from array
 
     array = np.array([[1, 2], [2, 3], [3, 4]])
-    df2 = pd.DataFrame(data=array[1:,1:], index=data[1:,0], columns=data[0,1:])
+    #df2 = pd.DataFrame(data=array[1:,1:], index=range(len(data)), columns=data[0,1:])
 
 ### Access column
 
@@ -968,23 +970,23 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
 ### Column to new dataframe
 
-    df.pop('age')
+    a = df.pop('index')
 
 ### Return name of column from index
 
-    df[df.columns[0]]  # Columns return name of column
+    a = df.columns[0]  # Columns return name of column
 
 ### Find index from column name
 
-    a = df.columns.get_loc("aindexge")
+    a = df.columns.get_loc("age")
 
 ### Logical conditions
 
-    df_new = df.loc[data['name'] == 'juli']
+    df_new = df.loc[df['name'] == 'juli']
 
 ### Concat 2 columns
 
-    df['name_and_index'] = df['name'] + str(df['index'])
+    df['name_and_age'] = df['name'] + str(df['age'])
 
 ### Make index from colmn
 
@@ -993,8 +995,8 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
 ### Convert into array
 
-    df['index'].values
-    b=df1.iloc[:,1:].values # každý sloupec zvlast
+    df['age'].values
+    b=df1.iloc[:,1:].values  # every column separately
 
 ### Convert into list
 
@@ -1008,8 +1010,8 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
     # Datetime from values
 
-   year = 2020; month = 3; day = 14; hour = 4
-   start = pd.Timestamp(year=year, month=month, day=day, hour=hour)
+    year = 2020; month = 3; day = 14; hour = 4
+    start = pd.Timestamp(year=year, month=month, day=day, hour=hour)
 
     # Range
 
@@ -1017,11 +1019,12 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
     # Convert from datetime to time, the same to datetime
 
-    df['EventStart'] = df['EventStart'].dt.time
+    df['EventStart_time'] = df['EventStart'].dt.time
 
 ### Set index
 
     df.set_index('EventStart', drop=True, inplace=True)
+    df.index = pd.to_datetime(df.index)
 
 ### Resample datetime dataframe
 
@@ -1141,8 +1144,8 @@ Create
     ar = np.array([[1,2,3], [4, 5, 6]])
     a = ar[1, 2]  # 5 - Access array
     a = np.append(a, 3)  # Add element to the end
-    a = np.insert(a,3,[11,12])  # Into a on index 3 insert [11,12], next parameter can be axis
-    np.roll(x,2) # Posune array o 2 doprava
+    a = np.insert(a,1,[11,12])  # Into a on index 1 insert [11,12], next parameter can be axis
+    np.roll(a,2) # Posune array o 2 doprava
     wo = np.array([1,2,3]) # Shape (3,)
     wo = np.array([[1,2,3,4,5]]) # Shape (1,5)
     wo = np.array([[1],[2],[3],[4],[5]]) # Shape (5,1)
@@ -1152,8 +1155,15 @@ Create
 
 ### Convert
 
+    a = np.array([1, 2, 3])
     list = ar.tolist()  # Convert on list
     one_dim_list = np.array(ar).reshape(-1).tolist()  # Convert to one-dimensional list
+    a_scal = a[0].item()  # from np.int convert on int
+
+### Convert to other dtype
+
+    b = a.astype(int)  # convert on np.int
+
 
 ### Slicing
 
@@ -1240,11 +1250,6 @@ Create
 ### Find index of smallest value
 
     ind = np.unravel_index(np.argmin(a), shape=a.shape)
-
-### Convert to other format
-
-    a.astype(int)  # convert on np.int
-    a_scal = a[0].item()  # from np.int convert on int
 
 ### Create zero or ones matrix of given shape
 
@@ -1421,7 +1426,7 @@ Axis 0 is for sums on columns
 
 # LOOPZ
 ## IF
-### Zda existuje proměnná
+### If variable exist
 
     variable = [10, 20, 30]
     for i in variable:
@@ -1439,6 +1444,7 @@ Axis 0 is for sums on columns
 
 ### Ternary operator - If in argument
 
+    variable = 3
     state = "nice" if variable else "not nice"
 
 ## FOR
@@ -1520,7 +1526,14 @@ Axis 0 is for sums on columns
 
 ### Default parameter
 
-    def funkce(y, lags=50): If we use lags in call, it will be overwritten
+    def funkce(y, lags=50): #If we use lags in call, it will be overwritten
+        return 1
+
+### Unknown number of parameters - *args, **kwargs
+
+    def vypis_vse(*args, **kwargs):
+        print(args, kwargs)
+
     vypis_vse(1, 2, a=3, b=4) # Use: (1, 2) {"a": 3, "b": 4}
     tuple = (1, 2, 3, 4)
     dic = {"a": 3, "b": 4}
@@ -1672,7 +1685,6 @@ Example of class method
 
 ### Change atribute of class
 
-    Clovek.druh = "H. neanderthalensis"
     d.vrat_druh() # => "H. neanderthalensis"
     a.vrat_druh() # => "H. neanderthalensis"
 
@@ -1820,111 +1832,26 @@ What happens when we create an object in python class ?
     if my_file.exists():   # File or dir exists
         pass
 
-## Pathlib - new and correct way
-
-    import pathlib
-    path = pathlib.Path.cwd()
-
-    data_folder = Path("folder")
-    file_to_open = data_folder / "raw_data.txt"
-
-### Pathlib as string
-
-    path.as_posix()
-
-### Find all adress
-
-    path = pathlib.Path('test.md')
-    path.resolve() # ('/home/gahjelle/realpython/test.md')
-    path.resolve().parent == pathlib.Path.cwd() # False
-
-### Work with file
-
-    filename = Path("source_data/text_files/raw_data.txt")
-
-    print(filename.name) # prints "raw_data.txt"
-    print(filename.suffix) # prints "txt"
-    print(filename.stem) # prints "raw_data"
-    if not filename.exists():
-        print("Oops, file doesn't exist!")
-    else:
-        print("Yay, the file exists!")
-
-## Relative path
-**Next rows just historical - Do not do it that way**
-
-    ../data/test_file.csv # ..znamená parent složka
-    from os import path
-    file_path = path.relpath("data/data.txt")
-
-## Absolute path
-
-    # os.path.abspath(\__file__)  # Not working in jupyter
-
-## Add path to files and modules
-
-    import sys
-    sys.path.insert(0, '/path/to/application/app/folder')
-    sys.path  # Print folders available by system
-
-## Create module from folder
+### Create module from folder
 
 Add file `__init.py__`
 Inside do all imports from .autoregLNU import autoregLNU
 Use relative imports with dots
 
-## Working direktory
-
-    import os
-    cwd = os.getcwd()
-    # os.chdir(r"C:\Users\...")
-
-## Change current working directiory 
-
-    cwd = os.getcwd() + r"\diplomka"
-    os.chdir(cwd)
-
-## Full adress
-Use normal slash!
-
-    import os
-    data_folder = "folder/nextfolder/"
-    file_to_open = data_folder + "data.txt"
-
-For example if jupyter do not see some files
-
-    script_dir0 = os.path.abspath('') # C:\VScode
-
-Next
-
-    # script_path = os.path.abspath(\__file__)  # i.e. /path/to/dir/foobar.py  - notworking with jupyter
-    script_path = 'C://prog'
-    script_dir = os.path.split(script_path)[0]  #i.e. /path/to/dir/
-    rel_path =  "2091/data.txt"
-    abs_file_path = os.path.join(script_dir, rel_path)  # Result is relative '/path/to/dir/2091/data.txt'
-    filename = os.path.join(script_path,  '../same.txt')  # We can use name of file
-    # script_dir = os.path.dirname(\__file__)  # We can use adress of file... but not in jupyter
-
-You can also do
-
-    # script_dir = os.path.dirname(\__file__)
-    rel_path = "test_ data/realna_data_klapky.txt"
-    abs_file_path = os.path.join(script_dir, rel_path)
-
-## Show all files in folder
+### Show all files in folder
 
     # all_files = os.listdir("test/")
 
-## Filter for one type data
+### Filter for one type data
 
     # txt_files = filter(lambda x: x[-4:]  ==  '.txt', all_files)
 
-## Load all files with certain suffix
+### Load all files with certain suffix
 
     import glob
     imgs=glob.glob("*.png")  # Všechny obrázky ze složky
 
-**Wildcard**
+    # Wildcard
 
     for name in glob.glob('dir/file?.txt'):
         print (name)
@@ -1932,7 +1859,7 @@ You can also do
     for name in glob.glob('dir/*[0-9].*'):
         print (name)
 
-# Work with files
+## Work with files
 
 ''' Don't wanna save anything to jupyter
 
@@ -1964,7 +1891,7 @@ f.read() # read in the rest till end of file - 'my first file\nThis file\ncontai
 f.read() # further reading returns empty sting
 '''
 
-## Import txt
+### Import txt
 
     from numpy import loadtxt
     # x=loadtxt('realna_data_klapky.txt')
@@ -1982,6 +1909,94 @@ Load files
     # with open(r"someobject.pickle", "rb") as input_file: e = cPickle.load(input_file)
 
 Result is e = {"a": 1, "b": 2}**
+
+# Paths
+## Pathlib - new and correct way
+
+    import pathlib
+    path = pathlib.Path.cwd()
+
+    data_folder = pathlib.Path("folder")
+    file_to_open = data_folder / "raw_data.txt"
+
+    ### Pathlib as string
+
+    path.as_posix()
+
+    ### Find all adress
+
+    path = pathlib.Path('test.md')
+    path.resolve() # ('/home/gahjelle/realpython/test.md')
+    path.resolve().parent == pathlib.Path.cwd() # False
+
+    ### Work with file
+
+    filename = Path("source_data/text_files/raw_data.txt")
+
+    print(filename.name) # prints "raw_data.txt"
+    print(filename.suffix) # prints "txt"
+    print(filename.stem) # prints "raw_data"
+    if not filename.exists():
+        print("Oops, file doesn't exist!")
+    else:
+        print("Yay, the file exists!")
+
+    ### Relative path
+
+    !! Next rows just historical - Do not do it that way !!
+
+    # ../data/test_file.csv # ..znamená parent složka
+
+    from os import path
+    import os
+
+    file_path = path.relpath("data/data.txt")
+
+    ### Absolute path
+
+    # os.path.abspath(\__file__)  # Not working in jupyter
+
+    ### Add path to files and modules
+
+    import sys
+    sys.path.insert(0, '/path/to/application/app/folder')
+    sys.path  # Print folders available by system
+
+    ### Working direktory and how to change it
+
+    import os
+    cwd = os.getcwd()
+    # os.chdir(r"C:\Users\...")
+
+    # new_cwd = os.getcwd() + r"\diplomka"
+    # os.chdir(new_cwd)
+
+    ### Full adress
+    Use normal slash!
+
+    import os
+    data_folder = "folder/nextfolder/"
+    file_to_open = data_folder + "data.txt"
+
+    # For example if jupyter do not see some files
+
+    script_dir0 = os.path.abspath('') # C:\VScode
+
+    # Next
+
+    # script_path = os.path.abspath(\__file__)  # i.e. /path/to/dir/foobar.py  - notworking with jupyter
+    script_path = 'C://prog'
+    script_dir = os.path.split(script_path)[0]  #i.e. /path/to/dir/
+    rel_path =  "2091/data.txt"
+    abs_file_path = os.path.join(script_dir, rel_path)  # Result is relative '/path/to/dir/2091/data.txt'
+    filename = os.path.join(script_path,  '../same.txt')  # We can use name of file
+    # script_dir = os.path.dirname(\__file__)  # We can use adress of file... but not in jupyter
+
+    # You can also do
+
+    # script_dir = os.path.dirname(\__file__)
+    rel_path = "test_ data/realna_data_klapky.txt"
+    abs_file_path = os.path.join(script_dir, rel_path)
 
 # Try -- Except
 
@@ -2012,10 +2027,11 @@ Result is e = {"a": 1, "b": 2}**
 
 ## Raise exception
 
-    raise Exception('x should not exceed 5. The value of x was: {}')
+    # raise Exception('x should not exceed 5. The value of x was: {}')
 
 ## Assert - Require something or error
-x = 5
+
+    x = 5
     assert (x > 4), 'What happened'
 
 # Warnings
@@ -2411,7 +2427,7 @@ Sometimes its necessary to import concrete modules
 ### Mean
 
     x = np.array([[10,20,30], [40,50,60]])
-    np.mean(data)
+    np.mean(x)
 
 ### Standard deviation
 
@@ -2576,6 +2592,7 @@ Or
 
     ### Correlation matrix - values
 
+    import pandas as pd
     df = pd.DataFrame([[1, 2, 3], [4, 5, 9], [7, 8, 78]], columns=['one', 'two', 'three'])
     x_cor = df.corr()
 
@@ -2591,8 +2608,8 @@ Or
     ### Correlation (Pearson corr. matrix)
 
     import matplotlib.pyplot as plt
-    scoreTable = dat.corr(method='pearson')
-    dat.corr(method='pearson').style.format("{:.2}").background_gradient(cmap=plt.get_cmap('coolwarm'), axis=1)
+    scoreTable = df.corr(method='pearson')
+    df.corr(method='pearson').style.format("{:.2}").background_gradient(cmap=plt.get_cmap('coolwarm'), axis=1)
 
     ### Correlation coefficent
 
@@ -2639,7 +2656,7 @@ Or
 
     ### Normalization (-1,1)
     # Just replace one row from standard scaler
-        scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
+    scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
 
     ### The same way you can use preprocessing.RobustScaler, that is not as much influenced by outliers !!
 
@@ -2840,6 +2857,7 @@ Or
     with time_limit(5, 'slee'):
         time.sleep(10)
     '''
+
 ## Profiling
 
     # python -m cProfile -o program.prof my_program.py
@@ -2850,13 +2868,13 @@ Or
 ## Encoding JSON with Python
 
     import json
-    
+
     data =  {
-                a:  0,
-                b:  9.6,
-                c:  "Hello World",
-                d:  {
-                        a:  4
+                'a':  0,
+                'b':  9.6,
+                'c':  "Hello World",
+                'd':  {
+                        'a':  4
                 }
     }
 
