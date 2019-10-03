@@ -156,6 +156,7 @@ Note 3: Content is not working in jupyter, so delete it. Use nbextensions and ex
 - [Whole sections](#whole-sections)
   - [Encoding JSON with Python](#encoding-json-with-python)
 - [Pypi export / create own library](#pypi-export-create-own-library)
+- [Github](#github)
 
 <!-- /code_chunk_output -->
 
@@ -2891,4 +2892,21 @@ Put on github, add licence, create release. In computer create setup.py. Delete 
     # Finally
 
     twine upload dist/*
+    '''
+
+# Github
+
+    ### Gitignore
+
+    gtgnr = '''
+
+    Create file called .gitignore
+    Filed defined here will be ignored with version controll
+
+    readme.txt  # Ignore one file
+
+    output/  # Ignore folder
+
+    *.java  # ignore all *java files
+
     '''
