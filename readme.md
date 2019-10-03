@@ -1,35 +1,42 @@
 # Awesome-python-md-documentation
+
 This is python user documentation created in markdown so it can be visualized in IDE. How it can look is on this printscreen.
 
 ![Printscreen of documentation use](https://raw.githubusercontent.com/Malachov/Awesome-python-md-documentation-cheatsheet/master/printscreen.png)
 
 Feel free to colab...
 
-It's also in jupyter notebook ipynb version. It's derived from original md with notedown, so modify markdown. To convert type in cmd opened in folder (or in some other shell):
+It's also in jupyter notebook ipynb version. Markdown is good for finding correct syntax and for efficiency, notebook is good, when you want to learn something a play with code. It's derived from original md with notedown, so modify markdown. To convert type in cmd opened in folder (or in some other shell):
 
 To recreate jupyter notebook just open create_jupyter.cmd (in windows)
 
-Or if you don't have windows !!:
+Or if you don't have windows, type this to terminal !!:
 
-    pip install notedown
-    notedown readme.md > awesome_jupyter.ipynb
-    # if notebook is not opened correctly - remove output with 
-    jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace awesome_jupyter.ipynb
+    # ! pip install notedown
+    # ! notedown input.ipynb --to markdown --strip > output.md
+
+Note 1: Some cells are commented, because can slow notebook, make errors or save files. If there is an !!! exclamation mark !!! after comment, it means, that it's code for your shell (e.g. cmd). If you remove comment, run cell from notebook, code in shell will be executed. Longer comments are assigned to variable so it's not printed to console. Just remove variable, uncomment and enjoy...
+
+Note 2: Jupyter need some libraries for particular tasks. Install it when reach the error, or if you don't want to install them manually, use chapter 1 Requirements - bulk libraries install, and install all of them from [My requirements](https://github.com/Malachov/My-python-requirements)
+
+Note 3: Content is not working in jupyter, so delete it. Use nbextensions and extension table of content.
 
 # Content
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
 - [Awesome-python-md-documentation](#awesome-python-md-documentation)
+- [Content](#content)
 - [General](#general)
   - [Show installed libraries](#show-installed-libraries)
   - [Virtual env](#virtual-env)
-  - [Requirements - bulk libraries install](#requirements---bulk-libraries-install)
-  - [One line comment](#one-line-comment)
-  - [Multiline comment](#multiline-comment)
-  - [Documentation - docstrings](#documentation---docstrings)
+  - [Requirements - bulk libraries install](#requirements-bulk-libraries-install)
+- [Comments](#comments)
+  - [Documentation - docstrings](#documentation-docstrings)
     - [reStructured text](#restructured-text)
-- ["""Function to find optimal parameters of function](#%22%22%22function-to-find-optimal-parameters-of-function)
-  - [Output:](#output)
-  - [Arguments:](#arguments)
+    - [docBlockR](#docblockr)
   - [Multi line code](#multi-line-code)
     - [Show where python is installed](#show-where-python-is-installed)
 - [Logical conditions](#logical-conditions)
@@ -49,116 +56,21 @@ Or if you don't have windows !!:
     - [If exist](#if-exist)
   - [String](#string)
     - [Format](#format)
-    - [Newest and fastest format- f'strings'](#newest-and-fastest-format--fstrings)
+    - [Newest and fastest format- f'strings'](#newest-and-fastest-format-fstrings)
     - [String to code](#string-to-code)
-    - [Join - concatenate](#join---concatenate)
+    - [Join - concatenate](#join-concatenate)
 - [List](#list)
-    - [Access members](#access-members)
-    - [Slices](#slices)
-    - [Remove member](#remove-member)
-    - [Minimum](#minimum)
-    - [Find maximum and it's index](#find-maximum-and-its-index)
-    - [Sum](#sum)
-    - [If member exist](#if-member-exist)
-    - [Length of list](#length-of-list)
-    - [Every value just once](#every-value-just-once)
-    - [Reverse](#reverse)
-    - [Iterate in reverse order](#iterate-in-reverse-order)
-    - [Check if list is empty or not](#check-if-list-is-empty-or-not)
-    - [Create list from 0 to 10](#create-list-from-0-to-10)
-    - [Create list - List comprehension](#create-list---list-comprehension)
-    - [Zip lists](#zip-lists)
-    - [Logical condition on lists](#logical-condition-on-lists)
-    - [One value more times](#one-value-more-times)
-    - [Multiple list](#multiple-list)
-    - [Find index](#find-index)
-    - [Nested lists](#nested-lists)
-    - [Every first member of nested lists](#every-first-member-of-nested-lists)
-    - [Add first with first, second with second](#add-first-with-first-second-with-second)
-    - [List of functions](#list-of-functions)
-    - [How many times members in list](#how-many-times-members-in-list)
 - [Deque](#deque)
   - [Tuple](#tuple)
 - [Dictionary](#dictionary)
-    - [Add value](#add-value)
-    - [Create dictionary from two lists](#create-dictionary-from-two-lists)
-    - [Miscelanious](#miscelanious)
-    - [Last key in dictionary](#last-key-in-dictionary)
-    - [For cycle for all keys](#for-cycle-for-all-keys)
-    - [Maximum value and its index](#maximum-value-and-its-index)
-    - [Values](#values)
-    - [Find key from value](#find-key-from-value)
-    - [For cycle for dictionaries](#for-cycle-for-dictionaries)
-  - [Join two dictionaries](#join-two-dictionaries)
-    - [Enumerate in dictionaries](#enumerate-in-dictionaries)
-    - [Dictionary as arguments into function](#dictionary-as-arguments-into-function)
-    - [Nested dictionaries - for examples name of functions and it's parameters](#nested-dictionaries---for-examples-name-of-functions-and-its-parameters)
-    - [Nested dictionaries - Find minimum](#nested-dictionaries---find-minimum)
-    - [Dictionary comprehension](#dictionary-comprehension)
 - [Set](#set)
-- [Iterator](#iterator)
 - [Dataframe](#dataframe)
-    - [Import from csv](#import-from-csv)
-    - [Save into CSV](#save-into-csv)
-    - [Create](#create)
-    - [Access column](#access-column)
-    - [Subset of columns - Access members](#subset-of-columns---access-members)
-    - [Column to new dataframe](#column-to-new-dataframe)
-    - [Return name of column from index](#return-name-of-column-from-index)
-    - [Find index from column name](#find-index-from-column-name)
-    - [Logical conditions](#logical-conditions-1)
-    - [Concat 2 columns](#concat-2-columns)
-    - [Make index from colmn](#make-index-from-colmn)
-    - [Convert into array](#convert-into-array)
-    - [Convert into list](#convert-into-list)
-    - [Lenght of dataframe](#lenght-of-dataframe)
-    - [Date and time and datetime, range](#date-and-time-and-datetime-range)
-    - [Set index](#set-index)
-    - [Resample datetime dataframe](#resample-datetime-dataframe)
-    - [Copy of dataframe](#copy-of-dataframe)
-    - [Join 2 dataframes](#join-2-dataframes)
-      - [Concat](#concat)
-    - [Merge](#merge)
-    - [Group by](#group-by)
-      - [Get all from one group](#get-all-from-one-group)
-    - [Mean, standard deviation](#mean-standard-deviation)
-    - [Rolling (moving) average and standard deviation](#rolling-moving-average-and-standard-deviation)
-    - [Remove outliers](#remove-outliers)
-    - [Transpose - Rows into columns](#transpose---rows-into-columns)
 - [Numpy Array](#numpy-array)
-    - [Convert](#convert)
-    - [Slicing](#slicing)
-    - [Join matrixes](#join-matrixes)
-    - [Find minimum value](#find-minimum-value)
-    - [Mean](#mean)
-    - [Standard deviation](#standard-deviation)
-    - [Find index of smallest value](#find-index-of-smallest-value)
-    - [Convert to other format](#convert-to-other-format)
-    - [Create zero or ones matrix of given shape](#create-zero-or-ones-matrix-of-given-shape)
-    - [Replace all values with logical condition](#replace-all-values-with-logical-condition)
-    - [Delete member](#delete-member)
-    - [Delete Nan values](#delete-nan-values)
-    - [Delete all rows where are Nan](#delete-all-rows-where-are-nan)
-    - [Sums](#sums)
-    - [Dot product / multiplication](#dot-product--multiplication)
-    - [Shape](#shape)
-    - [Number of members - count](#number-of-members---count)
-    - [Cumulative sum](#cumulative-sum)
-    - [Remove non unique values](#remove-non-unique-values)
-    - [Reshape](#reshape)
-    - [Transpose](#transpose)
-    - [Generate points, arange, linspace, random and generate sin](#generate-points-arange-linspace-random-and-generate-sin)
-    - [Find index (one) with max / min value](#find-index-one-with-max--min-value)
-    - [Eigen values](#eigen-values)
-    - [Inverse matrix](#inverse-matrix)
-    - [Determinant](#determinant)
-    - [Fill with Nan values](#fill-with-nan-values)
-    - [Check if Nan values](#check-if-nan-values)
-    - [Zip for arrays](#zip-for-arrays)
+- [Iterator](#iterator)
 - [LOOPZ](#loopz)
   - [IF](#if)
-    - [Zda existuje proměnná](#zda-existuje-prom%c4%9bnn%c3%a1)
-    - [Ternary operator - If in argument](#ternary-operator---if-in-argument)
+    - [If variable exist](#if-variable-exist)
+    - [Ternary operator - If in argument](#ternary-operator-if-in-argument)
   - [FOR](#for)
     - [Return indexes and elements](#return-indexes-and-elements)
   - [Generate list of elements from u1 to u5](#generate-list-of-elements-from-u1-to-u5)
@@ -166,16 +78,17 @@ Or if you don't have windows !!:
     - [For in list comprehension](#for-in-list-comprehension)
     - [Generate list with for cycle and if](#generate-list-with-for-cycle-and-if)
     - [Generate list with more parameters](#generate-list-with-more-parameters)
-    - [Nested lists](#nested-lists-1)
+    - [Nested lists](#nested-lists)
   - [WHILE](#while)
 - [Functions](#functions)
-    - [Jump out of function - return](#jump-out-of-function---return)
+    - [Jump out of function - return](#jump-out-of-function-return)
     - [Default parameter](#default-parameter)
+    - [Unknown number of parameters - *args, **kwargs](#unknown-number-of-parameters-args-kwargs)
     - [Global variables](#global-variables)
 - [Functions are objects](#functions-are-objects)
     - [Function in list generator](#function-in-list-generator)
   - [Functions map(), filter(), reduce()](#functions-map-filter-reduce)
-    - [Reduce - Input sequention into function](#reduce---input-sequention-into-function)
+    - [Reduce - Input sequention into function](#reduce-input-sequention-into-function)
 - [Generators](#generators)
 - [Dekorators](#dekorators)
 - [Module](#module)
@@ -190,34 +103,26 @@ Or if you don't have windows !!:
     - [Find script's adress](#find-scripts-adress)
     - [Import variables from file in the same folder](#import-variables-from-file-in-the-same-folder)
     - [If file or dir exists](#if-file-or-dir-exists)
-  - [Pathlib - new and correct way](#pathlib---new-and-correct-way)
-    - [Pathlib as string](#pathlib-as-string)
-    - [Find all adress](#find-all-adress)
-    - [Work with file](#work-with-file)
-  - [Relative path](#relative-path)
-  - [Absolute path](#absolute-path)
-  - [Add path to files and modules](#add-path-to-files-and-modules)
-  - [Create module from folder](#create-module-from-folder)
-  - [Working direktory](#working-direktory)
-  - [Change current working directiory](#change-current-working-directiory)
-  - [Full adress](#full-adress)
-  - [Show all files in folder](#show-all-files-in-folder)
-  - [Filter for one type data](#filter-for-one-type-data)
-  - [Load all files with certain suffix](#load-all-files-with-certain-suffix)
-- [Work with files](#work-with-files)
-  - [Import txt](#import-txt)
+    - [Create module from folder](#create-module-from-folder)
+    - [Show all files in folder](#show-all-files-in-folder)
+    - [Filter for one type data](#filter-for-one-type-data)
+    - [Load all files with certain suffix](#load-all-files-with-certain-suffix)
+  - [Work with files](#work-with-files)
+    - [Import txt](#import-txt)
   - [Pickling](#pickling)
-- [Try -- Except](#try----except)
+- [Paths](#paths)
+  - [Pathlib - new and correct way](#pathlib-new-and-correct-way)
+- [Try -- Except](#try-except)
   - [Try for all errors and print it](#try-for-all-errors-and-print-it)
   - [Raise exception](#raise-exception)
-  - [Assert - Require something or error](#assert---require-something-or-error)
+  - [Assert - Require something or error](#assert-require-something-or-error)
 - [Warnings](#warnings)
 - [Regular expressions](#regular-expressions)
 - [Built in functions](#built-in-functions)
     - [Print](#print)
     - [Range](#range)
     - [Reverse range](#reverse-range)
-    - [\__name__ - If file is runned from inside or is imported](#name---if-file-is-runned-from-inside-or-is-imported)
+    - [\__name__ - If file is runned from inside or is imported](#__name__-if-file-is-runned-from-inside-or-is-imported)
 - [Date and time](#date-and-time)
 - [Plots, graphs](#plots-graphs)
   - [Plotly](#plotly)
@@ -232,36 +137,16 @@ Or if you don't have windows !!:
   - [Image](#image)
   - [Youtube](#youtube)
   - [Show all images from folder](#show-all-images-from-folder)
-- [Requests - API - GET, POST](#requests---api---get-post)
+- [Requests - API - GET, POST](#requests-api-get-post)
 - [Images, pictures](#images-pictures)
 - [Mahematics, statistics, linear algebra](#mahematics-statistics-linear-algebra)
-    - [Square root](#square-root)
-  - [Random](#random)
-  - [Points generation](#points-generation)
-    - [Mean](#mean-1)
-    - [Standard deviation](#standard-deviation-1)
-    - [Bins](#bins)
-    - [Cumulative sum](#cumulative-sum-1)
-    - [Derivation](#derivation)
-    - [Latex dislay](#latex-dislay)
-  - [Symbolic python - sympy](#symbolic-python---sympy)
-    - [Differential equations](#differential-equations)
-  - [Integration](#integration)
-    - [Round](#round)
-    - [Modulo](#modulo)
-    - [Power (x on y)](#power-x-on-y)
-    - [Describe - Statistical values of list](#describe---statistical-values-of-list)
-    - [Statistical values of array](#statistical-values-of-array)
-    - [Correlation](#correlation)
-    - [Test of normal distribution](#test-of-normal-distribution)
 - [Machine learning](#machine-learning)
-  - [Standardization and normalization](#standardization-and-normalization)
 - [Signal processing and controll](#signal-processing-and-controll)
 - [Miscellaneous](#miscellaneous)
   - [Measure time](#measure-time)
   - [Show bytcode](#show-bytcode)
 - [Performance](#performance)
-  - [Type hinting](#type-hinting)
+    - [Type hinting](#type-hinting)
   - [Numba](#numba)
   - [Dask](#dask)
     - [Dask formats](#dask-formats)
@@ -270,46 +155,47 @@ Or if you don't have windows !!:
   - [Profiling](#profiling)
 - [Whole sections](#whole-sections)
   - [Encoding JSON with Python](#encoding-json-with-python)
-- [Pypi export / create own library](#pypi-export--create-own-library)
+- [Pypi export / create own library](#pypi-export-create-own-library)
+
+<!-- /code_chunk_output -->
+
+
 # General
 
 ## Show installed libraries
-pip list
 
+    # !  pip list
 
-Show outdated libraries
+    # Show outdated libraries
 
-pip list --outdated
+    # !  pip list --outdated
 
 ## Virtual env
-pip install virtualenv
-virtualenv daniel  # Vytvoří novou virtuálku
-C:\VSCODE\Diplomka\pokus\Scripts\activate.bat  # Activate virtual env
+
+    # !  pip install virtualenv
+    # !  virtualenv daniel  # Vytvoří novou virtuálku
+    # !  C:\VSCODE\Diplomka\pokus\Scripts\activate.bat  # Activate virtual env
 
 ## Requirements - bulk libraries install
-Create requirements
 
-pipreqs --encoding=utf8 C:\VSCODE\Diplomka
+    # !  pip install -r /path/to/requirements.txt
 
-Deprecated
+    # Create requirements
 
-(pip freeze > requirements.txt)
+    # !  pipreqs --encoding=utf8 C:\VSCODE\Diplomka
 
-How to use
+    # Deprecated
 
-pip install -r /path/to/requirements.txt
+    # !  (pip freeze > requirements.txt)
 
-## One line comment
+# Comments
 
-    # This is comment
+    # One line comment
 
-
-## Multiline comment
-```python
-""" Víceřádkové komentáře používají tři uvozovky nebo apostrofy
-a jsou často využívány jako dokumentační komentáře k metodám
-"""
-```
+    ## Multiline comment
+    """ Víceřádkové komentáře používají tři uvozovky nebo apostrofy
+    a jsou často využívány jako dokumentační komentáře k metodám
+    """
 
 ## Documentation - docstrings
 Posible modes - DocBlockR, ReST, Numpy, Google
@@ -317,7 +203,7 @@ Posible modes - DocBlockR, ReST, Numpy, Google
 ### reStructured text
 
 ```markdown
-'''
+restr = ''' # remove the variable - it's just for jupyter
 Section Header
 ==============
 
@@ -397,25 +283,26 @@ Arguments:
             + '3' - '4')  # Function example
 
 ### Show where python is installed
-where python
+
+    # ! where python
 
 # Logical conditions
 ## Not
 
-   not True # => False
-   'a' is not 1
-   'a' != 1
+    not True # => False
+    'a' is not 1
+    'a' != 1
 
 ## Greater than, lower than
 \>=
 
 ## And, or
 
-   0 and 2 # => 0
-   -5 or 0 # => -5
-   0 == False # => True
-   if 2 > 1 and 5 > 6:
-       pass
+    0 and 2 # => 0
+    -5 or 0 # => -5
+    0 == False # => True
+    if 2 > 1 and 5 > 6:
+        pass
 
     # Logical conditions can be combined
 
@@ -445,7 +332,8 @@ where python
     x = 1
     x += 1 # Zkrácený zápis x = x + 1. Pozor, žádné x++ neexisuje
 
-Int divided by int
+    # Int divided by int
+
     3 / 2  # = 1.5
     3 // 2  # = 1
 
@@ -600,13 +488,13 @@ Dont use # in f strings
     listb[2] = 5
     print(lista)  # [1, 2, 5]
 
-### Access members
+    ### Access members
 
     lst = [1, 2, 3, 4]
     lst[0]  # => 1
     lst[-1]  # => 3
 
-### Slices
+    ### Slices
 
     lst[1:3]  # => [2, 4]
     lst[2:]  # => [4, 3]
@@ -616,33 +504,33 @@ Dont use # in f strings
 
     lst[::2] # =>[1, 4]
 
-### Minimum
+    ### Minimum
 
     youngest = min(lst)
 
-### Find maximum and it's index
+    ### Find maximum and it's index
 
     m = max(lst)
     [i for i, j in enumerate(a) if j == m] # pro a = [1,2,0]  # 1
 
-### Sum
+    ### Sum
 
     suma = sum(lst)
 
-### If member exist
+    ### If member exist
 
     1 in lst # => True
 
-### Length of list
+    ### Length of list
 
     len(lst) # => 6
 
-### Every value just once
+    ### Every value just once
 
     t =  [1,  2,  3,  1,  2,  5,  6,  7,  8]
     lst = list(set(t))  # [1,  2,  3,  5,  6,  7,  8]
 
-### Reverse
+    ### Reverse
 
     rev = lst[::-1] # => [3, 4, 2, 1]
 
@@ -650,12 +538,12 @@ Dont use # in f strings
 
     rev = t.reverse()
 
-### Iterate in reverse order
+    ### Iterate in reverse order
 
     for i in reversed(lst):
         pass
 
-### Check if list is empty or not
+    ### Check if list is empty or not
 
     a = 6
     if a:
@@ -664,11 +552,11 @@ Dont use # in f strings
     if not a:
         pass
 
-### Create list from 0 to 10
+    ### Create list from 0 to 10
 
     l = range(10) #  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9]
 
-### Create list - List comprehension
+    ### Create list - List comprehension
 
     [x*5 for x in range(5)] #[0, 5, 10, 15, 20]
     [x for x in range(5) if x%2 == 0] #[0, 2, 4]
@@ -680,33 +568,33 @@ Dont use # in f strings
     list_2 = [2, 3, 4]
     [(i, j) for i, j in zip(list_1, list_2)] # [(1, 'a'), (2, 'b'...]
 
-### Zip lists
+    ### Zip lists
 
     zip(list_1, list_2) # {(a1, b1), (a2, b2)}
 
-### Logical condition on lists
+    ### Logical condition on lists
 
     j2 = [i for i in list_1 if i >=  5]
 
-### One value more times
+    ### One value more times
 
     listOfStr = ['Hi'] * 3 # ['Hi', 'Hi', 'Hi']
 
-### Multiple list
+    ### Multiple list
 
     my_list =  [1,  2,  3,  4,  5]
     my_new_list =  [i *  5  for i in my_list]
 
-### Find index
+    ### Find index
 
     my_list.index(3)
 
-### Nested lists
+    ### Nested lists
 
     t = [[1,2], [3,4]]
     print(t[1][1])  # 4
 
-### Every first member of nested lists
+    ### Every first member of nested lists
 
     L = [[[0,1,2],[3,4,5],[6,7,8]],  [[0,1,2],[3,4,5],[6,7,8]],  [[0,1,2],[3,4,5],[6,7,8]]]
     R = [[x[0]  for x in sl ]  for sl in L ]  # [[0, 3, 6], [0, 3, 6], [0, 3, 6]]
@@ -716,11 +604,11 @@ Dont use # in f strings
     lst = [[1,2,3],[11,12,13],[21,22,23]]
     a = list(zip(*lst))[0]  # [1, 11, 21]
 
-### Add first with first, second with second
+    ### Add first with first, second with second
 
     [a + b for a, b in zip(list_1, list_2)]
 
-### List of functions
+    ### List of functions
 
     def func1():return 1
     def func2():return 2
@@ -728,7 +616,7 @@ Dont use # in f strings
     fl = [func1,func2,func3]
     [f() for f in fl] # [1, 2, 3]
 
-### How many times members in list
+    ### How many times members in list
 
     import collections
     print( collections.Counter(['a', 'b', 'c', 'a', 'b', 'b']))
@@ -766,17 +654,17 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
     dic = {"jedna": 1, "dva": 2, "tři": 3}
     dic_variable = {key:value for (key,value) in dic.items()}
 
-### Add value
+    ### Add value
 
     dic['čtyři'] = 4  # If key is already there it's updated
 
-### Create dictionary from two lists
+    ### Create dictionary from two lists
 
     name = ['mike', 'john', 'steve']  
     age = [20, 32, 19]
     dic=dict(zip(name, age))
 
-### Miscelanious
+    ### Miscelanious
 
     thisdict = {'b':1, 'c':2, 'd':3}
     del thisdict['b']  # delete list
@@ -791,33 +679,33 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
 
     list(dic.keys())
 
-### Last key in dictionary
+    ### Last key in dictionary
 
     max(dic)
 
-### For cycle for all keys
+    ### For cycle for all keys
 
     for s in dic:
         print(s)
 
-### Maximum value and its index
+    ### Maximum value and its index
 
     stats = {'a':1000, 'b':3000, 'c': 100}
     maxname = max(stats, key=stats.get)
     maxvalue = stats[maxname]
 
-### Values
+    ### Values
 
     list(dic.values()) # => [3, 2, 1]
     "jedna" in dic # => True if value is in dictionary
     dic.get("čtyři") # => None - don't raise error if key not in dic
     dic.setdefault("pět", 5) # dic["pět"] default 5
 
-### Find key from value
+    ### Find key from value
 
     list(stats.keys())[list(stats.values()).index(100)]
 
-### For cycle for dictionaries
+    ### For cycle for dictionaries
 
     for k in stats: # Iteruje přes všechny klíče
         print(k)
@@ -825,16 +713,16 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
     for k, v in stats.items(): # Iteruje řes všechny klíče a hodnoty
         print(k,v)
 
-## Join two dictionaries
+    ### Join two dictionaries
 
     c = {**dic, **stats}
 
-### Enumerate in dictionaries
+    ### Enumerate in dictionaries
 
     for i, (j, k) in enumerate(dic.items()):
         pass
 
-### Dictionary as arguments into function
+    ### Dictionary as arguments into function
 
     def rep(*nonamed, **named):
         return nonamed, named
@@ -843,7 +731,7 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
     d = {'x':'extract','y':'yes'}
     rep(*t, **d) # It's the same as f(47, 11, x=extract, y=yes)
 
-### Nested dictionaries - for examples name of functions and it's parameters
+    ### Nested dictionaries - for examples name of functions and it's parameters
 
     def rep2(*inp, **inp2):
         return rep
@@ -856,7 +744,7 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
     for i, j, k in modelscomplet:
         modelsresults.append({i: j(1, **k)})
 
-### Nested dictionaries - Find minimum
+    ### Nested dictionaries - Find minimum
 
     top = 1000000
     for key, value in modelsparameters.items():
@@ -866,7 +754,7 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
                 best_data = inkey
                 top = invalue
 
-### Dictionary comprehension
+    ### Dictionary comprehension
 
     {x: x**2 for x in range(1, 5)} # => {1: 1, 2: 4, 3: 9, 4: 16}
     {pismeno for pismeno in "abeceda"} # => {"d", "a", "c", "e", "b"}
@@ -880,40 +768,31 @@ It is not oredered and every value is just once!
     sett.add(5)  # {1, 2, 3, 4, 5}
     jina_set = {3, 4, 5, 6}
 
-Intersect of 2 sets
+    # Intersect of 2 sets
 
     sett & jina_set # => {3, 4, 5}
 
-Union
+    # Union
 
     sett | jina_set # => {1, 2, 3, 4, 5, 6}
 
-Exception
+    # Exception
 
     {1, 2, 3, 4} - {2, 3, 5} # => {1, 4}
 
-If member exist
+    # If member exist
 
     2 in sett # => True
     9 in sett # => False
-
-# Iterator
-
-    iterable = [1, 2, 3]
-    iterator = iter(iterable)
-
-Next value
-
-    next(iterator) # => "jedna"
 
 # Dataframe
 
 Panda library is necessary
 If there is a parameter inplace=True, then changes are made on original, otherwise change is only made for new variable assign
 
-### Import from csv
+    ### Import from csv
 
-    '''
+    impt = '''
     import pandas as pd
     data = pd.read_csv(
         "data/files/complex_data_example.tsv",
@@ -927,11 +806,11 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
     )
     '''
 
-### Save into CSV
+    ### Save into CSV
 
     # df.to_csv('newcsv.csv') # bez názvů , header=False
 
-### Create
+    ### Create
 
     import pandas as pd
     # one column dataframe
@@ -957,11 +836,11 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
     array = np.array([[1, 2], [2, 3], [3, 4]])
     #df2 = pd.DataFrame(data=array[1:,1:], index=range(len(data)), columns=data[0,1:])
 
-### Access column
+    ### Access column
 
     df['name']
 
-### Subset of columns - Access members
+    ### Subset of columns - Access members
 
     # With name
 
@@ -973,45 +852,45 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
     df3 = df.iloc[0]  # First row
 
-### Column to new dataframe
+    ### Column to new dataframe
 
     a = df.pop('index')
 
-### Return name of column from index
+    ### Return name of column from index
 
     a = df.columns[0]  # Columns return name of column
 
-### Find index from column name
+    ### Find index from column name
 
     a = df.columns.get_loc("age")
 
-### Logical conditions
+    ### Logical conditions
 
     df_new = df.loc[df['name'] == 'juli']
 
-### Concat 2 columns
+    ### Concat 2 columns
 
     df['name_and_age'] = df['name'] + str(df['age'])
 
-### Make index from colmn
+    ### Make index from colmn
 
     df.set_index('name', inplace=True)
     df.reset_index(level=None, drop=False, inplace=False)
 
-### Convert into array
+    ### Convert into array
 
     df['age'].values
     b=df1.iloc[:,1:].values  # every column separately
 
-### Convert into list
+    ### Convert into list
 
     lst = df['age'].values.tolist()
 
-### Lenght of dataframe
+    ### Lenght of dataframe
 
     length = len(df.index)
 
-### Date and time and datetime, range
+    ### Date and time and datetime, range
 
     # Datetime from values
 
@@ -1026,25 +905,26 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
     df['EventStart_time'] = df['EventStart'].dt.time
 
-### Set index
+    ### Set index
 
     df.set_index('EventStart', drop=True, inplace=True)
     df.index = pd.to_datetime(df.index)
 
-### Resample datetime dataframe
+    ### Resample datetime dataframe
 
     df_res = df.resample('M').sum() # Méně řádků na výstupu
 
-### Copy of dataframe
+    ### Copy of dataframe
 
-If you use variables., change in one is also changed in the others, so if you want independent dataframes, use copy() !!!
+    # !!! If you use variables., change in one is also changed in the others, so if you want independent dataframes, use copy() !!!
 
     df2 = df.copy()
 
-### Join 2 dataframes
 
-#### Concat
-possible parameters - axis, join, ignore_index, sort, keys, levels
+    ### Join 2 dataframes
+
+    #### Concat
+    # possible parameters - axis, join, ignore_index, sort, keys, levels
 
     df = pd.DataFrame([['a', 1], ['b', 2], ['c', 3]], columns=['letter', 'number'])
         #         letter  number
@@ -1093,8 +973,8 @@ possible parameters - axis, join, ignore_index, sort, keys, levels
         #    1      d     NaN      2.0
         #    2      e     NaN      3.0
 
-### Merge
-Add database parameters like left join, outer join
+    ### Merge
+    # Add database parameters like left join, outer join
 
     result = pd.merge(df, df2, on='letter', how='left')
 
@@ -1103,7 +983,7 @@ Add database parameters like left join, outer join
         #    1      b       2      NaN
         #    2      c       3      1.0
 
-### Group by
+    ### Group by
 
     gpd = df4.groupby('letter').agg({'number': np.mean, 'number2': np.size})
 
@@ -1115,36 +995,36 @@ Add database parameters like left join, outer join
         #    d	   NaN	   1.0
         #    e	   NaN	   1.0
 
-#### Get all from one group
+    #### Get all from one group
 
-   gpd = df4.groupby('letter')
-   c = gpd.get_group('c')
+    gpd = df4.groupby('letter')
+    c = gpd.get_group('c')
 
         #        letter  number  number2
         #    2      c     3.0      NaN
         #    0      c     NaN      1.0
 
-### Mean, standard deviation
+    ### Mean, standard deviation
 
     mean = df['number'].mean()
     std = df['number'].std()
 
-### Rolling (moving) average and standard deviation
+    ### Rolling (moving) average and standard deviation
 
     rolling_mean = df['number'].rolling(10).mean()
     rolling_std = df['number'].rolling(10).std()
 
-### Remove outliers
+    ### Remove outliers
 
     df_removed_outliers = df[ (df['number'] < 2 * std) ]
 
-### Transpose - Rows into columns
+    ### Transpose - Rows into columns
 
     df = df.T
-    
+
 # Numpy Array
 
-Create
+    ## Create
 
     ar = np.array([[1,2,3], [4, 5, 6]])
     a = ar[1, 2]  # 5 - Access array
@@ -1158,19 +1038,19 @@ Create
     ar.shape[0]  # How many rows`
  
 
-### Convert
+    ## Convert
 
     a = np.array([1, 2, 3])
     my_list = ar.tolist()  # Convert on list
     one_dim_list = np.array(ar).reshape(-1).tolist()  # Convert to one-dimensional list
     a_scal = a[0].item()  # from np.int convert on int
 
-### Convert to other dtype
+    ### Convert to other dtype
 
     b = a.astype(int)  # convert on np.int
 
 
-### Slicing
+    ### Slicing
 
     a = np.array([[1,2,3],[3,4,5],[4,5,6]]) 
 
@@ -1192,7 +1072,7 @@ Create
 
     b = a[1, :]
 
-### Join matrixes
+    ### Join matrixes
 
     np.vstack([a,a])
 
@@ -1240,25 +1120,25 @@ Create
         #   [[ 10  20  30 100]
         #    [ 40  50  60 200]]
 
-### Find minimum value
+    ### Find minimum value
 
     min = np.amin(c, axis=1)
 
-### Mean
+    ### Mean
 
     mean = np.mean(x)
 
-### Standard deviation
+    ### Standard deviation
 
     std = np.std(x)
 
-### Find index of smallest value
+    ### Find index of smallest value
 
     ind = np.unravel_index(np.argmin(a), shape=a.shape)
 
-### Create zero or ones matrix of given shape
+    ### Create zero or ones matrix of given shape
 
-    zeros = numpy.zeros_like(a)
+    zeros = np.zeros_like(a)
 
     # Ones
 
@@ -1268,56 +1148,56 @@ Create
         #    [1., 1., 1.],
         #    [1., 1., 1.]]
 
-### Replace all values with logical condition
+    ### Replace all values with logical condition
 
     a[a > .5] = .5
 
-### Delete member
+    ### Delete member
 
     a = np.delete(a, 1, axis=0) # There need to be variable before!  axis 0 are rows, 1 are columns
 
-### Delete Nan values
+    ### Delete Nan values
 
     a = a[~np.isnan(a)]
 
-### Delete all rows where are Nan
+    ### Delete all rows where are Nan
 
     ar = ar[~np.isnan(ar).any(axis=1)]
 
-### Sums
+    ### Sums
 
-Axis 0 is for sums on columns
+    # Axis 0 is for sums on columns
 
     np.sum([[0, 1], [0, 5]], axis=0)  # array([0, 6])
     np.sum([[0, 1], [0, 5]], axis=1)  # array([1, 5])
 
-### Dot product / multiplication
+    ### Dot product / multiplication
 
     x = np.array([1,2,3])
     w = np.array([1,2,3])
     v = x*w # [1, 4, 9]
     v = np.dot(x, w) # 14
 
-### Shape
+    ### Shape
 
     z = np.array([[1, 2, 3, 4],
                   [5, 6, 7, 8],
                   [9, 10, 11, 12]])
     z.shape  # (3, 4)
 
-### Number of members - count
+    ### Number of members - count
 
     count = z.size
 
-### Cumulative sum
+    ### Cumulative sum
 
     y = np.cumsum(x)
 
-### Remove non unique values
+    ### Remove non unique values
 
     unique = np.unique(array, axis=0)
 
-### Reshape
+    ### Reshape
 
     # reshape -1 add members automatically
     z_res = z.reshape(-1) # array([ 1,  2,  3,  4,  5,  6])
@@ -1343,7 +1223,7 @@ Axis 0 is for sums on columns
     a_res = np.reshape(a, 6, order='F')
         # array([1, 4, 2, 5, 3, 6])
 
-### Transpose
+    ### Transpose
 
     z = np.array([[[1, 1, 1, 1],
                   [1, 1, 1, 1],
@@ -1389,45 +1269,55 @@ Axis 0 is for sums on columns
         #           [1, 2, 3],
         #           [1, 2, 3]]])
 
-### Generate points, arange, linspace, random and generate sin
+    ### Generate points, arange, linspace, random and generate sin
+
     q = np.random.randn(3, 3)
     t = np.linspace(0,20,1000)  # Generate numbers with the same interval (beginning, end, number)
     t = np.arange(1, 3, 1)  # Start, stop, step - [1, 2]
-    t = np.arrange(3)  # 0, 1, 2
+    t = np.arange(3)  # 0, 1, 2
     y = np.sin(t)
 
-### Find index (one) with max / min value
+    ### Find index (one) with max / min value
 
     np.argmax(x)  # or argmin. Also can use parameter axis
 
-### Eigen values
+    ### Eigen values
 
     eig = np.linalg.eig(q)
 
-### Inverse matrix
+    ### Inverse matrix
 
     q_inv = np.linalg.inv(q)
 
-### Determinant
+    ### Determinant
 
     det = np.linalg.det(q)
 
-### Fill with Nan values
+    ### Fill with Nan values
 
     z = np.zeros((2, 3))
     z.fill(np.nan)
 
-### Check if Nan values
+    ### Check if Nan values
 
-   if not np.isnan(np.any(z)):
+    if not np.isnan(np.any(z)):
        pass
 
-### Zip for arrays
+    ### Zip for arrays
 
     def azip(*args):
-      iters = [iter(arg) for arg in args]
-      for i in itertools.count():
-        yield tuple([it.next() for it in iters])
+        iters = [iter(arg) for arg in args]
+        for i in itertools.count():
+            yield tuple([it.next() for it in iters])
+
+# Iterator
+
+    iterable = [1, 2, 3]
+    iterator = iter(iterable)
+
+Next value
+
+    next(iterator) # => "one"
 
 # LOOPZ
 ## IF
@@ -1866,35 +1756,36 @@ Use relative imports with dots
 
 ## Work with files
 
-''' Don't wanna save anything to jupyter
+    '''
+    Don't wanna save anything to jupyter
 
-f = open("test.txt", "w+") # open file in current directory
+    f = open("test.txt", "w+") # open file in current directory
 
-'r'  Open a file for reading. (default)
-'w'  Open a file for writing. Creates a new file if it does not exist or truncates the file if it exists.
-'x'  Open a file for exclusive creation. If the file already exists, the operation fails.
-'a'  Open for appending at the end of the file without truncating it. Creates a new file if it does not exist.
-'t'  Open in text mode. (default)
-'b'  Open in binary mode.
-'+'  Open a file for updating (reading and writing)
+    'r'  Open a file for reading. (default)
+    'w'  Open a file for writing. Creates a new file if it does not exist or truncates the file if it exists.
+    'x'  Open a file for exclusive creation. If the file already exists, the operation fails.
+    'a'  Open for appending at the end of the file without truncating it. Creates a new file if it does not exist.
+    't'  Open in text mode. (default)
+    'b'  Open in binary mode.
+    '+'  Open a file for updating (reading and writing)
 
-f = open("C:/Python33/README.txt") # specifying full path
-f.close()
+    f = open("C:/Python33/README.txt") # specifying full path
+    f.close()
 
-with open("test.txt",'w')  as f:
-    pass
-f.write("my first file\n")
-f.write("This file\n\n")
-f.write("contains three lines\n")
+    with open("test.txt",'w')  as f:
+        pass
+    f.write("my first file\n")
+    f.write("This file\n\n")
+    f.write("contains three lines\n")
 
-!!!Use because this will autamatically close the file finally
+    !!!Use because this will autamatically close the file finally
 
-f = open("test.txt",'r',encoding =  'utf-8')
-f.read(4) # read the first 4 data - 'This'
-f.read(4) # read the next 4 data - ' is '
-f.read() # read in the rest till end of file - 'my first file\nThis file\ncontains three lines\n'
-f.read() # further reading returns empty sting
-'''
+    f = open("test.txt",'r',encoding =  'utf-8')
+    f.read(4) # read the first 4 data - 'This'
+    f.read(4) # read the next 4 data - ' is '
+    f.read() # read in the rest till end of file - 'my first file\nThis file\ncontains three lines\n'
+    f.read() # further reading returns empty sting
+    '''
 
 ### Import txt
 
@@ -2046,17 +1937,22 @@ Result is e = {"a": 1, "b": 2}**
     import warnings
     warnings.warn("Warning...........Message")
 
-    warnings.filterwarnings('error', message=r".*HessianInversionWarning*")  # Warnings with word 'HessianInversionWarning' will be caused as errors
-    warnings.filterwarnings('always', category=DeprecationWarning)  # Errory of category depracation will be show everytime
+    # Warnings with word 'HessianInversionWarning' will be caused as errors
+
+    warnings.filterwarnings('error', message=r".*HessianInversionWarning*") 
+
+    # Errory of category depracation will be show everytime
+
+    warnings.filterwarnings('always', category=DeprecationWarning)  
     warnings.filterwarnings('ignore')  # Errory budou vždy ignorovány
 
- "default" will print the first occurrence of matching warnings for each location (module + line number) where the warning is issued
+    # "default" will print the first occurrence of matching warnings for each location
+    # (module + line number) where the warning is issued
 
- "once"
- "error"
- "ignore"
- "always"
- "module"
+    # Other possibilities
+
+    # "once"    |    "error"    |    "ignore"    |    "always"    |    "module"
+
  print the first occurrence of matching warnings for each module where the warning is issued (regardless of line number)
 
 
@@ -2131,7 +2027,7 @@ Result is e = {"a": 1, "b": 2}**
 
 ## Plotly
 
-    '''
+    pltl = '''
     import plotly as py
 
     fig = dict( data=data, layout=layout )
@@ -2273,11 +2169,11 @@ Result is e = {"a": 1, "b": 2}**
 
 ## Table
 
-   from prettytable import PrettyTable
-   models_table = PrettyTable()
-   models_table = PrettyTable().field_names = ["City name", "Area", "Population", "Annual Rainfall"]
-   models_table = PrettyTable().add_row(["Adelaide", 1295, 1158259, 600.5])
-   print (models_table)
+    from prettytable import PrettyTable
+    models_table = PrettyTable()
+    models_table = PrettyTable().field_names = ["City name", "Area", "Population", "Annual Rainfall"]
+    models_table = PrettyTable().add_row(["Adelaide", 1295, 1158259, 600.5])
+    print (models_table)
 
 ## Symbolic functions
 
@@ -2296,28 +2192,25 @@ Result is e = {"a": 1, "b": 2}**
 # Libraries
 ## If pip cannot be installed by SSL errorr
 
-    # pip install ipykernel --upgrade pip --trusted-host pypi.org
+    # !  pip install ipykernel --upgrade pip --trusted-host pypi.org
 
 # Jupyter
 
-    # jupyter kernelspec list # Ukáže seznam kernelů
-    # jupyter kernelspec uninstall nazev # Odinstaluje kernel
+    # !  jupyter kernelspec list # Ukáže seznam kernelů
+    # !  jupyter kernelspec uninstall nazev # Odinstaluje kernel
 
 ## Autoreload
 
-Load imported module everytime
+Reload all modules imported with %aimport every time before executing the Python code typed, so it is not necessary to reload kernel everytime some other file changed or new library wa installed
 
-Reload all modules imported with %aimport every time before executing the Python code typed.
-
-%autoreload 1
-
-Reload all modules (except those excluded by %aimport) every time before executing the Python code typed.
-
-%autoreload 2
-
-Sometimes its necessary to import concrete modules
-
-%aimport modul1, modul2
+    %load_ext autoreload
+    %autoreload  # Reload all modules (except those excluded by %aimport) automatically now.
+    %autoreload 0  # Disable automatic reloading.
+    %autoreload 1  # Reload all modules imported with %aimport every time before executing the Python code typed.
+    %autoreload 2  # Reload all modles (except those excluded by %aimport) every time before executing the Python code typed.
+    %aimport  # List modules which are to be automatically imported or not to be imported.
+    %aimport foo  # Import module ‘foo’ and mark it to be autoreloaded for %autoreload 1
+    %aimport -foo  # Mark module ‘foo’ to not be autoreloaded.
 
 
 ## Link
@@ -2397,12 +2290,47 @@ Sometimes its necessary to import concrete modules
 # Mahematics, statistics, linear algebra
 !! Matrix and liear algebra operations discussed in Numpy aray section !!
 
-### Square root
+    ### Square root
 
     y = 9**(1/2)  # 3
 
-## Random
-    ## Random numbers in normal distribution
+    ### Round
+
+    A = round(5.76543, 2)
+
+    ### Modulo
+
+    a = 7 % 3 # => 1
+
+    ### Power (x on y)
+
+    a = 2**4 # => 16
+
+    ### Describe - Statistical values of list
+
+    import pandas as pd
+    
+    df = pd.Series([1, 4, 6, 88])
+    df.describe()
+    
+        #    count     4.000000
+        #    mean     24.750000
+        #    std      42.216703
+        #    min       1.000000
+        #    25%       3.250000
+        #    50%       5.000000
+        #    75%      26.500000
+        #    max      88.000000
+        #    dtype: float64
+
+    ### Statistical values of array
+
+    from scipy import stats
+    a = np.array([1, 3, 5, 77])
+    stats = stats.describe(a)
+
+    ## Random
+    ### Random numbers in normal distribution
 
     import numpy as np
     ran = np.random.randn(3)
@@ -2413,40 +2341,40 @@ Sometimes its necessary to import concrete modules
         #     [ 1.00664965 -0.68443807 0.43801295 -0.35874714]
         #     [ -0.19289416 -0.42746963 -1.80435223 0.02751727]]
 
-    ## Random number everytime the same
+    ### Random number everytime the same
 
     np.random.seed(5)
 
     w = np.random.randn(3)  # [ 0.44122749 -0.33087015  2.43077119]
     w = np.random.randn(3)  # [ 0.44122749 -0.33087015  2.43077119]
 
-    ## Random numbers in normal distribution matrix shape
+    ### Random numbers in normal distribution matrix shape
 
     s = np.random.normal(2, 6, 1000)  # Mu, Sigma,
 
-## Points generation
+    ## Points generation
 
     t = np.linspace(0,20,1000)  # Generate numbers with the same interval (beginning, end, number)
 
     t = np.arange(1, 3, 1)  # 1, 2
     t = np.arange(3)  # 0, 1, 2
 
-### Mean
+    ### Mean
 
     x = np.array([[10,20,30], [40,50,60]])
     np.mean(x)
 
-### Standard deviation
+    ### Standard deviation
 
     std = np.std(x)
 
-Or
+    # Or
 
     from statistics import stdev
     sample = [1, 2, 3, 4, 5]
-    std = statistics.stdev(sample)
+    std = stdev(sample)
 
-### Bins
+    ### Bins
 
     bins = 10
     binss = np.histogram(x, bins)  # binss[0] hodnoty binss[1]
@@ -2454,23 +2382,25 @@ Or
         # binss[0] = counts - [1 0 1 0 1 0 1 0 1 1]
         # binss[1] = values [10. 15. 20. 25. 30. 35. 40. 45. 50. 55. 60.]
 
-### Cumulative sum
+    ### Cumulative sum
 
     y = np.cumsum(x)
 
-### Derivation
+    ### Derivation
 
     sample = [1, 2, 8, 4, 5]
     z = np.diff(y)
         # [ 1  6 -4  1]
 
-### Latex dislay
+    ### Latex dislay
 
     # from IPython.display import display, Math, Latex
     # display(Math(r'F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx'))
 
-## Symbolic python - sympy
 
+    ########################################
+    ####### Symbolic python - sympy #######
+    #######################################
     '''
     import sympy as sp
 
@@ -2534,16 +2464,21 @@ Or
         #  -0.2794155   0.6569866   0.98935825  0.41211849]
     '''
 
-### Differential equations
+    ######################################
+    ####### Differential equations #######
+    ######################################
 
+    import sympy as sp
     f = sp.Function('f')
     x = sp.Symbol('x')
     eq = f(x).diff(x, x) + f(x)
     res = sp.dsolve(eq, f(x))
 
-## Integration
+    ###########################
+    ####### Integration #######
+    ###########################
 
-    '''
+    unb_int = '''
     ### Unbounded integral
 
     import sympy as sp
@@ -2560,42 +2495,9 @@ Or
     disp("\int_0^1" + dfrac(f)+" dx=",intf.evalf())
     '''
 
-### Round
-
-    A = round(5.76543, 2)
-
-### Modulo
-
-    a = 7 % 3 # => 1
-
-### Power (x on y)
-
-    a = 2**4 # => 16
-
-### Describe - Statistical values of list
-
-    import pandas as pd
-    
-    df = pd.Series([1, 4, 6, 88])
-    df.describe()
-    
-        #    count     4.000000
-        #    mean     24.750000
-        #    std      42.216703
-        #    min       1.000000
-        #    25%       3.250000
-        #    50%       5.000000
-        #    75%      26.500000
-        #    max      88.000000
-        #    dtype: float64
-
-### Statistical values of array
-
-    from scipy import stats
-    a = np.array([1, 3, 5, 77])
-    stats = stats.describe(a)
-
-### Correlation
+    ###########################
+    ####### Correlation #######
+    ###########################
 
     ### Correlation matrix - values
 
@@ -2627,7 +2529,11 @@ Or
         #    [[ 1.        -0.0475504]
         #     [-0.0475504  1.       ]]
 
-### Test of normal distribution
+    ##########################
+    ####### Statistics #######
+    ##########################
+
+    ### Test of normal distribution
 
     from statsmodels.stats.stattools import jarque_bera
     residuals = [1, 3, 5, 2, 4]
@@ -2639,7 +2545,9 @@ Or
 
 # Machine learning
 
-## Standardization and normalization
+    #################################################
+    ####### Standardization and normalization #######
+    #################################################
 
     ### Standardization: mean = 0 and std = 1
 
@@ -2716,7 +2624,7 @@ Or
 
 # Performance
 
-## Type hinting
+### Type hinting
 
     def sentence_has_animal(sentence: str) -> bool:
         return "animal" in sentence
@@ -2867,9 +2775,9 @@ Or
     '''
 
 ## Profiling
-
-    # python -m cProfile -o program.prof my_program.py
-    # snakeviz program.prof
+    # !  pip install snakeviz
+    # !  python -m cProfile -o program.prof my_program.py
+    # !  snakeviz program.prof
 
 # Whole sections
 
@@ -2891,9 +2799,10 @@ Or
 
 # Pypi export / create own library
 
-Put on github, add licence, create release. In computer create setup.py
+Put on github, add licence, create release. In computer create setup.py. Delete pypi_exp variable. It's here just not to be printed to console.
 
     pypi_exp = '''
+
     # This is content of setup.py
     from setuptools import setup, find_packages
     import io
