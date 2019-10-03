@@ -19,7 +19,11 @@ Note 1: Some cells are commented, because can slow notebook, make errors or save
 
 Note 2: Jupyter need some libraries for particular tasks. Install it when reach the error, or if you don't want to install them manually, use chapter 1 Requirements - bulk libraries install, and install all of them from [My requirements](https://github.com/Malachov/My-python-requirements)
 
-Note 3: Content is not working in jupyter, so delete it. Use nbextensions and extension table of content.
+Note 3: Content is not working in jupyter, so delete it. Use nbextensions and extension table of content. If you have no nbextensions, than use:
+
+    # !  pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install 
+
+    # I recommend Table Of contents, Variable inspector, ExecuteTime, Code Prettify and Autopep8. Just restart jupyter and choose from tab nbextensions.
 
 # Content
 
@@ -2902,6 +2906,7 @@ Put on github, add licence, create release. In computer create setup.py. Delete 
 
     Create file called .gitignore
     Filed defined here will be ignored with version controll
+    But it must be first ignored, than created, otherwise it will not work
 
     # Comments must beginn on new line !!!
 
