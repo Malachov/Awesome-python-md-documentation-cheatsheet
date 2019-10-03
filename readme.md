@@ -2903,10 +2903,15 @@ Put on github, add licence, create release. In computer create setup.py. Delete 
     Create file called .gitignore
     Filed defined here will be ignored with version controll
 
-    readme.txt  # Ignore one file
+    # Comments must beginn on new line !!!
 
-    output/  # Ignore folder
+    # Ignore one file
+    readme.txt
 
-    *.java  # ignore all *java files
+    # Ignore folder
+    output/
+
+    # ignore all *java files
+    *.java
 
     '''
