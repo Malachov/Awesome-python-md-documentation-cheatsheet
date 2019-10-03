@@ -7,14 +7,16 @@ Feel free to colab...
 
 It's also in jupyter notebook ipynb version. It's derived from original md with notedown, so modify markdown. To convert type in cmd opened in folder (or in some other shell):
 
-pip install notedown
-notedown readme.md > awesome_jupyter.ipynb
+To recreate jupyter notebook just open create_jupyter.cmd (in windows)
 
-if notebook is not opened correctly - remove output with 
+Or if you don't have windows !!:
 
-jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace awesome_jupyter.ipynb
+    pip install notedown
+    notedown readme.md > awesome_jupyter.ipynb
+    # if notebook is not opened correctly - remove output with 
+    jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace awesome_jupyter.ipynb
 
-
+# Content
 
 - [Awesome-python-md-documentation](#awesome-python-md-documentation)
 - [General](#general)
@@ -313,7 +315,9 @@ a jsou často využívány jako dokumentační komentáře k metodám
 Posible modes - DocBlockR, ReST, Numpy, Google
 
 ### reStructured text
+
 ```markdown
+'''
 Section Header
 ==============
 
@@ -352,6 +356,7 @@ Python code in docstrings
 .. code:: python
 
 print("A literal block directive explicitly marked as python code")
+'''
 ```
 
 ### docBlockR
@@ -713,7 +718,7 @@ Dont use # in f strings
 
 ### Add first with first, second with second
 
-    [a + b for a, b in zip(list1, list2)]
+    [a + b for a, b in zip(list_1, list_2)]
 
 ### List of functions
 
@@ -799,7 +804,7 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
 
     stats = {'a':1000, 'b':3000, 'c': 100}
     maxname = max(stats, key=stats.get)
-    maxvalue = stats[axname]
+    maxvalue = stats[maxname]
 
 ### Values
 
@@ -872,16 +877,16 @@ It is not oredered and every value is just once!
 
     empty_set = set()
     sett = {1, 1, 2, 2, 3, 4}  # {1, 2, 3, 4}
-    set.add(5)  # {1, 2, 3, 4, 5}
+    sett.add(5)  # {1, 2, 3, 4, 5}
     jina_set = {3, 4, 5, 6}
 
 Intersect of 2 sets
 
-    set & jina_set # => {3, 4, 5}
+    sett & jina_set # => {3, 4, 5}
 
 Union
 
-    set | jina_set # => {1, 2, 3, 4, 5, 6}
+    sett | jina_set # => {1, 2, 3, 4, 5, 6}
 
 Exception
 
@@ -889,8 +894,8 @@ Exception
 
 If member exist
 
-    2 in set # => True
-    9 in set # => False
+    2 in sett # => True
+    9 in sett # => False
 
 # Iterator
 
@@ -939,7 +944,7 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
     # from list
 
-    data = [['tom', 10], ['nick', 15], ['juli', 14]]
+    data = [['tom', 10, 1], ['nick', 15, 2], ['juli', 14, 3]]
     df = pd.DataFrame(data, columns = ['name', 'age', 'index'])
 
     # from dictionary
@@ -966,7 +971,7 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
     df2 = df.iloc[:,0:1]  #   # All rows, first and second column
 
-    df = df.iloc[0]  # First row
+    df3 = df.iloc[0]  # First row
 
 ### Column to new dataframe
 
@@ -1000,7 +1005,7 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
 ### Convert into list
 
-    df['index'].values.tolist()
+    lst = df['age'].values.tolist()
 
 ### Lenght of dataframe
 
@@ -1156,7 +1161,7 @@ Create
 ### Convert
 
     a = np.array([1, 2, 3])
-    list = ar.tolist()  # Convert on list
+    my_list = ar.tolist()  # Convert on list
     one_dim_list = np.array(ar).reshape(-1).tolist()  # Convert to one-dimensional list
     a_scal = a[0].item()  # from np.int convert on int
 
@@ -1230,10 +1235,10 @@ Create
 
     x = np.array([[10,20,30], [40,50,60]])
     y = np.array([[100], [200]])
-    z = np.append(x, y, axis=1))
+    z = np.append(x, y, axis=1)
 
         #   [[ 10  20  30 100]
-             [ 40  50  60 200]]
+        #    [ 40  50  60 200]]
 
 ### Find minimum value
 
@@ -1314,7 +1319,7 @@ Axis 0 is for sums on columns
 
 ### Reshape
 
-    reshape -1 add members automatically
+    # reshape -1 add members automatically
     z_res = z.reshape(-1) # array([ 1,  2,  3,  4,  5,  6])
     z_res2 = z.reshape(-1,1)
 
@@ -1531,43 +1536,43 @@ Axis 0 is for sums on columns
 
 ### Unknown number of parameters - *args, **kwargs
 
-    def vypis_vse(*args, **kwargs):
+    def print_all(*args, **kwargs):
         print(args, kwargs)
 
-    vypis_vse(1, 2, a=3, b=4) # Use: (1, 2) {"a": 3, "b": 4}
+    print_all(1, 2, a=3, b=4) # Use: (1, 2) {"a": 3, "b": 4}
     tuple = (1, 2, 3, 4)
     dic = {"a": 3, "b": 4}
-    vypis_vse(tuple)  # Is like vypis_vse((1, 2, 3, 4)). One parameter - tuple
-    vypis_vse(*tuple)  # Is like vypis_vse(1, 2, 3, 4)
-    vypis_vse(**dic)  # Is like vypis_vse(a=3, b=4)
-    vypis_vse(*tuple, **dic)  # Is like vypis_vse(1, 2, 3, 4, a=3, b=4)
+    print_all(tuple)  # Is like print_all((1, 2, 3, 4)). One parameter - tuple
+    print_all(*tuple)  # Is like print_all(1, 2, 3, 4)
+    print_all(**dic)  # Is like print_all(a=3, b=4)
+    print_all(*tuple, **dic)  # Is like print_all(1, 2, 3, 4, a=3, b=4)
 
 ### Global variables
 
-x = 5
-def nastavX(cislo):  # Local variable override global
-    x = cislo  # => 43
-    print(x)  # => 43
+    x = 5
+    def setx(cislo):  # Local variable override global
+        x = cislo  # => 43
+        print(x)  # => 43
 
 
-def nastavGlobalniX(cislo):
-    global x
-    print(x) # => 5
-    x = cislo # Nastaví globální proměnnou x na 6
-    print(x) # => 6
+    def setglobalx(cislo):
+        global x
+        print(x) # => 5
+        x = cislo # Nastaví globální proměnnou x na 6
+        print(x) # => 6
 
 # Functions are objects
 
-def vyrobit_scitacku(pricitane_cislo):
-    def scitacka(x):
-        return x + pricitane_cislo
-    return scitacka
-pricist_10 = vyrobit_scitacku(10)
-pricist_10(3)  # => 13
+    def adder(pricitane_cislo):
+        def scitacka(x):
+            return x + pricitane_cislo
+        return scitacka
+    add_10 = adder(10)
+    add_10(3)  # => 13
 
 ### Function in list generator
 
-    [pricist_10(i) for i in [1, 2, 3]]  # => [11, 12, 13]
+    [add_10(i) for i in [1, 2, 3]]  # => [11, 12, 13]
     [x for x in [3, 4, 5, 6, 7] if x > 5]  # => [6, 7]
 
 ## Functions map(), filter(), reduce()
@@ -1576,7 +1581,7 @@ From the functional programming
 
 Map call funtion (first parameter) on all objects (second parameter)
 
-    map(pricist_10, [1, 2, 3])
+    map(add_10, [1, 2, 3])
 
 Filter create list (First paratemer), where function is true (second parameter)
 
@@ -1931,7 +1936,7 @@ Result is e = {"a": 1, "b": 2}**
 
     ### Work with file
 
-    filename = Path("source_data/text_files/raw_data.txt")
+    filename = pathlib.Path("source_data/text_files/raw_data.txt")
 
     print(filename.name) # prints "raw_data.txt"
     print(filename.suffix) # prints "txt"
@@ -1943,6 +1948,7 @@ Result is e = {"a": 1, "b": 2}**
 
     ### Relative path
 
+    '''
     !! Next rows just historical - Do not do it that way !!
 
     # ../data/test_file.csv # ..znamená parent složka
@@ -1972,7 +1978,7 @@ Result is e = {"a": 1, "b": 2}**
     # os.chdir(new_cwd)
 
     ### Full adress
-    Use normal slash!
+    #Use normal slash!
 
     import os
     data_folder = "folder/nextfolder/"
@@ -1997,6 +2003,7 @@ Result is e = {"a": 1, "b": 2}**
     # script_dir = os.path.dirname(\__file__)
     rel_path = "test_ data/realna_data_klapky.txt"
     abs_file_path = os.path.join(script_dir, rel_path)
+    '''
 
 # Try -- Except
 
@@ -2055,7 +2062,7 @@ Result is e = {"a": 1, "b": 2}**
 
 # Regular expressions
 
-    '''
+    regs = '''
     import re
 
     [] 	A set of characters 	"[a-m]" 	
@@ -2156,7 +2163,7 @@ Result is e = {"a": 1, "b": 2}**
 
 ## Matplotlib
 
-    '''
+    mtpltlb = '''
     ### Simple plot
 
     import matplotlib.pyplot as plt
@@ -2747,10 +2754,11 @@ Or
     from numba import cuda
     @cuda.jit(device=True)
     def function(a, b):
+        return a + b
 
 ## Dask
 
-    '''
+    dsk = '''
     import dask
 
     @dask.delayed
@@ -2780,7 +2788,7 @@ Or
 
 ### Dask formats
 
-    '''
+    dsk_frmts = '''
     import pandas as pd
     import dask.array as da
     import dask.dataframe as dd
@@ -2832,7 +2840,7 @@ Or
     watchdog(5, func, 0.1) # First element is time limit - Last argument 0.1 are *args and **kwargs
 
     # Or
-    '''
+    mx_ex = '''
     from contextlib import contextmanager
     import threading
     import _thread
@@ -2850,7 +2858,7 @@ Or
         except KeyboardInterrupt:
             raise TimeoutException("Timed out for operation {}".format(msg))
         finally:
-            # if the action ends in specified time, timer is canceled
+            # if the acti   on ends in specified time, timer is canceled
             timer.cancel()
 
     import time
@@ -2885,7 +2893,7 @@ Or
 
 Put on github, add licence, create release. In computer create setup.py
 
-    '''
+    pypi_exp = '''
     # This is content of setup.py
     from setuptools import setup, find_packages
     import io
