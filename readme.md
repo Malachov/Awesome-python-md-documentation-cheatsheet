@@ -388,6 +388,12 @@ config.x = 2 ....
 
     a = type(var)  # Return type
 
+### Type hinting
+
+    def sentence_has_animal(sentence: str) -> bool:
+        return "animal" in sentence
+    sentence_has_animal("Donald had a farm without animals")
+
 ### Type of variable as condition
 
     if isinstance(var, str):  # Check if it's string (or int etc...)
@@ -455,6 +461,10 @@ config.x = 2 ....
     name = 'Peter'
     f"Hello, {name}. You are {2 * 17}. Also functions {name.lower()}."
 
+    # You can use raw strings (no escape characters, but still format)
+    a = 15
+    print(fr'Escape is here:\n but still {a}')  # Escape is here:\n but still 15
+
 If you use """ no escape symbols will be used
 Also can use dictionaries, but "" is necesarry
 Dont use # in f strings
@@ -472,7 +482,7 @@ Dont use # in f strings
     words = ["this", 'is', 'a', 'list', 'of', "strings"]
     ' '.join(words)  #returns "This is a list of strings"
 
-# List
+## List
 
     empty_list = []
     lst = [1, 2, 3, 4]
@@ -626,7 +636,7 @@ Dont use # in f strings
     import collections
     print( collections.Counter(['a', 'b', 'c', 'a', 'b', 'b']))
 
-# Deque
+## Deque
 
 You can iterate from both sides
 
@@ -653,7 +663,8 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
     tuple[0]  # => 1
     # tuple[0] = 3  # Raise TypeError
 
-# Dictionary
+    a, = 5  # (5)
+## Dictionary
 
     empty_dic = {}
     dic = {"jedna": 1, "dva": 2, "tři": 3}
@@ -764,7 +775,7 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
     {x: x**2 for x in range(1, 5)} # => {1: 1, 2: 4, 3: 9, 4: 16}
     {pismeno for pismeno in "abeceda"} # => {"d", "a", "c", "e", "b"}
 
-# Set
+## Set
 
 It is not oredered and every value is just once!
 
@@ -790,7 +801,7 @@ It is not oredered and every value is just once!
     2 in sett # => True
     9 in sett # => False
 
-# Dataframe
+## Dataframe
 
 Panda library is necessary
 If there is a parameter inplace=True, then changes are made on original, otherwise change is only made for new variable assign
@@ -890,6 +901,11 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
     ### Convert into list
 
     lst = df['age'].values.tolist()
+
+    ### Miscelaneous
+
+    df.index  # RangeIndex(start=0, stop=x....)
+    df.dtypes  # age  int ...
 
     ### Lenght of dataframe
 
@@ -1027,7 +1043,7 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
     df = df.T
 
-# Numpy Array
+## Numpy Array
 
     ## Create
 
@@ -1178,10 +1194,40 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
     ### Dot product / multiplication
 
+    # Asterisk means each with each not matrix multiplication
+
+    # For vectors
+
     x = np.array([1,2,3])
     w = np.array([1,2,3])
     v = x*w # [1, 4, 9]
     v = np.dot(x, w) # 14
+
+    x = np.array([1,2,3])
+    w = np.array([[1],[2],[3]])
+    v = x*w
+
+        #   [[1 2 3]
+        #    [2 4 6]
+        #    [3 6 9]]
+
+    v = np.dot(x, w) # 14
+
+    # For matrixes
+
+    x = np.array([[1,2,3], [1,2,3], [1,2,3]])
+    w = np.array([[1,2,3], [1,2,3], [1,2,3]])
+    v = x*w
+
+        #   [[1 4 9]
+        #    [1 4 9]
+        #    [1 4 9]]
+
+    v = np.dot(x, w)
+
+        #   [[6 12 18]
+        #    [6 12 18]
+        #    [6 12 18]]
 
     ### Shape
 
@@ -1290,6 +1336,11 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
 
     eig = np.linalg.eig(q)
 
+    eigenvalues, V = np.linalg.eig(A)  # eigenvalues[0] is the first eigenvalue
+    # V is a 2D array (matrix) that contains the four eigenvectors as columns, hence, V[:,i] is the eigenvector corresponding to the eigenvalue eigenvalues[i]
+
+    plt.scatter(eigenvalues.real, eigenvalues.imag)  # Plot it
+
     ### Inverse matrix
 
     q_inv = np.linalg.inv(q)
@@ -1315,6 +1366,32 @@ If there is a parameter inplace=True, then changes are made on original, otherwi
         for i in itertools.count():
             yield tuple([it.next() for it in iters])
 
+## HDF5
+
+    ### Create
+
+    import h5py
+    import numpy as np
+
+    arr = np.random.randn(1000)
+
+    with h5py.File('random.hdf5', 'w') as f:
+        dset = f.create_dataset("default", data=arr)
+
+    ### Read
+
+    with h5py.File('random.hdf5', 'r') as f:
+        data = f['default']
+        print(min(data))
+
+    ### Specify Data Types to Optimize Space
+
+    with h5py.File('several_datasets.hdf5', 'w') as f:
+        dset_int_1 = f.create_dataset('integers', (10, ), dtype='i1')
+        dset_int_8 = f.create_dataset('integers8', (10, ), dtype='i8')
+        dset_complex = f.create_dataset('complex', (10, ), dtype='c16')
+        dset_int_1[0] = 1200
+
 # Iterator
 
     iterable = [1, 2, 3]
@@ -1327,6 +1404,15 @@ Next value
 # LOOPZ
 ## IF
 ### If variable exist
+
+    try:
+        __IPYTHON__
+        my_exec = "%matplotlib notebook"
+        exec(my_exec)
+    except NameError:
+        print('No Jupyter')
+
+    # Or
 
     variable = [10, 20, 30]
     for i in variable:
@@ -1549,6 +1635,18 @@ You can creat your own and import it.
         def odkaslej_si():
             return "*ehm*"
 
+    class DecoratorExample:
+
+        def __init__(self):
+            self.name = 'Decorator_Example'
+
+        def example_function(self):
+            print('I\'m an instance method!')
+
+    de = DecoratorExample()
+    de.example_function()
+
+
 Example of class method
 
     class Date(object):
@@ -1706,6 +1804,17 @@ What happens when we create an object in python class ?
 
     # When statement "v3 = v1 + v2 " executes "__add__" is called and it returns a new Vector object.
 
+## __Repr__
+
+class Pizza:
+    def __init__(self, ingredients):
+        self.ingredients = ingredients
+
+    def __repr__(self):
+        return f'Pizza({self.ingredients!r})'
+
+If Pizza() return __repr__
+
 # FILE I/O
 ### Import fuction from other file
 
@@ -1759,6 +1868,11 @@ Use relative imports with dots
     for name in glob.glob('dir/*[0-9].*'):
         print (name)
 
+    ### Import txt ###
+
+    from numpy import loadtxt
+    # x=loadtxt('realna_data_klapky.txt')
+
 ## Work with files
 
     '''
@@ -1792,10 +1906,42 @@ Use relative imports with dots
     f.read() # further reading returns empty sting
     '''
 
-### Import txt
+## Manipulate with files
 
-    from numpy import loadtxt
-    # x=loadtxt('realna_data_klapky.txt')
+    '''
+    ### Copy file ###
+
+    import shutil, os
+    s.chdir('C:\\')
+    shutil.copy('C:\\spam.txt', 'C:\\delicious')
+
+    ### Copy folder with all files ###
+    shutil.copytree('C:\\bacon', 'C:\\bacon_backup')
+
+    ### Move files ###
+    shutil.move('C:\\bacon.txt', 'C:\\eggs')
+
+    ### Remove - move to trash bin ###
+    import send2trash
+    send2trash.send2trash('bacon.txt')
+
+    ### Remove file ###
+    os.unlink(path)
+
+    ### Remove folder with all content ###
+    shutil.rmtree(path)
+
+    ### File tree - walk ###
+    import os
+
+    for folderName, subfolders, filenames in os.walk('C:\\delicious'):
+        print('The current folder is ' + folderName)
+
+        for subfolder in subfolders:
+            print('SUBFOLDER OF ' + folderName + ': ' + subfolder)
+        for filename in filenames:
+            print('FILE INSIDE ' + folderName + ': '+ filename)
+    '''
 
 ## Pickling
 
@@ -2079,6 +2225,31 @@ Result is e = {"a": 1, "b": 2}**
     legend();show()
     plt.savefig('fig1.png', dpi =  300) # uloží graf
 
+    ### Jupyter plot one after one
+
+    # Use not show()
+    %matplotlib notebook
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    x = [1, 2, 3, 4, 5, 6]
+
+    fig, axes = plt.subplots()
+    axes.plot(range(10))
+    #figure one
+
+
+    fig, axes = plt.subplots()
+    axes.plot(range(10))
+    #figure two
+
+
+    fig, ((a,b),(c,d)) = plt.subplots(2,2)
+    a.plot(x, np.sin(x))
+    b.plot(x, np.cos(x))
+    c.plot(x, np.tan(x))
+    d.plot(x, np.tanh(x))
+
     ### Histogram
 
     figure(figsize=(20,5))
@@ -2170,6 +2341,11 @@ Result is e = {"a": 1, "b": 2}**
         ha='center', va='center', size=20)
 
     [plt.show](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show "View documentation for matplotlib.pyplot.show")()
+
+    ### Log axis
+
+    plt.loglog(x, y)  # Both axis are log
+
     '''
 
 ## Table
@@ -2203,6 +2379,28 @@ Result is e = {"a": 1, "b": 2}**
 
     # !  jupyter kernelspec list # Ukáže seznam kernelů
     # !  jupyter kernelspec uninstall nazev # Odinstaluje kernel
+
+## If jupyter and run from normal python
+
+try:
+    __IPYTHON__
+
+    from IPython.terminal.embed import InteractiveShellEmbed
+    ipshell = InteractiveShellEmbed()
+    ipshell.dummy_mode = True
+    ipshell.magic("%load_ext autoreload")
+    ipshell.magic("%autoreload")
+
+except NameError:
+    print('No Jupyter')
+
+## Run ipython in normal python
+
+    from IPython.terminal.embed import InteractiveShellEmbed
+
+    ipshell = InteractiveShellEmbed()
+    ipshell.dummy_mode = True
+    ipshell.magic("%timeit abs(-42)");
 
 ## Autoreload
 
@@ -2292,26 +2490,41 @@ Reload all modules imported with %aimport every time before executing the Python
     img=np.array(img)
     '''
 
-# Mahematics, statistics, linear algebra
+# Mathematics, statistics, linear algebra
 !! Matrix and liear algebra operations discussed in Numpy aray section !!
 
-    ### Square root
+    ### Display nice math
+
+    from IPython.display import display, Math, Latex
+    display(Math(r'F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx'))
+
+    ### Square root ###
 
     y = 9**(1/2)  # 3
 
-    ### Round
+    ### Round ###
 
     A = round(5.76543, 2)
 
-    ### Modulo
+    ### Natural log - e ###
+
+    from math import e
+    a = e  # 2.71
+
+    # Or
+
+    import numpy as np
+    a = np.exp(1)
+
+    ### Modulo ###
 
     a = 7 % 3 # => 1
 
-    ### Power (x on y)
+    ### Power (x on y) ###
 
     a = 2**4 # => 16
 
-    ### Describe - Statistical values of list
+    ### Describe - Statistical values of list ###
 
     import pandas as pd
     
@@ -2409,8 +2622,10 @@ Reload all modules imported with %aimport every time before executing the Python
     '''
     import sympy as sp
 
-    # ! If you wanna beauty print, then don't assign variable
-    # e.g.:    sp.oo
+    #  Nice display
+    init_printing()
+
+    # Or
     # Or use sp.pprint()
 
     ### Display Latex
@@ -2430,6 +2645,9 @@ Reload all modules imported with %aimport every time before executing the Python
         #   x*y + x*z + y*z
         #   ---------------
         #        x*y*z
+
+    # Imaginary numbers
+    x = 1 + 1*I
 
     ### Expand
 
@@ -2467,6 +2685,59 @@ Reload all modules imported with %aimport every time before executing the Python
     res = f(a)
         # [ 0.          0.84147098  0.90929743  0.14112001 -0.7568025  -0.95892427
         #  -0.2794155   0.6569866   0.98935825  0.41211849]
+    
+        ### Combine with numpy
+
+    y_vec = numpy.array([N(((x + pi)**2).subs(x, xx)) for xx in x_vec])  # But lambdify is faster
+
+    ### Solve equation
+
+    solve(x**2 - 1, x)  # [-1, 1]
+    solve([x + y - 1, x - y - 1], [x,y])  # {x:1,y:0}
+
+    # Exponential
+    from mpmath import e
+    y = sp.exp(x)
+
+    # Matrices
+
+    m11, m12, m21, m22 = symbols("m11, m12, m21, m22")
+    b1, b2 = symbols("b1, b2")
+
+    A = Matrix([[m11, m12],[m21, m22]])
+        #   [ m11    m21
+        #     m12    m22 ]
+    
+    b = Matrix([[b1], [b2]])
+        #   [ b1
+        #     b2 ]
+
+    # Matrix operations
+
+    sqr_mat = A**2
+    mat_mul = A*b
+    det = A.det()
+    inv = A.inv()
+
+    ### Fast fourier transform
+
+    from numpy.fft import fft, fftfreq, ifft
+    import numpy as np
+
+    t = np.arange(0, 10, 0.1)
+    y = np.sin(t)
+
+    ffty = fft(y)
+
+    real_ffty = ffty.real
+    imag_ffty = ffty.imag
+
+    freqs = fftfreq(N, dt)  # Frequentions assigned to values - 0, 0.1, 0.2...
+
+    ### Sympy plotting
+
+    from sympy.plotting import plot
+    p1 = plot(sp.exp(t))
     '''
 
     ######################################
@@ -2538,6 +2809,11 @@ Reload all modules imported with %aimport every time before executing the Python
     ####### Statistics #######
     ##########################
 
+    ### Create combinations
+
+    from scipy.special import binom
+    a = binom(5,2)
+
     ### Test of normal distribution
 
     from statsmodels.stats.stattools import jarque_bera
@@ -2581,6 +2857,208 @@ Reload all modules imported with %aimport every time before executing the Python
     ### The same way you can use preprocessing.RobustScaler, that is not as much influenced by outliers !!
 
 # Signal processing and controll
+
+    '''
+    ## Signal
+
+    import scipy.signal as sig
+    y = sg.sawtooth(2*pi/100*t,0.5)  # Create sawtooth signal
+
+    ### Chirp signal
+    t = np.linspace(0, 10, 5001)
+    w = sig.chirp(t, f0=6, f1=1, t1=10, method='linear') # (t, f0, t1, f1)  # Changing frequency
+
+    ## Hanning window
+
+    w = hanning(N)
+
+    ## Tuckey window
+
+    w = sig.tukey(N)
+
+    ## Fourier transform
+
+    dt = 1./1024
+    t = np.arange(0,2,dt)
+    N = len(t)
+    y = sig.sawtooth(2*np.pi/T1*t,0.5)
+
+    freq = np.fft.fftfreq(N,dt)  # Return frequencies
+    ffty = np.fft.fft(y)
+    rffty = np.real(ffty)  # Real part
+    iffty = np.imag(ffty)  # Imaginary part
+
+    ## Inverse Fourier transform
+
+    y_back = np.fft.ifft(ffty)
+
+    ## Power spectral density
+
+    PSD = (abs(ffty)**2)/N
+
+    ## Hilbert transform - Envelope, phase, frequency
+
+    analytic_signal = hilbert(signal)
+    amplitude_envelope = np.abs(analytic_signal)
+    instantaneous_phase = np.unwrap(np.angle(analytic_signal))
+    instantaneous_frequency = (np.diff(instantaneous_phase) / (2.0*np.pi) * fs)
+
+    ### Filtering
+
+    import scipy.signal as sig
+    from scipy.signal import butter,filtfilt
+
+    t = np.linspace(0, 10, 501)
+    w = sig.chirp(t, f0=6, f1=0.1, t1=10, method='linear') # (t, f0, t1, f1) 
+
+    Wn = 0.1  # zkuste pozorovat efekt nasobici konstanty na cinnost filtru
+    filter_order = 2
+    b, a = butter(filter_order, Wn, 'high', analog=False)  #Matlab-style filter design
+
+    x_dem = sig.lfilter(b, a, w) 
+
+    # Or
+    x_dem = filtfilt(b, a, w)  # Apply  filtr (forward and backward)
+
+    # You can use scipy or you can use controll
+
+    ####################
+    ##### Controll #####
+    ####################
+
+    ## State-space representation
+
+    A = [[0. , 1.], [-1., -1.]]
+    B = [[0.], [1.]]
+    C = [1. , 0.]
+    D = 0.
+
+    import control as ct
+
+    sys = ct.ss(A , B, C, D)
+
+
+    ## Transfer function
+
+    g = ct.tf(1 ,[1 ,1, 1])  # Or ct.tf(sys)
+
+        #        1
+        #   -----------
+        #   s^2 + s + 1
+
+    sys = ct.ss(g)  # Convert back from transfer to state space
+
+    ## Convert from continuous to discrete
+
+    g = ct.tf(1, [1, 1, 1])
+    gd = ct.c2d (g, 0.01)
+
+        #   4.983e-05 z + 4.967e-05
+        #   -----------------------
+        #     z^2 - 1.99 z + 0.99
+
+    ## Interconnect systems
+
+    ### Parallel
+
+
+        #      2 s + 3
+        #    -------------
+        #    s^2 + 3 s + 2
+
+
+    #################
+    ##### Scipy #####
+    #################
+
+    # You have to use float here. Not working for int...
+
+    from scipy import signal
+
+    sys = signal.StateSpace(A, B, C, D)
+
+    ### Step response
+
+    t1, y1 = signal.step(sys)
+
+    ################
+    ### Simulate ###
+    ################
+    
+    t = np.linspace(0, 100, 101)
+    u = np.zeros(len(t))
+    u[10:50] = 1.0;  u[50:] = 2.0
+
+    t3, y3, x3 = signal.lsim(sys, u, t)
+
+    import numpy as np
+    from scipy.integrate import odeint
+    import matplotlib.pyplot as plt
+
+    # function that returns dy/dt
+    def model(y,t):
+        k = 0.3
+        dydt = -k * y
+        return dydt
+
+    # initial condition
+    y0 = 5
+
+    # time points
+    t = np.linspace(0,20)
+
+    # solve ODE
+    y = odeint(model,y0,t)
+
+    # plot results
+    plt.plot(t,y)
+    plt.xlabel('time')
+    plt.ylabel('y(t)')
+    plt.show()
+
+    ### Simulate with time dependent input
+
+    def fdxdt(x,t,u,Omega,eta,b0,b1):    # x=[x1 x2 ... xn] 
+          dx1dt=-Omega0**2*x[1]-b0*u
+          dx2dt=-2*eta*Omega0*x[1]-b1*u+x[0]
+          return(dx1dt,dx2dt)
+
+        dt=.21  #[sec]
+        t=arange(0,50,dt) ; N=len(t)  # delka dat
+        Npul=int(N/2)   #konverze na integer
+
+        u=sin(2*pi/10*t) ; u[Npul+1:]=sign(u[Npul+1:])
+
+        u=u*1
+
+        figure(figsize=(12,4));grid()
+        plot(t,u,'-*',label="u(t)");xlabel("t");legend();title("$Vstup \ u(t) \ se \ meni  \ se \
+                \ vzorkovaci \ periodou \ \Delta t $="+str(dt) +" [sec] \n")
+        show()
+
+        from scipy.integrate import odeint
+
+        Omega0=10  ;  eta=.1  ;   b0=Omega0**2  ;  b1=0
+
+        #===============================
+
+        y=zeros(N)
+        x10=0 ; x20=0  # poc. podm
+
+        x0=[x10,x20]
+
+        for i in range(0,N-1):
+            tt=[t[i],t[i+1]]  # [t1 t2]
+            x=odeint(fdxdt,x0,t,(u[i],Omega0,eta,b0,b1)) #returns x=[ [x1(t1) x2(t1)] [x1(t2) x2(t2)]]
+        #    x=odeint(fdxdt,x0,tt,args=(u[i],)) # <-- pokud je jen jeden extra argument, musi se tak    
+            y[i+1]=-x[1,1]
+            x0=x[1,:]  # jako nove poc. podm pro dalsi integraci
+            
+        figure(figsize=(14,6))
+        grid()
+        plot(t,y,"-*",label="y(t)...simulace scipy.integrate.odeint"),xlabel("t [sec]"),legend()
+        show()
+        '''
 
 # Miscellaneous
 
@@ -2629,12 +3107,6 @@ Reload all modules imported with %aimport every time before executing the Python
 
 # Performance
 
-### Type hinting
-
-    def sentence_has_animal(sentence: str) -> bool:
-        return "animal" in sentence
-    sentence_has_animal("Donald had a farm without animals")
-
 ## Numba
 
     import numba as nb
@@ -2645,7 +3117,7 @@ Reload all modules imported with %aimport every time before executing the Python
 
     # Or
 
-    @nb.jit(nopython=True)  # parallel=True
+    @nb.jit(nopython=True)  # Or use  parallel=True, nogil=True, cache=True
     def func():
         return 1
 
@@ -2662,7 +3134,64 @@ Reload all modules imported with %aimport every time before executing the Python
     def function(a, b):
         return a + b
 
-    # Cuda in Numba
+    ### Get numba dtype from other
+
+    numba.typeof(np.empty(3))
+    array(float64, 1d, C)
+
+    ### Evaluate chunk sizes
+
+        i = numba.cuda.grid(1)
+        while i < x.size:
+            # Do something
+            i += numba.cuda.grid(1)
+
+    ### Cuda in Numba ###
+
+    import math
+    import numpy as np
+    from numba import cuda
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
+    len(cuda.gpus)  # 1
+
+    cuda.gpus[0].name  # b'GeForce GTX 980M'
+
+    @cuda.jit
+    def mandelbrot_numba(m, iterations):
+        # Matrix index.
+        i, j = cuda.grid(2)
+        size = m.shape[0]
+        # Skip threads outside the matrix.
+        if i >= size or j >= size:
+            return
+        # Run the simulation.
+        c = (-2 + 3. / size * j +
+            1j * (1.5 - 3. / size * i))
+        z = 0
+        for n in range(iterations):
+            if abs(z) <= 10:
+                z = z * z + c
+                m[i, j] = n
+            else:
+                break
+
+        size = 400
+        iterations = 100
+
+        m = np.zeros((size, size))
+
+        # 16x16 threads per block.
+        bs = 16
+        # Number of blocks in the grid.
+        bpg = math.ceil(size / bs)
+        # We prepare the GPU function.
+        f = mandelbrot_numba[(bpg, bpg), (bs, bs)]
+
+        f(m, iterations)
+
+    # Or
 
     from numba import cuda
     @cuda.jit(device=True)
@@ -2706,6 +3235,8 @@ Reload all modules imported with %aimport every time before executing the Python
     import dask.array as da
     import dask.dataframe as dd
     x = da.random.random((20, 20), chunks=(10, 10))
+    res = x.dot(x.T).sum()
+    res.compute()
 
     # Dataframes implement the Pandas API
     
