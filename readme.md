@@ -13,7 +13,7 @@ To recreate jupyter notebook just open create_jupyter.cmd (in windows)
 Or if you don't have windows, type this to terminal !!:
 
     # ! pip install notedown
-    # ! notedown input.ipynb --to markdown --strip > output.md
+    # ! notedown readme.md > awesome_jupyter.ipynb
 
 Note 1: Some cells are commented, because can slow notebook, make errors or save files. If there is an !!! exclamation mark !!! after comment, it means, that it's code for your shell (e.g. cmd). If you remove comment, run cell from notebook, code in shell will be executed. Longer comments are assigned to variable so it's not printed to console. Just remove variable, uncomment and enjoy...
 
@@ -21,7 +21,7 @@ Note 2: Jupyter need some libraries for particular tasks. Install it when reach 
 
 Note 3: Content is not working in jupyter, so delete it. Use nbextensions and extension table of content. If you have no nbextensions, than use:
 
-    # !  pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install 
+    # !  pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install
 
     # I recommend Table Of contents, Variable inspector, ExecuteTime, Code Prettify and Autopep8. Just restart jupyter and choose from tab nbextensions.
 
@@ -34,9 +34,11 @@ Note 3: Content is not working in jupyter, so delete it. Use nbextensions and ex
 - [Awesome-python-md-documentation](#awesome-python-md-documentation)
 - [Content](#content)
 - [General](#general)
+  - [Install library](#install-library)
   - [Show installed libraries](#show-installed-libraries)
   - [Virtual env](#virtual-env)
   - [Requirements - bulk libraries install](#requirements-bulk-libraries-install)
+  - [Python on linux](#python-on-linux)
 - [Comments](#comments)
   - [Documentation - docstrings](#documentation-docstrings)
     - [reStructured text](#restructured-text)
@@ -56,6 +58,7 @@ Note 3: Content is not working in jupyter, so delete it. Use nbextensions and ex
   - [Import variables from other modules](#import-variables-from-other-modules)
     - [Find name of variable, list or dictionary](#find-name-of-variable-list-or-dictionary)
 - [DATA TYPES](#data-types)
+    - [Type hinting](#type-hinting)
     - [Type of variable as condition](#type-of-variable-as-condition)
     - [If exist](#if-exist)
   - [String](#string)
@@ -63,13 +66,14 @@ Note 3: Content is not working in jupyter, so delete it. Use nbextensions and ex
     - [Newest and fastest format- f'strings'](#newest-and-fastest-format-fstrings)
     - [String to code](#string-to-code)
     - [Join - concatenate](#join-concatenate)
-- [List](#list)
-- [Deque](#deque)
+  - [List](#list)
+  - [Deque](#deque)
   - [Tuple](#tuple)
-- [Dictionary](#dictionary)
-- [Set](#set)
-- [Dataframe](#dataframe)
-- [Numpy Array](#numpy-array)
+  - [Dictionary](#dictionary)
+  - [Set](#set)
+  - [Dataframe](#dataframe)
+  - [Numpy Array](#numpy-array)
+  - [HDF5](#hdf5)
 - [Iterator](#iterator)
 - [LOOPZ](#loopz)
   - [IF](#if)
@@ -94,14 +98,15 @@ Note 3: Content is not working in jupyter, so delete it. Use nbextensions and ex
   - [Functions map(), filter(), reduce()](#functions-map-filter-reduce)
     - [Reduce - Input sequention into function](#reduce-input-sequention-into-function)
 - [Generators](#generators)
-- [Dekorators](#dekorators)
-- [Module](#module)
+- [Decorators](#decorators)
+- [Modules](#modules)
 - [Classes](#classes)
     - [Create object](#create-object)
     - [Call class method](#call-class-method)
     - [Change atribute of class](#change-atribute-of-class)
     - [Call static method](#call-static-method)
     - [Magic methods](#magic-methods)
+  - [__Repr__](#__repr__)
 - [FILE I/O](#file-io)
     - [Import fuction from other file](#import-fuction-from-other-file)
     - [Find script's adress](#find-scripts-adress)
@@ -112,7 +117,7 @@ Note 3: Content is not working in jupyter, so delete it. Use nbextensions and ex
     - [Filter for one type data](#filter-for-one-type-data)
     - [Load all files with certain suffix](#load-all-files-with-certain-suffix)
   - [Work with files](#work-with-files)
-    - [Import txt](#import-txt)
+  - [Manipulate with files](#manipulate-with-files)
   - [Pickling](#pickling)
 - [Paths](#paths)
   - [Pathlib - new and correct way](#pathlib-new-and-correct-way)
@@ -136,37 +141,50 @@ Note 3: Content is not working in jupyter, so delete it. Use nbextensions and ex
 - [Libraries](#libraries)
   - [If pip cannot be installed by SSL errorr](#if-pip-cannot-be-installed-by-ssl-errorr)
 - [Jupyter](#jupyter)
-  - [Autoreload](#autoreload)
-  - [Link](#link)
-  - [Image](#image)
-  - [Youtube](#youtube)
-  - [Show all images from folder](#show-all-images-from-folder)
-- [Requests - API - GET, POST](#requests-api-get-post)
+- [Docker](#docker)
+- [Web](#web)
+  - [Requests - API - GET, POST](#requests-api-get-post)
+  - [Beautiful soup - web scrapping](#beautiful-soup-web-scrapping)
 - [Images, pictures](#images-pictures)
-- [Mahematics, statistics, linear algebra](#mahematics-statistics-linear-algebra)
-- [Machine learning](#machine-learning)
+- [Mathematics, statistics, linear algebra](#mathematics-statistics-linear-algebra)
 - [Signal processing and controll](#signal-processing-and-controll)
 - [Miscellaneous](#miscellaneous)
   - [Measure time](#measure-time)
   - [Show bytcode](#show-bytcode)
 - [Performance](#performance)
-    - [Type hinting](#type-hinting)
   - [Numba](#numba)
   - [Dask](#dask)
     - [Dask formats](#dask-formats)
   - [Force to empty memory](#force-to-empty-memory)
+- [Threading](#threading)
   - [Max execution time python](#max-execution-time-python)
   - [Profiling](#profiling)
 - [Whole sections](#whole-sections)
   - [Encoding JSON with Python](#encoding-json-with-python)
 - [Pypi export / create own library](#pypi-export-create-own-library)
 - [Github](#github)
+- [Create documentation - Sphinx](#create-documentation-sphinx)
+- [Numpy style documentation for sphinx autodocs](#numpy-style-documentation-for-sphinx-autodocs)
+- [Testing](#testing)
+- [Travis CI - Automatic testing and deploying](#travis-ci-automatic-testing-and-deploying)
+- [Linux - bash essentials](#linux-bash-essentials)
 
 <!-- /code_chunk_output -->
 
 
 # General
 
+## Install library
+
+```
+# pip install library_name
+
+# For anaconda
+conda install library_name
+
+# If conda not work
+conda install -c anaconda library_name
+```
 ## Show installed libraries
 
     # !  pip list
@@ -193,6 +211,20 @@ Note 3: Content is not working in jupyter, so delete it. Use nbextensions and ex
 
     # !  (pip freeze > requirements.txt)
 
+## Python on linux
+
+```
+    ## Use python instead of python3
+
+    # Add to source ~/.bashrc
+    alias python=python3
+    alias pip=pip3
+
+    # Open terminal in current folder
+
+    sudo apt-get install nautilus-open-terminal
+```
+
 # Comments
 
     # One line comment
@@ -203,11 +235,12 @@ Note 3: Content is not working in jupyter, so delete it. Use nbextensions and ex
     """
 
 ## Documentation - docstrings
+
 Posible modes - DocBlockR, ReST, Numpy, Google
 
 ### reStructured text
 
-```markdown
+```
 restr = ''' # remove the variable - it's just for jupyter
 Section Header
 ==============
@@ -273,19 +306,18 @@ Arguments:
 ## Multi line code
 
     poi = { "1": 3,
-            "2": 4, 
+            "2": 4,
             "6": 8 }
-
-    # or use brackets or \\
 
     a = (   1 + 2
             + 3 + 4 )
 
-    a = 1 + 2 \
-        + 3 + 
-
     f = range(  1 + 2
-            + '3' - '4')  # Function example
+            + 3 - 4)  # Function example
+
+    # or use \
+    a = 1 + 2 \
+        + 3
 
 ### Show where python is installed
 
@@ -344,7 +376,7 @@ Arguments:
 
 ## Declaration of more variables at once
 
-    a = b = c = 1
+    a = b = c = 1  # If i change one, it doesn't affect the others
 
     a,b,c = 1,2,"john"
 
@@ -417,57 +449,62 @@ config.x = 2 ....
 
 ## String
 
-    # Strings " or ' and can contain UTF8 symbols
+```python
 
-    a = "This is string."
-    a = 'This is also string.'
+a = "This is string."
+a = 'This is also string.'
 
-    # In python 3
+# In python 3
 
-    print('strings are now utf-8 \u03BCnico\u0394é!')  # strings are now utf-8 μnicoΔé!
+print('strings are now utf-8 \u03BCnico\u0394é!')  # strings are now utf-8 μnicoΔé!
 
-    # Strings can use + but don't use
+# Strings can use + but don't use
 
-    a = "Hello " + "world!" # => "Hello world!"
+a = "Hello " + "world!" # => "Hello world!"
 
-    # Can be concatenated without '+'
+# Can be concatenated without '+'
 
-    a = "Hello " "world!" # => "Hello world!"
+a = "Hello " "world!" # => "Hello world!"
 
-    # String is list of symbols
+# String is list of symbols
 
-    a = "This is list"[0] # => 'T'
+a = "This is list"[0] # => 'T'
+```
 
 ### Format
+```python
+# Old
 
-    # Old
+a = '%s  %s' % ('one', 'two')
 
-    a = '%s  %s' % ('one', 'two')
+# Newer
 
-    # Newer
+a = '{} {}'.format('one', 'two')
 
-    a = '{} {}'.format('one', 'two')
+# Format can be used multiple times
 
-    # Format can be used multiple times
+a = "{0} {1} stříkaček stříkalo přes {0} {1} střech".format("tři sta třicet tři", "stříbrných")
 
-    a = "{0} {1} stříkaček stříkalo přes {0} {1} střech".format("tři sta třicet tři", "stříbrných")
+# You can use named arguments
 
-    # You can use named arguments
-
-    a = "{jmeno} si dal {jidlo}".format(jmeno="Franta", jidlo="guláš") # => "Franta si dal guláš"
+a = "{jmeno} si dal {jidlo}".format(jmeno="Franta", jidlo="guláš") # => "Franta si dal guláš"
+```
 
 ### Newest and fastest format- f'strings'
 
-    name = 'Peter'
-    f"Hello, {name}. You are {2 * 17}. Also functions {name.lower()}."
+```python
+name = 'Peter'
+f"Hello, {name}. You are {2 * 17}. Also functions {name.lower()}."
 
-    # You can use raw strings (no escape characters, but still format)
-    a = 15
-    print(fr'Escape is here:\n but still {a}')  # Escape is here:\n but still 15
+# You can use raw strings (no escape characters, but still format)
+
+a = 15
+print(fr'Escape is here:\n but still {a}')  # Escape is here:\n but still 15
 
 If you use """ no escape symbols will be used
 Also can use dictionaries, but "" is necesarry
 Dont use # in f strings
+```
 
 ### String to code
 
@@ -484,176 +521,180 @@ Dont use # in f strings
 
 ## List
 
-    empty_list = []
-    lst = [1, 2, 3, 4]
-    lst.append(1)  # lst is now [1, 2, 3, 4, 1]
-    lst.insert(1, 2)  # insert 2 on index 1
-    lst.pop()  # Remove last value
-    lst.remove(2)  # Remove first 2 in list
-    del lst[1]  # Delete first element
-    del lst[-2:]  # Range delete - from the last one
-    b = [1,2]
-    c = lst + b  # Serializes
-    lst.extend(b)  # Serializes
+```python
 
-    # If lst a = lst b and we change one of them, the other also change therefor
+empty_list = []
+lst = [1, 2, 3, 4]
+lst.append(1)  # lst is now [1, 2, 3, 4, 1]
+lst.insert(1, 2)  # insert 2 on index 1
+lst.pop()  # Remove last value
+lst.remove(2)  # Remove first 2 in list
+del lst[1]  # Delete first element
+del lst[-2:]  # Range delete - from the last one
+b = [1,2]
+c = lst + b  # Serializes
+lst.extend(b)  # Serializes
 
-    lista = [1, 2, 3]
-    listb = lista.copy()
-    listb[2] = 5
-    print(lista)  # [1, 2, 5]
+# If lst a = lst b and we change one of them, the other also change therefor
 
-    ### Access members
+lista = [1, 2, 3]
+listb = lista.copy()
+listb[2] = 5
+print(lista)  # [1, 2, 5]
 
-    lst = [1, 2, 3, 4]
-    lst[0]  # => 1
-    lst[-1]  # => 3
+### Access members
 
-    ### Slices
+lst = [1, 2, 3, 4]
+lst[0]  # => 1
+lst[-1]  # => 3
 
-    lst[1:3]  # => [2, 4]
-    lst[2:]  # => [4, 3]
-    lst[:3] # => [1, 2, 4]
+### Slices
 
-    # Every second member
+lst[1:3]  # => [2, 4]
+lst[2:]  # => [4, 3]
+lst[:3] # => [1, 2, 4]
 
-    lst[::2] # =>[1, 4]
+# Every second member
 
-    ### Minimum
+lst[::2] # =>[1, 4]
 
-    youngest = min(lst)
+### Minimum
 
-    ### Find maximum and it's index
+youngest = min(lst)
 
-    m = max(lst)
-    [i for i, j in enumerate(a) if j == m] # pro a = [1,2,0]  # 1
+### Find maximum and it's index
 
-    ### Sum
+m = max(lst)
+[i for i, j in enumerate(a) if j == m] # pro a = [1,2,0]  # 1
 
-    suma = sum(lst)
+### Sum
 
-    ### If member exist
+suma = sum(lst)
 
-    1 in lst # => True
+### If member exist
 
-    ### Length of list
+1 in lst # => True
 
-    len(lst) # => 6
+### Length of list
 
-    ### Every value just once
+len(lst) # => 6
 
-    t =  [1,  2,  3,  1,  2,  5,  6,  7,  8]
-    lst = list(set(t))  # [1,  2,  3,  5,  6,  7,  8]
+### Every value just once
 
-    ### Reverse
+t =  [1,  2,  3,  1,  2,  5,  6,  7,  8]
+lst = list(set(t))  # [1,  2,  3,  5,  6,  7,  8]
 
-    rev = lst[::-1] # => [3, 4, 2, 1]
+### Reverse
 
-    # Or
+rev = lst[::-1] # => [3, 4, 2, 1]
 
-    rev = t.reverse()
+# Or
 
-    ### Iterate in reverse order
+rev = t.reverse()
 
-    for i in reversed(lst):
-        pass
+### Iterate in reverse order
 
-    ### Check if list is empty or not
+for i in reversed(lst):
+    pass
 
-    a = 6
-    if a:
-        pass
+### Check if list is empty or not
 
-    if not a:
-        pass
+a = 6
+if a:
+    pass
 
-    ### Create list from 0 to 10
+if not a:
+    pass
 
-    l = range(10) #  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9]
+### Create list from 0 to 10
 
-    ### Create list - List comprehension
+l = range(10) #  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9]
 
-    [x*5 for x in range(5)] #[0, 5, 10, 15, 20]
-    [x for x in range(5) if x%2 == 0] #[0, 2, 4]
-    [a if a else  2  for a in  [0,1,0,3]]
+### Create list - List comprehension
 
-    # List comprehension from more entities
+[x*5 for x in range(5)] #[0, 5, 10, 15, 20]
+[x for x in range(5) if x%2 == 0] #[0, 2, 4]
+[a if a else  2  for a in  [0,1,0,3]]
 
-    list_1 = [1, 2, 3]
-    list_2 = [2, 3, 4]
-    [(i, j) for i, j in zip(list_1, list_2)] # [(1, 'a'), (2, 'b'...]
+# List comprehension from more entities
 
-    ### Zip lists
+list_1 = [1, 2, 3]
+list_2 = [2, 3, 4]
+[(i, j) for i, j in zip(list_1, list_2)] # [(1, 'a'), (2, 'b'...]
 
-    zip(list_1, list_2) # {(a1, b1), (a2, b2)}
+### Zip lists
 
-    ### Logical condition on lists
+zip(list_1, list_2) # {(a1, b1), (a2, b2)}
 
-    j2 = [i for i in list_1 if i >=  5]
+### Logical condition on lists
 
-    ### One value more times
+j2 = [i for i in list_1 if i >=  5]
 
-    listOfStr = ['Hi'] * 3 # ['Hi', 'Hi', 'Hi']
+### One value more times
 
-    ### Multiple list
+listOfStr = ['Hi'] * 3 # ['Hi', 'Hi', 'Hi']
 
-    my_list =  [1,  2,  3,  4,  5]
-    my_new_list =  [i *  5  for i in my_list]
+### Multiple list
 
-    ### Find index
+my_list =  [1,  2,  3,  4,  5]
+my_new_list =  [i *  5  for i in my_list]
 
-    my_list.index(3)
+### Find index
 
-    ### Nested lists
+my_list.index(3)
 
-    t = [[1,2], [3,4]]
-    print(t[1][1])  # 4
+### Nested lists
 
-    ### Every first member of nested lists
+t = [[1,2], [3,4]]
+print(t[1][1])  # 4
 
-    L = [[[0,1,2],[3,4,5],[6,7,8]],  [[0,1,2],[3,4,5],[6,7,8]],  [[0,1,2],[3,4,5],[6,7,8]]]
-    R = [[x[0]  for x in sl ]  for sl in L ]  # [[0, 3, 6], [0, 3, 6], [0, 3, 6]]
+### Every first member of nested lists
 
-    # Or
+L = [[[0,1,2],[3,4,5],[6,7,8]],  [[0,1,2],[3,4,5],[6,7,8]],  [[0,1,2],[3,4,5],[6,7,8]]]
+R = [[x[0]  for x in sl ]  for sl in L ]  # [[0, 3, 6], [0, 3, 6], [0, 3, 6]]
 
-    lst = [[1,2,3],[11,12,13],[21,22,23]]
-    a = list(zip(*lst))[0]  # [1, 11, 21]
+# Or
 
-    ### Add first with first, second with second
+lst = [[1,2,3],[11,12,13],[21,22,23]]
+a = list(zip(*lst))[0]  # [1, 11, 21]
 
-    [a + b for a, b in zip(list_1, list_2)]
+### Add first with first, second with second
 
-    ### List of functions
+[a + b for a, b in zip(list_1, list_2)]
 
-    def func1():return 1
-    def func2():return 2
-    def func3():return 3
-    fl = [func1,func2,func3]
-    [f() for f in fl] # [1, 2, 3]
+### List of functions
 
-    ### How many times members in list
+def func1():return 1
+def func2():return 2
+def func3():return 3
+fl = [func1,func2,func3]
+[f() for f in fl] # [1, 2, 3]
 
-    import collections
-    print( collections.Counter(['a', 'b', 'c', 'a', 'b', 'b']))
+### How many times members in list
+
+import collections
+print( collections.Counter(['a', 'b', 'c', 'a', 'b', 'b']))
+```
 
 ## Deque
 
+```python
 You can iterate from both sides
 
-    import collections
-    de = collections.deque([1, 2, 3])
-    de.append(0)  # Add x to the right side of the deque.
-    de.appendleft(6)  # Add x to the left side of the deque.
-    de.count(2)  # Count the number of deque elements equal to x.
-    lst = [1, 2, 3]
-    de.extend(lst)  # Extend the right side of the deque by appending elem   ents from the iterable argument.
-    de.pop()  # Remove and return an element from the right side of the deque. If no elements are present, raises an IndexError.
-    de.popleft()  # Remove and return an element from the left side of the deque. If no elements are present, raises an IndexError.
-    de.remove(2)  # Remove the first occurrence of value. If not found, raises a ValueError.
-    de.reverse()  # Reverse the elements of the deque in-place and then return None.
-    de.rotate(1)  # Rotate the deque n steps to the right. If n is negative, rotate to the left.
-    de.clear()  # Remove all elements from the deque leaving it with length 0.
-
+import collections
+de = collections.deque([1, 2, 3])
+de.append(0)  # Add x to the right side of the deque.
+de.appendleft(6)  # Add x to the left side of the deque.
+de.count(2)  # Count the number of deque elements equal to x.
+lst = [1, 2, 3]
+de.extend(lst)  # Extend the right side of the deque by appending elem   ents from the iterable argument.
+de.pop()  # Remove and return an element from the right side of the deque. If no elements are present, raises an IndexError.
+de.popleft()  # Remove and return an element from the left side of the deque. If no elements are present, raises an IndexError.
+de.remove(2)  # Remove the first occurrence of value. If not found, raises a ValueError.
+de.reverse()  # Reverse the elements of the deque in-place and then return None.
+de.rotate(1)  # Rotate the deque n steps to the right. If n is negative, rotate to the left.
+de.clear()  # Remove all elements from the deque leaving it with length 0.
+```
 
 ## Tuple
 
@@ -664,733 +705,785 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
     # tuple[0] = 3  # Raise TypeError
 
     a, = 5  # (5)
+
 ## Dictionary
 
-    empty_dic = {}
-    dic = {"jedna": 1, "dva": 2, "tři": 3}
-    dic_variable = {key:value for (key,value) in dic.items()}
+```python
+empty_dic = {}
+dic = {"jedna": 1, "dva": 2, "tři": 3}
+dic_variable = {key:value for (key,value) in dic.items()}
 
-    ### Add value
+### Add value
 
-    dic['čtyři'] = 4  # If key is already there it's updated
+dic['čtyři'] = 4  # If key is already there it's updated
 
-    ### Create dictionary from two lists
+### Create dictionary from two lists
 
-    name = ['mike', 'john', 'steve']  
-    age = [20, 32, 19]
-    dic=dict(zip(name, age))
+name = ['mike', 'john', 'steve']  
+age = [20, 32, 19]
+dic=dict(zip(name, age))
 
-    ### Miscelanious
+### Miscelanious
 
-    thisdict = {'b':1, 'c':2, 'd':3}
-    del thisdict['b']  # delete list
-    'e' in thisdict  # returns False
-    thisdict.items()  # returns [('a', 1), ('c', 'eggs')]
+thisdict = {'b':1, 'c':2, 'd':3}
+del thisdict['b']  # delete list
+'e' in thisdict  # returns False
+thisdict.items()  # returns [('a', 1), ('c', 'eggs')]
 
-    # All keys
+# All keys
 
-    dic.keys()
+dic.keys()
 
-    # You need list sometimes not iterables
+# You need list sometimes not iterables
 
-    list(dic.keys())
+list(dic.keys())
 
-    ### Last key in dictionary
+### Last key in dictionary
 
-    max(dic)
+max(dic)
 
-    ### For cycle for all keys
+### For cycle for all keys
 
-    for s in dic:
-        print(s)
+for s in dic:
+    print(s)
 
-    ### Maximum value and its index
+### Maximum value and its index
 
-    stats = {'a':1000, 'b':3000, 'c': 100}
-    maxname = max(stats, key=stats.get)
-    maxvalue = stats[maxname]
+stats = {'a':1000, 'b':3000, 'c': 100}
+maxname = max(stats, key=stats.get)
+maxvalue = stats[maxname]
 
-    ### Values
+### Values
 
-    list(dic.values()) # => [3, 2, 1]
-    "jedna" in dic # => True if value is in dictionary
-    dic.get("čtyři") # => None - don't raise error if key not in dic
-    dic.setdefault("pět", 5) # dic["pět"] default 5
+list(dic.values()) # => [3, 2, 1]
+"jedna" in dic # => True if value is in dictionary
+dic.get("čtyři") # => None - don't raise error if key not in dic
+dic.setdefault("pět", 5) # dic["pět"] default 5
 
-    ### Find key from value
+### Find key from value
 
-    list(stats.keys())[list(stats.values()).index(100)]
+list(stats.keys())[list(stats.values()).index(100)]
 
-    ### For cycle for dictionaries
+### For cycle for dictionaries
 
-    for k in stats: # Iteruje přes všechny klíče
-        print(k)
+for k in stats: # Iteruje přes všechny klíče
+    print(k)
 
-    for k, v in stats.items(): # Iteruje řes všechny klíče a hodnoty
-        print(k,v)
+for k, v in stats.items(): # Iteruje řes všechny klíče a hodnoty
+    print(k,v)
 
-    ### Join two dictionaries
+### Join two dictionaries
 
-    c = {**dic, **stats}
+c = {**dic, **stats}
 
-    ### Enumerate in dictionaries
+### Enumerate in dictionaries
 
-    for i, (j, k) in enumerate(dic.items()):
-        pass
+for i, (j, k) in enumerate(dic.items()):
+    pass
 
-    ### Dictionary as arguments into function
+### Dictionary as arguments into function
 
-    def rep(*nonamed, **named):
-        return nonamed, named
+def rep(*nonamed, **named):
+    return nonamed, named
 
-    t = (47,11)
-    d = {'x':'extract','y':'yes'}
-    rep(*t, **d) # It's the same as f(47, 11, x=extract, y=yes)
+t = (47,11)
+d = {'x':'extract','y':'yes'}
+rep(*t, **d) # It's the same as f(47, 11, x=extract, y=yes)
 
-    ### Nested dictionaries - for examples name of functions and it's parameters
+### Nested dictionaries - for examples name of functions and it's parameters
 
-    def rep2(*inp, **inp2):
-        return rep
+def rep2(*inp, **inp2):
+    return rep
 
-    models = {"AR (Autoregression)": rep, "Linear neural unit": rep2}
-    modelsparameters = {"AR (Autoregression)": {"predicts":  2}, "Linear neural unit": {"predicts": 4}}
-    modelscomplet = zip(models.keys(), models.values(),  modelsparameters.values())
-    modelsresults = []
+models = {"AR (Autoregression)": rep, "Linear neural unit": rep2}
+modelsparameters = {"AR (Autoregression)": {"predicts":  2}, "Linear neural unit": {"predicts": 4}}
+modelscomplet = zip(models.keys(), models.values(),  modelsparameters.values())
+modelsresults = []
 
-    for i, j, k in modelscomplet:
-        modelsresults.append({i: j(1, **k)})
+for i, j, k in modelscomplet:
+    modelsresults.append({i: j(1, **k)})
 
-    ### Nested dictionaries - Find minimum
+### Nested dictionaries - Find minimum
 
-    top = 1000000
-    for key, value in modelsparameters.items():
-        for inkey, invalue in value.items():
-            if invalue < top:
-                best_model_name = key
-                best_data = inkey
-                top = invalue
+top = 1000000
+for key, value in modelsparameters.items():
+    for inkey, invalue in value.items():
+        if invalue < top:
+            best_model_name = key
+            best_data = inkey
+            top = invalue
 
-    ### Dictionary comprehension
+### Dictionary comprehension
 
-    {x: x**2 for x in range(1, 5)} # => {1: 1, 2: 4, 3: 9, 4: 16}
-    {pismeno for pismeno in "abeceda"} # => {"d", "a", "c", "e", "b"}
+{x: x**2 for x in range(1, 5)} # => {1: 1, 2: 4, 3: 9, 4: 16}
+{pismeno for pismeno in "abeceda"} # => {"d", "a", "c", "e", "b"}
+```
 
 ## Set
 
 It is not oredered and every value is just once!
 
-    empty_set = set()
-    sett = {1, 1, 2, 2, 3, 4}  # {1, 2, 3, 4}
-    sett.add(5)  # {1, 2, 3, 4, 5}
-    jina_set = {3, 4, 5, 6}
+```python
+empty_set = set()
+sett = {1, 1, 2, 2, 3, 4}  # {1, 2, 3, 4}
+sett.add(5)  # {1, 2, 3, 4, 5}
+jina_set = {3, 4, 5, 6}
 
-    # Intersect of 2 sets
+# Intersect of 2 sets
 
-    sett & jina_set # => {3, 4, 5}
+sett & jina_set # => {3, 4, 5}
 
-    # Union
+# Union
 
-    sett | jina_set # => {1, 2, 3, 4, 5, 6}
+sett | jina_set # => {1, 2, 3, 4, 5, 6}
 
-    # Exception
+# Exception
 
-    {1, 2, 3, 4} - {2, 3, 5} # => {1, 4}
+{1, 2, 3, 4} - {2, 3, 5} # => {1, 4}
 
-    # If member exist
+# If member exist
 
-    2 in sett # => True
-    9 in sett # => False
+2 in sett # => True
+9 in sett # => False
+```
 
 ## Dataframe
 
 Panda library is necessary
 If there is a parameter inplace=True, then changes are made on original, otherwise change is only made for new variable assign
 
-    ### Import from csv
+```python
+### Import from csv
 
-    impt = '''
-    import pandas as pd
-    data = pd.read_csv(
-        "data/files/complex_data_example.tsv",
-        sep='\t',  # Tab-separated value file.
-        quotechar="'",  # single quote allowed as quote character
-        dtype={"salary": int},  # Parse the salary column as an integer
-        usecols=['name', 'birth_date'].  # Only columns
-        parse_dates=['birth_date'],  # Intepret the birth_date column as a date
-        skiprows=10,  # Skip the first 10 rows of the file
-        na_values=['.', '??']  # Take any '.' or '??' values as NA
-    )
-    '''
+impt = '''
+import pandas as pd
+data = pd.read_csv(
+    "data/files/complex_data_example.tsv",
+    sep='\t',  # Tab-separated value file.
+    quotechar="'",  # single quote allowed as quote character
+    dtype={"salary": int},  # Parse the salary column as an integer
+    usecols=['name', 'birth_date'].  # Only columns
+    parse_dates=['birth_date'],  # Intepret the birth_date column as a date
+    skiprows=10,  # Skip the first 10 rows of the file
+    na_values=['.', '??']  # Take any '.' or '??' values as NA
+)
+'''
 
-    ### Save into CSV
+### Save into CSV
 
-    # df.to_csv('newcsv.csv') # bez názvů , header=False
+# df.to_csv('newcsv.csv') # bez názvů , header=False
 
-    ### Create
+### Create
 
-    import pandas as pd
-    # one column dataframe
+import pandas as pd
+# one column dataframe
 
-    s2 = pd.Series([1,2,3,4])
+s2 = pd.Series([1,2,3,4])
 
-    # dataframe
+# dataframe
 
-    s2 = pd.DataFrame([1,2,3,4])
+s2 = pd.DataFrame([1,2,3,4])
 
-    # from list
+# from list
 
-    data = [['tom', 10, 1], ['nick', 15, 2], ['juli', 14, 3]]
-    df = pd.DataFrame(data, columns = ['name', 'age', 'index'])
+data = [['tom', 10, 1], ['nick', 15, 2], ['juli', 14, 3]]
+df = pd.DataFrame(data, columns = ['name', 'age', 'index'])
 
-    # from dictionary
+# from dictionary
 
-    dict = {'a': 1, 'b': 2}
-    newdatf = pd.DataFrame.from_dict(dict, orient='index')
+dict = {'a': 1, 'b': 2}
+newdatf = pd.DataFrame.from_dict(dict, orient='index')
 
-    # from array
+# from array
 
-    array = np.array([[1, 2], [2, 3], [3, 4]])
-    #df2 = pd.DataFrame(data=array[1:,1:], index=range(len(data)), columns=data[0,1:])
+array = np.array([[1, 2], [2, 3], [3, 4]])
+#df2 = pd.DataFrame(data=array[1:,1:], index=range(len(data)), columns=data[0,1:])
 
-    ### Access column
+### Access column
 
-    df['name']
+df['name']
 
-    ### Subset of columns - Access members
+### Subset of columns - Access members
 
-    # With name
+# With name
 
-    df1 = df[['name','age']]
+df1 = df[['name','age']]
 
-    # with index
+# with index
 
-    df2 = df.iloc[:,0:1]  #   # All rows, first and second column
+df2 = df.iloc[:,0:1]  #   # All rows, first and second column
 
-    df3 = df.iloc[0]  # First row
+df3 = df.iloc[0]  # First row
 
-    ### Column to new dataframe
+### Column to new dataframe
 
-    a = df.pop('index')
+a = df.pop('index')
 
-    ### Return name of column from index
+### Return name of column from index
 
-    a = df.columns[0]  # Columns return name of column
+a = df.columns[0]  # Columns return name of column
 
-    ### Find index from column name
+### Find index from column name
 
-    a = df.columns.get_loc("age")
+a = df.columns.get_loc("age")
 
-    ### Logical conditions
+### Logical conditions
 
-    df_new = df.loc[df['name'] == 'juli']
+df_new = df.loc[df['name'] == 'juli']
 
-    ### Concat 2 columns
+### Concat 2 columns
 
-    df['name_and_age'] = df['name'] + str(df['age'])
+df['name_and_age'] = df['name'] + str(df['age'])
 
-    ### Make index from colmn
+### Make index from colmn
 
-    df.set_index('name', inplace=True)
-    df.reset_index(level=None, drop=False, inplace=False)
+df.set_index('name', inplace=True)
+df.reset_index(level=None, drop=False, inplace=False)
 
-    ### Convert into array
+### Convert into array
 
-    df['age'].values
-    b=df1.iloc[:,1:].values  # every column separately
+df['age'].values
+b=df1.iloc[:,1:].values  # every column separately
 
-    ### Convert into list
+### Convert into list
 
-    lst = df['age'].values.tolist()
+lst = df['age'].values.tolist()
 
-    ### Miscelaneous
+### Miscelaneous
 
-    df.index  # RangeIndex(start=0, stop=x....)
-    df.dtypes  # age  int ...
+df.index  # RangeIndex(start=0, stop=x....)
+df.dtypes  # age  int ...
 
-    ### Lenght of dataframe
+### Lenght of dataframe
 
-    length = len(df.index)
+length = len(df.index)
 
-    ### Date and time and datetime, range
+### Date and time and datetime, range
 
-    # Datetime from values
+# Datetime from values
 
-    year = 2020; month = 3; day = 14; hour = 4
-    start = pd.Timestamp(year=year, month=month, day=day, hour=hour)
+year = 2020; month = 3; day = 14; hour = 4
+start = pd.Timestamp(year=year, month=month, day=day, hour=hour)
 
-    # Range
+# Range
 
-    df['EventStart'] = pd.date_range(start=start, periods=length, freq='H')
+df['EventStart'] = pd.date_range(start=start, periods=length, freq='H')
 
-    # Convert from datetime to time, the same to datetime
+# Convert from datetime to time, the same to datetime
 
-    df['EventStart_time'] = df['EventStart'].dt.time
+df['EventStart_time'] = df['EventStart'].dt.time
 
-    ### Set index
+### Set index
 
-    df.set_index('EventStart', drop=True, inplace=True)
-    df.index = pd.to_datetime(df.index)
+df.set_index('EventStart', drop=True, inplace=True)
+df.index = pd.to_datetime(df.index)
 
-    ### Resample datetime dataframe
+### Resample datetime dataframe
 
-    df_res = df.resample('M').sum() # Méně řádků na výstupu
+df_res = df.resample('M').sum() # Méně řádků na výstupu
 
-    ### Copy of dataframe
+### Copy of dataframe
 
-    # !!! If you use variables., change in one is also changed in the others, so if you want independent dataframes, use copy() !!!
+# !!! If you use variables., change in one is also changed in the others, so if you want independent dataframes, use copy() !!!
 
-    df2 = df.copy()
+df2 = df.copy()
 
 
-    ### Join 2 dataframes
+### Join 2 dataframes
 
-    #### Concat
-    # possible parameters - axis, join, ignore_index, sort, keys, levels
+#### Concat
+# possible parameters - axis, join, ignore_index, sort, keys, levels
 
-    df = pd.DataFrame([['a', 1], ['b', 2], ['c', 3]], columns=['letter', 'number'])
-        #         letter  number
-        #    0      a       1
-        #    1      b       2
-        #    2      c       3
+df = pd.DataFrame([['a', 1], ['b', 2], ['c', 3]], columns=['letter', 'number'])
+    #         letter  number
+    #    0      a       1
+    #    1      b       2
+    #    2      c       3
 
-    df2 = pd.DataFrame([['c', 1], ['d', 2], ['e', 3]], columns=['letter', 'number2'])
+df2 = pd.DataFrame([['c', 1], ['d', 2], ['e', 3]], columns=['letter', 'number2'])
 
-        #        letter  number
-        #    0      c       1
-        #    1      d       2
-        #    2      e       3
+    #        letter  number
+    #    0      c       1
+    #    1      d       2
+    #    2      e       3
 
-    # Add rows
+# Add rows
 
-    df_rows = pd.concat([df, df2])
+df_rows = pd.concat([df, df2])
 
-        #        letter  number  number2
-        #    0      a     1.0      NaN
-        #    1      b     2.0      NaN
-        #    2      c     3.0      NaN
-        #    0      c     NaN      1.0
-        #    1      d     NaN      2.0
-        #    2      e     NaN      3.0
+    #        letter  number  number2
+    #    0      a     1.0      NaN
+    #    1      b     2.0      NaN
+    #    2      c     3.0      NaN
+    #    0      c     NaN      1.0
+    #    1      d     NaN      2.0
+    #    2      e     NaN      3.0
 
-        # join='inner' means only columns that are in both dfs
+    # join='inner' means only columns that are in both dfs
 
-    # Add columns
+# Add columns
 
-    df_columns = pd.concat([df, df2], axis=1)
+df_columns = pd.concat([df, df2], axis=1)
 
-        #        letter  number letter  number
-        #    0      a       1      c       1
-        #    1      b       2      d       2
-        #    2      c       3      e       3
+    #        letter  number letter  number
+    #    0      a       1      c       1
+    #    1      b       2      d       2
+    #    2      c       3      e       3
 
-    # or you can use
+# or you can use
 
-    df4 = df.append(df2)
-        #         letter  number  number2
-        #    0      a     1.0      NaN
-        #    1      b     2.0      NaN
-        #    2      c     3.0      NaN
-        #    0      c     NaN      1.0
-        #    1      d     NaN      2.0
-        #    2      e     NaN      3.0
+df4 = df.append(df2)
+    #         letter  number  number2
+    #    0      a     1.0      NaN
+    #    1      b     2.0      NaN
+    #    2      c     3.0      NaN
+    #    0      c     NaN      1.0
+    #    1      d     NaN      2.0
+    #    2      e     NaN      3.0
 
-    ### Merge
-    # Add database parameters like left join, outer join
+### Merge
+# Add database parameters like left join, outer join
 
-    result = pd.merge(df, df2, on='letter', how='left')
+result = pd.merge(df, df2, on='letter', how='left')
 
-        #        letter  number  number2
-        #    0      a       1      NaN
-        #    1      b       2      NaN
-        #    2      c       3      1.0
+    #        letter  number  number2
+    #    0      a       1      NaN
+    #    1      b       2      NaN
+    #    2      c       3      1.0
 
-    ### Group by
+### Group by
 
-    gpd = df4.groupby('letter').agg({'number': np.mean, 'number2': np.size})
+gpd = df4.groupby('letter').agg({'number': np.mean, 'number2': np.size})
 
-        #        number  number2
-        #  letter		
-        #    a	   1.0	   1.0
-        #    b	   2.0	   1.0
-        #    c	   3.0	   2.0   # c only once, not twice
-        #    d	   NaN	   1.0
-        #    e	   NaN	   1.0
+    #        number  number2
+    #  letter		
+    #    a	   1.0	   1.0
+    #    b	   2.0	   1.0
+    #    c	   3.0	   2.0   # c only once, not twice
+    #    d	   NaN	   1.0
+    #    e	   NaN	   1.0
 
-    #### Get all from one group
+#### Get all from one group
 
-    gpd = df4.groupby('letter')
-    c = gpd.get_group('c')
+gpd = df4.groupby('letter')
+c = gpd.get_group('c')
 
-        #        letter  number  number2
-        #    2      c     3.0      NaN
-        #    0      c     NaN      1.0
+    #        letter  number  number2
+    #    2      c     3.0      NaN
+    #    0      c     NaN      1.0
 
-    ### Mean, standard deviation
+### Mean, standard deviation
 
-    mean = df['number'].mean()
-    std = df['number'].std()
+mean = df['number'].mean()
+std = df['number'].std()
 
-    ### Rolling (moving) average and standard deviation
+### Rolling (moving) average and standard deviation
 
-    rolling_mean = df['number'].rolling(10).mean()
-    rolling_std = df['number'].rolling(10).std()
+rolling_mean = df['number'].rolling(10).mean()
+rolling_std = df['number'].rolling(10).std()
 
-    ### Remove outliers
+# Change axis
+a = np.zeros((3, 4, 5))
+a = np.moveaxis(a, 0, -1).shape
+(4, 5, 3)
 
-    df_removed_outliers = df[ (df['number'] < 2 * std) ]
+### Remove outliers
 
-    ### Transpose - Rows into columns
+df_removed_outliers = df[ (df['number'] < 2 * std) ]
 
-    df = df.T
+### Transpose - Rows into columns
+
+df = df.T
+```
 
 ## Numpy Array
 
-    ## Create
+```python
 
-    ar = np.array([[1,2,3], [4, 5, 6]])
-    a = ar[1, 2]  # 5 - Access array
-    a = np.append(a, 3)  # Add element to the end
-    a = np.insert(a,1,[11,12])  # Into a on index 1 insert [11,12], next parameter can be axis
-    np.roll(a,2) # Posune array o 2 doprava
-    wo = np.array([1,2,3]) # Shape (3,)
-    wo = np.array([[1,2,3,4,5]]) # Shape (1,5)
-    wo = np.array([[1],[2],[3],[4],[5]]) # Shape (5,1)
-    shape = np.shape(a) # `(n,m) Number of rows, columns etc.
-    ar.shape[0]  # How many rows`
- 
+a = ar[1, 2]  # 5 - Access array
+a = np.append(a, 3)  # Add element to the end
+a = np.insert(a,1,[11,12])  # Into a on index 1 insert [11,12], next parameter can be axis
+np.roll(a,2) # Posune array o 2 doprava
+wo = np.array([1,2,3]) # Shape (3,)
+wo = np.array([[1,2,3,4,5]]) # Shape (1,5)
+wo = np.array([[1],[2],[3],[4],[5]]) # Shape (5,1)
+shape = np.shape(a) # `(n,m) Number of rows, columns etc.
+ar.shape[0]  # How many rows`
 
-    ## Convert
+## Convert
 
-    a = np.array([1, 2, 3])
-    my_list = ar.tolist()  # Convert on list
-    one_dim_list = np.array(ar).reshape(-1).tolist()  # Convert to one-dimensional list
-    a_scal = a[0].item()  # from np.int convert on int
+a = np.array([1, 2, 3])
+my_list = ar.tolist()  # Convert on list
+one_dim_list = np.array(ar).reshape(-1).tolist()  # Convert to one-dimensional list
+a_scal = a[0].item()  # from np.int convert on int
 
-    ### Convert to other dtype
+### Convert to other dtype
 
-    b = a.astype(int)  # convert on np.int
+b = a.astype(int)  # convert on np.int
 
 
-    ### Slicing
+### Slicing
 
-    a = np.array([[1,2,3],[3,4,5],[4,5,6]]) 
+a = np.array([[1,2,3],[3,4,5],[4,5,6]])
 
-       #    [[1 2 3]
-       #     [3 4 5]
-       #     [4 5 6]] 
+    #    [[1 2 3]
+    #     [3 4 5]
+    #     [4 5 6]]
 
-    # Only column - not retain shape
+# Only column - not retain shape
 
-    b = a[:, 1]  # [2 4 5]
+b = a[:, 1]  # [2 4 5]
 
-    # Columns with same shape
+# Columns with same shape
 
-    b = a[:, 1:2]  #   [[2]
-                   #    [4]
-                   #    [5]]
+b = a[:, 1:2]  #   [[2]
+                #    [4]
+                #    [5]]
 
-    # Only rows
+# Only rows
 
-    b = a[1, :]
+b = a[1, :]
 
-    ### Join matrixes
+### Join matrixes
 
-    np.vstack([a,a])
+np.vstack([a,a])
 
-        #   [[1, 2, 3],
-        #    [3, 4, 5],
-        #    [4, 5, 6],
-        #    [1, 2, 3],
-        #    [3, 4, 5],
-        #    [4, 5, 6]])
+    #   [[1, 2, 3],
+    #    [3, 4, 5],
+    #    [4, 5, 6],
+    #    [1, 2, 3],
+    #    [3, 4, 5],
+    #    [4, 5, 6]])
 
-    np.hstack([a,a])
+np.hstack([a,a])
 
-        #    [[1, 2, 3, 1, 2, 3],
-        #     [3, 4, 5, 3, 4, 5],
-        #     [4, 5, 6, 4, 5, 6]]
+    #    [[1, 2, 3, 1, 2, 3],
+    #     [3, 4, 5, 3, 4, 5],
+    #     [4, 5, 6, 4, 5, 6]]
 
-    # Create matrix from vectors
+# Create matrix from vectors
 
-    a = np.array([1, 2, 3])
-    b = np.array([2, 3, 4])
-    c = np.stack((a, b))  # [[1, 2, 3],
-                          #  [2, 3, 4]]
+a = np.array([1, 2, 3])
+b = np.array([2, 3, 4])
+c = np.stack((a, b))  # [[1, 2, 3],
+                        #  [2, 3, 4]]
 
-    # Concatenate
+# Concatenate
 
-    a = np.array([[1, 2], [3, 4]])
-    b = np.array([[5, 6]])
-    np.concatenate((a, b), axis=0)
-                                            # array([[1, 2],
-                                            #        [3, 4],
-                                            #        [5, 6]])
-    np.concatenate((a, b.T), axis=1)
-                                            #  array([[1, 2, 5],
-                                            #         [3, 4, 6]])
-    np.concatenate((a, b), axis=None)
-                                            # array([1, 2, 3, 4, 5, 6])
+a = np.array([[1, 2], [3, 4]])
+b = np.array([[5, 6]])
+np.concatenate((a, b), axis=0)
+                                        # array([[1, 2],
+                                        #        [3, 4],
+                                        #        [5, 6]])
+np.concatenate((a, b.T), axis=1)
+                                        #  array([[1, 2, 5],
+                                        #         [3, 4, 6]])
+np.concatenate((a, b), axis=None)
+                                        # array([1, 2, 3, 4, 5, 6])
 
-    # Append
-    # Add column
+# Append
+# Add column
 
-    x = np.array([[10,20,30], [40,50,60]])
-    y = np.array([[100], [200]])
-    z = np.append(x, y, axis=1)
+x = np.array([[10,20,30], [40,50,60]])
+y = np.array([[100], [200]])
+z = np.append(x, y, axis=1)
 
-        #   [[ 10  20  30 100]
-        #    [ 40  50  60 200]]
+    #   [[ 10  20  30 100]
+    #    [ 40  50  60 200]]
 
-    ### Find minimum value
+### Find minimum value
 
-    min = np.amin(c, axis=1)
+min = np.amin(c, axis=1)
 
-    ### Mean
+### Mean
 
-    mean = np.mean(x)
+mean = np.mean(x)
 
-    ### Standard deviation
+### Standard deviation
 
-    std = np.std(x)
+std = np.std(x)
 
-    ### Find index of smallest value
+### Find index of smallest value
 
-    ind = np.unravel_index(np.argmin(a), shape=a.shape)
+ind = np.unravel_index(np.argmin(a), shape=a.shape)
 
-    ### Create zero or ones matrix of given shape
+### Create zero or ones matrix of given shape
 
-    zeros = np.zeros_like(a)
+zeros = np.zeros_like(a)
 
-    # Ones
+# Ones
 
-    ones = np.ones((3,3))
+ones = np.ones((3,3))
 
-        #   [[1., 1., 1.],
-        #    [1., 1., 1.],
-        #    [1., 1., 1.]]
+    #   [[1., 1., 1.],
+    #    [1., 1., 1.],
+    #    [1., 1., 1.]]
 
-    ### Replace all values with logical condition
+### Replace all values with logical condition
 
-    a[a > .5] = .5
+a[a > .5] = .5
 
-    ### Delete member
+### Delete member
 
-    a = np.delete(a, 1, axis=0) # There need to be variable before!  axis 0 are rows, 1 are columns
+a = np.delete(a, 1, axis=0) # There need to be variable before!  axis 0 are rows, 1 are columns
 
-    ### Delete Nan values
+### Delete Nan values
 
-    a = a[~np.isnan(a)]
+a = a[~np.isnan(a)]
 
-    ### Delete all rows where are Nan
+### Delete all rows where are Nan
 
-    ar = ar[~np.isnan(ar).any(axis=1)]
+ar = ar[~np.isnan(ar).any(axis=1)]
 
-    ### Sums
+### Sums
 
-    # Axis 0 is for sums on columns
+# Axis 0 is for sums on columns
 
-    np.sum([[0, 1], [0, 5]], axis=0)  # array([0, 6])
-    np.sum([[0, 1], [0, 5]], axis=1)  # array([1, 5])
+np.sum([[0, 1], [0, 5]], axis=0)  # array([0, 6])
+np.sum([[0, 1], [0, 5]], axis=1)  # array([1, 5])
 
-    ### Dot product / multiplication
+### Dot product / multiplication
 
-    # Asterisk means each with each not matrix multiplication
+# Asterisk means each with each not matrix multiplication
 
-    # For vectors
+# For vectors
 
-    x = np.array([1,2,3])
-    w = np.array([1,2,3])
-    v = x*w # [1, 4, 9]
-    v = np.dot(x, w) # 14
+x = np.array([1,2,3])
+w = np.array([1,2,3])
+v = x*w # [1, 4, 9]
+v = np.dot(x, w) # 14
 
-    x = np.array([1,2,3])
-    w = np.array([[1],[2],[3]])
-    v = x*w
+x = np.array([1,2,3])
+w = np.array([[1],[2],[3]])
+v = x*w
 
-        #   [[1 2 3]
-        #    [2 4 6]
-        #    [3 6 9]]
+    #   [[1 2 3]
+    #    [2 4 6]
+    #    [3 6 9]]
 
-    v = np.dot(x, w) # 14
+v = np.dot(x, w) # 14
 
-    # For matrixes
+# For matrixes
 
-    x = np.array([[1,2,3], [1,2,3], [1,2,3]])
-    w = np.array([[1,2,3], [1,2,3], [1,2,3]])
-    v = x*w
+x = np.array([[1,2,3], [1,2,3], [1,2,3]])
+w = np.array([[1,2,3], [1,2,3], [1,2,3]])
+v = x*w
 
-        #   [[1 4 9]
-        #    [1 4 9]
-        #    [1 4 9]]
+    #   [[1 4 9]
+    #    [1 4 9]
+    #    [1 4 9]]
 
-    v = np.dot(x, w)
+v = np.dot(x, w)
 
-        #   [[6 12 18]
-        #    [6 12 18]
-        #    [6 12 18]]
+    #   [[6 12 18]
+    #    [6 12 18]
+    #    [6 12 18]]
 
-    ### Shape
+### Shape
 
-    z = np.array([[1, 2, 3, 4],
-                  [5, 6, 7, 8],
-                  [9, 10, 11, 12]])
-    z.shape  # (3, 4)
+z = np.array([[1, 2, 3, 4],
+                [5, 6, 7, 8],
+                [9, 10, 11, 12]])
+z.shape  # (3, 4)
 
-    ### Number of members - count
+### Number of members - count
 
-    count = z.size
+count = z.size
 
-    ### Cumulative sum
+### Cumulative sum
 
-    y = np.cumsum(x)
+y = np.cumsum(x)
 
-    ### Remove non unique values
+### Remove non unique values
 
-    unique = np.unique(array, axis=0)
+unique = np.unique(array, axis=0)
 
-    ### Reshape
+### Reshape
 
-    # reshape -1 add members automatically
-    z_res = z.reshape(-1) # array([ 1,  2,  3,  4,  5,  6])
-    z_res2 = z.reshape(-1,1)
+# reshape -1 add members automatically
+z_res = z.reshape(-1) # array([ 1,  2,  3,  4,  5,  6])
+z_res2 = z.reshape(-1,1)
 
-        # array([[ 1],
-        #        [ 2],
-        #        [ 3],
-        #        [ 4],
-        #        [ 5],
-        #        [ 6]])
+    # array([[ 1],
+    #        [ 2],
+    #        [ 3],
+    #        [ 4],
+    #        [ 5],
+    #        [ 6]])
 
-    z_res3 = z.reshape(-1, 2)
-        # array([[ 1,  2],
-        #        [ 3,  4],
-        #        [ 5,  6],
-        #        [ 7,  8],
-        #        [ 9, 10],
-        #        [11, 12]])
+z_res3 = z.reshape(-1, 2)
+    # array([[ 1,  2],
+    #        [ 3,  4],
+    #        [ 5,  6],
+    #        [ 7,  8],
+    #        [ 9, 10],
+    #        [11, 12]])
 
-    a = np.array([[1,2,3], [4,5,6]])
+a = np.array([[1,2,3], [4,5,6]])
 
-    a_res = np.reshape(a, 6, order='F')
-        # array([1, 4, 2, 5, 3, 6])
+a_res = np.reshape(a, 6, order='F')
+    # array([1, 4, 2, 5, 3, 6])
 
-    ### Transpose
+### Transpose
 
-    z = np.array([[[1, 1, 1, 1],
-                  [1, 1, 1, 1],
-                  [1, 1, 1, 1]], 
-                 
-                  [[2, 2, 2, 2],
-                  [2, 2, 2, 2],
-                  [2, 2, 2, 2]],
-                  
-                 [[3, 3, 3, 3],
-                  [3, 3, 3, 3],
-                  [3, 3, 3, 3]]
-                 ])
+z = np.array([[[1, 1, 1, 1],
+                [1, 1, 1, 1],
+                [1, 1, 1, 1]],
 
-    z_tran = z.transpose(1, 0, 2)  # From (10, 100, 1000) create (10, 1000, 100)
+                [[2, 2, 2, 2],
+                [2, 2, 2, 2],
+                [2, 2, 2, 2]],
 
-        #    array([[[1, 1, 1, 1],
-        #            [2, 2, 2, 2],
-        #            [3, 3, 3, 3]],
-        #
-        #           [[1, 1, 1, 1],
-        #            [2, 2, 2, 2],
-        #            [3, 3, 3, 3]],
-        #
-        #           [[1, 1, 1, 1],
-        #            [2, 2, 2, 2],
-        #            [3, 3, 3, 3]]])
+                [[3, 3, 3, 3],
+                [3, 3, 3, 3],
+                [3, 3, 3, 3]]
+                ])
 
-    z_tran = z.transpose(1, 2, 0)
+z_tran = z.transpose(1, 0, 2)  # From (10, 100, 1000) create (10, 1000, 100)
 
-        #   array([[[1, 2, 3],
-        #           [1, 2, 3],
-        #           [1, 2, 3],
-        #           [1, 2, 3]],
-        #
-        #          [[1, 2, 3],
-        #           [1, 2, 3],
-        #           [1, 2, 3],
-        #           [1, 2, 3]],
-        #
-        #          [[1, 2, 3],
-        #           [1, 2, 3],
-        #           [1, 2, 3],
-        #           [1, 2, 3]]])
+    #    array([[[1, 1, 1, 1],
+    #            [2, 2, 2, 2],
+    #            [3, 3, 3, 3]],
+    #
+    #           [[1, 1, 1, 1],
+    #            [2, 2, 2, 2],
+    #            [3, 3, 3, 3]],
+    #
+    #           [[1, 1, 1, 1],
+    #            [2, 2, 2, 2],
+    #            [3, 3, 3, 3]]])
 
-    ### Generate points, arange, linspace, random and generate sin
+z_tran = z.transpose(1, 2, 0)
 
-    q = np.random.randn(3, 3)
-    t = np.linspace(0,20,1000)  # Generate numbers with the same interval (beginning, end, number)
-    t = np.arange(1, 3, 1)  # Start, stop, step - [1, 2]
-    t = np.arange(3)  # 0, 1, 2
-    y = np.sin(t)
+    #   array([[[1, 2, 3],
+    #           [1, 2, 3],
+    #           [1, 2, 3],
+    #           [1, 2, 3]],
+    #
+    #          [[1, 2, 3],
+    #           [1, 2, 3],
+    #           [1, 2, 3],
+    #           [1, 2, 3]],
+    #
+    #          [[1, 2, 3],
+    #           [1, 2, 3],
+    #           [1, 2, 3],
+    #           [1, 2, 3]]])
 
-    ### Find index (one) with max / min value
+### Generate points, arange, linspace, random and generate sin
 
-    np.argmax(x)  # or argmin. Also can use parameter axis
+q = np.random.randn(3, 3)
+t = np.linspace(0,20,1000)  # Generate numbers with the same interval (beginning, end, number)
+t = np.arange(1, 3, 1)  # Start, stop, step - [1, 2]
+t = np.arange(3)  # 0, 1, 2
+y = np.sin(t)
 
-    ### Eigen values
+### Find index (one) with max / min value
 
-    eig = np.linalg.eig(q)
+np.argmax(x)  # or argmin. Also can use parameter axis
 
-    eigenvalues, V = np.linalg.eig(A)  # eigenvalues[0] is the first eigenvalue
-    # V is a 2D array (matrix) that contains the four eigenvectors as columns, hence, V[:,i] is the eigenvector corresponding to the eigenvalue eigenvalues[i]
+### Iterate more members
 
-    plt.scatter(eigenvalues.real, eigenvalues.imag)  # Plot it
+A = np.array([1, 2, 3, 4, 5, 6])
+for i in range(len(A)):
+    indices = range(i-1,i+1)
+    neighbourhood = A.take(indices, mode='clip')  # mode wrap use other end of array on bounds, raise raise error
+    print(neighbourhood)
+                            # [1 1]
+                            # [1 2]
+                            # [2 3]
+                            # [3 4]
+                            # [4 5]
+                            # [5 6]
 
-    ### Inverse matrix
+# Or
+A = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+neighbourhood = np.zeros(4)
+for i in range(1, len(A)):
+    if i < len(neighbourhood):
+        neighbourhood[-i:] = A[:i]
+    else:
+        neighbourhood = A[i-4:i]
+    print(neighbourhood)
 
-    q_inv = np.linalg.inv(q)
+                            # [0. 0. 0. 1.]
+                            # [0. 0. 1. 2.]
+                            # [0. 1. 2. 3.]
+                            # [1 2 3 4]
+                            # [2 3 4 5]
+                            # [3 4 5 6]
+                            # [4 5 6 7]
+                            # [5 6 7 8]
+                            # [6 7 8 9]
 
-    ### Determinant
+### Eigen values
 
-    det = np.linalg.det(q)
+eig = np.linalg.eig(q)
 
-    ### Fill with Nan values
+eigenvalues, V = np.linalg.eig(A)  # eigenvalues[0] is the first eigenvalue
+# V is a 2D array (matrix) that contains the four eigenvectors as columns, hence, V[:,i] is the eigenvector corresponding to the eigenvalue eigenvalues[i]
 
-    z = np.zeros((2, 3))
-    z.fill(np.nan)
+plt.scatter(eigenvalues.real, eigenvalues.imag)  # Plot it
 
-    ### Check if Nan values
+### Inverse matrix
 
-    if not np.isnan(np.any(z)):
-       pass
+q_inv = np.linalg.inv(q)
 
-    ### Zip for arrays
+### Determinant
 
-    def azip(*args):
-        iters = [iter(arg) for arg in args]
-        for i in itertools.count():
-            yield tuple([it.next() for it in iters])
+det = np.linalg.det(q)
+
+### Fill with Nan values
+
+z = np.zeros((2, 3))
+z.fill(np.nan)
+
+### Check if Nan values
+
+if not np.isnan(np.any(z)):
+    pass
+
+### Zip for arrays
+
+def azip(*args):
+    iters = [iter(arg) for arg in args]
+    for i in itertools.count():
+        yield tuple([it.next() for it in iters])
+
+# Check which blas / lapack library you use - never use default. Use Intel mkl or atlas
+np.__config__.show()
+```
 
 ## HDF5
 
-    ### Create
+```python
+'''
+### Create
 
-    import h5py
-    import numpy as np
+import h5py
+import numpy as np
 
-    arr = np.random.randn(1000)
+arr = np.random.randn(1000)
 
-    with h5py.File('random.hdf5', 'w') as f:
-        dset = f.create_dataset("default", data=arr)
+with h5py.File('random.hdf5', 'w') as f:
+    dset = f.create_dataset("default", data=arr)
 
-    ### Read
+### Read
 
-    with h5py.File('random.hdf5', 'r') as f:
-        data = f['default']
-        print(min(data))
+with h5py.File('random.hdf5', 'r') as f:
+    data = f['default']
+    print(min(data))
 
-    ### Specify Data Types to Optimize Space
+### Specify Data Types to Optimize Space
 
-    with h5py.File('several_datasets.hdf5', 'w') as f:
-        dset_int_1 = f.create_dataset('integers', (10, ), dtype='i1')
-        dset_int_8 = f.create_dataset('integers8', (10, ), dtype='i8')
-        dset_complex = f.create_dataset('complex', (10, ), dtype='c16')
-        dset_int_1[0] = 1200
+with h5py.File('several_datasets.hdf5', 'w') as f:
+    dset_int_1 = f.create_dataset('integers', (10, ), dtype='i1')
+    dset_int_8 = f.create_dataset('integers8', (10, ), dtype='i8')
+    dset_complex = f.create_dataset('complex', (10, ), dtype='c16')
+    dset_int_1[0] = 1200
+'''
+```
 
 # Iterator
 
@@ -1536,11 +1629,11 @@ Next value
         print(x)  # => 43
 
 
-    def setglobalx(cislo):
+    def setglobalx():
         global x
-        print(x) # => 5
-        x = cislo # Nastaví globální proměnnou x na 6
-        print(x) # => 6
+        print(x)  # => 5
+        x = cislo  # Set global x on 6, so x = 6 also outside the function !!!
+    print(x)  # => 6
 
 # Functions are objects
 
@@ -1587,24 +1680,24 @@ Generators are functions, that instead return have yield
 Generator generate values one after one, when it\s needed. Instead of been generated all at once
 Example of generator is range(10000)
 
-# Dekorators
+# Decorators
 
 Dekorators are functions, that wrap other functions, by that
 it can change it's behaviour.
 
     def nekolikrat(puvodni_funkce):
-        def opakovaci_funkce(*args, **kwargs):
+        def repeat_function(*args, **kwargs):
             for i in range(3):
                 puvodni_funkce(*args, **kwargs)
-        return opakovaci_funkce
+        return repeat_function
 
     @nekolikrat
-    def pozdrav(jmeno):
-        print("Měj se {}!".format(jmeno))
+    def pozdrav(Name):
+        print("Bye {}!".format(Name))
 
-    pozdrav("Pepo")  # Return 3x: Měj se Pepo!
+    pozdrav("Dan")  # Return 3x: Bye Dan!
 
-# Module
+# Modules
 
 Module in python is file with .py on the end.
 You can creat your own and import it.
@@ -1615,60 +1708,74 @@ You can creat your own and import it.
 
     dir(sqrt)  #  Show objects in module
 
+    # Manual import
+    _temp = __import__('spam.ham', globals(), locals(), ['eggs', 'sausage'], 0)
+    eggs = _temp.eggs
+    saus = _temp.sausage
+
+    # Import module from path
+
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("module.name", "/path/to/file.py")
+    foo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(foo)
+
 # Classes
 
-    class Clovek(object):  # Class Human is child (it inherits from) class object
+```python
+class Clovek(object):  # Class Human is child (it inherits from) class object
 
-        druh = "H. sapiens"  # Class variable - it's shared with all objects
+    druh = "H. sapiens"  # Class variable - it's shared with all objects
 
-        def __init__(self, jmeno):
-            self.jmeno = jmeno  # Add parameter to object
+    def __init__(self, jmeno):
+        self.jmeno = jmeno  # Add parameter to object
 
-        def rekni(self, hlaska):
-            return "{jmeno}: {hlaska}".format(jmeno=self.jmeno, hlaska=hlaska)
+    def rekni(self, hlaska):
+        return "{jmeno}: {hlaska}".format(jmeno=self.jmeno, hlaska=hlaska)
 
-        @classmethod  # First parameter is class and can be changed in subclasses
-        def vrat_druh(cls):
-            return cls.druh
+    @classmethod  # First parameter is class and can be changed in subclasses
+    def vrat_druh(cls):
+        return cls.druh
 
-        @staticmethod  # Do not depend on object - like a normal function and is immutable
-        def odkaslej_si():
-            return "*ehm*"
+    @staticmethod  # Do not depend on object - like a normal function and is immutable
+    def odkaslej_si():
+        return "*ehm*"
 
-    class DecoratorExample:
+class DecoratorExample:
 
-        def __init__(self):
-            self.name = 'Decorator_Example'
+    def __init__(self):
+        self.name = 'Decorator_Example'
 
-        def example_function(self):
-            print('I\'m an instance method!')
+    def example_function(self):
+        print('I\'m an instance method!')
 
-    de = DecoratorExample()
-    de.example_function()
+de = DecoratorExample()
+de.example_function()
 
 
-Example of class method
+# Example of class method
 
-    class Date(object):
+class Date(object):
 
-        def __init__(self, day=0, month=0, year=0):
-            self.day = day
-            self.month = month
-            self.year = year
+    def __init__(self, day=0, month=0, year=0):
+        self.day = day
+        self.month = month
+        self.year = year
 
-        @classmethod
-        def from_string(cls, date_as_string):
-            day, month, year = map(int, date_as_string.split('-'))
-            date1 = cls(day, month, year)
-            return date1
+    @classmethod
+    def from_string(cls, date_as_string):
+        day, month, year = map(int, date_as_string.split('-'))
+        date1 = cls(day, month, year)
+        return date1
 
-        @staticmethod
-        def is_date_valid(date_as_string):
-            day, month, year = map(int, date_as_string.split('-'))
-            return day <= 31 and month <= 12 and year <= 3999
+    @staticmethod
+    def is_date_valid(date_as_string):
+        day, month, year = map(int, date_as_string.split('-'))
+        return day <= 31 and month <= 12 and year <= 3999
 
-    date2 = Date.from_string('11-09-2012')
-    is_date = Date.is_date_valid('11-09-2012')
+date2 = Date.from_string('11-09-2012')
+is_date = Date.is_date_valid('11-09-2012')
+```
 
 ### Create object
 
@@ -1958,94 +2065,120 @@ Load files
 Result is e = {"a": 1, "b": 2}**
 
 # Paths
+
+    # add syspath
+    import sys
+    sys.path.insert(0, "/path/to/your/package_or_module") # Or add os.path.abspath('./')
+
 ## Pathlib - new and correct way
 
-    import pathlib
-    path = pathlib.Path.cwd()
+```python
+import pathlib
+# script_dir = Path(__file__).resolve() # Not working in jupyter
+path = pathlib.Path.cwd()
 
-    data_folder = pathlib.Path("folder")
-    file_to_open = data_folder / "raw_data.txt"
+data_folder = pathlib.Path("folder")
+file_to_open = data_folder / "raw_data.txt"
 
-    ### Pathlib as string
+### Pathlib as string
 
-    path.as_posix()
+path.as_posix()
 
-    ### Find all adress
+### Find all adress
 
-    path = pathlib.Path('test.md')
-    path.resolve() # ('/home/gahjelle/realpython/test.md')
-    path.resolve().parent == pathlib.Path.cwd() # False
+path = pathlib.Path('test.md')
+path.resolve() # ('/home/gahjelle/realpython/test.md')
+path.resolve().parent == pathlib.Path.cwd() # False
 
-    ### Work with file
+### Work with file
 
-    filename = pathlib.Path("source_data/text_files/raw_data.txt")
+filename = pathlib.Path("source_data/text_files/raw_data.txt")
 
-    print(filename.name) # prints "raw_data.txt"
-    print(filename.suffix) # prints "txt"
-    print(filename.stem) # prints "raw_data"
-    if not filename.exists():
-        print("Oops, file doesn't exist!")
-    else:
-        print("Yay, the file exists!")
+print(filename.name) # prints "raw_data.txt"
+print(filename.suffix) # prints "txt"
+print(filename.stem) # prints "raw_data"
+if not filename.exists():
+    print("Oops, file doesn't exist!")
+else:
+    print("Yay, the file exists!")
 
-    ### Relative path
+# Get script path
 
-    '''
-    !! Next rows just historical - Do not do it that way !!
+filename = inspect.getframeinfo(inspect.currentframe()).filename
+dir_path = os.path.dirname(os.path.abspath(filename))
 
-    # ../data/test_file.csv # ..znamená parent složka
+# Folder up
 
-    from os import path
-    import os
+from pathlib import Path
 
-    file_path = path.relpath("data/data.txt")
+script_dir = Path(__file__).resolve()
+str(Path(full_path).parents[0])  # "path/to"
+str(Path(full_path).parents[1])  # "path"
 
-    ### Absolute path
+# Path of Desktop
 
-    # os.path.abspath(\__file__)  # Not working in jupyter
+desktop = os.path.normpath(os.path.expanduser("~/Desktop"))
 
-    ### Add path to files and modules
+### Relative path
 
-    import sys
-    sys.path.insert(0, '/path/to/application/app/folder')
-    sys.path  # Print folders available by system
+'''
+!! Next rows just historical - Do not do it that way !!
 
-    ### Working direktory and how to change it
+# ../data/test_file.csv # ..znamená parent složka
 
-    import os
-    cwd = os.getcwd()
-    # os.chdir(r"C:\Users\...")
+from os import path
+import os
 
-    # new_cwd = os.getcwd() + r"\diplomka"
-    # os.chdir(new_cwd)
+file_path = path.relpath("data/data.txt")
 
-    ### Full adress
-    #Use normal slash!
+### Absolute path
 
-    import os
-    data_folder = "folder/nextfolder/"
-    file_to_open = data_folder + "data.txt"
+# os.path.abspath(\__file__)  # Not working in jupyter
 
-    # For example if jupyter do not see some files
+### Add path to files and modules
 
-    script_dir0 = os.path.abspath('') # C:\VScode
+import sys
+sys.path.insert(0, '/path/to/application/app/folder')
+sys.path  # Print folders available by system
 
-    # Next
+### Working direktory and how to change it
 
-    # script_path = os.path.abspath(\__file__)  # i.e. /path/to/dir/foobar.py  - notworking with jupyter
-    script_path = 'C://prog'
-    script_dir = os.path.split(script_path)[0]  #i.e. /path/to/dir/
-    rel_path =  "2091/data.txt"
-    abs_file_path = os.path.join(script_dir, rel_path)  # Result is relative '/path/to/dir/2091/data.txt'
-    filename = os.path.join(script_path,  '../same.txt')  # We can use name of file
-    # script_dir = os.path.dirname(\__file__)  # We can use adress of file... but not in jupyter
+import os
+cwd = os.getcwd()
+# os.chdir(r"C:\Users\...")
 
-    # You can also do
+# new_cwd = os.getcwd() + r"\diplomka"
+# os.chdir(new_cwd)
 
-    # script_dir = os.path.dirname(\__file__)
-    rel_path = "test_ data/realna_data_klapky.txt"
-    abs_file_path = os.path.join(script_dir, rel_path)
-    '''
+### Full adress
+#Use normal slash!
+
+import os
+data_folder = "folder/nextfolder/"
+file_to_open = data_folder + "data.txt"
+
+# For example if jupyter do not see some files
+
+script_dir0 = os.path.abspath('') # C:\VScode
+
+# Next
+
+# script_path = os.path.abspath(\__file__)  # i.e. /path/to/dir/foobar.py  - notworking with jupyter
+script_path = 'C://prog'
+script_dir = os.path.split(script_path)[0]  #i.e. /path/to/dir/
+rel_path =  "2091/data.txt"
+abs_file_path = os.path.join(script_dir, rel_path)  # Result is relative '/path/to/dir/2091/data.txt'
+filename = os.path.join(script_path,  '../same.txt')  # We can use name of file
+
+dir_path = os.path.dirname(os.path.realpath(__file__))  # We can use adress of file... but not in jupyter
+
+# You can also do
+
+# script_dir = os.path.dirname(\__file__)
+rel_path = "test_ data/realna_data_klapky.txt"
+abs_file_path = os.path.join(script_dir, rel_path)
+'''
+```
 
 # Try -- Except
 
@@ -2068,6 +2201,7 @@ Result is e = {"a": 1, "b": 2}**
         print('final')
 
 ##  Try for all errors and print it
+
     try:
         linux_interaction()
 
@@ -2090,7 +2224,7 @@ Result is e = {"a": 1, "b": 2}**
 
     # Warnings with word 'HessianInversionWarning' will be caused as errors
 
-    warnings.filterwarnings('error', message=r".*HessianInversionWarning*") 
+    warnings.filterwarnings('error', message=r".*HessianInversionWarning*")
 
     # Errory of category depracation will be show everytime
 
@@ -2178,175 +2312,210 @@ Result is e = {"a": 1, "b": 2}**
 
 ## Plotly
 
-    pltl = '''
-    import plotly as py
+```python
+pltl = '''
+import plotly as py
 
-    fig = dict( data=data, layout=layout )
-    py.offline.plot( fig, filename='d3-cloropleth-map' )
+fig = dict( data=data, layout=layout )
+py.offline.plot( fig, filename='d3-cloropleth-map' )
 
-    # or
+# or
 
-    init_notebook_mode(connected=True)
-    cf.go_offline()
+init_notebook_mode(connected=True)
+cf.go_offline()
 
-    data_ft_date.iplot(xTitle='Dates',yTitle='Returns',title='Returns')
+data_ft_date.iplot(xTitle='Dates',yTitle='Returns',title='Returns')
 
-    ### Plotly timeseries
+### Plotly timeseries
 
-    py.plot([{
-        'x': data_for_predicts_csv_trimmed.index,
-        'y': data_for_predicts_csv_trimmed[col],
-        'name': col
-    }  for col in data_for_predicts_csv_trimmed.columns])
+py.plot([{
+    'x': data_for_predicts_csv_trimmed.index,
+    'y': data_for_predicts_csv_trimmed[col],
+    'name': col
+}  for col in data_for_predicts_csv_trimmed.columns])
 
-    ### From matplotlib to plotly
+### From matplotlib to plotly
 
-    plot_mpl(fig)
+plot_mpl(fig)
 
-    ### Save picture
+### Save picture
 
-    import plotly.io as pio
-    static_image_bytes = pio.to_image(fig, format='png')
+import plotly.io as pio
+static_image_bytes = pio.to_image(fig, format='png')
+'''
+```
 
 ## Matplotlib
 
-    mtpltlb = '''
-    ### Simple plot
+```python
+mtpltlb = ''' Just to not load in jupyter...
+### Simple plot
 
-    import matplotlib.pyplot as plt
-    plt.plot(data)
+import matplotlib.pyplot as plt
+plt.plot(data)
 
-    ### Load txt and plot it
+### Load txt and plot it
 
-    from numpy import loadtxt # For one column txt
-    x = loadtxt('realna_data_klapky.txt')
-    figure(figsize=(20,5))
-    plot(x,'-o',label="x");xlabel('i');ylabel('x [sec]');grid();title("realna_data_klapky.txt")
-    legend();show()
-    plt.savefig('fig1.png', dpi =  300) # uloží graf
+from numpy import loadtxt # For one column txt
+x = loadtxt('realna_data_klapky.txt')
+figure(figsize=(20,5))
+plot(x,'-o',label="x");xlabel('i');ylabel('x [sec]');grid();title("realna_data_klapky.txt")
+legend();show()
+plt.savefig('fig1.png', dpi =  300) # uloží graf
 
-    ### Jupyter plot one after one
+### Jupyter plot one after one
 
-    # Use not show()
-    %matplotlib notebook
-    import matplotlib.pyplot as plt
-    import numpy as np
+# Use not show()
+%matplotlib notebook
+import matplotlib.pyplot as plt
+import numpy as np
 
-    x = [1, 2, 3, 4, 5, 6]
+x = [1, 2, 3, 4, 5, 6]
 
-    fig, axes = plt.subplots()
-    axes.plot(range(10))
-    #figure one
-
-
-    fig, axes = plt.subplots()
-    axes.plot(range(10))
-    #figure two
+fig, axes = plt.subplots()
+axes.plot(range(10))
+#figure one
 
 
-    fig, ((a,b),(c,d)) = plt.subplots(2,2)
-    a.plot(x, np.sin(x))
-    b.plot(x, np.cos(x))
-    c.plot(x, np.tan(x))
-    d.plot(x, np.tanh(x))
+fig, axes = plt.subplots()
+axes.plot(range(10))
+#figure two
 
-    ### Histogram
 
-    figure(figsize=(20,5))
-    nbins=int(round(1+3.3*log(N))) # Sturge's rule, but depend on data
-    xlabel("x");ylabel("number_of_bins"),title("number_of_bins  - values x in intervals");grid()
-    a=hist(x,bins=nbins) # vraci dve pole a histogram, tj a[0]=number_of_bins, a[1]=intervaly
-    print "number_of_bins=",a[0]
-    print "intervaly =",a[1]
+fig, ((a,b),(c,d)) = plt.subplots(2,2)
+a.plot(x, np.sin(x))
+b.plot(x, np.cos(x))
+c.plot(x, np.tan(x))
+d.plot(x, np.tanh(x))
 
-    ### Curves and points
+### Histogram
 
-    x=arange(-600,100) #
-    mu=m1;sigma=sqrt(s2);print "mu=",mu,"sigma=",sigma
-    f=1/(sigma*sqrt(2*pi))*exp(-(((x-mu)/sigma)**2)/2)
-    figure(figsize=(20,5))
-    plot(x,f,'g',label="f(x) spojita");grid()
-    plot(x_i,f_odhad,'o',label="f(x) odhad z mereni pro nbin="+str(nbins)+" intervalu")
-    legend()
+figure(figsize=(20,5))
+nbins=int(round(1+3.3*log(N))) # Sturge's rule, but depend on data
+xlabel("x");ylabel("number_of_bins"),title("number_of_bins  - values x in intervals");grid()
+a=hist(x,bins=nbins) # vraci dve pole a histogram, tj a[0]=number_of_bins, a[1]=intervaly
+print "number_of_bins=",a[0]
+print "intervaly =",a[1]
 
-    ### Two graphs
+### Curves and points
 
-    N=1000 # velikost výběru
-    x=random.uniform(-10,10,N)
-    x=random.randn(N)*1000-300
-    x=random.logistic(3, 10, N)
-    x=random.standard_t(3, N)
-    x=random.poisson(1, N)*.01+1000
-    nbins=int(round(1+3.3*log(N)))
-    figure(figsize=(20,5))
-    subplot(121);plot(x,'-o');grid();xlabel('index vzorku dat');ylabel("x")
-    subplot(122)
+x=arange(-600,100) #
+mu=m1;sigma=sqrt(s2);print "mu=",mu,"sigma=",sigma
+f=1/(sigma*sqrt(2*pi))*exp(-(((x-mu)/sigma)**2)/2)
+figure(figsize=(20,5))
+plot(x,f,'g',label="f(x) spojita");grid()
+plot(x_i,f_odhad,'o',label="f(x) odhad z mereni pro nbin="+str(nbins)+" intervalu")
+legend()
 
-    # First number is how much rows and second how much columns
-    # Third number is which graph is it - first, second etc.
+### Two graphs
 
-    a = hist(x,nbins,normed=True) ;# pro vizualni posouzeni
-    grid(); ylabel("$\\approx f(x)$"); xlabel("x")
-    plt.tight_layout() # Pokud část jednoho překrývá druhý
-    plt.subplots_adjust(top=0.88)# po tight_layoutu je potřeba název umístit výš
-    subplots_adjust(wspace=.3) # Větší rozestupy mezi grafy
+N=1000 # velikost výběru
+x=random.uniform(-10,10,N)
+x=random.randn(N)*1000-300
+x=random.logistic(3, 10, N)
+x=random.standard_t(3, N)
+x=random.poisson(1, N)*.01+1000
+nbins=int(round(1+3.3*log(N)))
+figure(figsize=(20,5))
+subplot(121);plot(x,'-o');grid();xlabel('index vzorku dat');ylabel("x")
+subplot(122)
 
-    ### More plots with one legend
+# First number is how much rows and second how much columns
+# Third number is which graph is it - first, second etc.
 
-    plt.figure(figsize=(12,7))
-    plt.subplot(3, 1, 1)
-    plt.plot(t, yy, label='Predikce'); plt.xlabel('t')
-    plt.plot(t, data, label='Skutečnost'); plt.xlabel('t')
-    plt.legend(loc="upper right")
-    plt.ylabel("u4 predikované")
+a = hist(x,nbins,normed=True)
+grid(); ylabel("$\\approx f(x)$"); xlabel("x")
+plt.tight_layout() # Pokud část jednoho překrývá druhý
+plt.subplots_adjust(top=0.88)# po tight_layoutu je potřeba název umístit výš
+subplots_adjust(wspace=.3) # Větší rozestupy mezi grafy
 
-    ### More plots with for cycle
+### Another way to do more plots
 
-    for i in range(1,7):
-    plt.subplot(3, 2, i)
-    plt.plot(oknomean[i]);plt.grid(); plt.xlabel('t')
-    plt.ylabel("u{}".format(i))
-    plt.suptitle("Klouzavý průměr okna", fontsize=20)
-    plt.tight_layout()
-    plt.subplots_adjust(top=0.88)
-    plt.show()
+fig = plt.figure()
 
-    ### Scatterplot
+ax1 = plt.subplot(311)
 
-    import numpy as np
-    import matplotlib.pyplot as plt
-    N = 60
-    g1 = (0.6 + 0.6 * np.random.rand(N), np.random.rand(N))
-    g2 = (0.4+0.3 * np.random.rand(N), 0.5*np.random.rand(N))
-    g3 = (0.3*np.random.rand(N),0.3*np.random.rand(N))
-    data = (g1, g2, g3)
-    colors = ("red", "green", "blue")
-    groups = ("coffee", "tea", "water")
-    fig = plt.figure()
-    ax = fig.add_subplot(1, 1, 1, axisbg="1.0")
-    for data, color, group in zip(data, colors, groups):
-    x, y = data
-    ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group)
-    plt.title('Matplot scatter plot')
-    plt.legend(loc=2)
-    plt.show()
+ax2 = plt.subplot(312, sharex=ax1)  # Share axis
+plt.ylabel("Error")
+# Or rather  ax.set_ylabel('common ylabel')   - also for x
 
-    ### Text plot
+setp(ax2.get_xticklabels(), visible=False)  # To hide numbers on xaxis
+ax3 = plt.subplot(313)
+plt.ylabel("Weights")
 
-    import matplotlib.pyplot as plt
-    fig = [plt.figure](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure "View documentation for matplotlib.pyplot.figure")(figsize=(5, 1.5))
+# If interactive add   ax1.clear()
+y_ref_pl, = ax1.plot(t, y_ref, label="Skutečnost"); plt.xlabel('t')
+y_pl, = ax1.plot(t, y, label="Identifikovaná")
+plt.legend(loc="upper right")
 
-    text = fig.text(0.5, 0.5, 'Hello path effects world!\nThis is the normal '
-        'path effect.\nPretty dull, huh?',
-        ha='center', va='center', size=20)
+e_pl, = ax2.plot(t, e)
 
-    [plt.show](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show "View documentation for matplotlib.pyplot.show")()
+w_all_pl = ax3.plot(t, w_all)
+plt.ylabel("Hodnoty vah")
 
-    ### Log axis
+### More plots with one legend
 
-    plt.loglog(x, y)  # Both axis are log
+plt.figure(figsize=(12,7))
+plt.subplot(3, 1, 1)
+plt.plot(t, yy, label='Predikce'); plt.xlabel('t')
+plt.plot(t, data, label='Skutečnost'); plt.xlabel('t')
+plt.legend(loc="upper right")  # prop={'size': 6}   to change size
+plt.ylabel("u4 predikované")
 
-    '''
+# Or
+
+line_up, = plt.plot([1,2,3], label='Line 2')
+line_down, = plt.plot([3,2,1], label='Line 1')
+plt.legend(handles=[line_up, line_down])
+
+### More plots with for cycle
+
+for i in range(1,7):
+plt.subplot(3, 2, i)
+plt.plot(oknomean[i]);plt.grid(); plt.xlabel('t')
+plt.ylabel("u{}".format(i))
+plt.suptitle("Klouzavý průměr okna", fontsize=20)
+plt.tight_layout()
+plt.subplots_adjust(top=0.88)
+plt.show()
+
+### Scatterplot
+
+import numpy as np
+import matplotlib.pyplot as plt
+N = 60
+g1 = (0.6 + 0.6 * np.random.rand(N), np.random.rand(N))
+g2 = (0.4+0.3 * np.random.rand(N), 0.5*np.random.rand(N))
+g3 = (0.3*np.random.rand(N),0.3*np.random.rand(N))
+data = (g1, g2, g3)
+colors = ("red", "green", "blue")
+groups = ("coffee", "tea", "water")
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1, axisbg="1.0")
+for data, color, group in zip(data, colors, groups):
+x, y = data
+ax.scatter(x, y, alpha=0.8, c=color, edgecolors='none', s=30, label=group)
+plt.title('Matplot scatter plot')
+plt.legend(loc=2)
+plt.show()
+
+### Text plot
+
+import matplotlib.pyplot as plt
+fig = [plt.figure](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure "View documentation for matplotlib.pyplot.figure")(figsize=(5, 1.5))
+
+text = fig.text(0.5, 0.5, 'Hello path effects world!\nThis is the normal '
+    'path effect.\nPretty dull, huh?',
+    ha='center', va='center', size=20)
+
+[plt.show](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show "View documentation for matplotlib.pyplot.show")()
+
+### Log axis
+
+plt.loglog(x, y)  # Both axis are log
+
+'''
+```
 
 ## Table
 
@@ -2358,7 +2527,7 @@ Result is e = {"a": 1, "b": 2}**
 
 ## Symbolic functions
 
-    '''
+    symb_f = '''
     import sympy as smp
     from sympy.plotting import plot as Plot
     from IPython.display import display
@@ -2377,24 +2546,28 @@ Result is e = {"a": 1, "b": 2}**
 
 # Jupyter
 
+    """
     # !  jupyter kernelspec list # Ukáže seznam kernelů
     # !  jupyter kernelspec uninstall nazev # Odinstaluje kernel
+    ## Install jupyter extensions
 
-## If jupyter and run from normal python
+    pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install
 
-try:
-    __IPYTHON__
+    ## If jupyter and run from normal python
 
-    from IPython.terminal.embed import InteractiveShellEmbed
-    ipshell = InteractiveShellEmbed()
-    ipshell.dummy_mode = True
-    ipshell.magic("%load_ext autoreload")
-    ipshell.magic("%autoreload")
+    try:
+        __IPYTHON__
 
-except NameError:
-    print('No Jupyter')
+        from IPython.terminal.embed import InteractiveShellEmbed
+        ipshell = InteractiveShellEmbed()
+        ipshell.dummy_mode = True
+        ipshell.magic("%load_ext autoreload")
+        ipshell.magic("%autoreload")
 
-## Run ipython in normal python
+    except NameError:
+        print('No Jupyter')
+
+    ## Run ipython in normal python
 
     from IPython.terminal.embed import InteractiveShellEmbed
 
@@ -2402,9 +2575,9 @@ except NameError:
     ipshell.dummy_mode = True
     ipshell.magic("%timeit abs(-42)");
 
-## Autoreload
+    ## Autoreload
 
-Reload all modules imported with %aimport every time before executing the Python code typed, so it is not necessary to reload kernel everytime some other file changed or new library wa installed
+    #Reload all modules imported with %aimport every time before executing the Python code typed, so it is not necessary to reload kernel everytime some other file changed or new library wa installed
 
     %load_ext autoreload
     %autoreload  # Reload all modules (except those excluded by %aimport) automatically now.
@@ -2416,53 +2589,230 @@ Reload all modules imported with %aimport every time before executing the Python
     %aimport -foo  # Mark module ‘foo’ to not be autoreloaded.
 
 
-## Link
+    ## Link
 
-‚''
-[Link name](<https://www.youtube.com/>)
-‚''
+    ‚''
+    [Link name](<https://www.youtube.com/>)
+    ‚''
 
-## Image
+    ## Image
 
-‚''
-<img src="img/Gini.png" width=400>
-‚''
+    ‚''
+    <img src="img/Gini.png" width=400>
+    ‚''
 
-## Youtube
+    ## Youtube
 
-    # from IPython.display import YouTubeVideo
-    # YouTubeVideo('7VeUPuFGJHk')
+        # from IPython.display import YouTubeVideo
+        # YouTubeVideo('7VeUPuFGJHk')
 
-## Show all images from folder
+    ## Show all images from folder
 
+        import os
+        from IPython.display import display, Image
+        names = [f for f in os.listdir('../images/ml_demonstrations/') if f.endswith('.png')]
+        for name in names[:5]:
+            display(Image('../images/ml_demonstrations/' + name, width=100))
+
+    ## Jupyter themes
+
+        pip install jupyterthemes
+        jt -t monokai -T
+
+        # Deactivate
+        jt -r
+
+    ## Matplotlib widget interactive backend
+
+        %matplotlib widget
+        from matplotlib import pyplot as plt
+        fig, ax = plt.subplots()
+        ax.plot([1,2,3], [4,3,2])
+        # fig.show() is not necessary
+
+        # If not working in jupyterlab, use in terminal
+        #     jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+        # Instead of magic you can use
+
+        import matplotlib
+        matplotlib.use('module://ipympl.backend_nbagg')
+
+    ## Dark background of matplotlib for dark themes
+
+        # ! pip install jupyterthemes
+
+        In ~/.ipython/profile_default/startup  create startup.py file with
+
+        import matplotlib.pyplot as plt
+        from jupyterthemes import jtplot
+        jtplot.style(theme='monokai', context='notebook', ticks=True, grid=False)
+
+        # Then in extensions use theme-darcula
+        # And in to ~\AppcmdData\Local\Programs\Python\Python37\Lib\site-packages\jupyterthemes\styles\monokai.less
+        # Change on
+        /* jtplot figure style */
+        @axisFace:              #2b2b2b;
+        @figureFace:            #2b2b2b;
+
+    ## Ipywidgets
+    """
+
+# Docker
+
+    dckr = '''
+    # In VS Code install Docker extension and do command add docker files to workspace
+
+    # For just a simple case create file Dockerfile and fill for example
+
+    FROM python:3.7-alpine  # If error, remove -alpine. Another modes: -buster, -slim, -slim-buster, #FROM continuumio/miniconda3
+    COPY requirements.txt /
+    RUN pip install -r /requirements.txt
+    ADD my_script.py /
+    CMD [ "python", "./my_script.py" ]
+
+    # If you wanna use numpy or pandas, add before pip install
+
+    RUN apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev openblas-dev
+
+    # Build with
+
+    docker build -t python_docker
+    # t is for tag - folder and name
+
+    # Run with (-it for interactive mode, -tty if using terminal)
+    docker run python-barcode
+
+    # List all your containrers
+    docker ps
+
+    # Remove container with it's id from docker ps
+    docker rm a39c259df46
+
+    # List all images
+    docker images
+
+    # List all running container
+    docker container ls
+
+    # Delete image
+    docker rmi 60959f29de3a
+
+    # Example - run linux
+    docker run --interactive --tty ubuntu bash
+    # Then you can use host, ls...
+
+    # Example 2 = nginx
+    docker run --detach --publish 80:80 --name webserver nginx
+    # If open http://localhost in browser, you see nginx welcome
+
+    # Stop container
+    docker container stop webserver
     '''
-    import os
-    from IPython.display import display, Image
-    names = [f for f in os.listdir('../images/ml_demonstrations/') if f.endswith('.png')]
-    for name in names[:5]:
-        display(Image('../images/ml_demonstrations/' + name, width=100))
-    '''
+# Web
 
-# Requests - API - GET, POST
+## Requests - API - GET, POST
 
-    '''
+    rqsts = '''
     import getpass
     import requests
     username = input('Username: ')
     Username: hroncok
-    password = getpass.getpass()
-    Password: 
+    password = getpass.getpass()   # Do not use...
+    Password:
     r = requests.get('https://api.github.com/user', auth=(username, password))
     r.status_code
     r.headers['content-type']  # 'application/json; charset=utf8'
     r.encoding  # 'utf-8'
     r.text  # '{"login":"hroncok"...'
     r.json()  # {'avatar_url': 'https://avatars.githubusercontent.com/u/2401856?v=3', ...}
+
+    # Session
+
+    session = requests.Session()
+    session.get('http://httpbin.org/cookies/set/mipyt/best')  #<Response [200]>
+    r = session.get('http://httpbin.org/cookies')
+    r.json()  # {'cookies': {'mipyt': 'best'}}
+    session.headers.update({'x-test': 'true'})
+    r = session.get('http://httpbin.org/headers', headers={'x-test2': 'true'})
+    r.json()  # {'headers': {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Connection': 'close', 'Cookie': 'mipyt=best', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.19.1', 'X-Test': 'true', 'X-Test2': 'true'}}
     '''
+
+## Beautiful soup - web scrapping
+
+    # Stuff for soup
+    soup = """
+    sample_html =  '''
+    <html>
+        <head>
+            <title>Test</title>
+        </head>
+        <body>
+            <h1>Heading!</h1>
+            <p class="major_content">Some content.</p>
+            <p class="minor_content">The important information is, that the key number is 23..</p>
+        </body>
+    </html>
+    '''
+
+    from bs4 import BeautifulSoup
+
+    # path to data
+    path = "data/example1.html"
+
+    # template for printing the output
+    sentence = "{} {} is {} years old."
+
+    # load data
+    with open(path, 'r') as datafile:
+        sample_html = datafile.read()
+
+    # create tree
+    soup = BeautifulSoup(sample_html, "html.parser")
+
+    # get title and print it
+    title = soup.find("title")
+    print(title.text, "\n")
+
+    # select all rows in table
+    table = soup.find("table",  {"id": "main_table"})
+    table_rows = table.findAll("tr")  
+
+    # iterate over table and print results
+    for row in table_rows:
+        first_name = row.find("td", {"class": "first_name"})
+        last_name = row.find("td", {"class": "last_name"})
+        age = row.find("td", {"class": "age"})
+        if first_name and last_name and age:
+            print(sentence.format(first_name.text, last_name.text, age.text))
+
+    # Print attributes
+    print(table.attrs)
+    {'id': 'main_table'}
+
+    ### Parse sentence
+    import re
+    print(re.search('the key number is (.*).', sample_html).group(1))  # 23
+
+    ## Create simplest http server
+
+    import SimpleHTTPServer
+    import SocketServer
+
+    PORT = 8000
+    ADDRESS = "127.0.0.1"
+
+    Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
+
+    httpd = SocketServer.TCPServer((ADDRESS, PORT), Handler)
+
+    print ("Serving at port", PORT)
+    httpd.serve_forever()
+    """
 
 # Images, pictures
 
-    '''
+    pctrs = '''
     from PIL import Image
     from resizeimage import resizeimage
 
@@ -2493,608 +2843,606 @@ Reload all modules imported with %aimport every time before executing the Python
 # Mathematics, statistics, linear algebra
 !! Matrix and liear algebra operations discussed in Numpy aray section !!
 
-    ### Display nice math
+```python
+### Display nice math
 
-    from IPython.display import display, Math, Latex
-    display(Math(r'F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx'))
+from IPython.display import display, Math, Latex
+display(Math(r'F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx'))
 
-    ### Square root ###
+### Square root ###
 
-    y = 9**(1/2)  # 3
+y = 9**(1/2)  # 3
 
-    ### Round ###
+### Round ###
 
-    A = round(5.76543, 2)
+A = round(5.76543, 2)
 
-    ### Natural log - e ###
+### Natural log - e ###
 
-    from math import e
-    a = e  # 2.71
+from math import e
+a = e  # 2.71
 
-    # Or
+# Or
 
-    import numpy as np
-    a = np.exp(1)
+import numpy as np
+a = np.exp(1)
 
-    ### Modulo ###
+### Modulo ###
 
-    a = 7 % 3 # => 1
+a = 7 % 3 # => 1
 
-    ### Power (x on y) ###
+### Power (x on y) ###
 
-    a = 2**4 # => 16
+a = 2**4 # => 16
 
-    ### Describe - Statistical values of list ###
+### Describe - Statistical values of list ###
 
-    import pandas as pd
-    
-    df = pd.Series([1, 4, 6, 88])
-    df.describe()
-    
-        #    count     4.000000
-        #    mean     24.750000
-        #    std      42.216703
-        #    min       1.000000
-        #    25%       3.250000
-        #    50%       5.000000
-        #    75%      26.500000
-        #    max      88.000000
-        #    dtype: float64
+import pandas as pd
 
-    ### Statistical values of array
+df = pd.Series([1, 4, 6, 88])
+df.describe()
 
-    from scipy import stats
-    a = np.array([1, 3, 5, 77])
-    stats = stats.describe(a)
+    #    count     4.000000
+    #    mean     24.750000
+    #    std      42.216703
+    #    min       1.000000
+    #    25%       3.250000
+    #    50%       5.000000
+    #    75%      26.500000
+    #    max      88.000000
+    #    dtype: float64
 
-    ## Random
-    ### Random numbers in normal distribution
+### Statistical values of array
 
-    import numpy as np
-    ran = np.random.randn(3)
+from scipy import stats
+a = np.array([1, 3, 5, 77])
+stats = stats.describe(a)
 
-    q = np.random.randn(3, 4)
+## Random
+### Random numbers in normal distribution
 
-        #    [[ 1.33262386 -0.88922967 -0.07056098 0.27340112]
-        #     [ 1.00664965 -0.68443807 0.43801295 -0.35874714]
-        #     [ -0.19289416 -0.42746963 -1.80435223 0.02751727]]
+import numpy as np
+ran = np.random.randn(3)
 
-    ### Random number everytime the same
+q = np.random.randn(3, 4)
 
-    np.random.seed(5)
+    #    [[ 1.33262386 -0.88922967 -0.07056098 0.27340112]
+    #     [ 1.00664965 -0.68443807 0.43801295 -0.35874714]
+    #     [ -0.19289416 -0.42746963 -1.80435223 0.02751727]]
 
-    w = np.random.randn(3)  # [ 0.44122749 -0.33087015  2.43077119]
-    w = np.random.randn(3)  # [ 0.44122749 -0.33087015  2.43077119]
+### Random number everytime the same
 
-    ### Random numbers in normal distribution matrix shape
+np.random.seed(5)
 
-    s = np.random.normal(2, 6, 1000)  # Mu, Sigma,
+w = np.random.randn(3)  # [ 0.44122749 -0.33087015  2.43077119]
+w = np.random.randn(3)  # [ 0.44122749 -0.33087015  2.43077119]
 
-    ## Points generation
+### Random numbers in normal distribution matrix shape
 
-    t = np.linspace(0,20,1000)  # Generate numbers with the same interval (beginning, end, number)
+s = np.random.normal(2, 6, 1000)  # Mu, Sigma,
 
-    t = np.arange(1, 3, 1)  # 1, 2
-    t = np.arange(3)  # 0, 1, 2
+## Points generation
 
-    ### Mean
+t = np.linspace(0,20,1000)  # Generate numbers with the same interval (beginning, end, number)
 
-    x = np.array([[10,20,30], [40,50,60]])
-    np.mean(x)
+t = np.arange(1, 3, 1)  # 1, 2
+t = np.arange(3)  # 0, 1, 2
 
-    ### Standard deviation
+### Mean
 
-    std = np.std(x)
+x = np.array([[10,20,30], [40,50,60]])
+np.mean(x)
 
-    # Or
+### Standard deviation
 
-    from statistics import stdev
-    sample = [1, 2, 3, 4, 5]
-    std = stdev(sample)
+std = np.std(x)
 
-    ### Bins
+# Or
 
-    bins = 10
-    binss = np.histogram(x, bins)  # binss[0] hodnoty binss[1]
-        # original = x = np.array([[10,20,30], [40,50,60]])
-        # binss[0] = counts - [1 0 1 0 1 0 1 0 1 1]
-        # binss[1] = values [10. 15. 20. 25. 30. 35. 40. 45. 50. 55. 60.]
+from statistics import stdev
+sample = [1, 2, 3, 4, 5]
+std = stdev(sample)
 
-    ### Cumulative sum
+### Bins
 
-    y = np.cumsum(x)
+bins = 10
+binss = np.histogram(x, bins)  # binss[0] hodnoty binss[1]
+    # original = x = np.array([[10,20,30], [40,50,60]])
+    # binss[0] = counts - [1 0 1 0 1 0 1 0 1 1]
+    # binss[1] = values [10. 15. 20. 25. 30. 35. 40. 45. 50. 55. 60.]
 
-    ### Derivation
+### Cumulative sum
 
-    sample = [1, 2, 8, 4, 5]
-    z = np.diff(y)
-        # [ 1  6 -4  1]
+y = np.cumsum(x)
 
-    ### Latex dislay
+### Derivation
 
-    # from IPython.display import display, Math, Latex
-    # display(Math(r'F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx'))
+sample = [1, 2, 8, 4, 5]
+z = np.diff(y)
+    # [ 1  6 -4  1]
 
+### Latex dislay
 
-    ########################################
-    ####### Symbolic python - sympy #######
-    #######################################
-    '''
-    import sympy as sp
+# from IPython.display import display, Math, Latex
+# display(Math(r'F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx'))
 
-    #  Nice display
-    init_printing()
 
-    # Or
-    # Or use sp.pprint()
+########################################
+####### Symbolic python - sympy #######
+#######################################
 
-    ### Display Latex
+import sympy as sp
 
-    sp.latex(x**2)
+#  Nice display
+sp.init_printing()
 
-    ### Create symbols
+# Or
+# Or use sp.pprint()
 
-    s = sp.Symbol("s")
-    x, y, z = sp.symbols('x,y,z')
-    d, e, f = sp.symbols('d:f')
-    inf = sp.oo
+### Display Latex
 
-    ### Create one member (fraction) from more members
+sp.latex(x**2)
 
-    ans = sp.together(1/x + 1/y + 1/z)
-        #   x*y + x*z + y*z
-        #   ---------------
-        #        x*y*z
+### Create symbols
 
-    # Imaginary numbers
-    x = 1 + 1*I
+s = sp.Symbol("s")
+x, y, z = sp.symbols('x,y,z')
+d, e, f = sp.symbols('d:f')
+inf = sp.oo
 
-    ### Expand
+### Create one member (fraction) from more members
 
-    ans = ((x+y)**2).expand()
-        #    x**2 + 2*x*y + y**2
+ans = sp.together(1/x + 1/y + 1/z)
+    #   x*y + x*z + y*z
+    #   ---------------
+    #        x*y*z
 
-    ### Substitute
+# Imaginary numbers
+x = 1 + 1 * sp.I
 
-    expr = sp.cos(x)
-    expr.subs(x, 0) # 1
+### Expand
 
-    ### Compute string
+ans = ((x+y)**2).expand()
+    #    x**2 + 2*x*y + y**2
 
-    str_expr = "x**2 + 3*x - 1/2"
-    expr = sp.sympify(str_expr)
+### Substitute
 
-    ### Simplify equation
+expr = sp.cos(x)
+expr.subs(x, 0) # 1
 
-    simplified = sp.simplify((x**3 + x**2 - x - 1)/(x**2 + 2*x + 1))
-        #    𝑥−1
+### Compute string
 
-    ### Evaluate expression
+str_expr = "x**2 + 3*x - 1/2"
+expr = sp.sympify(str_expr)
 
-    expr = sp.sqrt(8)
-    expr.evalf() # 2.82842712474619
+### Simplify equation
 
-    x_dif = sp.diff(sp.sin(2*x), x)
+simplified = sp.simplify((x**3 + x**2 - x - 1)/(x**2 + 2*x + 1))
+    #    𝑥−1
 
-    ### Use numerical evaluation
+### Evaluate expression
 
-    import numpy
-    a = numpy.arange(10)
-    expr = sp.sin(x)
-    f = sp.lambdify(x, expr, "numpy")
-    res = f(a)
-        # [ 0.          0.84147098  0.90929743  0.14112001 -0.7568025  -0.95892427
-        #  -0.2794155   0.6569866   0.98935825  0.41211849]
-    
-        ### Combine with numpy
+expr = sp.sqrt(8)
+expr.evalf() # 2.82842712474619
 
-    y_vec = numpy.array([N(((x + pi)**2).subs(x, xx)) for xx in x_vec])  # But lambdify is faster
+### Use numerical evaluation
 
-    ### Solve equation
+import numpy
+a = numpy.arange(10)
+expr = sp.sin(x)
+f = sp.lambdify(x, expr, "numpy")
+res = f(a)
+    # [ 0.          0.84147098  0.90929743  0.14112001 -0.7568025  -0.95892427
+    #  -0.2794155   0.6569866   0.98935825  0.41211849]
 
-    solve(x**2 - 1, x)  # [-1, 1]
-    solve([x + y - 1, x - y - 1], [x,y])  # {x:1,y:0}
+    ### Combine with numpy
 
-    # Exponential
-    from mpmath import e
-    y = sp.exp(x)
+y_vec = numpy.array([N(((x + pi)**2).subs(x, xx)) for xx in x_vec])  # But lambdify is faster
 
-    # Matrices
+### Solve equation
 
-    m11, m12, m21, m22 = symbols("m11, m12, m21, m22")
-    b1, b2 = symbols("b1, b2")
+solve(x**2 - 1, x)  # [-1, 1]
+solve([x + y - 1, x - y - 1], [x,y])  # {x:1,y:0}
 
-    A = Matrix([[m11, m12],[m21, m22]])
-        #   [ m11    m21
-        #     m12    m22 ]
-    
-    b = Matrix([[b1], [b2]])
-        #   [ b1
-        #     b2 ]
+# Exponential
+from mpmath import e
+y = sp.exp(x)
 
-    # Matrix operations
+# Matrices
 
-    sqr_mat = A**2
-    mat_mul = A*b
-    det = A.det()
-    inv = A.inv()
+m11, m12, m21, m22 = symbols("m11, m12, m21, m22")
+b1, b2 = symbols("b1, b2")
 
-    ### Fast fourier transform
+A = Matrix([[m11, m12],[m21, m22]])
+    #   [ m11    m21
+    #     m12    m22 ]
 
-    from numpy.fft import fft, fftfreq, ifft
-    import numpy as np
+b = Matrix([[b1], [b2]])
+    #   [ b1
+    #     b2 ]
 
-    t = np.arange(0, 10, 0.1)
-    y = np.sin(t)
+# Matrix operations
 
-    ffty = fft(y)
+sqr_mat = A**2
+mat_mul = A*b
+det = A.det()
+inv = A.inv()
 
-    real_ffty = ffty.real
-    imag_ffty = ffty.imag
+### Fast fourier transform
 
-    freqs = fftfreq(N, dt)  # Frequentions assigned to values - 0, 0.1, 0.2...
+from numpy.fft import fft, fftfreq, ifft
+import numpy as np
 
-    ### Sympy plotting
+t = np.arange(0, 10, 0.1)
+y = np.sin(t)
 
-    from sympy.plotting import plot
-    p1 = plot(sp.exp(t))
-    '''
+ffty = fft(y)
 
-    ######################################
-    ####### Differential equations #######
-    ######################################
+real_ffty = ffty.real
+imag_ffty = ffty.imag
 
-    import sympy as sp
-    f = sp.Function('f')
-    x = sp.Symbol('x')
-    eq = f(x).diff(x, x) + f(x)
-    res = sp.dsolve(eq, f(x))
+freqs = fftfreq(N, dt)  # Frequentions assigned to values - 0, 0.1, 0.2...
 
-    ###########################
-    ####### Integration #######
-    ###########################
+### Sympy plotting
 
-    unb_int = '''
-    ### Unbounded integral
+from sympy.plotting import plot
+p1 = plot(sp.exp(t))
 
-    import sympy as sp
-    from sympy import exp as e
-    x = sp.Symbol("x")
-    f = e(-x)
-    disp("f=",f)
-    intf = sp.integrate(f)
-    disp("\int " + dfrac(f)+"dx=",intf) # po \int musim byt mezera
 
-    ### Bounded integral
+######################################
+####### Differential equations #######
+######################################
 
-    intf=sp.integrate(f,(x,0,1))
-    disp("\int_0^1" + dfrac(f)+" dx=",intf.evalf())
-    '''
+import sympy as sp
+f = sp.Function('f')
+x = sp.Symbol('x')
+eq = f(x).diff(x, x) + f(x)
+res = sp.dsolve(eq, f(x))
 
-    ###########################
-    ####### Correlation #######
-    ###########################
+###########################
+####### Integration #######
+###########################
 
-    ### Correlation matrix - values
+### Unbounded integral
 
-    import pandas as pd
-    df = pd.DataFrame([[1, 2, 3], [4, 5, 9], [7, 8, 78]], columns=['one', 'two', 'three'])
-    x_cor = df.corr()
+import sympy as sp
+from sympy import exp as e
+x = sp.Symbol("x")
+f = e(-x)
+disp("f=",f)
+intf = sp.integrate(f)
+disp("\int " + dfrac(f)+"dx=",intf) # po \int musim byt mezera
 
-        #               one      two    three
-        #    one    1.00000  1.00000  0.89977
-        #    two    1.00000  1.00000  0.89977
-        #    three  0.89977  0.89977  1.00000
+### Bounded integral
 
-    ### Correlation matrix - plot
+intf=sp.integrate(f,(x,0,1))
+disp("\int_0^1" + dfrac(f)+" dx=",intf.evalf())
 
-    # a = pd.plotting.scatter_matrix(df, figsize=(16,12), alpha=0.3)
+###########################
+####### Correlation #######
+###########################
 
-    ### Correlation (Pearson corr. matrix)
+### Correlation matrix - values
 
-    import matplotlib.pyplot as plt
-    scoreTable = df.corr(method='pearson')
-    df.corr(method='pearson').style.format("{:.2}").background_gradient(cmap=plt.get_cmap('coolwarm'), axis=1)
+import pandas as pd
+df = pd.DataFrame([[1, 2, 3], [4, 5, 9], [7, 8, 78]], columns=['one', 'two', 'three'])
+x_cor = df.corr()
 
-    ### Correlation coefficent
+    #               one      two    three
+    #    one    1.00000  1.00000  0.89977
+    #    two    1.00000  1.00000  0.89977
+    #    three  0.89977  0.89977  1.00000
 
-    ar = np.array([1, 2, 4, 5, 9]) 
-    ar2 = np.array([7, 8, 78, 34, 2])
-    a = np.corrcoef(ar, ar2)
+### Correlation matrix - plot
 
-        #    [[ 1.        -0.0475504]
-        #     [-0.0475504  1.       ]]
+# a = pd.plotting.scatter_matrix(df, figsize=(16,12), alpha=0.3)
 
-    ##########################
-    ####### Statistics #######
-    ##########################
+### Correlation (Pearson corr. matrix)
 
-    ### Create combinations
+import matplotlib.pyplot as plt
+scoreTable = df.corr(method='pearson')
+df.corr(method='pearson').style.format("{:.2}").background_gradient(cmap=plt.get_cmap('coolwarm'), axis=1)
 
-    from scipy.special import binom
-    a = binom(5,2)
+### Correlation coefficent
 
-    ### Test of normal distribution
+ar = np.array([1, 2, 4, 5, 9])
+ar2 = np.array([7, 8, 78, 34, 2])
+a = np.corrcoef(ar, ar2)
 
-    from statsmodels.stats.stattools import jarque_bera
-    residuals = [1, 3, 5, 2, 4]
-    score, pvalue, _, _ = jarque_bera(residuals)
-    if pvalue < 0.10:
-        print ('We have reason to suspect the residuals are not normally distributed.')
-    else:
-        print ('The residuals seem normally distributed.')
+    #    [[ 1.        -0.0475504]
+    #     [-0.0475504  1.       ]]
+
+##########################
+####### Statistics #######
+##########################
+
+### Create combinations
+
+from scipy.special import binom
+a = binom(5,2)
+
+### Test of normal distribution
+
+from statsmodels.stats.stattools import jarque_bera
+residuals = [1, 3, 5, 2, 4]
+score, pvalue, _, _ = jarque_bera(residuals)
+if pvalue < 0.10:
+    print ('We have reason to suspect the residuals are not normally distributed.')
+else:
+    print ('The residuals seem normally distributed.')
 
 # Machine learning
 
-    #################################################
-    ####### Standardization and normalization #######
-    #################################################
+#################################################
+####### Standardization and normalization #######
+#################################################
 
-    ### Standardization: mean = 0 and std = 1
+### Standardization: mean = 0 and std = 1
 
-    from sklearn import preprocessing
-    import numpy as np
-    X_train = np.array([[ 1., -1.,  2.],
-                        [ 2.,  0.,  0.],
-                        [ 0.,  1., -1.]])
- 
-    scaler = preprocessing.StandardScaler()
+from sklearn import preprocessing
+import numpy as np
+X_train = np.array([[ 1., -1.,  2.],
+                    [ 2.,  0.,  0.],
+                    [ 0.,  1., -1.]])
 
-    fitted_scaler = scaler.fit(X_train)
-    scaled = fitted_scaler.transform(X_train)
+scaler = preprocessing.StandardScaler()
 
-        #    [[ 0.  ..., -1.22...,  1.33...],
-        #     [ 1.22...,  0.  ..., -0.26...],
-        #     [-1.22...,  1.22..., -1.06...]]
+fitted_scaler = scaler.fit(X_train)
+scaled = fitted_scaler.transform(X_train)
 
-    # inverse transformation
-    back = fitted_scaler.inverse_transform(scaled)
+    #    [[ 0.  ..., -1.22...,  1.33...],
+    #     [ 1.22...,  0.  ..., -0.26...],
+    #     [-1.22...,  1.22..., -1.06...]]
 
-    ### Normalization (-1,1)
-    # Just replace one row from standard scaler
-    scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
+# inverse transformation
+back = fitted_scaler.inverse_transform(scaled)
 
-    ### The same way you can use preprocessing.RobustScaler, that is not as much influenced by outliers !!
+### Normalization (-1,1)
+# Just replace one row from standard scaler
+scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
+
+### The same way you can use preprocessing.RobustScaler, that is not as much influenced by outliers !!
+```
 
 # Signal processing and controll
 
-    '''
-    ## Signal
+```python
+## Signal
 
-    import scipy.signal as sig
-    y = sg.sawtooth(2*pi/100*t,0.5)  # Create sawtooth signal
+import scipy.signal as sig
+y = sg.sawtooth(2*pi/100*t,0.5)  # Create sawtooth signal
 
-    ### Chirp signal
-    t = np.linspace(0, 10, 5001)
-    w = sig.chirp(t, f0=6, f1=1, t1=10, method='linear') # (t, f0, t1, f1)  # Changing frequency
+### Chirp signal
+t = np.linspace(0, 10, 5001)
+w = sig.chirp(t, f0=6, f1=1, t1=10, method='linear') # (t, f0, t1, f1)  # Changing frequency
 
-    ## Hanning window
+## Hanning window
 
-    w = hanning(N)
+w = hanning(N)
 
-    ## Tuckey window
+## Tuckey window
 
-    w = sig.tukey(N)
+w = sig.tukey(N)
 
-    ## Fourier transform
+## Fourier transform
 
-    dt = 1./1024
-    t = np.arange(0,2,dt)
-    N = len(t)
-    y = sig.sawtooth(2*np.pi/T1*t,0.5)
+dt = 1./1024
+t = np.arange(0,2,dt)
+N = len(t)
+y = sig.sawtooth(2*np.pi/T1*t,0.5)
 
-    freq = np.fft.fftfreq(N,dt)  # Return frequencies
-    ffty = np.fft.fft(y)
-    rffty = np.real(ffty)  # Real part
-    iffty = np.imag(ffty)  # Imaginary part
+freq = np.fft.fftfreq(N,dt)  # Return frequencies
+ffty = np.fft.fft(y)
+rffty = np.real(ffty)  # Real part
+iffty = np.imag(ffty)  # Imaginary part
 
-    ## Inverse Fourier transform
+## Inverse Fourier transform
 
-    y_back = np.fft.ifft(ffty)
+y_back = np.fft.ifft(ffty)
 
-    ## Power spectral density
+## Power spectral density
 
-    PSD = (abs(ffty)**2)/N
+PSD = (abs(ffty)**2)/N
 
-    ## Hilbert transform - Envelope, phase, frequency
+## Hilbert transform - Envelope, phase, frequency
 
-    analytic_signal = hilbert(signal)
-    amplitude_envelope = np.abs(analytic_signal)
-    instantaneous_phase = np.unwrap(np.angle(analytic_signal))
-    instantaneous_frequency = (np.diff(instantaneous_phase) / (2.0*np.pi) * fs)
+analytic_signal = hilbert(signal)
+amplitude_envelope = np.abs(analytic_signal)
+instantaneous_phase = np.unwrap(np.angle(analytic_signal))
+instantaneous_frequency = (np.diff(instantaneous_phase) / (2.0*np.pi) * fs)
 
-    ### Filtering
+### Filtering
 
-    import scipy.signal as sig
-    from scipy.signal import butter,filtfilt
+import scipy.signal as sig
+from scipy.signal import butter,filtfilt
 
-    t = np.linspace(0, 10, 501)
-    w = sig.chirp(t, f0=6, f1=0.1, t1=10, method='linear') # (t, f0, t1, f1) 
+t = np.linspace(0, 10, 501)
+w = sig.chirp(t, f0=6, f1=0.1, t1=10, method='linear') # (t, f0, t1, f1)
 
-    Wn = 0.1  # zkuste pozorovat efekt nasobici konstanty na cinnost filtru
-    filter_order = 2
-    b, a = butter(filter_order, Wn, 'high', analog=False)  #Matlab-style filter design
+Wn = 0.1  # zkuste pozorovat efekt nasobici konstanty na cinnost filtru
+filter_order = 2
+b, a = butter(filter_order, Wn, 'high', analog=False)  #Matlab-style filter design
 
-    x_dem = sig.lfilter(b, a, w) 
+x_dem = sig.lfilter(b, a, w)
 
-    # Or
-    x_dem = filtfilt(b, a, w)  # Apply  filtr (forward and backward)
+# Or
+x_dem = filtfilt(b, a, w)  # Apply  filtr (forward and backward)
 
-    # You can use scipy or you can use controll
+# You can use scipy or you can use controll
 
-    ####################
-    ##### Controll #####
-    ####################
+####################
+##### Controll #####
+####################
 
-    ## State-space representation
+## State-space representation
 
-    A = [[0. , 1.], [-1., -1.]]
-    B = [[0.], [1.]]
-    C = [1. , 0.]
-    D = 0.
+A = [[0. , 1.], [-1., -1.]]
+B = [[0.], [1.]]
+C = [1. , 0.]
+D = 0.
 
-    import control as ct
+import control as ct
 
-    sys = ct.ss(A , B, C, D)
-
-
-    ## Transfer function
-
-    g = ct.tf(1 ,[1 ,1, 1])  # Or ct.tf(sys)
-
-        #        1
-        #   -----------
-        #   s^2 + s + 1
-
-    sys = ct.ss(g)  # Convert back from transfer to state space
-
-    ## Convert from continuous to discrete
-
-    g = ct.tf(1, [1, 1, 1])
-    gd = ct.c2d (g, 0.01)
-
-        #   4.983e-05 z + 4.967e-05
-        #   -----------------------
-        #     z^2 - 1.99 z + 0.99
-
-    ## Interconnect systems
-
-    ### Parallel
+sys = ct.ss(A , B, C, D)
 
 
-        #      2 s + 3
-        #    -------------
-        #    s^2 + 3 s + 2
+## Transfer function
+
+g = ct.tf(1 ,[1 ,1, 1])  # Or ct.tf(sys)
+
+    #        1
+    #   -----------
+    #   s^2 + s + 1
+
+sys = ct.ss(g)  # Convert back from transfer to state space
+
+## Convert from continuous to discrete
+
+g = ct.tf(1, [1, 1, 1])
+gd = ct.c2d (g, 0.01)
+
+    #   4.983e-05 z + 4.967e-05
+    #   -----------------------
+    #     z^2 - 1.99 z + 0.99
+
+## Interconnect systems
+
+### Parallel
 
 
-    #################
-    ##### Scipy #####
-    #################
+    #      2 s + 3
+    #    -------------
+    #    s^2 + 3 s + 2
 
-    # You have to use float here. Not working for int...
 
-    from scipy import signal
+#################
+##### Scipy #####
+#################
 
-    sys = signal.StateSpace(A, B, C, D)
+# You have to use float here. Not working for int...
 
-    ### Step response
+from scipy import signal
 
-    t1, y1 = signal.step(sys)
+sys = signal.StateSpace(A, B, C, D)
 
-    ################
-    ### Simulate ###
-    ################
-    
-    t = np.linspace(0, 100, 101)
-    u = np.zeros(len(t))
-    u[10:50] = 1.0;  u[50:] = 2.0
+### Step response
 
-    t3, y3, x3 = signal.lsim(sys, u, t)
+t1, y1 = signal.step(sys)
 
-    import numpy as np
+################
+### Simulate ###
+################
+
+t = np.linspace(0, 100, 101)
+u = np.zeros(len(t))
+u[10:50] = 1.0;  u[50:] = 2.0
+
+t3, y3, x3 = signal.lsim(sys, u, t)
+
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+# function that returns dy/dt
+def model(y,t):
+    k = 0.3
+    dydt = -k * y
+    return dydt
+
+# initial condition
+y0 = 5
+
+# time points
+t = np.linspace(0,20)
+
+# solve ODE
+y = odeint(model,y0,t)
+
+# plot results
+plt.plot(t,y)
+plt.xlabel('time')
+plt.ylabel('y(t)')
+plt.show()
+
+### Simulate with time dependent input
+
+def fdxdt(x,t,u,Omega,eta,b0,b1):    # x=[x1 x2 ... xn]
+        dx1dt=-Omega0**2*x[1]-b0*u
+        dx2dt=-2*eta*Omega0*x[1]-b1*u+x[0]
+        return(dx1dt,dx2dt)
+
+    dt=.21  #[sec]
+    t=arange(0,50,dt) ; N=len(t)  # delka dat
+    Npul=int(N/2)   #konverze na integer
+
+    u=sin(2*pi/10*t) ; u[Npul+1:]=sign(u[Npul+1:])
+
+    u=u*1
+
+    figure(figsize=(12,4));grid()
+    plot(t,u,'-*',label="u(t)");xlabel("t");legend();title("$Vstup \ u(t) \ se \ meni  \ se \
+            \ vzorkovaci \ periodou \ \Delta t $="+str(dt) +" [sec] \n")
+    show()
+
     from scipy.integrate import odeint
-    import matplotlib.pyplot as plt
 
-    # function that returns dy/dt
-    def model(y,t):
-        k = 0.3
-        dydt = -k * y
-        return dydt
+    Omega0=10  ;  eta=.1  ;   b0=Omega0**2  ;  b1=0
 
-    # initial condition
-    y0 = 5
+    #===============================
 
-    # time points
-    t = np.linspace(0,20)
+    y=zeros(N)
+    x10=0 ; x20=0  # poc. podm
 
-    # solve ODE
-    y = odeint(model,y0,t)
+    x0=[x10,x20]
 
-    # plot results
-    plt.plot(t,y)
-    plt.xlabel('time')
-    plt.ylabel('y(t)')
-    plt.show()
+    for i in range(0,N-1):
+        tt=[t[i],t[i+1]]  # [t1 t2]
+        x=odeint(fdxdt,x0,t,(u[i],Omega0,eta,b0,b1)) #returns x=[ [x1(t1) x2(t1)] [x1(t2) x2(t2)]]
+    #    x=odeint(fdxdt,x0,tt,args=(u[i],)) # <-- pokud je jen jeden extra argument, musi se tak    
+        y[i+1]=-x[1,1]
+        x0=x[1,:]  # jako nove poc. podm pro dalsi integraci
 
-    ### Simulate with time dependent input
-
-    def fdxdt(x,t,u,Omega,eta,b0,b1):    # x=[x1 x2 ... xn] 
-          dx1dt=-Omega0**2*x[1]-b0*u
-          dx2dt=-2*eta*Omega0*x[1]-b1*u+x[0]
-          return(dx1dt,dx2dt)
-
-        dt=.21  #[sec]
-        t=arange(0,50,dt) ; N=len(t)  # delka dat
-        Npul=int(N/2)   #konverze na integer
-
-        u=sin(2*pi/10*t) ; u[Npul+1:]=sign(u[Npul+1:])
-
-        u=u*1
-
-        figure(figsize=(12,4));grid()
-        plot(t,u,'-*',label="u(t)");xlabel("t");legend();title("$Vstup \ u(t) \ se \ meni  \ se \
-                \ vzorkovaci \ periodou \ \Delta t $="+str(dt) +" [sec] \n")
-        show()
-
-        from scipy.integrate import odeint
-
-        Omega0=10  ;  eta=.1  ;   b0=Omega0**2  ;  b1=0
-
-        #===============================
-
-        y=zeros(N)
-        x10=0 ; x20=0  # poc. podm
-
-        x0=[x10,x20]
-
-        for i in range(0,N-1):
-            tt=[t[i],t[i+1]]  # [t1 t2]
-            x=odeint(fdxdt,x0,t,(u[i],Omega0,eta,b0,b1)) #returns x=[ [x1(t1) x2(t1)] [x1(t2) x2(t2)]]
-        #    x=odeint(fdxdt,x0,tt,args=(u[i],)) # <-- pokud je jen jeden extra argument, musi se tak    
-            y[i+1]=-x[1,1]
-            x0=x[1,:]  # jako nove poc. podm pro dalsi integraci
-            
-        figure(figsize=(14,6))
-        grid()
-        plot(t,y,"-*",label="y(t)...simulace scipy.integrate.odeint"),xlabel("t [sec]"),legend()
-        show()
-        '''
+    figure(figsize=(14,6))
+    grid()
+    plot(t,y,"-*",label="y(t)...simulace scipy.integrate.odeint"),xlabel("t [sec]"),legend()
+    show()
+```
 
 # Miscellaneous
 
 ## Measure time
+```python
+# Most simple and maybe the best
 
-    '''
-    # Most simple and maybe the best
+import time
+start = time.time()
+a = 6
+end = time.time()
+print(end - start)
 
-    import time
-    start = time.time()
-    a = 6
-    end = time.time()
-    print(end - start)
+# Or
 
-    # Or
+import timeit
+import functools
 
-    import timeit
-    import functools
+def func(*args):
+    a = 1
+    return a
+dont_slow_my_notebook = """
+t = timeit.Timer('''
+import numpy as np
+a = 12
+''', 'gc.enable()')
+print(t.timeit(3))  # 3 - measure three times
 
-    def func(*args):
-        a = 1
-        return a
+# Or you can use
+t = timeit.timeit(func)
 
-    t = timeit.Timer('''
-    import numpy as np
-    a = 12
-    ''', 'gc.enable()')
-    print(t.timeit(3))  # 3 - measure three times
-
-    # Or you can use
-    t = timeit.timeit(func)
-
-    # Measure time of function with inputs
-    t = timeit.Timer(functools.partial(func, (1, 2)))
-    print (t.timeit(20))
-    '''
+# Measure time of function with inputs
+t = timeit.Timer(functools.partial(func, (1, 2)))
+print (t.timeit(20))
+"""
+```
 
 ## Show bytcode
 
@@ -3109,124 +3457,128 @@ Reload all modules imported with %aimport every time before executing the Python
 
 ## Numba
 
-    import numba as nb
+```python
+import numba as nb
 
-    @nb.njit()
-    def func():
-        return 1
+@nb.njit()
+def func():
+    return 1
 
-    # Or
+# Or
 
-    @nb.jit(nopython=True)  # Or use  parallel=True, nogil=True, cache=True
-    def func():
-        return 1
+@nb.jit(nopython=True)  # Or use  parallel=True, nogil=True, cache=True
+def func():
+    return 1
 
-    # Or
+# Or
 
-    @nb.vectorize
-    def function(a, b):
-        return 1
+@nb.vectorize
+def function(a, b):
+    return 1
 
-    # Or direct data formats
+# Or direct data formats
 
-    import numba as nb
-    @nb.jit(nb.int32(nb.int32, nb.int32))
-    def function(a, b):
-        return a + b
+import numba as nb
+@nb.jit(nb.int32(nb.int32, nb.int32))
+def function(a, b):
+    return a + b
 
-    ### Get numba dtype from other
+### Get numba dtype from other
 
-    numba.typeof(np.empty(3))
-    array(float64, 1d, C)
+numba.typeof(np.empty(3))
+array(float64, 1d, C)
 
-    ### Evaluate chunk sizes
+### Evaluate chunk sizes
 
-        i = numba.cuda.grid(1)
-        while i < x.size:
-            # Do something
-            i += numba.cuda.grid(1)
+    i = numba.cuda.grid(1)
+    while i < x.size:
+        # Do something
+        i += numba.cuda.grid(1)
 
-    ### Cuda in Numba ###
+### Cuda in Numba ###
 
-    import math
-    import numpy as np
-    from numba import cuda
-    import matplotlib.pyplot as plt
-    %matplotlib inline
+import math
+import numpy as np
+from numba import cuda
+import matplotlib.pyplot as plt
+%matplotlib inline
 
-    len(cuda.gpus)  # 1
+len(cuda.gpus)  # 1
 
-    cuda.gpus[0].name  # b'GeForce GTX 980M'
+cuda.gpus[0].name  # b'GeForce GTX 980M'
 
-    @cuda.jit
-    def mandelbrot_numba(m, iterations):
-        # Matrix index.
-        i, j = cuda.grid(2)
-        size = m.shape[0]
-        # Skip threads outside the matrix.
-        if i >= size or j >= size:
-            return
-        # Run the simulation.
-        c = (-2 + 3. / size * j +
-            1j * (1.5 - 3. / size * i))
-        z = 0
-        for n in range(iterations):
-            if abs(z) <= 10:
-                z = z * z + c
-                m[i, j] = n
-            else:
-                break
+@cuda.jit
+def mandelbrot_numba(m, iterations):
+    # Matrix index.
+    i, j = cuda.grid(2)
+    size = m.shape[0]
+    # Skip threads outside the matrix.
+    if i >= size or j >= size:
+        return
+    # Run the simulation.
+    c = (-2 + 3. / size * j +
+        1j * (1.5 - 3. / size * i))
+    z = 0
+    for n in range(iterations):
+        if abs(z) <= 10:
+            z = z * z + c
+            m[i, j] = n
+        else:
+            break
 
-        size = 400
-        iterations = 100
+    size = 40
+    iterations = 5
 
-        m = np.zeros((size, size))
+    m = np.zeros((size, size))
 
-        # 16x16 threads per block.
-        bs = 16
-        # Number of blocks in the grid.
-        bpg = math.ceil(size / bs)
-        # We prepare the GPU function.
-        f = mandelbrot_numba[(bpg, bpg), (bs, bs)]
+    # 16x16 threads per block.
+    bs = 16
+    # Number of blocks in the grid.
+    bpg = math.ceil(size / bs)
+    # We prepare the GPU function.
+    f = mandelbrot_numba[(bpg, bpg), (bs, bs)]
 
-        f(m, iterations)
+    f(m, iterations)
 
-    # Or
+# Or
 
-    from numba import cuda
-    @cuda.jit(device=True)
-    def function(a, b):
-        return a + b
+from numba import cuda
+@cuda.jit(device=True)
+def function(a, b):
+    return a + b
+```
 
 ## Dask
 
-    dsk = '''
-    import dask
+```python
+dsk = '''
+import dask
 
-    @dask.delayed
-    def inc(x):
-        return x + 1
+@dask.delayed
+def inc(x):
+    return x + 1
 
-    @dask.delayed
-    def double(x):
-        return x + 2
+@dask.delayed
+def double(x):
+    return x + 2
 
-    @dask.delayed
-    def add(x, y):
-        return x + y
+@dask.delayed
+def add(x, y):
+    return x + y
 
-    data = [1, 2, 3, 4, 5]
+data = [1, 2, 3, 4, 5]
 
-    output = []
-    for x in data:
-        a = inc(x)
-        b = double(x)
-        c = add(a, b)
-        output.append(c)
+output = []
+for x in data:
+    a = inc(x)
+    b = double(x)
+    c = add(a, b)
+    output.append(c)
 
-    total = dask.delayed(sum)(output)
-    # maybe add    total.compute()
-    '''
+total = dask.delayed(sum)(output)
+# maybe add    total.compute()
+'''
+```
 
 ### Dask formats
 
@@ -3239,7 +3591,7 @@ Reload all modules imported with %aimport every time before executing the Python
     res.compute()
 
     # Dataframes implement the Pandas API
-    
+
     df = pd.DataFrame([[1, 2, 3], [1, 5, 3], [5, 6, 7]], columns = ['one', 'two', 'three'])
     dfdsk = dd.from_pandas(df, npartitions=1)
 
@@ -3258,57 +3610,70 @@ Reload all modules imported with %aimport every time before executing the Python
     import gc
     gc.collect()
 
+# Threading
+
+    executor = ThreadPoolExecutor(max_workers=3)
+    executor.submit(myFunction())
+
+    # Or use
+    with ThreadPoolExecutor(max_workers=3) as executor:
+            future = executor.submit(task, (2))
+            future = executor.submit(task, (3))
+            future = executor.submit(task, (4))
+
 ## Max execution time python
 
-    import time, sys
-    
-    def watchdog(timeout, code, *args, **kwargs):
-        "Time-limited execution."
-        def tracer(frame, event, arg, start=time.time()):
-            "Helper."
-            now = time.time()
-            if now > start + timeout:
-                raise WatchdogTimeoutError(start, now)
-            return tracer if event == "call" else None
-    
-        old_tracer = sys.gettrace()
-        try:
-            sys.settrace(tracer)
-            code(*args, **kwargs)
-        finally:
-            sys.settrace(old_tracer)
-    
-    def func(a):
-        return 1 + a
-    
-    watchdog(5, func, 0.1) # First element is time limit - Last argument 0.1 are *args and **kwargs
+```python
+import time, sys
 
-    # Or
-    mx_ex = '''
-    from contextlib import contextmanager
-    import threading
-    import _thread
+def watchdog(timeout, code, *args, **kwargs):
+    "Time-limited execution."
+    def tracer(frame, event, arg, start=time.time()):
+        "Helper."
+        now = time.time()
+        if now > start + timeout:
+            raise WatchdogTimeoutError(start, now)
+        return tracer if event == "call" else None
 
-    class TimeoutException(Exception):
-        def __init__(self, msg=''):
-            self.msg = msg
+    old_tracer = sys.gettrace()
+    try:
+        sys.settrace(tracer)
+        code(*args, **kwargs)
+    finally:
+        sys.settrace(old_tracer)
 
-    @contextmanager
-    def time_limit(seconds, msg=''):
-        timer = threading.Timer(seconds, lambda: _thread.interrupt_main())
-        timer.start()
-        try:
-            yield
-        except KeyboardInterrupt:
-            raise TimeoutException("Timed out for operation {}".format(msg))
-        finally:
-            # if the acti   on ends in specified time, timer is canceled
-            timer.cancel()
+def func(a):
+    return 1 + a
 
-    import time
-    with time_limit(5, 'slee'):
-        time.sleep(10)
-    '''
+watchdog(5, func, 0.1) # First element is time limit - Last argument 0.1 are *args and **kwargs
+
+# Or
+mx_ex = '''
+from contextlib import contextmanager
+import threading
+import _thread
+
+class TimeoutException(Exception):
+    def __init__(self, msg=''):
+        self.msg = msg
+
+@contextmanager
+def time_limit(seconds, msg=''):
+    timer = threading.Timer(seconds, lambda: _thread.interrupt_main())
+    timer.start()
+    try:
+        yield
+    except KeyboardInterrupt:
+        raise TimeoutException("Timed out for operation {}".format(msg))
+    finally:
+        # if the acti   on ends in specified time, timer is canceled
+        timer.cancel()
+
+import time
+with time_limit(5, 'slee'):
+    time.sleep(10)
+'''
+```
 
 ## Profiling
     # !  pip install snakeviz
@@ -3410,11 +3775,9 @@ Put on github, add licence, create release. In computer create setup.py. Delete 
     [metadata]
     description-file = README.md
 
+    # Mozna nekdy, nekdy zase ne
     [bdist_wheel]  # Dal pro wheels knihovnu
     universal = 1
-
-    [metadata]
-    license_file = LICENSE
 
     # Load folder in cmd and
 
@@ -3451,3 +3814,273 @@ Put on github, add licence, create release. In computer create setup.py. Delete 
     *.java
 
     '''
+
+# Create documentation - Sphinx
+
+    pip install sphinx
+
+    # And
+    pip install alabaster
+
+    # Or
+    pip install sphinx_rtd_theme
+
+    # And if you want to use markdown
+    pip install recommonmark
+    pip install sphinxcontrib-napoleon
+
+    # Create documentation files
+
+    sphinx-quickstart
+
+    # Use separate build and source: yes
+
+    ###############
+    ### Conf.py ###
+    ###############
+    # In generated config.py change html_theme on 'alabaster', or 'sphinx_rtd_theme'
+
+    # import alabaster
+    html_theme_path = [alabaster.get_path()]
+
+    # Set own CSS
+    def setup(app):
+        app.add_stylesheet('theme_overrides.css')
+
+    # Uncomment the path, if not work, than ('../..'), and
+    # Add to extension [  'alabaster',
+                'sphinx.ext.autodoc',
+                'sphinx.ext.intersphinx',
+                'sphinx.ext.ifconfig',
+                'sphinx.ext.viewcode',
+                'sphinx.ext.githubpages',
+                'sphinx.ext.imgmath',
+                'recommonmark',
+                'm2r']
+
+    html_theme = 'alabaster'
+
+    # To markdown support use 'sm2r' or 'recommonmark' or 'sphinxcontrib-markdown'
+
+    source_parsers = {
+    '.md': 'sphinxcontrib.markdown.MarkdownParser'
+}
+    # Add to conf.py to edit theme.conf (from theme, e.g. alabaster)
+
+    html_theme_options = {
+        'logo': 'logo.png',
+        'github_user': 'bitprophet',
+        'github_repo': 'alabaster',
+
+        'navigation_depth': 4
+    }
+
+    # Generate the structure of module
+
+    sphinx-apidoc -f -o source/ ../module
+
+    #################
+    ### index.rst ###
+    #################
+    # Then edit created index.rst
+
+    # Under toctree add
+
+    .. automodule:: padasip
+
+    # If you want pdf
+    pip install
+    sphinx-build -b rinoh source _build/rinoh
+
+    # If you have other style of docs than rest (like google, or numpy), you need to convert it
+    pip install sphinxcontrib-napoleon
+
+    # Add this to index.rst
+
+    readme.rst
+
+    # Create file readme.rst in docs
+
+    # Add documents from folder
+
+    .. include:: ../README.rst
+
+    # Maybe
+    napoleon_google_docstring = False
+    napoleon_use_param = False
+    napoleon_use_ivar = True
+
+    #######################
+    ### Sphinx autodocs ###
+    #######################
+
+    # pip install sphinx-autobuild
+
+# Numpy style documentation for sphinx autodocs
+
+    # Heading
+
+    Heading
+    =============
+
+    Underline heading
+
+    Heading
+    *************
+
+    # Code
+
+        this is code
+
+    # Version, changelog
+    Current version: |version| (:ref:`changelog`)
+
+    # Odkaz
+    this library uses `Numpy <http://www.numpy.org/>`_
+
+    # Table of contents
+
+    .. toctree::
+    :maxdepth: 2
+    index
+
+    # TOC in current file
+    .. contents::
+    :local:
+    :depth: 1
+
+    # Inline code
+    ``$ pip install padasip``
+
+    # Reference on some page
+    * :ref:`genindex`
+    * :ref:`modindex`
+    * :ref:`search`
+
+    # Math
+
+    :math:`\alpha > \beta`
+
+    .. math::
+
+    n_{\mathrm{offset}} = \sum_{k=0}^{N-1} s_k n_k
+
+# Testing
+
+    # Write test file
+
+    # Use assert functions
+
+    def secti(a, b):
+    return a + b
+
+    def test_secti():
+        assert secti(1, 2) == 3
+
+    pip install pytest
+    pip install pytest-benchmark
+    def test_my_function(benchmark):
+        result = benchmark(test)
+
+
+    # Run test
+
+    python -m pytest -v test_secteni.py
+
+
+    # Paraterize tests
+
+    @pytest.mark.parametrize(
+            ['year', 'month', 'day'],
+            [(2015, 12, 24),
+            (2016, 12, 24),
+            (2017, 1, 1),
+            (2033, 7, 5),
+            (2048, 7, 6)],
+    )
+
+    def test_some_holidays(year, month, day):
+        """Test a few sample holidays"""
+        holidays = isholiday.getholidays(year)
+        assert (day, month) in holidays
+
+# Travis CI - Automatic testing and deploying
+
+Create .travis.yaml and add. You can add pypy instead of version
+
+    language: python
+    python:
+
+    - "3.4"
+    - "3.5"
+    - "3.6"
+    - "3.7"
+
+    install:
+    - pip install -r requirements.txt
+
+    script: python tests/test_all.py
+    branches:
+    only:
+        - master
+
+    deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: bde661edb37ddb2dae94c3465df7c477f407c879
+    keep_history: true
+    on:
+        branch: master
+
+    # If you want more providers, just add next
+      - provider: openshift
+        api_key: ...
+
+    # Register on travis https://travis-ci.com/, connect with github, on github create new private token and add to travis
+
+    # For windows
+
+    matrix:
+    s  include:
+          - name: "Python 3.5.4 on Windows"
+          os: windows           # Windows 10.0.17134 N/A Build 17134
+          language: shell       # 'language: python' is an error on Travis CI Windows
+          before_install:
+              - choco install python --version 3.5.4
+              - python --version
+              - python -m pip install --upgrade pip
+              - pip3 install --upgrade pytest
+              - pip3 install codecov
+          env: PATH=/c/Python35:/c/Python35/Scripts:$PATH
+
+    # If not working
+
+      sudo: required
+
+# Linux - bash essentials
+
+    # Update all packages
+    sudo apt-get update
+
+    # Print environment path
+    echo $PATH
+
+    # Restart terminal
+    bash --login
+
+    # Install package
+    sudo apt-get install python3.5-dev
+
+    # Change pythonpath
+    nano ~/.bashrc
+    # With opened file add line and save and exit
+    export PYTHONPATH="/Users/my_user/code"
+
+    # Print python path
+    echo $PYTHONPATH
+
+    # Where is something
+    whereis python2.7
+
+    # Install all building compilers (g++ error etc...)
+    sudo apt-get install build-essential
