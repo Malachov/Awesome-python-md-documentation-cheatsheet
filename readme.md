@@ -1,3 +1,4 @@
+
 # Awesome-python-md-documentation
 
 This is python user documentation created in markdown so it can be visualized in IDE. How it can look is on this printscreen.
@@ -210,6 +211,10 @@ conda install -c anaconda library_name
     # Deprecated
 
     # !  (pip freeze > requirements.txt)
+
+## Pyinstaller - Serve app with no dependencies
+    
+    pyinstaller yourprogram.py
 
 ## Python on linux
 
@@ -1485,6 +1490,23 @@ with h5py.File('several_datasets.hdf5', 'w') as f:
 '''
 ```
 
+## Decimal
+```python
+
+In normal float 1 + 1 is not 2 (but 2.0000000000001...)
+In decimal it's equal
+
+import decimal
+# Decimal
+a = decimal.Decimal('0.1')	
+b = decimal.Decimal('0.2')	
+c = a + b # returns a Decimal representing exactly 0.3
+
+# Rounding
+"%.3f" % 1.2399 # returns "1.240"
+"%.2f" % 1.2 # returns "1.20"
+```
+
 # Iterator
 
     iterable = [1, 2, 3]
@@ -1797,6 +1819,12 @@ is_date = Date.is_date_valid('11-09-2012')
 
     Clovek.odkaslej_si() # => "*ehm*"
 
+### Get all instances name
+
+    for obj in gc.get_objects():
+        if isinstance(obj, Clovek):
+            print (obj.name)
+
 ### Magic methods
 
 Example __call__ method (Allow input of object to function)
@@ -1921,6 +1949,66 @@ class Pizza:
         return f'Pizza({self.ingredients!r})'
 
 If Pizza() return __repr__
+
+# Bitwise operations
+Unsigned integers can hold bigger values, but cannot be negative!!!
+
+```python
+### Convert number to bits
+
+binn = bin(123)  # 0b1111011
+
+# Or
+
+four_bytes = 16.to_bytes(4, byteorder='big', signed=True)
+print(four_bytes)
+
+### Convert with keep bit structure
+
+bin_number = f'{3:08b}'  # 00000011
+bin_number = f'{3:#08b}'  # 0b000011
+
+### Bit length
+
+a.bit_length()
+
+# Convert back to int again
+
+int('11111111', 2)  # 255
+
+# Or i = int.from_bytes(some_bytes, byteorder='big')
+
+# Create empty bytes
+empty_bytes = bytes(4)
+
+### And, or etc...
+
+a = 60            # 60 = 0011 1100 
+b = 13            # 13 = 0000 1101 
+c = 0
+
+### Bit and
+c = a & b;        # 12 = 0000 1100
+
+### Bit or
+c = a | b;        # 61 = 0011 1101
+
+### bitwise exclusive or
+c = a ^ b;        # 49 = 0011 0001
+
+### Flip bits
+c = ~a;           # -61 = 1100 0011
+
+# Bit shift (4 bits)
+c = a << 2;       # 240 = 1111 0000
+c = a >> 2;       # 15 = 0000 1111
+
+# Formating
+bin = "{0:b}".format(i) # binary: 11111111
+hex = "{0:x}".format(i) # hexadecimal: ff
+oct = "{0:o}".format(i) # octal: 377
+
+```
 
 # FILE I/O
 ### Import fuction from other file
@@ -2068,7 +2156,13 @@ Result is e = {"a": 1, "b": 2}**
 
     # add syspath
     import sys
-    sys.path.insert(0, "/path/to/your/package_or_module") # Or add os.path.abspath('./')
+    sys.path.insert(0, "/path/to/your/package_or_module")  # Or add os.path.abspath('./')
+
+    # Or more generally (much better - also unix)
+
+    from pathlib import Path
+    sys.path.insert(0, Path(__file__).resolve().parents[1].as_posix())
+
 
 ## Pathlib - new and correct way
 
@@ -2315,9 +2409,10 @@ abs_file_path = os.path.join(script_dir, rel_path)
 ```python
 pltl = '''
 import plotly as py
+# import cufflinks as cf
 
-fig = dict( data=data, layout=layout )
-py.offline.plot( fig, filename='d3-cloropleth-map' )
+fig = dict(data=data, layout=layout )
+py.offline.plot(fig, filename='d3-cloropleth-map')
 
 # or
 
@@ -2326,13 +2421,18 @@ cf.go_offline()
 
 data_ft_date.iplot(xTitle='Dates',yTitle='Returns',title='Returns')
 
+
 ### Plotly timeseries
 
-py.plot([{
+py.plotly.iplot([{
     'x': data_for_predicts_csv_trimmed.index,
     'y': data_for_predicts_csv_trimmed[col],
     'name': col
 }  for col in data_for_predicts_csv_trimmed.columns])
+
+# Or the same with cufflinks
+cf.go_offline()
+df.iplot(kind='scatter', filename='cufflinks/cf-simple-line')
 
 ### From matplotlib to plotly
 
@@ -2667,13 +2767,28 @@ plt.loglog(x, y)  # Both axis are log
 
     FROM python:3.7-alpine  # If error, remove -alpine. Another modes: -buster, -slim, -slim-buster, #FROM continuumio/miniconda3
     COPY requirements.txt /
+
+    # Maybe necessary to add python -m on the beginning
     RUN pip install -r /requirements.txt
     ADD my_script.py /
+
+    # Sometimes -m
     CMD [ "python", "./my_script.py" ]
 
     # If you wanna use numpy or pandas, add before pip install
 
-    RUN apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev openblas-dev
+    # RUN apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev openblas-dev
+
+    RUN apk add --no-cache --update \
+    python3 python3-dev gcc \
+    gfortran musl-dev g++ \
+    libffi-dev openssl-dev \
+    libxml2 libxml2-dev \
+    libxslt libxslt-dev \
+    libjpeg-turbo-dev zlib-dev
+
+    # Other possible commands
+    # EXPOSE 3000, WORKDIR /app, ADD . /app
 
     # Build with
 
@@ -3978,6 +4093,7 @@ Put on github, add licence, create release. In computer create setup.py. Delete 
         assert secti(1, 2) == 3
 
     pip install pytest
+
     pip install pytest-benchmark
     def test_my_function(benchmark):
         result = benchmark(test)
@@ -3987,6 +4103,11 @@ Put on github, add licence, create release. In computer create setup.py. Delete 
 
     python -m pytest -v test_secteni.py
 
+    # Run tests in a module
+    pytest test_mod.py
+
+    # Run tests in a directory
+    pytest testing/
 
     # Paraterize tests
 
