@@ -1,5 +1,4 @@
-
-# Awesome-python-md-documentation
+﻿# Awesome-python-md-documentation
 
 This is python user documentation created in markdown so it can be visualized in IDE. How it can look is on this printscreen.
 
@@ -7,178 +6,169 @@ This is python user documentation created in markdown so it can be visualized in
 
 Feel free to colab...
 
-It's also in jupyter notebook ipynb version. Markdown is good for finding correct syntax and for efficiency, notebook is good, when you want to learn something a play with code. It's derived from original md with notedown, so modify markdown. To convert type in cmd opened in folder (or in some other shell):
+It's also in jupyter notebook ipynb version. Markdown is good for finding correct syntax, notebook is good, when you want to learn something and play with code. It's derived from original `README.md` so do not edit jupyter itself.
 
-To recreate jupyter notebook just open create_jupyter.cmd (in windows)
+Note 1: Some cells are commented, because can slow notebook, make errors or save files.
 
-Or if you don't have windows, type this to terminal !!:
+Note 2: Some code is in python language, but many lines are for terminal (like cwd for example). If this is the case, you can run it also in terminal, just add `! ` before every command.
 
-    # ! pip install notedown
-    # ! notedown readme.md > awesome_jupyter.ipynb
+Note 3: Jupyter need some libraries for particular tasks. Install it when reach the error, or if you don't want to install them manually, use chapter 1 Requirements - bulk libraries install, and install all of them from [My requirements](https://github.com/Malachov/mypythontools/tree/master/content/requirements)
 
-Note 1: Some cells are commented, because can slow notebook, make errors or save files. If there is an !!! exclamation mark !!! after comment, it means, that it's code for your shell (e.g. cmd). If you remove comment, run cell from notebook, code in shell will be executed. Longer comments are assigned to variable so it's not printed to console. Just remove variable, uncomment and enjoy...
-
-Note 2: Jupyter need some libraries for particular tasks. Install it when reach the error, or if you don't want to install them manually, use chapter 1 Requirements - bulk libraries install, and install all of them from [My requirements](https://github.com/Malachov/My-python-requirements)
-
-Note 3: Content is not working in jupyter, so delete it. Use nbextensions and extension table of content. If you have no nbextensions, than use:
+Note 4: Table of Content is not working in jupyter, so delete it. Use nbextensions and extension table of content. If you have no nbextensions, than use:
 
     # !  pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install
 
     # I recommend Table Of contents, Variable inspector, ExecuteTime, Code Prettify and Autopep8. Just restart jupyter and choose from tab nbextensions.
 
-# Content
+# Table of Content
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
 - [Awesome-python-md-documentation](#awesome-python-md-documentation)
-- [Content](#content)
+- [Table of Content](#table-of-content)
 - [General](#general)
-  - [Install library](#install-library)
-  - [Show installed libraries](#show-installed-libraries)
-  - [Virtual env](#virtual-env)
-  - [Requirements - bulk libraries install](#requirements-bulk-libraries-install)
-  - [Python on linux](#python-on-linux)
-- [Comments](#comments)
-  - [Documentation - docstrings](#documentation-docstrings)
-    - [reStructured text](#restructured-text)
-    - [docBlockR](#docblockr)
+- [Cookiecutter - Project scaffolding](#cookiecutter---project-scaffolding)
+- [Libraries](#libraries)
+  - [Virtual environment (venv)](#virtual-environment-venv)
+  - [Requirements](#requirements)
+- [Building app - Pyinstaller](#building-app---pyinstaller)
+- [Style guide (linting, formatting)](#style-guide-linting-formatting)
   - [Multi line code](#multi-line-code)
-    - [Show where python is installed](#show-where-python-is-installed)
-- [Logical conditions](#logical-conditions)
-  - [Not](#not)
-  - [Greater than, lower than](#greater-than-lower-than)
-  - [And, or](#and-or)
+- [Comments](#comments)
+- [Documentation - docstrings](#documentation---docstrings)
+- [Logical conditions (and, or, not...)](#logical-conditions-and-or-not)
   - [None](#none)
 - [Variables](#variables)
-  - [Declaration of more variables at once](#declaration-of-more-variables-at-once)
-    - [Swap variables values](#swap-variables-values)
-    - [Bulk create variables](#bulk-create-variables)
-    - [Check if variable exist](#check-if-variable-exist)
-  - [Import variables from other modules](#import-variables-from-other-modules)
-    - [Find name of variable, list or dictionary](#find-name-of-variable-list-or-dictionary)
-- [DATA TYPES](#data-types)
-    - [Type hinting](#type-hinting)
-    - [Type of variable as condition](#type-of-variable-as-condition)
-    - [If exist](#if-exist)
+- [Data types](#data-types)
   - [String](#string)
-    - [Format](#format)
-    - [Newest and fastest format- f'strings'](#newest-and-fastest-format-fstrings)
-    - [String to code](#string-to-code)
-    - [Join - concatenate](#join-concatenate)
   - [List](#list)
-  - [Deque](#deque)
   - [Tuple](#tuple)
   - [Dictionary](#dictionary)
+  - [Deque](#deque)
   - [Set](#set)
   - [Dataframe](#dataframe)
   - [Numpy Array](#numpy-array)
   - [HDF5](#hdf5)
-- [Iterator](#iterator)
-- [LOOPZ](#loopz)
-  - [IF](#if)
-    - [If variable exist](#if-variable-exist)
-    - [Ternary operator - If in argument](#ternary-operator-if-in-argument)
-  - [FOR](#for)
-    - [Return indexes and elements](#return-indexes-and-elements)
-  - [Generate list of elements from u1 to u5](#generate-list-of-elements-from-u1-to-u5)
-  - [Generate values with strings](#generate-values-with-strings)
-    - [For in list comprehension](#for-in-list-comprehension)
-    - [Generate list with for cycle and if](#generate-list-with-for-cycle-and-if)
-    - [Generate list with more parameters](#generate-list-with-more-parameters)
-    - [Nested lists](#nested-lists)
+  - [Decimal](#decimal)
+- [Type hinting](#type-hinting)
+- [Iterators](#iterators)
+- [Conditions (if, else...)](#conditions-if-else)
+- [Loops](#loops)
+  - [For](#for)
   - [WHILE](#while)
 - [Functions](#functions)
-    - [Jump out of function - return](#jump-out-of-function-return)
-    - [Default parameter](#default-parameter)
-    - [Unknown number of parameters - *args, **kwargs](#unknown-number-of-parameters-args-kwargs)
-    - [Global variables](#global-variables)
-- [Functions are objects](#functions-are-objects)
-    - [Function in list generator](#function-in-list-generator)
-  - [Functions map(), filter(), reduce()](#functions-map-filter-reduce)
-    - [Reduce - Input sequention into function](#reduce-input-sequention-into-function)
+    - [map(), filter(), reduce()\*\*](#map-filter-reduce)
 - [Generators](#generators)
 - [Decorators](#decorators)
 - [Modules](#modules)
 - [Classes](#classes)
-    - [Create object](#create-object)
-    - [Call class method](#call-class-method)
-    - [Change atribute of class](#change-atribute-of-class)
-    - [Call static method](#call-static-method)
-    - [Magic methods](#magic-methods)
-  - [__Repr__](#__repr__)
-- [FILE I/O](#file-io)
-    - [Import fuction from other file](#import-fuction-from-other-file)
-    - [Find script's adress](#find-scripts-adress)
-    - [Import variables from file in the same folder](#import-variables-from-file-in-the-same-folder)
-    - [If file or dir exists](#if-file-or-dir-exists)
-    - [Create module from folder](#create-module-from-folder)
-    - [Show all files in folder](#show-all-files-in-folder)
-    - [Filter for one type data](#filter-for-one-type-data)
-    - [Load all files with certain suffix](#load-all-files-with-certain-suffix)
-  - [Work with files](#work-with-files)
-  - [Manipulate with files](#manipulate-with-files)
-  - [Pickling](#pickling)
-- [Paths](#paths)
-  - [Pathlib - new and correct way](#pathlib-new-and-correct-way)
-- [Try -- Except](#try-except)
-  - [Try for all errors and print it](#try-for-all-errors-and-print-it)
-  - [Raise exception](#raise-exception)
-  - [Assert - Require something or error](#assert-require-something-or-error)
-- [Warnings](#warnings)
-- [Regular expressions](#regular-expressions)
+  - [Magic methods (dunder methods)](#magic-methods-dunder-methods)
+- [Bitwise operations](#bitwise-operations)
+- [File I/O](#file-io)
+  - [Open file](#open-file)
+  - [Manipulate with files (move, copy)](#manipulate-with-files-move-copy)
+- [Try -- Except](#try----except)
 - [Built in functions](#built-in-functions)
-    - [Print](#print)
-    - [Range](#range)
-    - [Reverse range](#reverse-range)
-    - [\__name__ - If file is runned from inside or is imported](#__name__-if-file-is-runned-from-inside-or-is-imported)
-- [Date and time](#date-and-time)
-- [Plots, graphs](#plots-graphs)
-  - [Plotly](#plotly)
-  - [Matplotlib](#matplotlib)
-  - [Table](#table)
-  - [Symbolic functions](#symbolic-functions)
-- [Libraries](#libraries)
-  - [If pip cannot be installed by SSL errorr](#if-pip-cannot-be-installed-by-ssl-errorr)
-- [Jupyter](#jupyter)
-- [Docker](#docker)
-- [Web](#web)
-  - [Requests - API - GET, POST](#requests-api-get-post)
-  - [Beautiful soup - web scrapping](#beautiful-soup-web-scrapping)
-- [Images, pictures](#images-pictures)
-- [Mathematics, statistics, linear algebra](#mathematics-statistics-linear-algebra)
-- [Signal processing and controll](#signal-processing-and-controll)
-- [Miscellaneous](#miscellaneous)
-  - [Measure time](#measure-time)
-  - [Show bytcode](#show-bytcode)
+- [Built in variables](#built-in-variables)
+- [Built in modules](#built-in-modules)
+  - [Sys](#sys)
+  - [io](#io)
+  - [os](#os)
+  - [Pathlib - Work with paths](#pathlib---work-with-paths)
+  - [Warnings](#warnings)
+  - [re - Regular expressions](#re---regular-expressions)
+  - [Subprocess - Run shell comands](#subprocess---run-shell-comands)
+  - [Pickle](#pickle)
+  - [Time and datetime](#time-and-datetime)
+- [Imported libraries](#imported-libraries)
+  - [Tests - pytest](#tests---pytest)
+  - [Command Line Arguments - argparse](#command-line-arguments---argparse)
+  - [Plots, graphs](#plots-graphs)
+    - [Plotly](#plotly)
+    - [Matplotlib](#matplotlib)
+  - [Tables](#tables)
+  - [Web](#web)
+    - [Requests - API - GET, POST](#requests---api---get-post)
+    - [Beautiful soup - web scrapping](#beautiful-soup---web-scrapping)
+  - [Images, pictures](#images-pictures)
+  - [Mathematics, statistics, linear algebra](#mathematics-statistics-linear-algebra)
+  - [Signal processing and controll](#signal-processing-and-controll)
+  - [Database](#database)
+    - [pyodbc, sqlalchemy](#pyodbc-sqlalchemy)
+  - [GUI](#gui)
+  - [Misc](#misc)
+    - [Jupyter](#jupyter)
 - [Performance](#performance)
+  - [Profiling](#profiling)
+    - [Line profiling](#line-profiling)
+  - [Garbage collector](#garbage-collector)
+  - [Threading](#threading)
+  - [Max execution time function](#max-execution-time-function)
   - [Numba](#numba)
   - [Dask](#dask)
-    - [Dask formats](#dask-formats)
-  - [Force to empty memory](#force-to-empty-memory)
-- [Threading](#threading)
-  - [Max execution time python](#max-execution-time-python)
-  - [Profiling](#profiling)
-- [Whole sections](#whole-sections)
-  - [Encoding JSON with Python](#encoding-json-with-python)
-- [Pypi export / create own library](#pypi-export-create-own-library)
-- [Github](#github)
-- [Create documentation - Sphinx](#create-documentation-sphinx)
-- [Numpy style documentation for sphinx autodocs](#numpy-style-documentation-for-sphinx-autodocs)
-- [Testing](#testing)
-- [Travis CI - Automatic testing and deploying](#travis-ci-automatic-testing-and-deploying)
-- [Linux - bash essentials](#linux-bash-essentials)
+- [Miscellaneous](#miscellaneous)
+  - [Push own library to PyPi](#push-own-library-to-pypi)
+  - [CI/CD](#cicd)
+  - [Create documentation - Sphinx](#create-documentation---sphinx)
+  - [Snippets - examples](#snippets---examples)
+    - [Measure time](#measure-time)
+    - [Show bytecode](#show-bytecode)
+    - [Encoding JSON with Python](#encoding-json-with-python)
 
 <!-- /code_chunk_output -->
 
-
 # General
 
-## Install library
+**Show where python is installed**
 
+    # On windows
+    where python
+
+    # On linux
+    which python
+
+**Python on linux**
+
+**Use python instead of python3**
+
+Add to source ~/.bashrc
+
+```console
+alias python=python3
+alias pip=pip3
 ```
-# pip install library_name
+
+**Open terminal in current folder**
+
+```console
+sudo apt-get install nautilus-open-terminal
+```
+
+**Set default python on linux**
+
+```console
+sudo apt-get install update-alternatives
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+sudo update-alternatives --config python
+```
+
+# Cookiecutter - Project scaffolding
+
+You can find typical python project structure here
+
+[Starter project](https://github.com/Malachov/mypythontools/tree/master/content/project-starter)
+
+It contains testing files, files for sphinx auto documentation, licence and more.
+
+# Libraries
+
+**Install library**
+
+```console
+pip install library_name
 
 # For anaconda
 conda install library_name
@@ -186,49 +176,92 @@ conda install library_name
 # If conda not work
 conda install -c anaconda library_name
 ```
-## Show installed libraries
 
-    # !  pip list
+**Show installed libraries**
 
-    # Show outdated libraries
+```console
+pip list
+```
 
-    # !  pip list --outdated
+**Show outdated libraries**
 
-## Virtual env
+```console
+pip list --outdated
+```
 
-    # !  pip install virtualenv
-    # !  virtualenv daniel  # Vytvoří novou virtuálku
-    # !  C:\VSCODE\Diplomka\pokus\Scripts\activate.bat  # Activate virtual env
+**If pip cannot be installed by SSL errorr**
 
-## Requirements - bulk libraries install
+    pip install ipykernel --upgrade pip --trusted-host pypi.org
 
-    # !  pip install -r /path/to/requirements.txt
+## Virtual environment (venv)
 
-    # Create requirements
+```console
 
-    # !  pipreqs --encoding=utf8 C:\VSCODE\Diplomka
+pip install virtualenv
 
-    # Deprecated
+# Create new virtual environment
+virtualenv venv
 
-    # !  (pip freeze > requirements.txt)
+# Activate virtual env
+vevn\Scripts\activate.bat
+```
 
-## Pyinstaller - Serve app with no dependencies
-    
-    pyinstaller yourprogram.py
+## Requirements
 
-## Python on linux
+File that describe all used libraries for some project. You can install all the libraries at once.
+
+```console
+pip install -r /path/to/requirements.txt
+
+# Create requirements
+pipreqs --encoding=utf8 C:\VSCODE\Diplomka
+
+# Deprecated
+(pip freeze > requirements.txt)
+```
+
+You can find much more about libraries in `Modules` section.
+
+# Building app - Pyinstaller
+
+You can create binaries with pyinstaller, so other user can run an app even with no python installed.
+
+You don't even need to install pyinstaller and you can use mypythontools build module (you can use VS Code Task to build an app with single click)
+
+[Documentation](https://mypythontools.readthedocs.io/mypythontools.build.html) for how to do it.
+
+Build bootloader locally to avoid false positive antivirus alert (in tutorial).
+
+# Style guide (linting, formatting)
+
+**pylint** - show you where problems are
+
+**Black** - Strict auto formatting. Setup longer default line length for better user experience
+
+Example for how to use it in VS Code - Add to settings.json:
 
 ```
-    ## Use python instead of python3
-
-    # Add to source ~/.bashrc
-    alias python=python3
-    alias pip=pip3
-
-    # Open terminal in current folder
-
-    sudo apt-get install nautilus-open-terminal
+"editor.formatOnSave": true,
+"python.formatting.blackArgs": ["--line-length", "110"],
 ```
+
+If you are not sure how to format code, you can try [pep 8](https://www.python.org/dev/peps/pep-0008/) or [google style guide](https://google.github.io/styleguide/pyguide.html)
+
+## Multi line code
+
+    poi = { "1": 3,
+            "2": 4,
+            "6": 8 }
+
+    a = (   1 + 2
+            + 3 + 4 )
+
+    f = range(  1 + 2
+            + 3 - 4)  # Function example
+
+    # or use \
+    a = 1 + 2 \
+        + 3
 
 # Comments
 
@@ -239,11 +272,19 @@ conda install -c anaconda library_name
     a jsou často využívány jako dokumentační komentáře k metodám
     """
 
-## Documentation - docstrings
+# Documentation - docstrings
 
 Posible modes - DocBlockR, ReST, Numpy, Google
 
-### reStructured text
+**Google**
+[Sphinx example](https://www.sphinx-doc.org/en/master/usage/extensions/example_google.html)
+
+[Google example]
+
+**Numpy**
+[Sphinx example](https://www.sphinx-doc.org/en/master/usage/extensions/example_numpy.html)
+
+**reStructured text**
 
 ```
 restr = ''' # remove the variable - it's just for jupyter
@@ -288,7 +329,7 @@ print("A literal block directive explicitly marked as python code")
 '''
 ```
 
-### docBlockR
+**docBlockR**
 
 ```python
 """Function to find optimal parameters of function
@@ -308,37 +349,19 @@ Arguments:
 """
 ```
 
-## Multi line code
+# Logical conditions (and, or, not...)
 
-    poi = { "1": 3,
-            "2": 4,
-            "6": 8 }
-
-    a = (   1 + 2
-            + 3 + 4 )
-
-    f = range(  1 + 2
-            + 3 - 4)  # Function example
-
-    # or use \
-    a = 1 + 2 \
-        + 3
-
-### Show where python is installed
-
-    # ! where python
-
-# Logical conditions
-## Not
+**Not**
 
     not True # => False
     'a' is not 1
     'a' != 1
 
-## Greater than, lower than
-\>=
+**Greater than, lower than**
 
-## And, or
+    >=
+
+**And, or**
 
     0 and 2 # => 0
     -5 or 0 # => -5
@@ -379,20 +402,20 @@ Arguments:
     3 / 2  # = 1.5
     3 // 2  # = 1
 
-## Declaration of more variables at once
+**Declaration of more variables at once**
 
     a = b = c = 1  # If i change one, it doesn't affect the others
 
     a,b,c = 1,2,"john"
 
-### Swap variables values
+**Swap variables values**
 
     e = 2; d = 4
     e, d = d, e # d is now 5, e is now 4
 
-### Bulk create variables
+**Bulk create variables**
 
-    name = ['mike', 'john', 'steve']  
+    name = ['mike', 'john', 'steve']
     age = [20, 32, 19]
 
     for x,y in zip(name, age):
@@ -400,12 +423,13 @@ Arguments:
 
     uname = ['u{}'.format(n) for n in range(7)] # [u1, u2, u3...]
 
-### Check if variable exist
+**Check if variable exist**
 
     if 'myVar' in locals():
         pass
 
-## Import variables from other modules
+**Import variables from other modules**
+
 Creat config.py
 
 There for example
@@ -416,29 +440,23 @@ In main then use
 
 config.x = 2 ....
 
-### Find name of variable, list or dictionary
+**Find name of variable, list or dictionary**
 
     var = 3
     my_var_name = [k for k,v in globals().items() if v == var][0]
 
-# DATA TYPES
+# Data types
 
     a = type(var)  # Return type
 
-### Type hinting
-
-    def sentence_has_animal(sentence: str) -> bool:
-        return "animal" in sentence
-    sentence_has_animal("Donald had a farm without animals")
-
-### Type of variable as condition
+**Type of variable as condition**
 
     if isinstance(var, str):  # Check if it's string (or int etc...)
         pass
 
     # More types at once
 
-    import numpy as np  
+    import numpy as np
     y = np.array([1])
     isinstance(y, (np.ndarray, np.generic))  # pd.DataFrame For dataframe
 
@@ -446,11 +464,6 @@ config.x = 2 ....
         pass
 
     # Also work if object is includes in class
-
-### If exist
-
-    if callable(a):
-        pass
 
 ## String
 
@@ -476,7 +489,8 @@ a = "Hello " "world!" # => "Hello world!"
 a = "This is list"[0] # => 'T'
 ```
 
-### Format
+**Format - depracated**
+
 ```python
 # Old
 
@@ -495,7 +509,7 @@ a = "{0} {1} stříkaček stříkalo přes {0} {1} střech".format("tři sta tř
 a = "{jmeno} si dal {jidlo}".format(jmeno="Franta", jidlo="guláš") # => "Franta si dal guláš"
 ```
 
-### Newest and fastest format- f'strings'
+**f-strings - Correct way to format**
 
 ```python
 name = 'Peter'
@@ -506,12 +520,16 @@ f"Hello, {name}. You are {2 * 17}. Also functions {name.lower()}."
 a = 15
 print(fr'Escape is here:\n but still {a}')  # Escape is here:\n but still 15
 
-If you use """ no escape symbols will be used
-Also can use dictionaries, but "" is necesarry
-Dont use # in f strings
+# Keep quotes in f-strings
+print(f'He said his name is {name!r}.')  # "He said his name is 'Fred'."
+
+# If you use """ no escape symbols will be used"""
+# Also can use dictionaries, but "" is necesarry
+# Dont use # in f strings
+
 ```
 
-### String to code
+**Eval - String to code**
 
     mycode = 'x = 1'
     exec(mycode)
@@ -519,7 +537,7 @@ Dont use # in f strings
     # or
     x = eval("2+2") # number ze stringu
 
-### Join - concatenate
+**Join - concatenate**
 
     words = ["this", 'is', 'a', 'list', 'of', "strings"]
     ' '.join(words)  #returns "This is a list of strings"
@@ -539,6 +557,17 @@ del lst[-2:]  # Range delete - from the last one
 b = [1,2]
 c = lst + b  # Serializes
 lst.extend(b)  # Serializes
+```
+
+**List comprehensions**
+
+Way to create a list
+
+    u_list = ['u{}'.format(n) for n in range(1, 6)]
+
+```
+# Print list
+print(*a, sep = ", ")
 
 # If lst a = lst b and we change one of them, the other also change therefor
 
@@ -681,29 +710,9 @@ import collections
 print( collections.Counter(['a', 'b', 'c', 'a', 'b', 'b']))
 ```
 
-## Deque
-
-```python
-You can iterate from both sides
-
-import collections
-de = collections.deque([1, 2, 3])
-de.append(0)  # Add x to the right side of the deque.
-de.appendleft(6)  # Add x to the left side of the deque.
-de.count(2)  # Count the number of deque elements equal to x.
-lst = [1, 2, 3]
-de.extend(lst)  # Extend the right side of the deque by appending elem   ents from the iterable argument.
-de.pop()  # Remove and return an element from the right side of the deque. If no elements are present, raises an IndexError.
-de.popleft()  # Remove and return an element from the left side of the deque. If no elements are present, raises an IndexError.
-de.remove(2)  # Remove the first occurrence of value. If not found, raises a ValueError.
-de.reverse()  # Reverse the elements of the deque in-place and then return None.
-de.rotate(1)  # Rotate the deque n steps to the right. If n is negative, rotate to the left.
-de.clear()  # Remove all elements from the deque leaving it with length 0.
-```
-
 ## Tuple
 
-Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
+Tuple is like list but imutable !!! [] i can change - () i cannot change !!!
 
     tuple = (1, 2, 3)
     tuple[0]  # => 1
@@ -713,20 +722,32 @@ Tuple is like list but imutable  !!! [] i can change - () i cannot change !!!
 
 ## Dictionary
 
-```python
-empty_dic = {}
-dic = {"jedna": 1, "dva": 2, "tři": 3}
-dic_variable = {key:value for (key,value) in dic.items()}
+    empty_dic = {}
+    dic = {"jedna": 1, "dva": 2, "tři": 3}
 
+**Dict comprehension**
+
+    dic_variable = {key:value for (key,value) in dic.items()}
+
+```python
 ### Add value
 
 dic['čtyři'] = 4  # If key is already there it's updated
 
+### Add more values at once
+
+dic.update({"čtyři": 4, "pět": 5})
+
+
 ### Create dictionary from two lists
 
-name = ['mike', 'john', 'steve']  
+name = ['mike', 'john', 'steve']
 age = [20, 32, 19]
 dic=dict(zip(name, age))
+
+### Assign multiple keys to one value
+
+my_dict = dict.fromkeys(['a', 'b', 'c'], 10)
 
 ### Miscelanious
 
@@ -822,6 +843,39 @@ for key, value in modelsparameters.items():
 
 {x: x**2 for x in range(1, 5)} # => {1: 1, 2: 4, 3: 9, 4: 16}
 {pismeno for pismeno in "abeceda"} # => {"d", "a", "c", "e", "b"}
+```
+
+**Two dictionaries intersection**
+
+    d1 = {'a': 1, 'b': 2}
+    d2 = {'b': 2, 'c': 3}
+
+    d1.viewkeys() & d2.viewkeys()  # {'b'}
+
+    # Or with set
+    a = { 'x' : 1, 'y' : 2, 'z' : 3 }
+    b = { 'u' : 1, 'v' : 2, 'w' : 3, 'x'  : 1, 'y': 2 }
+    set( a.keys() ) & set( b.keys() )  # Output set(['y', 'x'])
+    set( a.items() ) & set( b.items())  # Output set([('y', 2), ('x', 1)])
+
+## Deque
+
+```python
+You can iterate from both sides
+
+import collections
+de = collections.deque([1, 2, 3])
+de.append(0)  # Add x to the right side of the deque.
+de.appendleft(6)  # Add x to the left side of the deque.
+de.count(2)  # Count the number of deque elements equal to x.
+lst = [1, 2, 3]
+de.extend(lst)  # Extend the right side of the deque by appending elem   ents from the iterable argument.
+de.pop()  # Remove and return an element from the right side of the deque. If no elements are present, raises an IndexError.
+de.popleft()  # Remove and return an element from the left side of the deque. If no elements are present, raises an IndexError.
+de.remove(2)  # Remove the first occurrence of value. If not found, raises a ValueError.
+de.reverse()  # Reverse the elements of the deque in-place and then return None.
+de.rotate(1)  # Rotate the deque n steps to the right. If n is negative, rotate to the left.
+de.clear()  # Remove all elements from the deque leaving it with length 0.
 ```
 
 ## Set
@@ -983,6 +1037,9 @@ df['EventStart_time'] = df['EventStart'].dt.time
 df.set_index('EventStart', drop=True, inplace=True)
 df.index = pd.to_datetime(df.index)
 
+### Sort index
+data_for_predictions_full.sort_index(inplace=True)
+
 ### Resample datetime dataframe
 
 df_res = df.resample('M').sum() # Méně řádků na výstupu
@@ -993,6 +1050,14 @@ df_res = df.resample('M').sum() # Méně řádků na výstupu
 
 df2 = df.copy()
 
+### Add column on index 0
+df.insert(0, 'New column', df.loc[:, 1])  # (loc, column, value)
+
+### Pop, extract column to variable and drop it from original
+df.pop(df.columns[0])
+
+### Move column on index 1
+df.insert(0,'predicted_column_name', df.pop(predicted_column_name.columns[1]))
 
 ### Join 2 dataframes
 
@@ -1061,7 +1126,7 @@ result = pd.merge(df, df2, on='letter', how='left')
 gpd = df4.groupby('letter').agg({'number': np.mean, 'number2': np.size})
 
     #        number  number2
-    #  letter		
+    #  letter
     #    a	   1.0	   1.0
     #    b	   2.0	   1.0
     #    c	   3.0	   2.0   # c only once, not twice
@@ -1095,6 +1160,9 @@ a = np.moveaxis(a, 0, -1).shape
 ### Remove outliers
 
 df_removed_outliers = df[ (df['number'] < 2 * std) ]
+
+### Remove not a number columns
+gpd = gpd.select_dtypes(['number'])
 
 ### Transpose - Rows into columns
 
@@ -1149,6 +1217,29 @@ b = a[:, 1:2]  #   [[2]
 
 b = a[1, :]
 
+# Fancy indexing - Selecting with boolean mask
+
+a = np.array([1, 2, 3, 4, 5, 6, 7])
+mask = (a % 3 == 0)  # [False False True False False True False]
+a = a[mask]  # [3, 6]
+
+# Selecting subset of matrix with np.take
+
+a = np.array([[4, 3, 5], [5, 7, 4], [6, 5,  8], [6, 5 , 8]])
+b = np.take(a, [1, 2], axis=0)  # Must use axis, else flattened
+            #  [[5 7 4]
+            #   [6 5 8]]
+
+b = np.take(a, [1, 2], axis=1)
+            #  [[3 5]
+            #   [7 4]
+            #   [5 8]
+            #   [5 8]]
+
+# Swap two rows
+
+data[[0, 2], :] = data[[2, 0], :]
+
 ### Join matrixes
 
 np.vstack([a,a])
@@ -1166,11 +1257,15 @@ np.hstack([a,a])
     #     [3, 4, 5, 3, 4, 5],
     #     [4, 5, 6, 4, 5, 6]]
 
+# Swap two columns
+
+a[:,[0, 1]] = a[:,[1, 0]]
+
 # Create matrix from vectors
 
 a = np.array([1, 2, 3])
 b = np.array([2, 3, 4])
-c = np.stack((a, b))  # [[1, 2, 3],
+c = np.stack((a, b))    # [[1, 2, 3],
                         #  [2, 3, 4]]
 
 # Concatenate
@@ -1205,9 +1300,17 @@ min = np.amin(c, axis=1)
 
 mean = np.mean(x)
 
+### Find maximum or minimum absolute values
+aa = max(a.min(), a.max(), key=abs)  # ! Can be the negative one and keep the sign
+
 ### Standard deviation
 
 std = np.std(x)
+
+### Limit array values
+​
+aa = np.array([1., 2., 3., -4, 5, 6])
+np.minimum(aa, 3, out=aa)  # array([ 1.,  2.,  3., -4.,  3.,  3.])
 
 ### Find index of smallest value
 
@@ -1225,6 +1328,9 @@ ones = np.ones((3,3))
     #    [1., 1., 1.],
     #    [1., 1., 1.]]
 
+### Save slice scope to variable
+the_slice = np.index_exp[1:]  # the_slice = numpy.index_exp[1:3, 1:3]
+
 ### Replace all values with logical condition
 
 a[a > .5] = .5
@@ -1233,13 +1339,48 @@ a[a > .5] = .5
 
 a = np.delete(a, 1, axis=0) # There need to be variable before!  axis 0 are rows, 1 are columns
 
+### Numpy negative - invert logic
+# Use ~
+
+### If nan in array
+
+reality_results_matrix[iterated_model_index, data_length_index]
+
 ### Delete Nan values
 
 a = a[~np.isnan(a)]
 
 ### Delete all rows where are Nan
 
-ar = ar[~np.isnan(ar).any(axis=1)]
+a = a[~np.isnan(a).any(axis=1)]
+
+### Replace nan with number
+
+a = np.nan_to_num(a, 0)
+
+### Delete all members that are bigger than condition
+aa = np.array([1, 2, 3, 4, 1, 0, 0, 0.2])
+b = np.where(aa>=1,aa,1)
+
+### Rolling slides
+window = 2
+aaa = np.array([1, 2, 3, 4])
+bbb = np.array([[1, 2, 3, 4], [3, 4, 5, 6]])
+shape = aaa.shape[:-1] + (aaa.shape[-1] - window + 1, window)
+shape_b = bbb.shape[:-1] + (bbb.shape[-1] - window + 1, window)
+strides = aaa.strides + (aaa.strides[-1],)
+strides_b = bbb.strides + (bbb.strides[-1],)
+ppp = np.lib.stride_tricks.as_strided(aaa, shape=shape, strides=strides)  #[[[1 2], [2 3], [3 4]]
+qqq = np.lib.stride_tricks.as_strided(bbb, shape=shape_b, strides=strides_b)
+
+
+            # [[[1 2]
+            #   [2 3]
+            #   [3 4]]
+            #
+            #  [[3 4]
+            #   [4 5]
+            #   [5 6]]]
 
 ### Sums
 
@@ -1299,6 +1440,15 @@ count = z.size
 ### Cumulative sum
 
 y = np.cumsum(x)
+
+### Set min and max
+a = np.array([10, 7, 4, 3, 2, 2, 5, 9, 0, 4, 6, 0])
+print (np.clip(a,2,6))  # [6 6 4 3 2 2 5 6 2 4 6 2]
+
+### Find members that are not in other array
+a = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+b = np.array([3,4,7,6,7,8,11,12,14])
+c = np.setdiff1d(a,b)  # array([1, 2, 5, 9])
 
 ### Remove non unique values
 
@@ -1491,6 +1641,7 @@ with h5py.File('several_datasets.hdf5', 'w') as f:
 ```
 
 ## Decimal
+
 ```python
 
 In normal float 1 + 1 is not 2 (but 2.0000000000001...)
@@ -1498,8 +1649,8 @@ In decimal it's equal
 
 import decimal
 # Decimal
-a = decimal.Decimal('0.1')	
-b = decimal.Decimal('0.2')	
+a = decimal.Decimal('0.1')
+b = decimal.Decimal('0.2')
 c = a + b # returns a Decimal representing exactly 0.3
 
 # Rounding
@@ -1507,7 +1658,13 @@ c = a + b # returns a Decimal representing exactly 0.3
 "%.2f" % 1.2 # returns "1.20"
 ```
 
-# Iterator
+# Type hinting
+
+    def sentence_has_animal(sentence: str) -> bool:
+        return "animal" in sentence
+    sentence_has_animal("Donald had a farm without animals")
+
+# Iterators
 
     iterable = [1, 2, 3]
     iterator = iter(iterable)
@@ -1516,18 +1673,7 @@ Next value
 
     next(iterator) # => "one"
 
-# LOOPZ
-## IF
-### If variable exist
-
-    try:
-        __IPYTHON__
-        my_exec = "%matplotlib notebook"
-        exec(my_exec)
-    except NameError:
-        print('No Jupyter')
-
-    # Or
+# Conditions (if, else...)
 
     variable = [10, 20, 30]
     for i in variable:
@@ -1543,12 +1689,22 @@ Next value
             print("Variable is 10 or not a number")
             break # Jump out of the cycle
 
-### Ternary operator - If in argument
+**Ternary operator - If in argument**
 
     variable = 3
     state = "nice" if variable else "not nice"
 
-## FOR
+**Other shortened syntax**
+
+    a = 4
+    b = 3
+    x = 77
+    y = 66
+    result = (y, x)[a > b]  # y if [True], x if [False]
+
+# Loops
+
+## For
 
     for zvire in ["pes", "kočka", "myš"]:
         print("zvire")
@@ -1560,40 +1716,47 @@ Next value
     for  i  in  range(len(colors)):
         print(colors[i])
 
-### Return indexes and elements
+**Return indexes and elements**
 
     ints = [8, 23, 45, 12, 78]
     for idx, val in enumerate(ints):
         print(idx, val)
 
-## Generate list of elements from u1 to u5
+**Break out of nested loop**
 
-    uname = ['u{}'.format(n) for n in range(1, 6)]
+    for x in xrange(10):
+        for y in xrange(10):
+            print x*y
+            if x*y > 50:
+                break
+        else:
+            continue  # only executed if the inner loop did NOT break
+        break  # only executed if the inner loop DID break
 
-## Generate values with strings
+**Generate values with strings**
 
     for k in range(5):
         exec(f'cat_{k} = k*2')
 
-### For in list comprehension
+**For in list comprehension**
 
     [x*5 for x in range(5)] #[0, 5, 10, 15, 20]
 
-### Generate list with for cycle and if
+**Generate list with for cycle and if**
 
     [x for x in range(5) if x%2 == 0]  #[0, 2, 4]
     [a if a else  2  for a in  [0,1,0,3]]
 
-### Generate list with more parameters
+**Generate list with more parameters**
 
     list1 = [1, 2, 3]
     list2 = [3, 4, 5]
     [a + b for a, b in zip(list1, list2)]
 
-### Nested lists
+**Nested lists**
 
     a = [[1,2,3],[2,3,4],[5,6,7]]
-    print(a[1][1])   
+    print(a[1][1])
 
 ## WHILE
 
@@ -1602,22 +1765,33 @@ Next value
         print(x)
         x += 1
 
+    # You can use it also somewhere where you don't want to stop
+
+    while True:
+        listen_forever()
+
 # Functions
 
     def secist(x, y):  # Create new function with def
         return x + y  # Return values with return
+
     secist(5, 6)  # Call the function with parameters, return 11
     secist(y=6, x=5)  # Named arguments
+
     def return_arguments(*argumenty):  # Variable number of arguments
         return argumenty
+
     return_arguments(1, 2, 3)  # => (1, 2, 3)
+
     def return_named_arguments(**pojmenovane_argumenty):  # Varaiable number of named arguments
         return pojmenovane_argumenty
+
     return_named_arguments(kdo="se bojí", nesmi="do lesa")  # {"kdo": "se bojí", "nesmi": "do lesa"}
+
     def return_all(*args, **kwargs):  # You can use combination
         print(args, kwargs)  # Return all parameters
 
-### Jump out of function - return
+**Jump out of function - return**
 
     def print_var():
         a = 8
@@ -1625,12 +1799,12 @@ Next value
             return
         print_var(2)
 
-### Default parameter
+**Default parameter**
 
     def funkce(y, lags=50): #If we use lags in call, it will be overwritten
         return 1
 
-### Unknown number of parameters - *args, **kwargs
+**Unknown number of parameters - \*args, \*\*kwargs**
 
     def print_all(*args, **kwargs):
         print(args, kwargs)
@@ -1643,7 +1817,7 @@ Next value
     print_all(**dic)  # Is like print_all(a=3, b=4)
     print_all(*tuple, **dic)  # Is like print_all(1, 2, 3, 4, a=3, b=4)
 
-### Global variables
+**Global variables**
 
     x = 5
     def setx(cislo):  # Local variable override global
@@ -1657,7 +1831,7 @@ Next value
         x = cislo  # Set global x on 6, so x = 6 also outside the function !!!
     print(x)  # => 6
 
-# Functions are objects
+**Functions are objects**
 
     def adder(pricitane_cislo):
         def scitacka(x):
@@ -1666,12 +1840,25 @@ Next value
     add_10 = adder(10)
     add_10(3)  # => 13
 
-### Function in list generator
+**callable**
+
+Is object function or not
+
+    if callable(a):
+        pass
+
+**Function in list generator**
 
     [add_10(i) for i in [1, 2, 3]]  # => [11, 12, 13]
     [x for x in [3, 4, 5, 6, 7] if x > 5]  # => [6, 7]
 
-## Functions map(), filter(), reduce()
+**Parse function arguments**
+
+    import inspect
+    frame = inspect.currentframe()
+    args, _, _, values = inspect.getargvalues(frame)
+
+### map(), filter(), reduce()\*\*
 
 From the functional programming
 
@@ -1685,7 +1872,7 @@ Filter create list (First paratemer), where function is true (second parameter)
     less_than_zero = list(filter(lambda x: x < 0, number_list))
     print(less_than_zero)  # [-5, -4, -3, -2, -1]
 
-### Reduce - Input sequention into function
+Reduce - Input sequention into function
 
     from functools import reduce
     def do_sum(x1, x2): return x1 + x2
@@ -1719,10 +1906,26 @@ it can change it's behaviour.
 
     pozdrav("Dan")  # Return 3x: Bye Dan!
 
+**Use decorator with condition**
+
+    from memory_profiler import profile
+    use_decorator = False
+
+    def empty_decorator(fu):
+        return fu
+
+    if use_decorator == False :
+        profile = empty_decorator
+
+    @profile
+    def fu():
+        print('content')
+
 # Modules
 
-Module in python is file with .py on the end.
-You can creat your own and import it.
+Module in python is file with .py on the end. It is also imported python library (e.g. numpy...).
+
+You can create your own and import it.
 
     from math import sqrt
 
@@ -1730,21 +1933,39 @@ You can creat your own and import it.
 
     dir(sqrt)  #  Show objects in module
 
-    # Manual import
+    ### Manual import
     _temp = __import__('spam.ham', globals(), locals(), ['eggs', 'sausage'], 0)
     eggs = _temp.eggs
     saus = _temp.sausage
 
-    # Import module from path
+    ### Import module from path
 
     import importlib.util
     spec = importlib.util.spec_from_file_location("module.name", "/path/to/file.py")
     foo = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(foo)
 
+    ### Check if module installed without import
+
+    importlib.find_loader(module_name)
+
+    ### Reimport module
+    import importlib
+    importlib.reload(config)
+
+**Import all scripts in folder (e.g. in **init**.py)**
+
+    import os
+    from os.path import dirname, basename, isfile, join
+    import glob
+    modules = glob.glob(join(dirname(__file__), "*.py"))
+    __all__ = [ basename(f)[:-3] for f in modules if isfile(f) and not f.endswith('__init__.py')]
+
 # Classes
 
 ```python
+
+
 class Clovek(object):  # Class Human is child (it inherits from) class object
 
     druh = "H. sapiens"  # Class variable - it's shared with all objects
@@ -1762,6 +1983,10 @@ class Clovek(object):  # Class Human is child (it inherits from) class object
     @staticmethod  # Do not depend on object - like a normal function and is immutable
     def odkaslej_si():
         return "*ehm*"
+
+# If no inheritance, no parenthesses prefered, just class Clovek:
+# Class can inherit from more classes at once...
+# class Clovek(tvor, bytost):
 
 class DecoratorExample:
 
@@ -1797,39 +2022,49 @@ class Date(object):
 
 date2 = Date.from_string('11-09-2012')
 is_date = Date.is_date_valid('11-09-2012')
-```
 
 ### Create object
 
-    d = Clovek(jmeno="David")
-    a = Clovek("Adéla")
-    print(d.rekni("ahoj"))  # "David: ahoj"
-    print(a.rekni("nazdar"))  # "Adéla: nazdar"
+d = Clovek(jmeno="David")
+a = Clovek("Adéla")
+print(d.rekni("ahoj"))  # "David: ahoj"
+print(a.rekni("nazdar"))  # "Adéla: nazdar"
 
 ### Call class method
 
-    d.vrat_druh() # => "H. sapiens"
+d.vrat_druh() # => "H. sapiens"
 
 ### Change atribute of class
 
-    d.vrat_druh() # => "H. neanderthalensis"
-    a.vrat_druh() # => "H. neanderthalensis"
+d.vrat_druh() # => "H. neanderthalensis"
+a.vrat_druh() # => "H. neanderthalensis"
 
 ### Call static method
 
-    Clovek.odkaslej_si() # => "*ehm*"
+Clovek.odkaslej_si() # => "*ehm*"
+
+### Check if class has atribute (method or )
+if hasattr(Clovek, 'rekni'):
+    print('Has David')
+
+### Get all objects and values
+
+print(Clovek.__dict__)
 
 ### Get all instances name
+import gc
+for obj in gc.get_objects():
+    if isinstance(obj, Clovek):
+        print (obj.jmeno)
+```
 
-    for obj in gc.get_objects():
-        if isinstance(obj, Clovek):
-            print (obj.name)
+## Magic methods (dunder methods)
 
-### Magic methods
+You can overwrite some default functions to have specific feature for your class. For example if your object is vector, you can redefine function for adding to be able to use `vector1 + vector2`, which would otherwise failed.
 
-Example __call__ method (Allow input of object to function)
+Example **call** method (Allow input of object to function)
 
-The \__call__ method can be used to turn the instances of the class into callables. Functions are callable objects. A callable object is an object which can be used and behaves like a function but might not be a function. By using the \__call__ method it is possible to define classes in a way that the instances will be callable objects. The \__call__ method is called, if the instance is called "like a function", i.e. using brackets. The following example defines a class with which we can create abitrary polynomial functions:
+The \_\_call** method can be used to turn the instances of the class into callables. Functions are callable objects. A callable object is an object which can be used and behaves like a function but might not be a function. By using the \_\_call** method it is possible to define classes in a way that the instances will be callable objects. The \_\_call\_\_ method is called, if the instance is called "like a function", i.e. using brackets. The following example defines a class with which we can create abitrary polynomial functions:
 
     class Polynomial:
 
@@ -1939,18 +2174,19 @@ What happens when we create an object in python class ?
 
     # When statement "v3 = v1 + v2 " executes "__add__" is called and it returns a new Vector object.
 
-## __Repr__
+**Repr**
 
 class Pizza:
-    def __init__(self, ingredients):
-        self.ingredients = ingredients
+def **init**(self, ingredients):
+self.ingredients = ingredients
 
     def __repr__(self):
         return f'Pizza({self.ingredients!r})'
 
-If Pizza() return __repr__
+If Pizza() return **repr**
 
 # Bitwise operations
+
 Unsigned integers can hold bigger values, but cannot be negative!!!
 
 ```python
@@ -1983,8 +2219,8 @@ empty_bytes = bytes(4)
 
 ### And, or etc...
 
-a = 60            # 60 = 0011 1100 
-b = 13            # 13 = 0000 1101 
+a = 60            # 60 = 0011 1100
+b = 13            # 13 = 0000 1101
 c = 0
 
 ### Bit and
@@ -2010,22 +2246,23 @@ oct = "{0:o}".format(i) # octal: 377
 
 ```
 
-# FILE I/O
-### Import fuction from other file
+# File I/O
+
+**Import fuction from other file**
 
     from math import sqrt  # First name of file, than function
 
-### Find script's adress
+**Find script's adress**
 
     import os
     # os.path.dirname(__file__)  # Not working in jupyter !
 
-### Import variables from file in the same folder
+**Import variables from file in the same folder**
 
     # import file  # Then call file.value
     # from file import * # Now call just variable
 
-### If file or dir exists
+**If file or dir exists**
 
     from pathlib import Path
     my_file = Path("/path/to/file")
@@ -2036,21 +2273,25 @@ oct = "{0:o}".format(i) # octal: 377
     if my_file.exists():   # File or dir exists
         pass
 
-### Create module from folder
+**Create module from folder**
 
 Add file `__init.py__`
 Inside do all imports from .autoregLNU import autoregLNU
 Use relative imports with dots
 
-### Show all files in folder
+**Show all files in folder**
 
     # all_files = os.listdir("test/")
 
-### Filter for one type data
+**Filter for one type data**
 
     # txt_files = filter(lambda x: x[-4:]  ==  '.txt', all_files)
 
-### Load all files with certain suffix
+**Count files with certain suffix**
+
+    tifCounter = len(glob.glob1(myPath,"*.tif"))
+
+**Load all files with certain suffix**
 
     import glob
     imgs=glob.glob("*.png")  # Všechny obrázky ze složky
@@ -2063,15 +2304,16 @@ Use relative imports with dots
     for name in glob.glob('dir/*[0-9].*'):
         print (name)
 
-    ### Import txt ###
+**Add file names from folder to list**
+
+data_names_list = list(glob.glob((script_dir / '\*.dat').as_posix()))
+
+**Import txt**
 
     from numpy import loadtxt
     # x=loadtxt('realna_data_klapky.txt')
 
-## Work with files
-
-    '''
-    Don't wanna save anything to jupyter
+## Open file
 
     f = open("test.txt", "w+") # open file in current directory
 
@@ -2082,6 +2324,7 @@ Use relative imports with dots
     't'  Open in text mode. (default)
     'b'  Open in binary mode.
     '+'  Open a file for updating (reading and writing)
+
 
     f = open("C:/Python33/README.txt") # specifying full path
     f.close()
@@ -2095,13 +2338,17 @@ Use relative imports with dots
     !!!Use because this will autamatically close the file finally
 
     f = open("test.txt",'r',encoding =  'utf-8')
-    f.read(4) # read the first 4 data - 'This'
-    f.read(4) # read the next 4 data - ' is '
-    f.read() # read in the rest till end of file - 'my first file\nThis file\ncontains three lines\n'
-    f.read() # further reading returns empty sting
+    f.read(4)  # Read the first 4 data - 'This'
+    f.read(4)  # Read the next 4 data - ' is '
+    f.read()  # Read in the rest till end of file - 'my first file\nThis file\ncontains three lines\n'
+    f.read() # Further reading returns empty sting
+
+    # !!! After editing text, jump with cursor to the beginning before read
+    f.seek(0)
+    f.read()  # Return all
     '''
 
-## Manipulate with files
+## Manipulate with files (move, copy)
 
     '''
     ### Copy file ###
@@ -2138,87 +2385,187 @@ Use relative imports with dots
             print('FILE INSIDE ' + folderName + ': '+ filename)
     '''
 
-## Pickling
+# Try -- Except
 
-Save file in binary format
+    try:
+        print(znam)
+    except:
+        print('except')
+    else:
+        print('else')
+    finally:
+        print('final')
 
-    import pickle
-    d = {"a": 1, "b": 2}
-    # with open(r"someobject.pickle", "wb") as output_file: cPickle.dump(d, output_file)
+    try:
+        print(neznam)
+    except:
+        print('except')
+    else:
+        print('else')
+    finally:
+        print('final')
 
-Load files
+**Try for all errors and print it**
 
-    # with open(r"someobject.pickle", "rb") as input_file: e = cPickle.load(input_file)
+    try:
+        linux_interaction()
 
-Result is e = {"a": 1, "b": 2}**
+    except Exception as error:
+        print(error)
 
-# Paths
+**Raise exception**
 
-    # add syspath
+    # if somethingbad:
+    #   raise Exception('x should not exceed 5. The value of x was: {}')  # Better concrete error. E.g. ValueError...
+
+**Raise in except block**
+
+    try:
+        1/0
+    except Exception:
+        raise
+
+**Assert - Require something or error**
+
+    x = 5
+    assert (x > 4), 'What happened'
+
+**Print error details in except block**
+
+    import traceback
+
+    try:
+        1/0
+    except Exception as e:
+        print(traceback.format_exc())
+
+# Built in functions
+
+**Print**
+
+    a = 'hi'
+    print('as', a, 'fegg') # Use comma, you can join strings and variables
+
+**Range**
+
+    x=range(3+1) # x = 0, 1, 2, 3
+
+**Reversed**
+
+    for i in reversed(range(5)):
+        print(i) # 4, 3, 2, 1
+
+# Built in variables
+
+**\_\_name\_\_**
+
+If file is runned from inside or is imported, code inside condition will not be executed. If file itsel will be started, code will execute.
+
+    if __name__ == "__main__":
+        pass
+
+# Built in modules
+
+## Sys
+
+**Get size on memory**
+
     import sys
-    sys.path.insert(0, "/path/to/your/package_or_module")  # Or add os.path.abspath('./')
+    x = 2
+    sys.getsizeof(x)
 
-    # Or more generally (much better - also unix)
+**Add path to sys path**
 
-    from pathlib import Path
-    sys.path.insert(0, Path(__file__).resolve().parents[1].as_posix())
+sys.path.insert(0, "/path/to/your/package_or_module")
 
+## io
 
-## Pathlib - new and correct way
+**Capture everything printed plus warnings**
+
+    import sys, io
+    stdout = sys.stdout
+    sys.stdout = io.StringIO()
+
+    warnings.warn(f"asdefwefwg")
+    print("aho")
+
+    # get output and restore sys.stdout
+    output = sys.stdout.getvalue()
+    sys.stdout = stdout
+
+    print(output)
+
+## os
+
+**Change working directory**
+
+    import os
+    os.chdir(r"C:\Users\...")
+
+**Environment variables**
+
+    import os
+    env_var = os.environ['ENV_VAR']
+
+## Pathlib - Work with paths
 
 ```python
-import pathlib
-# script_dir = Path(__file__).resolve() # Not working in jupyter
+
+# Get path of running file
+from pathlib import Path
+import inspect
+import os
+
+# Get script path
+file_path = Path(__file__)
+
+# If it has to also work in jupyterm, you cannot use __file__
+file_path = Path(os.path.abspath(inspect.getframeinfo(inspect.currentframe()).filename))
+
+# Directory path
+dir_path = file_path.parent
+
+# Parents
+dir_path = file_path.parents[2]
+
+# Combining paths
+file_to_open = data_folder / "subfolder" / "raw_data.txt"
+
+# Current working directory
 path = pathlib.Path.cwd()
 
-data_folder = pathlib.Path("folder")
-file_to_open = data_folder / "raw_data.txt"
-
-### Pathlib as string
+# Pathlib as string
 
 path.as_posix()
 
-### Find all adress
+# Find full adress
 
-path = pathlib.Path('test.md')
-path.resolve() # ('/home/gahjelle/realpython/test.md')
+path = pathlib.Path('test.md')  # test.md
+path.resolve() # /home/gahjelle/realpython/test.md'
+
+# Compare paths
 path.resolve().parent == pathlib.Path.cwd() # False
 
-### Work with file
+# Work with file
 
 filename = pathlib.Path("source_data/text_files/raw_data.txt")
 
 print(filename.name) # prints "raw_data.txt"
 print(filename.suffix) # prints "txt"
 print(filename.stem) # prints "raw_data"
+
 if not filename.exists():
     print("Oops, file doesn't exist!")
 else:
     print("Yay, the file exists!")
 
-# Get script path
-
-filename = inspect.getframeinfo(inspect.currentframe()).filename
-dir_path = os.path.dirname(os.path.abspath(filename))
-
-# Folder up
-
-from pathlib import Path
-
-script_dir = Path(__file__).resolve()
-str(Path(full_path).parents[0])  # "path/to"
-str(Path(full_path).parents[1])  # "path"
-
 # Path of Desktop
+desktop = Path.home() / "Desktop"
 
-desktop = os.path.normpath(os.path.expanduser("~/Desktop"))
-
-### Relative path
 
 '''
-!! Next rows just historical - Do not do it that way !!
 
-# ../data/test_file.csv # ..znamená parent složka
+!! Next rows just historical - Do not do it that way !!
 
 from os import path
 import os
@@ -2230,22 +2577,6 @@ file_path = path.relpath("data/data.txt")
 # os.path.abspath(\__file__)  # Not working in jupyter
 
 ### Add path to files and modules
-
-import sys
-sys.path.insert(0, '/path/to/application/app/folder')
-sys.path  # Print folders available by system
-
-### Working direktory and how to change it
-
-import os
-cwd = os.getcwd()
-# os.chdir(r"C:\Users\...")
-
-# new_cwd = os.getcwd() + r"\diplomka"
-# os.chdir(new_cwd)
-
-### Full adress
-#Use normal slash!
 
 import os
 data_folder = "folder/nextfolder/"
@@ -2274,55 +2605,18 @@ abs_file_path = os.path.join(script_dir, rel_path)
 '''
 ```
 
-# Try -- Except
-
-    try:
-        print(znam)
-    except:
-        print('except')
-    else:
-        print('else')
-    finally:
-        print('final')
-
-    try:
-        print(neznam)
-    except:
-        print('except')
-    else:
-        print('else')
-    finally:
-        print('final')
-
-##  Try for all errors and print it
-
-    try:
-        linux_interaction()
-
-    except Exception as error:
-        print(error)
-
-## Raise exception
-
-    # raise Exception('x should not exceed 5. The value of x was: {}')
-
-## Assert - Require something or error
-
-    x = 5
-    assert (x > 4), 'What happened'
-
-# Warnings
+## Warnings
 
     import warnings
     warnings.warn("Warning...........Message")
 
     # Warnings with word 'HessianInversionWarning' will be caused as errors
 
-    warnings.filterwarnings('error', message=r".*HessianInversionWarning*")
+    warnings.filterwarnings('error', message=r"[\s\S]*HessianInversionWarning*")
 
     # Errory of category depracation will be show everytime
 
-    warnings.filterwarnings('always', category=DeprecationWarning)  
+    warnings.filterwarnings('always', category=DeprecationWarning)
     warnings.filterwarnings('ignore')  # Errory budou vždy ignorovány
 
     # "default" will print the first occurrence of matching warnings for each location
@@ -2332,82 +2626,197 @@ abs_file_path = os.path.join(script_dir, rel_path)
 
     # "once"    |    "error"    |    "ignore"    |    "always"    |    "module"
 
- print the first occurrence of matching warnings for each module where the warning is issued (regardless of line number)
+print the first occurrence of matching warnings for each module where the warning is issued (regardless of line number)
 
-
-# Regular expressions
+## re - Regular expressions
 
     regs = '''
     import re
 
-    [] 	A set of characters 	"[a-m]" 	
-    \ 	Signals a special sequence (can also be used to escape special characters) 	"\d" 	
-    . 	Any character (except newline character) 	"he..o" 	
-    ^ 	Starts with 	"^hello" 	
-    $ 	Ends with 	"world$" 	
-    * 	Zero or more occurrences 	"aix*" 	
-    + 	One or more occurrences 	"aix+" 	
-    {} 	Exactly the specified number of occurrences 	"al{2}" 	
+    [] 	A set of characters 	"[a-m]"
+    \ 	Signals a special sequence (can also be used to escape special characters) 	"\d"
+    . 	Any character (except newline character) 	"he..o"
+    ^ 	Starts with 	"^hello"
+    $ 	Ends with 	"world$"
+    * 	Zero or more occurrences 	"aix*"
+    + 	One or more occurrences 	"aix+"
+    {} 	Exactly the specified number of occurrences 	"al{2}"
     | 	Either or 	"falls|stays"
 
-    \A 	Returns a match if the specified characters are at the beginning of the string 	"\AThe" 	
+    \A 	Returns a match if the specified characters are at the beginning of the string 	"\AThe"
     \b 	Returns a match where the specified characters are at the beginning or at the end of a word 	r"\bain"
-    r"ain\b" 	
+    r"ain\b"
 
     \B 	Returns a match where the specified characters are present, but NOT at the beginning (or at the end) of a word 	r"\Bain"
-    r"ain\B" 	
+    r"ain\B"
 
-    \d 	Returns a match where the string contains digits (numbers from 0-9) 	"\d" 	
-    \D 	Returns a match where the string DOES NOT contain digits 	"\D" 	
-    \s 	Returns a match where the string contains a white space character 	"\s" 	
-    \S 	Returns a match where the string DOES NOT contain a white space character 	"\S" 	
-    \w 	Returns a match where the string contains any word characters (characters from a to Z, digits from 0-9, and the underscore _ character) 	"\w" 	
-    \W 	Returns a match where the string DOES NOT contain any word characters 	"\W" 	
+    \d 	Returns a match where the string contains digits (numbers from 0-9) 	"\d"
+    \D 	Returns a match where the string DOES NOT contain digits 	"\D"
+    \s 	Returns a match where the string contains a white space character 	"\s"
+    \S 	Returns a match where the string DOES NOT contain a white space character 	"\S"
+    \w 	Returns a match where the string contains any word characters (characters from a to Z, digits from 0-9, and the underscore _ character) 	"\w"
+    \W 	Returns a match where the string DOES NOT contain any word characters 	"\W"
     \Z 	Returns a match if the specified characters are at the end of the string 	"Spain\Z"
 
-    [arn] 	Returns a match where one of the specified characters (a, r, or n) are present 	
-    [a-n] 	Returns a match for any lower case character, alphabetically between a and n 	
-    [^arn] 	Returns a match for any character EXCEPT a, r, and n 	
-    [0123] 	Returns a match where any of the specified digits (0, 1, 2, or 3) are present 	
-    [0-9] 	Returns a match for any digit between 0 and 9 	
-    [0-5][0-9] 	Returns a match for any two-digit numbers from 00 and 59 	
-    [a-zA-Z] 	Returns a match for any character alphabetically between a and z, lower case OR upper case 	
+    [arn] 	Returns a match where one of the specified characters (a, r, or n) are present
+    [a-n] 	Returns a match for any lower case character, alphabetically between a and n
+    [^arn] 	Returns a match for any character EXCEPT a, r, and n
+    [0123] 	Returns a match where any of the specified digits (0, 1, 2, or 3) are present
+    [0-9] 	Returns a match for any digit between 0 and 9
+    [0-5][0-9] 	Returns a match for any two-digit numbers from 00 and 59
+    [a-zA-Z] 	Returns a match for any character alphabetically between a and z, lower case OR upper case
     [+] 	In sets, +, *, ., |, (), $,{} has no special meaning, so [+] means: return a match for any + character in the string
 
     '''
 
-# Built in functions
-### Print
-    a = 'hi'
-    print('as', a, 'fegg') # Use comma, you can join strings and variables
+## Subprocess - Run shell comands
 
-### Range
+    # Subprocess replace the os.system()
+    import subprocess
 
-    x=range(3+1) # x = 0, 1, 2, 3
+    subprocess.run('ls')
+    p1 = subprocess.run(['ls', '-la']) # with capture_output=True only save to variable
+    print(p1.stdout)
 
-### Reverse range
+    # More general - can define stdout and more here
+    sts = subprocess.Popen("mycmd" + " myarg", shell=True).wait()
 
-    for i in reversed(range(5)):
-        print(i) # 4, 3, 2, 1
+## Pickle
 
-### \__name__ - If file is runned from inside or is imported
+Save file in binary format
 
-    if __name__ == "__main__":
-        pass
+    import pickle
+    d = {"a": 1, "b": 2}
+    # with open(r"someobject.pickle", "wb") as output_file: cPickle.dump(d, output_file)
 
-# Date and time
+Load files
+
+    # with open(r"someobject.pickle", "rb") as input_file: e = cPickle.load(input_file)
+
+Result is `e = {"a": 1, "b": 2}`
+
+## Time and datetime
 
     import datetime as dt
     import time
-    now = dt.datetime.now() #datum i čas
-    time.sleep(1) # počká 1 vteřinu
 
-# Plots, graphs
+    ### Print today's date
 
-## Plotly
+    date = datetime.datetime.now().strftime('%d-%m-%Y')
+
+    ### Measure time interval
+
+    start = time.time()
+    a = 6
+    end = time.time()
+    print(end - start)
+
+
+    ### Wait for some time
+
+    time.sleep(1) # wait 1 second
+
+# Imported libraries
+
+## Tests - pytest
+
+```python
+# Write test file
+
+# Use assert functions
+
+def secti(a, b):
+return a + b
+
+def test_secti():
+    assert secti(1, 2) == 3
+
+pip install pytest
+
+pip install pytest-benchmark
+def test_my_function(benchmark):
+    result = benchmark(test)
+
+
+# Run test
+
+python -m pytest -v test_secteni.py
+
+# Run tests in a module
+pytest test_mod.py
+
+# Run tests in a directory
+pytest testing/
+
+# Paraterize tests
+
+@pytest.mark.parametrize(
+        ['year', 'month', 'day'],
+        [(2015, 12, 24),
+        (2016, 12, 24),
+        (2017, 1, 1),
+        (2033, 7, 5),
+        (2048, 7, 6)],
+)
+
+def test_some_holidays(year, month, day):
+    """Test a few sample holidays"""
+    holidays = isholiday.getholidays(year)
+    assert (day, month) in holidays
+```
+
+## Command Line Arguments - argparse
+
+If you want to call a script from terminal like `python myscript.py` and want to add some optional arguments (one letter -a , -b etc. or word with two dashes --var)
+
+Nowadays argparse is better and more often used than sys.argv, getopt
+
+    import argparse
+
+    parser = argparse.ArgumentParser(description='A tutorial of argparse!')
+    parser.add_argument('-l','--list', default=1, type=int, help="This is the 'l' variable")
+    parser.add_argument("--education",
+                        choices=["highschool", "college", "university", "other"],
+                        required=True, type=str, help="Your name") # If type list, just append action='append'
+
+    args = parser.parse_args()
+
+    # If error with jupyter, then !!!
+    par_args = parser.parse_known_args()
+    myarg = par_args[0].myarg
+
+    ed = args.education
+
+    if ed == "college" or ed == "university":
+        print("Has degree")
+    elif ed == "highschool":
+    print("Finished Highschool")
+    else:
+        print("Does not have degree")
+
+## Plots, graphs
+
+### Plotly
 
 ```python
 pltl = '''
+
+import plotly as plo
+import cufflinks as cf
+
+def plot_df(df, save_plot=0, save_plot_path="plot.html"):
+
+    cf.go_offline()
+
+    if save_plot:
+        fig = df.iplot(asFigure=True)
+        plo.offline.plot(fig,filename=save_plot_path)
+    else:
+        df.iplot(kind='scatter', filename="ploot.html")
+
+    return
+
+
 import plotly as py
 # import cufflinks as cf
 
@@ -2445,7 +2854,7 @@ static_image_bytes = pio.to_image(fig, format='png')
 '''
 ```
 
-## Matplotlib
+### Matplotlib
 
 ```python
 mtpltlb = ''' Just to not load in jupyter...
@@ -2617,7 +3026,7 @@ plt.loglog(x, y)  # Both axis are log
 '''
 ```
 
-## Table
+## Tables
 
     from prettytable import PrettyTable
     models_table = PrettyTable()
@@ -2625,208 +3034,9 @@ plt.loglog(x, y)  # Both axis are log
     models_table = PrettyTable().add_row(["Adelaide", 1295, 1158259, 600.5])
     print (models_table)
 
-## Symbolic functions
+## Web
 
-    symb_f = '''
-    import sympy as smp
-    from sympy.plotting import plot as Plot
-    from IPython.display import display
-    z=smp.Symbol("z")
-    fz=1/smp.sqrt(2*smp.pi)*smp.exp(-(z**2/2))
-    display("f(z)=",fz)
-    Plot(fz)
-    display("F_{x\_median}=\int_{-\infty}^{x_{median}="+str(mu)+"}=",smp.integrate(fz,(z,-oo,0)))
-    display(" z_{modus}= 0 \Leftrightarrow \dfrac{d f(z)}{ dz} =0=",smp.diff(fz,z))
-    '''
-
-# Libraries
-## If pip cannot be installed by SSL errorr
-
-    # !  pip install ipykernel --upgrade pip --trusted-host pypi.org
-
-# Jupyter
-
-    """
-    # !  jupyter kernelspec list # Ukáže seznam kernelů
-    # !  jupyter kernelspec uninstall nazev # Odinstaluje kernel
-    ## Install jupyter extensions
-
-    pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install
-
-    ## If jupyter and run from normal python
-
-    try:
-        __IPYTHON__
-
-        from IPython.terminal.embed import InteractiveShellEmbed
-        ipshell = InteractiveShellEmbed()
-        ipshell.dummy_mode = True
-        ipshell.magic("%load_ext autoreload")
-        ipshell.magic("%autoreload")
-
-    except NameError:
-        print('No Jupyter')
-
-    ## Run ipython in normal python
-
-    from IPython.terminal.embed import InteractiveShellEmbed
-
-    ipshell = InteractiveShellEmbed()
-    ipshell.dummy_mode = True
-    ipshell.magic("%timeit abs(-42)");
-
-    ## Autoreload
-
-    #Reload all modules imported with %aimport every time before executing the Python code typed, so it is not necessary to reload kernel everytime some other file changed or new library wa installed
-
-    %load_ext autoreload
-    %autoreload  # Reload all modules (except those excluded by %aimport) automatically now.
-    %autoreload 0  # Disable automatic reloading.
-    %autoreload 1  # Reload all modules imported with %aimport every time before executing the Python code typed.
-    %autoreload 2  # Reload all modles (except those excluded by %aimport) every time before executing the Python code typed.
-    %aimport  # List modules which are to be automatically imported or not to be imported.
-    %aimport foo  # Import module ‘foo’ and mark it to be autoreloaded for %autoreload 1
-    %aimport -foo  # Mark module ‘foo’ to not be autoreloaded.
-
-
-    ## Link
-
-    ‚''
-    [Link name](<https://www.youtube.com/>)
-    ‚''
-
-    ## Image
-
-    ‚''
-    <img src="img/Gini.png" width=400>
-    ‚''
-
-    ## Youtube
-
-        # from IPython.display import YouTubeVideo
-        # YouTubeVideo('7VeUPuFGJHk')
-
-    ## Show all images from folder
-
-        import os
-        from IPython.display import display, Image
-        names = [f for f in os.listdir('../images/ml_demonstrations/') if f.endswith('.png')]
-        for name in names[:5]:
-            display(Image('../images/ml_demonstrations/' + name, width=100))
-
-    ## Jupyter themes
-
-        pip install jupyterthemes
-        jt -t monokai -T
-
-        # Deactivate
-        jt -r
-
-    ## Matplotlib widget interactive backend
-
-        %matplotlib widget
-        from matplotlib import pyplot as plt
-        fig, ax = plt.subplots()
-        ax.plot([1,2,3], [4,3,2])
-        # fig.show() is not necessary
-
-        # If not working in jupyterlab, use in terminal
-        #     jupyter labextension install @jupyter-widgets/jupyterlab-manager
-
-        # Instead of magic you can use
-
-        import matplotlib
-        matplotlib.use('module://ipympl.backend_nbagg')
-
-    ## Dark background of matplotlib for dark themes
-
-        # ! pip install jupyterthemes
-
-        In ~/.ipython/profile_default/startup  create startup.py file with
-
-        import matplotlib.pyplot as plt
-        from jupyterthemes import jtplot
-        jtplot.style(theme='monokai', context='notebook', ticks=True, grid=False)
-
-        # Then in extensions use theme-darcula
-        # And in to ~\AppcmdData\Local\Programs\Python\Python37\Lib\site-packages\jupyterthemes\styles\monokai.less
-        # Change on
-        /* jtplot figure style */
-        @axisFace:              #2b2b2b;
-        @figureFace:            #2b2b2b;
-
-    ## Ipywidgets
-    """
-
-# Docker
-
-    dckr = '''
-    # In VS Code install Docker extension and do command add docker files to workspace
-
-    # For just a simple case create file Dockerfile and fill for example
-
-    FROM python:3.7-alpine  # If error, remove -alpine. Another modes: -buster, -slim, -slim-buster, #FROM continuumio/miniconda3
-    COPY requirements.txt /
-
-    # Maybe necessary to add python -m on the beginning
-    RUN pip install -r /requirements.txt
-    ADD my_script.py /
-
-    # Sometimes -m
-    CMD [ "python", "./my_script.py" ]
-
-    # If you wanna use numpy or pandas, add before pip install
-
-    # RUN apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev openblas-dev
-
-    RUN apk add --no-cache --update \
-    python3 python3-dev gcc \
-    gfortran musl-dev g++ \
-    libffi-dev openssl-dev \
-    libxml2 libxml2-dev \
-    libxslt libxslt-dev \
-    libjpeg-turbo-dev zlib-dev
-
-    # Other possible commands
-    # EXPOSE 3000, WORKDIR /app, ADD . /app
-
-    # Build with
-
-    docker build -t python_docker
-    # t is for tag - folder and name
-
-    # Run with (-it for interactive mode, -tty if using terminal)
-    docker run python-barcode
-
-    # List all your containrers
-    docker ps
-
-    # Remove container with it's id from docker ps
-    docker rm a39c259df46
-
-    # List all images
-    docker images
-
-    # List all running container
-    docker container ls
-
-    # Delete image
-    docker rmi 60959f29de3a
-
-    # Example - run linux
-    docker run --interactive --tty ubuntu bash
-    # Then you can use host, ls...
-
-    # Example 2 = nginx
-    docker run --detach --publish 80:80 --name webserver nginx
-    # If open http://localhost in browser, you see nginx welcome
-
-    # Stop container
-    docker container stop webserver
-    '''
-# Web
-
-## Requests - API - GET, POST
+### Requests - API - GET, POST
 
     rqsts = '''
     import getpass
@@ -2853,7 +3063,7 @@ plt.loglog(x, y)  # Both axis are log
     r.json()  # {'headers': {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Connection': 'close', 'Cookie': 'mipyt=best', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.19.1', 'X-Test': 'true', 'X-Test2': 'true'}}
     '''
 
-## Beautiful soup - web scrapping
+### Beautiful soup - web scrapping
 
     # Stuff for soup
     soup = """
@@ -2891,7 +3101,7 @@ plt.loglog(x, y)  # Both axis are log
 
     # select all rows in table
     table = soup.find("table",  {"id": "main_table"})
-    table_rows = table.findAll("tr")  
+    table_rows = table.findAll("tr")
 
     # iterate over table and print results
     for row in table_rows:
@@ -2925,7 +3135,7 @@ plt.loglog(x, y)  # Both axis are log
     httpd.serve_forever()
     """
 
-# Images, pictures
+## Images, pictures
 
     pctrs = '''
     from PIL import Image
@@ -2955,7 +3165,8 @@ plt.loglog(x, y)  # Both axis are log
     img=np.array(img)
     '''
 
-# Mathematics, statistics, linear algebra
+## Mathematics, statistics, linear algebra
+
 !! Matrix and liear algebra operations discussed in Numpy aray section !!
 
 ```python
@@ -3319,7 +3530,7 @@ scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
 ### The same way you can use preprocessing.RobustScaler, that is not as much influenced by outliers !!
 ```
 
-# Signal processing and controll
+## Signal processing and controll
 
 ```python
 ## Signal
@@ -3513,7 +3724,7 @@ def fdxdt(x,t,u,Omega,eta,b0,b1):    # x=[x1 x2 ... xn]
     for i in range(0,N-1):
         tt=[t[i],t[i+1]]  # [t1 t2]
         x=odeint(fdxdt,x0,t,(u[i],Omega0,eta,b0,b1)) #returns x=[ [x1(t1) x2(t1)] [x1(t2) x2(t2)]]
-    #    x=odeint(fdxdt,x0,tt,args=(u[i],)) # <-- pokud je jen jeden extra argument, musi se tak    
+    #    x=odeint(fdxdt,x0,tt,args=(u[i],)) # <-- pokud je jen jeden extra argument, musi se tak
         y[i+1]=-x[1,1]
         x0=x[1,:]  # jako nove poc. podm pro dalsi integraci
 
@@ -3523,58 +3734,323 @@ def fdxdt(x,t,u,Omega,eta,b0,b1):    # x=[x1 x2 ... xn]
     show()
 ```
 
-# Miscellaneous
+## Database
 
-## Measure time
+### pyodbc, sqlalchemy
+
+**Read**
+
 ```python
-# Most simple and maybe the best
+server = 'SERVER={};'.format(server)
+database = 'DATABASE={};'.format(database)
+sql_params = r'DRIVER={ODBC Driver 13 for SQL Server};' + server + database + 'Trusted_Connection=yes;'
 
-import time
-start = time.time()
-a = 6
-end = time.time()
-print(end - start)
-
-# Or
-
-import timeit
-import functools
-
-def func(*args):
-    a = 1
-    return a
-dont_slow_my_notebook = """
-t = timeit.Timer('''
-import numpy as np
-a = 12
-''', 'gc.enable()')
-print(t.timeit(3))  # 3 - measure three times
-
-# Or you can use
-t = timeit.timeit(func)
-
-# Measure time of function with inputs
-t = timeit.Timer(functools.partial(func, (1, 2)))
-print (t.timeit(20))
-"""
+sql_conn = pyodbc.connect(sql_params)
+df = pd.read_sql(query, sql_conn)
 ```
 
-## Show bytcode
+**Write**
 
-    import dis
-    dis.dis("dict()")
+from sqlalchemy import create_engine
+import urllib
 
-        #              0 LOAD_NAME                0 (dict)
-        #              2 CALL_FUNCTION            0
-        #              4 RETURN_VALUE
+params = urllib.parse.quote_plus(r'DRIVER={driver};SERVER={server};DATABASE={database};Trusted_Connection=yes'.format(driver=r'{SQL Server}', server=server, database=database))
+conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
+
+engine = create_engine(conn_str)
+dataframe_to_sql.to_sql(name='FactProduction', con=engine, schema='Stage', if_exists='append', index=False)
+
+## GUI
+
+**VUE and EEl (Electron JS like library)**
+
+You can use mypythontools pyvueeel for building an app with graphical interface. It contains working examples.
+
+## Misc
+
+### Jupyter
+
+    """
+    # !  jupyter kernelspec list # Ukáže seznam kernelů
+    # !  jupyter kernelspec uninstall nazev # Odinstaluje kernel
+    ## Install jupyter extensions
+
+    pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install
+
+    # Test if running on jupyter
+
+    if 'ipykernel' in sys.modules:
+        print('jup')
+
+    # Or
+
+    # if hasattr(builtins, '__IPYTHON__'):
+    #     print('IPython')
+    # else:
+    #     print('Nope')
+
+    ## If jupyter and run from normal python
+
+    try:
+        __IPYTHON__
+
+        from IPython.terminal.embed import InteractiveShellEmbed
+        ipshell = InteractiveShellEmbed()
+        ipshell.dummy_mode = True
+        ipshell.magic("%load_ext autoreload")
+        ipshell.magic("%autoreload")
+
+    except NameError:
+        print('No Jupyter')
+
+    ## Run ipython in normal python
+
+    from IPython.terminal.embed import InteractiveShellEmbed
+
+    ipshell = InteractiveShellEmbed()
+    ipshell.dummy_mode = True
+    ipshell.magic("%timeit abs(-42)");
+
+    ## Autoreload
+
+    #Reload all modules imported with %aimport every time before executing the Python code typed, so it is not necessary to reload kernel everytime some other file changed or new library wa installed
+
+    %load_ext autoreload
+    %autoreload  # Reload all modules (except those excluded by %aimport) automatically now.
+    %autoreload 0  # Disable automatic reloading.
+    %autoreload 1  # Reload all modules imported with %aimport every time before executing the Python code typed.
+    %autoreload 2  # Reload all modules (except those excluded by %aimport) every time before executing the Python code typed.
+    %aimport  # List modules which are to be automatically imported or not to be imported.
+    %aimport foo  # Import module ‘foo’ and mark it to be autoreloaded for %autoreload 1
+    %aimport -foo  # Mark module ‘foo’ to not be autoreloaded.
+
+
+    ## Link
+
+    ‚''
+    [Link name](<https://www.youtube.com/>)
+    ‚''
+
+    ## Image
+
+    ‚''
+    <img src="img/Gini.png" width=400>
+    ‚''
+
+    ## Youtube
+
+        # from IPython.display import YouTubeVideo
+        # YouTubeVideo('7VeUPuFGJHk')
+
+    ## Show all images from folder
+
+        import os
+        from IPython.display import display, Image
+        names = [f for f in os.listdir('../images/ml_demonstrations/') if f.endswith('.png')]
+        for name in names[:5]:
+            display(Image('../images/ml_demonstrations/' + name, width=100))
+
+    ## Jupyter themes
+
+        pip install jupyterthemes
+        jt -t monokai -T
+
+        # Deactivate
+        jt -r
+
+    ## Matplotlib widget interactive backend
+
+        %matplotlib widget
+        from matplotlib import pyplot as plt
+        fig, ax = plt.subplots()
+        ax.plot([1,2,3], [4,3,2])
+        # fig.show() is not necessary
+
+        # If not working in jupyterlab, use in terminal
+        #     jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+        # Instead of magic you can use
+
+        import matplotlib
+        matplotlib.use('module://ipympl.backend_nbagg')
+
+    ## Dark background of matplotlib for dark themes
+
+        # ! pip install jupyterthemes
+
+        In ~/.ipython/profile_default/startup  create startup.py file with
+
+        import matplotlib.pyplot as plt
+        from jupyterthemes import jtplot
+        jtplot.style(theme='monokai', context='notebook', ticks=True, grid=False)
+
+        # Then in extensions use theme-darcula
+        # And in to ~\AppcmdData\Local\Programs\Python\Python37\Lib\site-packages\jupyterthemes\styles\monokai.less
+        # Change on
+        /* jtplot figure style */
+        @axisFace:              #2b2b2b;
+        @figureFace:            #2b2b2b;
+
+    ## Ipywidgets
+
+    ## Extensions
+
+    pip install jupyter_contrib_nbextensions
+
+    jupyter contrib nbextension install --user
+
+    ### Enable extension (e.g. rise)
+    jupyter nbextension enable --py rise
+    """
 
 # Performance
+
+## Profiling
+
+### Line profiling
+
+Simplest and probably best way is to use jupyter, extensions and magic.
+Simple example is in project-starter test profiling.ipynb [here](https://github.com/Malachov/mypythontools/tree/master/content/project-starter/tests)
+
+If you want to use just python, you can
+
+    import line_profiler
+
+    def hoj():
+        a = 2
+        b = [1,2,3]
+
+        return a * b
+
+    lp = line_profiler.LineProfiler()
+    lp_wrapper = lp(hoj)()
+    lp.print_stats()
+
+    # If inner function
+
+    from line_profiler import LineProfiler
+    import random
+
+    def do_other_stuff(numbers):
+        s = sum(numbers)
+
+    def do_stuff(numbers):
+        do_other_stuff(numbers)
+        l = [numbers[i]/43 for i in range(len(numbers))]
+        m = ['hello'+str(numbers[i]) for i in range(len(numbers))]
+
+    numbers = [random.randint(1,100) for i in range(1000)]
+    lp = LineProfiler()
+    lp.add_function(do_other_stuff)   # add additional function to profile
+    lp_wrapper = lp(do_stuff)
+    lp_wrapper(numbers)
+    lp.print_stats()
+
+**Other profiling option**
+
+    # !  pip install snakeviz
+    # !  python -m cProfile -o program.prof my_program.py
+    # !  snakeviz program.prof
+
+**Show memory profile to file**
+
+    from memory_profiler import profile
+
+    def fu(a):
+        print('content')
+
+    memory_profile = open('memory_profiler.log','w+')
+    profile_wrapped_function = profile(fu, stream=memory_profile)
+    profile_wrapped_function()
+
+    memory_profile.seek(0)
+    print(memory_profile.read())  # Or save to variable
+    memory_profile.close()
+
+## Garbage collector
+
+**Force to empty memory**
+
+    import gc
+    gc.collect()
+
+## Threading
+
+    from concurrent.futures import ThreadPoolExecutor
+
+    executor = ThreadPoolExecutor(max_workers=3)
+    executor.submit(myFunction())
+
+    # Or use
+    with ThreadPoolExecutor(max_workers=3) as executor:
+            future = executor.submit(task, (2))
+            future = executor.submit(task, (3))
+            future = executor.submit(task, (4))
+
+## Max execution time function
+
+```python
+import time, sys
+
+def watchdog(timeout, code, *args, **kwargs):
+    "Time-limited execution."
+    def tracer(frame, event, arg, start=time.time()):
+        "Helper."
+        now = time.time()
+        if now > start + timeout:
+            raise WatchdogTimeoutError(start, now)
+        return tracer if event == "call" else None
+
+    old_tracer = sys.gettrace()
+    try:
+        sys.settrace(tracer)
+        code(*args, **kwargs)
+    finally:
+        sys.settrace(old_tracer)
+
+def func(a):
+    return 1 + a
+
+watchdog(5, func, 0.1) # First element is time limit - Last argument 0.1 are *args and **kwargs
+
+# Or
+mx_ex = '''
+from contextlib import contextmanager
+import threading
+import _thread
+
+class TimeoutException(Exception):
+    def __init__(self, msg=''):
+        self.msg = msg
+
+@contextmanager
+def time_limit(seconds, msg=''):
+    timer = threading.Timer(seconds, lambda: _thread.interrupt_main())
+    timer.start()
+    try:
+        yield
+    except KeyboardInterrupt:
+        raise TimeoutException("Timed out for operation {}".format(msg))
+    finally:
+        # if the acti   on ends in specified time, timer is canceled
+        timer.cancel()
+
+import time
+with time_limit(5, 'slee'):
+    time.sleep(10)
+'''
+```
 
 ## Numba
 
 ```python
 import numba as nb
 
+@nb.jit(parallel=True)  # Or use  parallel=True
+def func():
+    return 1
+
+# More options possible
 @nb.njit()
 def func():
     return 1
@@ -3695,7 +4171,7 @@ total = dask.delayed(sum)(output)
 '''
 ```
 
-### Dask formats
+**Dask formats**
 
     dsk_frmts = '''
     import pandas as pd
@@ -3720,84 +4196,96 @@ total = dask.delayed(sum)(output)
 
     .visualize()
     '''
-## Force to empty memory
 
-    import gc
-    gc.collect()
+# Miscellaneous
 
-# Threading
+## Push own library to PyPi
 
-    executor = ThreadPoolExecutor(max_workers=3)
-    executor.submit(myFunction())
+Mypythontools [deploy](https://mypythontools.readthedocs.io/mypythontools.deploy.html) module can be use for this purpose (it's usually one part of bigger pipeline).
 
-    # Or use
-    with ThreadPoolExecutor(max_workers=3) as executor:
-            future = executor.submit(task, (2))
-            future = executor.submit(task, (3))
-            future = executor.submit(task, (4))
+## CI/CD
 
-## Max execution time python
+**mypythontools.utils**
 
-```python
-import time, sys
+Check example on mypythontools [deploy module](https://github.com/Malachov/mypythontools/blob/master/mypythontools/utils.py)
 
-def watchdog(timeout, code, *args, **kwargs):
-    "Time-limited execution."
-    def tracer(frame, event, arg, start=time.time()):
-        "Helper."
-        now = time.time()
-        if now > start + timeout:
-            raise WatchdogTimeoutError(start, now)
-        return tracer if event == "call" else None
+**Travis CI - Automatic testing and deploying**
 
-    old_tracer = sys.gettrace()
-    try:
-        sys.settrace(tracer)
-        code(*args, **kwargs)
-    finally:
-        sys.settrace(old_tracer)
+Check example on mypythontools [project-starter](https://github.com/Malachov/mypythontools/tree/master/content/project-starter/.travis.yml)
 
-def func(a):
-    return 1 + a
+## Create documentation - Sphinx
 
-watchdog(5, func, 0.1) # First element is time limit - Last argument 0.1 are *args and **kwargs
+```console
+
+pip install sphinx
+
+# And
+pip install alabaster
 
 # Or
-mx_ex = '''
-from contextlib import contextmanager
-import threading
-import _thread
+pip install sphinx_rtd_theme
 
-class TimeoutException(Exception):
-    def __init__(self, msg=''):
-        self.msg = msg
+# And if you want to use markdown
+pip install recommonmark
+pip install sphinxcontrib-napoleon
 
-@contextmanager
-def time_limit(seconds, msg=''):
-    timer = threading.Timer(seconds, lambda: _thread.interrupt_main())
-    timer.start()
-    try:
-        yield
-    except KeyboardInterrupt:
-        raise TimeoutException("Timed out for operation {}".format(msg))
-    finally:
-        # if the acti   on ends in specified time, timer is canceled
-        timer.cancel()
+# Create documentation files
 
-import time
-with time_limit(5, 'slee'):
-    time.sleep(10)
-'''
+sphinx-quickstart
+
+# Use separate build and source: yes
 ```
 
-## Profiling
-    # !  pip install snakeviz
-    # !  python -m cProfile -o program.prof my_program.py
-    # !  snakeviz program.prof
+Fill in the `config.py` and `index.rst`
 
-# Whole sections
+You can use mypythontools [project-starterexample](https://github.com/Malachov/mypythontools/tree/master/content/project-starter/docs/source)
 
-## Encoding JSON with Python
+You can build it locally with
+
+```console
+make html
+```
+
+Or you can make account on [readthedocs](https://readthedocs.org/) - It's free.
+And the documentation will be automatically made on every github push to master.
+
+## Snippets - examples
+
+### Measure time
+
+```python
+"""
+import timeit
+import functools
+
+def func(*args):
+    a = 1
+    return a
+t = timeit.Timer('''
+import numpy as np
+a = 12
+''', 'gc.enable()')
+print(t.timeit(3))  # 3 - measure three times
+
+# Or you can use
+t = timeit.timeit(func)
+
+# Measure time of function with inputs
+t = timeit.Timer(functools.partial(func, (1, 2)))
+print (t.timeit(20))
+"""
+```
+
+### Show bytecode
+
+    import dis
+    dis.dis("dict()")
+
+        #              0 LOAD_NAME                0 (dict)
+        #              2 CALL_FUNCTION            0
+        #              4 RETURN_VALUE
+
+### Encoding JSON with Python
 
     import json
 
@@ -3811,397 +4299,5 @@ with time_limit(5, 'slee'):
     }
 
     json_data = json.dumps(data)
+
     # Notice how the keys are not sorted by default, you would have to add the sort_keys=True
-
-# Pypi export / create own library
-
-Put on github, add licence, create release. In computer create setup.py. Delete pypi_exp variable. It's here just not to be printed to console.
-
-    pypi_exp = '''
-
-    # This is content of setup.py
-    from setuptools import setup, find_packages
-    import io
-    import os
-    import sys
-
-    here = os.path.abspath(os.path.dirname(__file__))
-
-    def read(*filenames, **kwargs):
-        encoding = kwargs.get('encoding', 'utf-8')
-        sep = kwargs.get('sep', '\n')
-        buf = []
-        for filename in filenames:
-            with io.open(filename, encoding=encoding) as f:
-                buf.append(f.read())
-        return sep.join(buf)
-
-    long_description = read('README.md')
-
-    setup(
-        name='predictit',
-        version='0.2',
-        url='https://github.com/Malachov/predictit',
-        download_url='https://github.com/Malachov/predictit/archive/0.11.tar.gz',
-        license='mit',
-        author='Daniel Malachov',
-        install_requires=[
-                'SQLAlchemy',
-                'pandas',
-                'pyodbc',
-                'Keras',
-                'sklearn_extensions',
-                'tensorflow',
-                'prettytable',
-                'matplotlib',
-                'plotly',
-                'cufflinks',
-                'numpy',
-                'scipy',
-                'seaborn',
-                'statsmodels',
-                'scikit_learn'
-        ],
-        author_email='malachovd@seznam.cz',
-        description='Library/framework for making predictions.',
-        long_description=' Automatically choose best of 20 models (ARIMA, regressions, LSTM...). Preprocess data and chose optimal parameters of predictions.',
-        packages=find_packages(),
-        include_package_data=True,
-        platforms='any',
-        classifiers = [
-            'Programming Language :: Python',
-            'Development Status :: 2 - Pre-Alpha',
-            'Natural Language :: English',
-            'Environment :: Other Environment',
-            'Intended Audience :: Developers',
-            'License :: OSI Approved :: MIT License',
-            'Operating System :: OS Independent',
-            'Topic :: Software Development :: Libraries :: Python Modules',
-            'Topic :: Software Development :: Libraries :: Application Frameworks',
-            ],
-        extras_require={
-        }
-    )
-
-    # Next create setup.cfg
-
-    # Inside of setup.cfg
-
-    [metadata]
-    description-file = README.md
-
-    # Mozna nekdy, nekdy zase ne
-    [bdist_wheel]  # Dal pro wheels knihovnu
-    universal = 1
-
-    # Load folder in cmd and
-
-    python setup.py sdist
-
-    # Or if you use wheel - better
-
-    python setup.py sdist bdist_wheel
-
-    # Finally
-
-    twine upload dist/*
-    '''
-
-# Github
-
-    ### Gitignore
-
-    gtgnr = '''
-
-    Create file called .gitignore
-    Filed defined here will be ignored with version controll
-    But it must be first ignored, than created, otherwise it will not work
-
-    # Comments must beginn on new line !!!
-
-    # Ignore one file
-    readme.txt
-
-    # Ignore folder
-    output/
-
-    # ignore all *java files
-    *.java
-
-    '''
-
-# Create documentation - Sphinx
-
-    pip install sphinx
-
-    # And
-    pip install alabaster
-
-    # Or
-    pip install sphinx_rtd_theme
-
-    # And if you want to use markdown
-    pip install recommonmark
-    pip install sphinxcontrib-napoleon
-
-    # Create documentation files
-
-    sphinx-quickstart
-
-    # Use separate build and source: yes
-
-    ###############
-    ### Conf.py ###
-    ###############
-    # In generated config.py change html_theme on 'alabaster', or 'sphinx_rtd_theme'
-
-    # import alabaster
-    html_theme_path = [alabaster.get_path()]
-
-    # Set own CSS
-    def setup(app):
-        app.add_stylesheet('theme_overrides.css')
-
-    # Uncomment the path, if not work, than ('../..'), and
-    # Add to extension [  'alabaster',
-                'sphinx.ext.autodoc',
-                'sphinx.ext.intersphinx',
-                'sphinx.ext.ifconfig',
-                'sphinx.ext.viewcode',
-                'sphinx.ext.githubpages',
-                'sphinx.ext.imgmath',
-                'recommonmark',
-                'm2r']
-
-    html_theme = 'alabaster'
-
-    # To markdown support use 'sm2r' or 'recommonmark' or 'sphinxcontrib-markdown'
-
-    source_parsers = {
-    '.md': 'sphinxcontrib.markdown.MarkdownParser'
-}
-    # Add to conf.py to edit theme.conf (from theme, e.g. alabaster)
-
-    html_theme_options = {
-        'logo': 'logo.png',
-        'github_user': 'bitprophet',
-        'github_repo': 'alabaster',
-
-        'navigation_depth': 4
-    }
-
-    # Generate the structure of module
-
-    sphinx-apidoc -f -o source/ ../module
-
-    #################
-    ### index.rst ###
-    #################
-    # Then edit created index.rst
-
-    # Under toctree add
-
-    .. automodule:: padasip
-
-    # If you want pdf
-    pip install
-    sphinx-build -b rinoh source _build/rinoh
-
-    # If you have other style of docs than rest (like google, or numpy), you need to convert it
-    pip install sphinxcontrib-napoleon
-
-    # Add this to index.rst
-
-    readme.rst
-
-    # Create file readme.rst in docs
-
-    # Add documents from folder
-
-    .. include:: ../README.rst
-
-    # Maybe
-    napoleon_google_docstring = False
-    napoleon_use_param = False
-    napoleon_use_ivar = True
-
-    #######################
-    ### Sphinx autodocs ###
-    #######################
-
-    # pip install sphinx-autobuild
-
-# Numpy style documentation for sphinx autodocs
-
-    # Heading
-
-    Heading
-    =============
-
-    Underline heading
-
-    Heading
-    *************
-
-    # Code
-
-        this is code
-
-    # Version, changelog
-    Current version: |version| (:ref:`changelog`)
-
-    # Odkaz
-    this library uses `Numpy <http://www.numpy.org/>`_
-
-    # Table of contents
-
-    .. toctree::
-    :maxdepth: 2
-    index
-
-    # TOC in current file
-    .. contents::
-    :local:
-    :depth: 1
-
-    # Inline code
-    ``$ pip install padasip``
-
-    # Reference on some page
-    * :ref:`genindex`
-    * :ref:`modindex`
-    * :ref:`search`
-
-    # Math
-
-    :math:`\alpha > \beta`
-
-    .. math::
-
-    n_{\mathrm{offset}} = \sum_{k=0}^{N-1} s_k n_k
-
-# Testing
-
-    # Write test file
-
-    # Use assert functions
-
-    def secti(a, b):
-    return a + b
-
-    def test_secti():
-        assert secti(1, 2) == 3
-
-    pip install pytest
-
-    pip install pytest-benchmark
-    def test_my_function(benchmark):
-        result = benchmark(test)
-
-
-    # Run test
-
-    python -m pytest -v test_secteni.py
-
-    # Run tests in a module
-    pytest test_mod.py
-
-    # Run tests in a directory
-    pytest testing/
-
-    # Paraterize tests
-
-    @pytest.mark.parametrize(
-            ['year', 'month', 'day'],
-            [(2015, 12, 24),
-            (2016, 12, 24),
-            (2017, 1, 1),
-            (2033, 7, 5),
-            (2048, 7, 6)],
-    )
-
-    def test_some_holidays(year, month, day):
-        """Test a few sample holidays"""
-        holidays = isholiday.getholidays(year)
-        assert (day, month) in holidays
-
-# Travis CI - Automatic testing and deploying
-
-Create .travis.yaml and add. You can add pypy instead of version
-
-    language: python
-    python:
-
-    - "3.4"
-    - "3.5"
-    - "3.6"
-    - "3.7"
-
-    install:
-    - pip install -r requirements.txt
-
-    script: python tests/test_all.py
-    branches:
-    only:
-        - master
-
-    deploy:
-    provider: pages
-    skip_cleanup: true
-    github_token: bde661edb37ddb2dae94c3465df7c477f407c879
-    keep_history: true
-    on:
-        branch: master
-
-    # If you want more providers, just add next
-      - provider: openshift
-        api_key: ...
-
-    # Register on travis https://travis-ci.com/, connect with github, on github create new private token and add to travis
-
-    # For windows
-
-    matrix:
-    s  include:
-          - name: "Python 3.5.4 on Windows"
-          os: windows           # Windows 10.0.17134 N/A Build 17134
-          language: shell       # 'language: python' is an error on Travis CI Windows
-          before_install:
-              - choco install python --version 3.5.4
-              - python --version
-              - python -m pip install --upgrade pip
-              - pip3 install --upgrade pytest
-              - pip3 install codecov
-          env: PATH=/c/Python35:/c/Python35/Scripts:$PATH
-
-    # If not working
-
-      sudo: required
-
-# Linux - bash essentials
-
-    # Update all packages
-    sudo apt-get update
-
-    # Print environment path
-    echo $PATH
-
-    # Restart terminal
-    bash --login
-
-    # Install package
-    sudo apt-get install python3.5-dev
-
-    # Change pythonpath
-    nano ~/.bashrc
-    # With opened file add line and save and exit
-    export PYTHONPATH="/Users/my_user/code"
-
-    # Print python path
-    echo $PYTHONPATH
-
-    # Where is something
-    whereis python2.7
-
-    # Install all building compilers (g++ error etc...)
-    sudo apt-get install build-essential
