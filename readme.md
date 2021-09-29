@@ -83,17 +83,23 @@ Note 4: Table of Content is not working in jupyter, so delete it. Use nbextensio
   - [Pickle](#pickle)
   - [Time and datetime](#time-and-datetime)
 - [Imported libraries](#imported-libraries)
-  - [Tests - pytest](#tests---pytest)
-  - [Command Line Arguments - argparse](#command-line-arguments---argparse)
+  - [Tests](#tests)
+    - [pytest](#pytest)
+  - [Command Line Arguments](#command-line-arguments)
+    - [argparse](#argparse)
   - [Plots, graphs](#plots-graphs)
     - [Plotly](#plotly)
     - [Matplotlib](#matplotlib)
   - [Tables](#tables)
+    - [prettytable](#prettytable)
   - [Web](#web)
     - [Requests - API - GET, POST](#requests---api---get-post)
     - [Beautiful soup - web scrapping](#beautiful-soup---web-scrapping)
   - [Images, pictures](#images-pictures)
+    - [PIL](#pil)
   - [Mathematics, statistics, linear algebra](#mathematics-statistics-linear-algebra)
+    - [Math, statistics, numpy, pandas, scipy](#math-statistics-numpy-pandas-scipy)
+    - [Sympy](#sympy)
   - [Signal processing and controll](#signal-processing-and-controll)
   - [Database](#database)
     - [pyodbc, sqlalchemy](#pyodbc-sqlalchemy)
@@ -529,6 +535,31 @@ print(f'He said his name is {name!r}.')  # "He said his name is 'Fred'."
 
 ```
 
+**strings functions**
+```python
+
+"Yes it does".startswith("Yes")  # True
+
+"  asd as  \n".strip()  # 'asd as'
+
+"456".isdecimal()  # True
+"-456".isdecimal()  # False
+
+"456".isdigit()  # True
+"-456".isdigit()  # True
+"1e-4".isdigit()  # False
+```
+
+**Join - concatenate**
+
+    words = ["this", 'is', 'a', 'list', 'of', "strings"]
+    ' '.join(words)  #returns "This is a list of strings"
+
+**Split**
+
+    "One two tree".split()  # ['One', 'two', 'tree']
+    "15.663.565".split(".")  # ['15', '663', '565']
+
 **Eval - String to code**
 
     mycode = 'x = 1'
@@ -537,10 +568,6 @@ print(f'He said his name is {name!r}.')  # "He said his name is 'Fred'."
     # or
     x = eval("2+2") # number ze stringu
 
-**Join - concatenate**
-
-    words = ["this", 'is', 'a', 'list', 'of', "strings"]
-    ' '.join(words)  #returns "This is a list of strings"
 
 ## List
 
@@ -591,6 +618,20 @@ lst[:3] # => [1, 2, 4]
 # Every second member
 
 lst[::2] # =>[1, 4]
+
+### Remove in loop
+Beware of removing items in loop
+
+somelist = range(10)
+for x in somelist:
+    somelist.remove(x)
+# [1, 3, 5, 7, 9]
+
+somelist = range(10)
+for x in somelist[:]:
+    somelist.remove(x)
+somelist
+# []
 
 ### Minimum
 
@@ -2058,6 +2099,10 @@ for obj in gc.get_objects():
         print (obj.jmeno)
 ```
 
+## Vars, dir
+
+vars(object) returns object attributes, dir(object) returns object attributes as well as class attributes as well as atributes from classes that inherits from
+
 ## Magic methods (dunder methods)
 
 You can overwrite some default functions to have specific feature for your class. For example if your object is vector, you can redefine function for adding to be able to use `vector1 + vector2`, which would otherwise failed.
@@ -2718,7 +2763,9 @@ Result is `e = {"a": 1, "b": 2}`
 
 # Imported libraries
 
-## Tests - pytest
+## Tests
+
+### pytest
 
 ```python
 # Write test file
@@ -2765,7 +2812,9 @@ def test_some_holidays(year, month, day):
     assert (day, month) in holidays
 ```
 
-## Command Line Arguments - argparse
+## Command Line Arguments
+
+### argparse
 
 If you want to call a script from terminal like `python myscript.py` and want to add some optional arguments (one letter -a , -b etc. or word with two dashes --var)
 
@@ -3028,6 +3077,8 @@ plt.loglog(x, y)  # Both axis are log
 
 ## Tables
 
+### prettytable
+
     from prettytable import PrettyTable
     models_table = PrettyTable()
     models_table = PrettyTable().field_names = ["City name", "Area", "Population", "Annual Rainfall"]
@@ -3137,6 +3188,8 @@ plt.loglog(x, y)  # Both axis are log
 
 ## Images, pictures
 
+### PIL
+
     pctrs = '''
     from PIL import Image
     from resizeimage import resizeimage
@@ -3167,6 +3220,7 @@ plt.loglog(x, y)  # Both axis are log
 
 ## Mathematics, statistics, linear algebra
 
+### Math, statistics, numpy, pandas, scipy
 !! Matrix and liear algebra operations discussed in Numpy aray section !!
 
 ```python
@@ -3291,18 +3345,16 @@ z = np.diff(y)
 
 # from IPython.display import display, Math, Latex
 # display(Math(r'F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx'))
+```
 
+### Sympy
 
-########################################
-####### Symbolic python - sympy #######
-#######################################
-
+```python
 import sympy as sp
 
 #  Nice display
 sp.init_printing()
 
-# Or
 # Or use sp.pprint()
 
 ### Display Latex
@@ -3376,6 +3428,7 @@ y = sp.exp(x)
 
 # Matrices
 
+from sympy import Matrix
 m11, m12, m21, m22 = symbols("m11, m12, m21, m22")
 b1, b2 = symbols("b1, b2")
 
@@ -3393,21 +3446,6 @@ sqr_mat = A**2
 mat_mul = A*b
 det = A.det()
 inv = A.inv()
-
-### Fast fourier transform
-
-from numpy.fft import fft, fftfreq, ifft
-import numpy as np
-
-t = np.arange(0, 10, 0.1)
-y = np.sin(t)
-
-ffty = fft(y)
-
-real_ffty = ffty.real
-imag_ffty = ffty.imag
-
-freqs = fftfreq(N, dt)  # Frequentions assigned to values - 0, 0.1, 0.2...
 
 ### Sympy plotting
 
@@ -3443,6 +3481,24 @@ disp("\int " + dfrac(f)+"dx=",intf) # po \int musim byt mezera
 
 intf=sp.integrate(f,(x,0,1))
 disp("\int_0^1" + dfrac(f)+" dx=",intf.evalf())
+
+######################################
+####### Fast fourier transform #######
+######################################
+
+from numpy.fft import fft, fftfreq, ifft
+import numpy as np
+
+t = np.arange(0, 10, 0.1)
+y = np.sin(t)
+
+ffty = fft(y)
+
+real_ffty = ffty.real
+imag_ffty = ffty.imag
+
+freqs = fftfreq(N, dt)  # Frequentions assigned to values - 0, 0.1, 0.2...
+
 
 ###########################
 ####### Correlation #######
