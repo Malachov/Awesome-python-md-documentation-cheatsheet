@@ -97,6 +97,17 @@ for (var k = 0; k < wrappedItems.length; k++) {
 }
 }
 ```
+
+## Optional Chaining
+
+when foo is defined, foo.bar.baz() will be computed; but when foo is null or undefined, stop what we’re doing and just return undefined
+
+    let x = foo?.bar.baz();
+
+If object with param not available, use default value
+
+    transfersDataSource?.numberOfItems || 0
+    
 # Vue
 
 ### Start new project

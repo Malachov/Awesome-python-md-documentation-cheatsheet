@@ -93,3 +93,7 @@ Action: Add docker compose files...
 
     # Stop container
     docker container stop webserver
+
+## Download image from repository
+
+docker pull alpine
