@@ -78,6 +78,11 @@ if !ok {
     // do something
 }
 
+
+switch v.(type) {
+    case Comment: return true
+    // ...
+}
 ```
 
 # Misc
@@ -113,6 +118,9 @@ if err != nil {
 
 ## GIN
 
+Change used port
+
+	router.Run(":8081")
 
 ## Profiling (for gin)
 

@@ -5,6 +5,10 @@
     git config --global user.name "Your name"
     git config --global user.email "yourname@provider.com"
 
+## Delete last commit
+git reset --hard <commit-id>
+git push origin -f
+
 ## .gitignore
 
 Create file called `.gitignore` on root. Only code is supposed to be on git. No binaries, libraries etc.
