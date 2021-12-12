@@ -263,6 +263,69 @@ If you are not sure how to format code, you can try [pep 8](https://www.python.o
     a = 1 + 2 \
         + 3
 
+# Type hints - annotations
+
+As from python 3.9 it's not necessary to use typing List, Tuple etc.
+
+For pytnon 3.7, 3.8 you need to add (python 3.6 and less is not supported)
+
+    from __future__ import annotations, TYPE_CHECKING, get_type_hints
+    from typing import Any 
+
+How to annotate basic data types
+
+    class MyClass:
+        unknown: Any
+        names: list[str] = ["Guido", "Jukka", "Ivan"]
+        version: tuple[int, int, int] = (3, 7, 1)
+        tuple_unknown: tuple[str, ...] = ('one', 'two', 'three')
+        options: dict[str, bool] = {"centered": False, "capitalize": True}
+
+How to annotate function return
+
+    def say_it(word: str) -> str:
+        return word
+
+It's possible in class to return itself ()
+
+    class ReturnMe:
+        def(self) -> ReturnMe:
+            return self
+ 
+If type not exists yet, you can use Forward Reference (use a string literal). Types are still processed even if in string.
+If you need to run some code only for type hints (like import lazy loaded library for type)
+
+from typing TYPE_CHECKING
+
+    if TYPE_CHECKING:
+        import pandas as pd
+
+    class Tree:
+        def __init__(self, left: 'pd.DataFrame', right: 'pd.DataFrame'):
+            self.left = left
+            self.right = right
+
+If you need type hints dynamically in code (for example for type checking)
+
+hints = get_type_hints()
+
+## Type validation
+
+from typeguard import typechecked
+
+@typechecked
+def some_function(a: int, b: float, c: str, *args: str) -> bool:
+    ...
+    return retval
+
+@typechecked
+class SomeClass:
+    # All type annotated methods (including static and class methods and properties)
+    # are type checked.
+    # Does not apply to inner classes!
+    def method(x: int) -> int:
+        pass
+
 # Comments
 
     # One line comment
@@ -857,6 +920,20 @@ for key, value in modelsparameters.items():
     b = { 'u' : 1, 'v' : 2, 'w' : 3, 'x'  : 1, 'y': 2 }
     set( a.keys() ) & set( b.keys() )  # Output set(['y', 'x'])
     set( a.items() ) & set( b.items())  # Output set([('y', 2), ('x', 1)])
+
+## Named tuple
+
+    from typing import NamedTuple
+
+    class class_name(NamedTuple):
+        field1: datatype
+        field2: datatype
+
+This is equivalent to:
+
+    class_name = collections.namedtuple('class_name', ['field1', 'field2'])
+
+Named tuples are very good when function returns complicated structure. This can brings docstrings, type hints and same structure like classical return.
 
 ## Deque
 
@@ -1657,12 +1734,6 @@ c = a + b # returns a Decimal representing exactly 0.3
 "%.3f" % 1.2399 # returns "1.240"
 "%.2f" % 1.2 # returns "1.20"
 ```
-
-# Type hinting
-
-    def sentence_has_animal(sentence: str) -> bool:
-        return "animal" in sentence
-    sentence_has_animal("Donald had a farm without animals")
 
 # Iterators
 
@@ -2718,7 +2789,9 @@ Result is `e = {"a": 1, "b": 2}`
 
 # Imported libraries
 
-## Tests - pytest
+## Tests
+
+### Pytest
 
 ```python
 # Write test file
@@ -2764,6 +2837,13 @@ def test_some_holidays(year, month, day):
     holidays = isholiday.getholidays(year)
     assert (day, month) in holidays
 ```
+
+### Doctest
+
+**Directives**
+Ignore exception detail
+
+# doctest: +IGNORE_EXCEPTION_DETAIL
 
 ## Command Line Arguments - argparse
 

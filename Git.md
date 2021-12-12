@@ -93,7 +93,7 @@ Delete `.git` folder
     git init
     git add .
     git commit -m "Removed history, due to sensitive data"
-    git remote add origin github.com:yourhandle/yourrepo.git
+    git remote add origin github.com:your-project/your-repo.git
     git push -u --force origin master
 
 ## Git hooks
