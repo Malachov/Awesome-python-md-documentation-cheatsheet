@@ -1,25 +1,54 @@
 # Git
 
+## How to contribute on gitHub
+
+Create fork in GitHub, clone forked repository, add upstream with
+
+    git remote add upstream original-repo-url
+
+Update upstream repo in your IDE, create new branch, push changes to the fork, then create pull request in GitHub, resolve comments and if it's accepted, delete branch from local repo.
+
+
+## Download existing repo
+
+    git clone repo-url
+
 ## Setup
 
     git config --global user.name "Your name"
     git config --global user.email "yourname@provider.com"
 
 ## Delete last commit
-git reset --hard <commit-id>
-git push origin -f
+
+    git reset --hard <commit-id>
+    git push origin -f
+
+**If deleting also tag**
+
+    git push --tag
+
+
+## Delete tag
+
+**Locally**
+
+    git tag -d v1.0
+
+**Remote**
+
+    git push --delete origin tagname
 
 ## .gitignore
 
 Create file called `.gitignore` on root. Only code is supposed to be on git. No binaries, libraries etc.
-You can define what files will be send to git and what files will be ignored
+You can define what files will be sent to git and what files will be ignored
 
-    # Comments must beginn on new line !!!
+    # Comments must begin on new line !!!
 
     # Ignore one file
     readme.txt
 
-    # Ignore only in curent folder
+    # Ignore only in current folder
     /readme.txt
 
     # Ignore folder
@@ -39,7 +68,7 @@ You can define what files will be send to git and what files will be ignored
 
 ## Start new repo
 
-Create repo for example on github
+Create repo for example on GitHub
 
 Init stage and commit can be done from IDE with actions
 
@@ -52,11 +81,8 @@ Init stage and commit can be done from IDE with actions
     # Commit all
     git commit -a -m "new message"
 
-    git remote add origin www.github...repopath
+    git remote add origin www.github...repo-path
 
-## Download existing repo
-
-    git clone repo-url
 
 ## Misc
 

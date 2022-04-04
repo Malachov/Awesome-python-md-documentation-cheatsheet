@@ -1,3 +1,22 @@
+# JavaScript
+
+## Packages
+
+### Package.json
+
+Define version threshold with
+
+    patch ~
+    minor ^
+
+Update all in `package.json` to majer versions
+
+    npm install -g npm-check-updates
+    ncu -u
+
+Update all installed libraries (miner or patch based on `package.json`)
+
+
 # JS syntax
 
 ```js

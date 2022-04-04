@@ -9,6 +9,9 @@ subsubtitle
 **********************
 and so on
 
+Reference to code
+
+
 # with overline, for parts
 * with overline, for chapters
 =, for sections
@@ -45,3 +48,11 @@ This is a simple example::
     :align: center
     :height: 100px
     :alt: alternate text
+
+
+Code reference
+
+:py:mod:`mypythontools.helpers`
+-------------------------------
+
+Docs reference

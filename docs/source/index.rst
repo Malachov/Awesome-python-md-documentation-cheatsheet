@@ -1,0 +1,31 @@
+****
+Docs
+****
+
+This is documentation for everything I ever needed for programming...
+
+Every folder contain its readme file with syntax, commands, snippets, examples etc...
+
+Only a profound documentation is the Python one...
+
+It's open of course, you can use it, share it and edit it...
+
+Available documentations
+========================
+
+- :doc:`Docker`
+- :doc:`Git`
+- :doc:`Go`
+- :doc:`JavaScript`
+- :doc:`Linux`
+- :doc:`Python`
+- :doc:`Terminal`
+
+Printscreen
+===========
+
+This is an example of how it can look in IDE
+
+.. image:: _static/printscreen.png
+  :width: 620
+  :alt: printscreen

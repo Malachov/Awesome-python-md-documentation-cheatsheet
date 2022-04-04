@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Git &#8212; Python 04-04-2022 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="https://malachov.github.io/mypythontools/tools/sphinx-alabaster-css/custom.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="git">
+<h1>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
+<section id="how-to-contribute-on-github">
+<h2>How to contribute on gitHub<a class="headerlink" href="#how-to-contribute-on-github" title="Permalink to this headline">¶</a></h2>
+<p>Create fork in GitHub, clone forked repository, add upstream with</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git remote add upstream original-repo-url
+</pre></div>
+</div>
+<p>Update upstream repo in your IDE, create new branch, push changes to the fork, then create pull request in GitHub, resolve comments and if it’s accepted, delete branch from local repo.</p>
+</section>
+<section id="download-existing-repo">
+<h2>Download existing repo<a class="headerlink" href="#download-existing-repo" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone repo-url
+</pre></div>
+</div>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git config --global user.name &quot;Your name&quot;
+git config --global user.email &quot;yourname@provider.com&quot;
+</pre></div>
+</div>
+</section>
+<section id="delete-last-commit">
+<h2>Delete last commit<a class="headerlink" href="#delete-last-commit" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git reset --hard &lt;commit-id&gt;
+git push origin -f
+</pre></div>
+</div>
+<p><strong>If deleting also tag</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git push --tag
+</pre></div>
+</div>
+</section>
+<section id="delete-tag">
+<h2>Delete tag<a class="headerlink" href="#delete-tag" title="Permalink to this headline">¶</a></h2>
+<p><strong>Locally</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git tag -d v1.0
+</pre></div>
+</div>
+<p><strong>Remote</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git push --delete origin tagname
+</pre></div>
+</div>
+</section>
+<section id="gitignore">
+<h2>.gitignore<a class="headerlink" href="#gitignore" title="Permalink to this headline">¶</a></h2>
+<p>Create file called <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> on root. Only code is supposed to be on git. No binaries, libraries etc.
+You can define what files will be sent to git and what files will be ignored</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Comments must begin on new line !!!
+
+# Ignore one file
+readme.txt
+
+# Ignore only in current folder
+/readme.txt
+
+# Ignore folder
+output/
+
+# ignore all *java files
+*.java
+
+# All files in directory
+abc/**
+
+# Zero or more directories
+a/**/b
+
+# Do not ignore
+!readme.txt
+</pre></div>
+</div>
+</section>
+<section id="start-new-repo">
+<h2>Start new repo<a class="headerlink" href="#start-new-repo" title="Permalink to this headline">¶</a></h2>
+<p>Create repo for example on GitHub</p>
+<p>Init stage and commit can be done from IDE with actions</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Create .git folder
+git init
+
+# Stage all
+git stage -A
+
+# Commit all
+git commit -a -m &quot;new message&quot;
+
+git remote add origin www.github...repo-path
+</pre></div>
+</div>
+</section>
+<section id="misc">
+<h2>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Print what is changed
+git status
+
+# Stage
+git add add.js
+
+# Reset to commit and keep changes in code in stage
+git reset --soft 852309
+
+# Reset 5 commits back
+git reset --soft &#39;HEAD{5}&#39;
+
+# Reset to commit and delete changes
+git reset --hard 852309
+
+# Create branch
+git branch dev
+
+# Move to branch
+git checkout dev
+
+# Merge branches (if join master with dev branch, first checkout back to master then)
+git merge dev
+
+# Delete branch locally
+git branch -d dev
+
+# Delete branch remotely
+git push --delete origin dev
+</pre></div>
+</div>
+</section>
+<section id="clean-all-history-create-stage-commit-push">
+<h2>Clean all history (create, stage, commit, push)<a class="headerlink" href="#clean-all-history-create-stage-commit-push" title="Permalink to this headline">¶</a></h2>
+<p>Delete <code class="docutils literal notranslate"><span class="pre">.git</span></code> folder</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git init
+git add .
+git commit -m &quot;Removed history, due to sensitive data&quot;
+git remote add origin github.com:your-project/your-repo.git
+git push -u --force origin master
+</pre></div>
+</div>
+</section>
+<section id="git-hooks">
+<h2>Git hooks<a class="headerlink" href="#git-hooks" title="Permalink to this headline">¶</a></h2>
+<p>First setup hooks path, because normal hooks are gitignored by default</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git config core.hooksPath git_hooks_path
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div id="logo">
+    <a href="/">
+        <img src="/_static/logo.svg" alt="Logo" width="120px">
+    </a>
+</div>
+
+<div class="section" id="table-of-contents">
+
+    <h1>Library</h1>
+
+    <ul>
+        <li><a href="/Databases.html">Databases</a></li>
+        <li><a href="/Docker.html">Docker</a></li>
+        <li><a href="/Git.html">Git</a></li>
+        <li><a href="/Go.html">Go</a></li>
+        <li><a href="/Javascript.html">Javascript</a></li>
+        <li><a href="/Linux.html">Linux</a></li>
+        <li><a href="/Python.html">Python</a></li>
+        <li><a href="/Terminal.html">Terminal</a></li>
+    </ul>
+
+    <h2><a href="/genindex.html">Index</a></h2>
+
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Daniel Malachov.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Git.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/Malachov/docs" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

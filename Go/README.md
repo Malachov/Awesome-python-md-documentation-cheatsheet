@@ -1,35 +1,37 @@
-# Settings env
+# Go
 
-## Print
+## Environment
+
+### Print
 
     go env
 
-## Edit
+### Edit
 
     go env -w GONOPROXY=myurl
 
-# Packages managing
+## Packages managing
 
-## Download
+### Download
 
     go get code.exaas.bosch.com/xelerator/projects/api/go-modules/mongo-wrapper
 
 add @v1.2.8 for specific version	
 
-## Create
+### Create
 
 	go mod init
 
-## Solve dependencies
+### Solve dependencies
 
 	go mod tidy
 
 
-## Create module
+### Create module
 
 	go mod init
 
-## Load local module
+### Load local module
 
 In go .mod put before require
 
@@ -40,28 +42,28 @@ Then in require
 	module v1.0.0
 
 
-# Syntax
+## Syntax
 
-## References (* and &)
+### References (* and &)
 
 [https://gist.github.com/josephspurrier/7686b139f29601c3b370](https://gist.github.com/josephspurrier/7686b139f29601c3b370)
 
-## Strings
+### Strings
 
 Unescaped raw strings
 
 	a := "\n" // This is one character, a line break.
 	b := `\n` // These are two characters, backslash followed by letter n.
 
-## Create map (dict) of misc types
+### Create map (dict) of misc types
 
 	var data map[string]interface{}  // Can be {'key': 'value', 'key2': 64}
 
-## Create array (list) of misc types
+### Create array (list) of misc types
 
 	var data map[string]interface{}  // Can be {'key': 'value', 'key2': 64}
 
-## Conditions
+### Conditions
 
 Define variable only for if scope
 
@@ -69,7 +71,7 @@ Define variable only for if scope
 		log.Fatal("oh no")
 	}
 
-## Type assertions
+### Type assertions
 
 ```go
 
@@ -85,9 +87,9 @@ switch v.(type) {
 }
 ```
 
-# Misc
+## Misc
 
-## Requests
+### Requests
 
 **Expose gin on other port**
 	
@@ -116,13 +118,13 @@ if err != nil {
 ```
 
 
-## GIN
+### GIN
 
 Change used port
 
 	router.Run(":8081")
 
-## Profiling (for gin)
+### Profiling (for gin)
 
 Add to import
 

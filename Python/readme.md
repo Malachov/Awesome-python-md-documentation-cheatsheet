@@ -1,10 +1,4 @@
-﻿# Awesome-python-md-documentation
-
-This is python user documentation created in markdown so it can be visualized in IDE. How it can look is on this printscreen.
-
-![Printscreen of documentation use](https://raw.githubusercontent.com/Malachov/Awesome-python-md-documentation-cheatsheet/master/printscreen.png)
-
-Feel free to colab...
+﻿# Python
 
 It's also in jupyter notebook ipynb version. Markdown is good for finding correct syntax, notebook is good, when you want to learn something and play with code. It's derived from original `README.md` so do not edit jupyter itself.
 
@@ -24,18 +18,30 @@ Note 4: Table of Content is not working in jupyter, so delete it. Use nbextensio
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
-<!-- code_chunk_output -->
+<!-- code_chunk__output -->
 
-- [Awesome-python-md-documentation](#awesome-python-md-documentation)
+- [Python](#python)
 - [Table of Content](#table-of-content)
 - [General](#general)
 - [Cookiecutter - Project scaffolding](#cookiecutter---project-scaffolding)
-- [Libraries](#libraries)
-  - [Virtual environment (venv)](#virtual-environment-venv)
-  - [Requirements](#requirements)
+- [Libraries (packages)](#libraries-packages)
+  - [Pushing to PyPi](#pushing-to-pypi)
+- [Virtual environment (venv)](#virtual-environment-venv)
+- [Requirements](#requirements)
 - [Building app - Pyinstaller](#building-app---pyinstaller)
 - [Style guide (linting, formatting)](#style-guide-linting-formatting)
+  - [PEP 8](#pep-8)
+  - [Black](#black)
+  - [Linting](#linting)
+    - [Flake8](#flake8)
+    - [Pylint](#pylint)
+    - [Pylance](#pylance)
+    - [Pydocstyle](#pydocstyle)
+    - [Bandit](#bandit)
+    - [Ignore formatting for selection](#ignore-formatting-for-selection)
   - [Multi line code](#multi-line-code)
+- [Type hints - annotations](#type-hints---annotations)
+  - [Type validation](#type-validation)
 - [Comments](#comments)
 - [Documentation - docstrings](#documentation---docstrings)
 - [Logical conditions (and, or, not...)](#logical-conditions-and-or-not)
@@ -46,13 +52,13 @@ Note 4: Table of Content is not working in jupyter, so delete it. Use nbextensio
   - [List](#list)
   - [Tuple](#tuple)
   - [Dictionary](#dictionary)
+  - [Named tuple](#named-tuple)
   - [Deque](#deque)
   - [Set](#set)
   - [Dataframe](#dataframe)
   - [Numpy Array](#numpy-array)
   - [HDF5](#hdf5)
   - [Decimal](#decimal)
-- [Type hinting](#type-hinting)
 - [Iterators](#iterators)
 - [Conditions (if, else...)](#conditions-if-else)
 - [Loops](#loops)
@@ -83,7 +89,10 @@ Note 4: Table of Content is not working in jupyter, so delete it. Use nbextensio
   - [Pickle](#pickle)
   - [Time and datetime](#time-and-datetime)
 - [Imported libraries](#imported-libraries)
-  - [Tests - pytest](#tests---pytest)
+  - [Tests](#tests)
+    - [Pytest](#pytest)
+    - [Doctest](#doctest)
+- [doctest: +IGNORE_EXCEPTION_DETAIL](#doctest-ignore_exception_detail)
   - [Command Line Arguments - argparse](#command-line-arguments---argparse)
   - [Plots, graphs](#plots-graphs)
     - [Plotly](#plotly)
@@ -112,12 +121,13 @@ Note 4: Table of Content is not working in jupyter, so delete it. Use nbextensio
   - [Push own library to PyPi](#push-own-library-to-pypi)
   - [CI/CD](#cicd)
   - [Create documentation - Sphinx](#create-documentation---sphinx)
+    - [Format](#format)
   - [Snippets - examples](#snippets---examples)
     - [Measure time](#measure-time)
     - [Show bytecode](#show-bytecode)
     - [Encoding JSON with Python](#encoding-json-with-python)
 
-<!-- /code_chunk_output -->
+<!-- /code_chunk__output -->
 
 # General
 
@@ -163,7 +173,7 @@ You can find typical python project structure here
 
 It contains testing files, files for sphinx auto documentation, licence and more.
 
-# Libraries
+# Libraries (packages)
 
 **Install library**
 
@@ -177,6 +187,18 @@ conda install library_name
 conda install -c anaconda library_name
 ```
 
+**Install develop version**
+This will create links to local pacages, so if you change source and save, it will work in other packages
+
+```console
+pip install -e /path/to/locations/repo
+```
+
+**Install locally**
+```console
+pip install .
+```
+
 **Show installed libraries**
 
 ```console
@@ -185,15 +207,25 @@ pip list
 
 **Show outdated libraries**
 
-```console
-pip list --outdated
-```
+    pip list --outdated
+
 
 **If pip cannot be installed by SSL errorr**
 
     pip install ipykernel --upgrade pip --trusted-host pypi.org
 
-## Virtual environment (venv)
+## Pushing to PyPi
+
+**Build dist**
+
+    python setup.py sdist bdist_wheel
+
+**Push to PyPi**
+
+    twine upload -u user_name -p password dist/*
+
+
+# Virtual environment (venv)
 
 ```console
 
@@ -206,7 +238,7 @@ virtualenv venv
 vevn\Scripts\activate.bat
 ```
 
-## Requirements
+# Requirements
 
 File that describe all used libraries for some project. You can install all the libraries at once.
 
@@ -222,6 +254,7 @@ pipreqs --encoding=utf8 C:\VSCODE\Diplomka
 
 You can find much more about libraries in `Modules` section.
 
+
 # Building app - Pyinstaller
 
 You can create binaries with pyinstaller, so other user can run an app even with no python installed.
@@ -234,9 +267,12 @@ Build bootloader locally to avoid false positive antivirus alert (in tutorial).
 
 # Style guide (linting, formatting)
 
-**pylint** - show you where problems are
+## PEP 8
 
-**Black** - Strict auto formatting. Setup longer default line length for better user experience
+If you are not sure how to format code, you can try [pep 8](https://www.python.org/dev/peps/pep-0008/) or [google style guide](https://google.github.io/styleguide/pyguide.html)
+
+## Black
+Strict auto formatting. Setup longer default line length for better user experience
 
 Example for how to use it in VS Code - Add to settings.json:
 
@@ -245,7 +281,66 @@ Example for how to use it in VS Code - Add to settings.json:
 "python.formatting.blackArgs": ["--line-length", "110"],
 ```
 
-If you are not sure how to format code, you can try [pep 8](https://www.python.org/dev/peps/pep-0008/) or [google style guide](https://google.github.io/styleguide/pyguide.html)
+## Linting
+
+Show you where problems are. You can use for example Pylint (raise more warnings) or Flake8 (more tolerant)
+
+### Flake8
+
+Mostly for formatting (PEP8) issues
+
+This is not necessary as using some autoformating tool
+
+** Ignore line in linting
+
+    code   =   8  # noqa
+
+### Pylint
+
+Also for non-optimal code hints
+
+**Ignore for rest all file or block of code**
+
+    # pylint: disable=W0201
+
+    code_here
+
+    # pylint: disable=W0201  # Enable from here on
+
+
+**Ignore message on particular line**
+
+    code_here  # pylint: disable=W0201
+    
+### Pylance
+
+Used for type validation
+
+    a: int = "bad format"  # type: ignore
+
+### Pydocstyle
+
+Checks you docstrings.
+
+Omit lint for function
+
+    def bad_function():  # noqa: D400
+        """Omit a period in the docstring as an exception"""
+        pass
+
+### Bandit
+
+For security issues
+
+### Ignore formatting for selection
+
+```python
+# fmt: off
+
+your_code =    "here"
+
+# fmt: on
+```
 
 ## Multi line code
 
@@ -1963,7 +2058,7 @@ Example of generator is range(10000)
 # Decorators
 
 Dekorators are functions, that wrap other functions, by that
-it can change it's behaviour.
+it can change it's behavior.
 
     def nekolikrat(puvodni_funkce):
         def repeat_function(*args, **kwargs):
@@ -2160,7 +2255,7 @@ The \_\_call** method can be used to turn the instances of the class into callab
     for i in range(1, 10):
         print(i, p1(i), p2(i), p3(i))
 
-Magic methods (For example for change of + behaviour)
+Magic methods (For example for change of + behavior)
 What happens when we create an object in python class ?
 
     '''
@@ -2746,7 +2841,7 @@ print the first occurrence of matching warnings for each module where the warnin
     import subprocess
 
     subprocess.run('ls')
-    p1 = subprocess.run(['ls', '-la']) # with capture_output=True only save to variable
+    p1 = subprocess.run(['ls', '-la']) # with capture__output=True only save to variable
     print(p1.stdout)
 
     # More general - can define stdout and more here
@@ -4328,6 +4423,11 @@ make html
 
 Or you can make account on [readthedocs](https://readthedocs.org/) - It's free.
 And the documentation will be automatically made on every github push to master.
+
+### Format
+
+**code**
+If you use one bacticks around, it will have grey background. If you will use double backticks around, it will be also formated as code.
 
 ## Snippets - examples
 

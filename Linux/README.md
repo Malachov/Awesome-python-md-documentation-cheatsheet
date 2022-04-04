@@ -1,4 +1,6 @@
-# Linux - bash essentials
+# Linux
+
+## Bash essentials
 
     # Update all packages
     sudo apt-get update

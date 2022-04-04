@@ -1,4 +1,7 @@
-# How to write universal script
+# Terminal
+
+## How to write universal script
+
 
 CMD, Powershell and bash use different commands.
 As there is usually bash installed on Windows and not vice versa, it's possible to use one script everywhere.
@@ -21,13 +24,20 @@ echo 'Press key to exit' && read EXIT
 ")
 ```
 
-# Bash
+## Bash
 
 netstat -ap | grep http
 
-# Powershell
+## Powershell
 
-## Simple script
+### Create profile
+On powershell 7 profile may be not created by default
+
+    if (!(Test-Path -Path $PROFILE)) {
+      New-Item -ItemType File -Path $PROFILE -Force
+    }
+
+### Simple script
 
 ```powershell
 try {
@@ -39,16 +49,16 @@ try {
     Read-Host -Prompt "Finished, Press Enter to exit"
 ```
 
-## Exec powershell script
+### Exec powershell script
 
     ./script_name.ps1
 
-## Answer Yes to all User inputs
+### Answer Yes to all User inputs
 
     -Confirm:$false
 
-# cmd - .bat
+## cmd - .bat
 
-## Open bat and see result
+### Open bat and see result
 
     cmd /k my_script.bat
