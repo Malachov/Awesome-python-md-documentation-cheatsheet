@@ -18,6 +18,7 @@ Available documentations
 - :doc:`Go`
 - :doc:`JavaScript`
 - :doc:`Linux`
+- :doc:`Misc`
 - :doc:`Python`
 - :doc:`Terminal`
 

@@ -15,6 +15,7 @@ It's open of course, you can use it, share it and edit it...
 - [Go](https://mypythontoolsdocs.readthedocs.io/Go.html)
 - [JavaScript](https://mypythontoolsdocs.readthedocs.io/JavaScript.html)
 - [Linux](https://mypythontoolsdocs.readthedocs.io/Linux.html)
+- [Misc](https://mypythontoolsdocs.readthedocs.io/Misc.html)
 - [Python](https://mypythontoolsdocs.readthedocs.io/Python.html)
 - [Terminal](https://mypythontoolsdocs.readthedocs.io/Terminal.html)
 
