@@ -13,14 +13,14 @@ It's open of course, you can use it, share it and edit it...
 Available documentations
 ========================
 
-- :doc:`Docker`
-- :doc:`Git`
-- :doc:`Go`
-- :doc:`JavaScript`
-- :doc:`Linux`
-- :doc:`Misc`
-- :doc:`Python`
-- :doc:`Terminal`
+- :doc:`./Docker`
+- :doc:`./Git`
+- :doc:`./Go`
+- :doc:`./JavaScript`
+- :doc:`./Linux`
+- :doc:`./Misc`
+- :doc:`./Python`
+- :doc:`./Terminal`
 
 Printscreen
 ===========
