@@ -1,5 +1,11 @@
 # Git
 
+## Glossary
+origin - Remote url shorthand
+merge - Add changes from some branch into another in new commit
+rebase - Add changes from some branch via changing history (no new commit) !!!Use only when only you are using the branch. If already on remote, need force push!!!
+fast-forward - It's possible to do merge without new commit (only possible if there are no changes on the other branch)
+
 ## How to contribute on gitHub
 
 Create fork in GitHub, clone forked repository, add upstream with
