@@ -2,23 +2,11 @@
 
 This is documentation for everything I ever needed for programming...
 
-Every folder contain its readme file with syntax, commands, snippets, examples etc...
+There is a folder languages, with language specific commands, snippets, examples etc...
 
-Only a profound documentation is the Python one...
+There is file `documentation.md` that describes operating system helpers, syntax for terminals, git, docker etc.
 
 It's open of course, you can use it, share it and edit it...
-
-## Available documentations
-
-- [Docker](https://mypythontoolsdocs.readthedocs.io/Docker.html)
-- [Git](https://mypythontoolsdocs.readthedocs.io/Git.html)
-- [Go](https://mypythontoolsdocs.readthedocs.io/Go.html)
-- [JavaScript](https://mypythontoolsdocs.readthedocs.io/JavaScript.html)
-- [Linux](https://mypythontoolsdocs.readthedocs.io/Linux.html)
-- [Misc](https://mypythontoolsdocs.readthedocs.io/Misc.html)
-- [Python](https://mypythontoolsdocs.readthedocs.io/Python.html)
-- [Terminal](https://mypythontoolsdocs.readthedocs.io/Terminal.html)
-
 
 ## Printscreen
 

@@ -1,135 +1,102 @@
-﻿# Python
+# Python reference
 
-It's also in jupyter notebook ipynb version. Markdown is good for finding correct syntax, notebook is good, when you want to learn something and play with code. It's derived from original `README.md` so do not edit jupyter itself.
 
-Note 1: Some cells are commented, because can slow notebook, make errors or save files.
+## TOC
 
-Note 2: Some code is in python language, but many lines are for terminal (like cwd for example). If this is the case, you can run it also in terminal, just add `! ` before every command.
+<!-- TOC -->
+* [Python reference](#python-reference)
+  * [TOC](#toc)
+  * [General](#general)
+  * [Cookiecutter - Project scaffolding](#cookiecutter---project-scaffolding)
+  * [Package management](#package-management)
+    * [Virtual environment (venv)](#virtual-environment--venv-)
+    * [Requirements](#requirements)
+  * [Style guide (linting, formatting)](#style-guide--linting-formatting-)
+  * [Documentation - docstrings](#documentation---docstrings)
+  * [Multi line code](#multi-line-code)
+  * [Comments](#comments)
+    * [Logical conditions (and, or, not...)](#logical-conditions--and-or-not-)
+  * [Type hints](#type-hints)
+  * [Variables](#variables)
+  * [Builtin Data types](#builtin-data-types)
+    * [None](#none)
+    * [String](#string)
+    * [List](#list)
+    * [Tuple](#tuple)
+    * [Dictionary](#dictionary)
+    * [Deque](#deque)
+    * [Set](#set)
+    * [Decimal](#decimal)
+  * [Imported data types](#imported-data-types)
+    * [Dataframe](#dataframe)
+    * [Numpy Array](#numpy-array)
+    * [HDF5](#hdf5)
+  * [Iterators](#iterators)
+  * [Conditions (if, else...)](#conditions--if-else-)
+  * [Loops](#loops)
+    * [For](#for)
+    * [While](#while)
+  * [Functions](#functions)
+  * [map, filter, reduce](#map-filter-reduce)
+  * [Generators](#generators)
+  * [Decorators](#decorators)
+  * [Modules](#modules)
+  * [Classes](#classes)
+  * [Magic methods (dunder methods)](#magic-methods--dunder-methods-)
+  * [Bitwise operations](#bitwise-operations)
+  * [File I/O](#file-io)
+    * [Open file](#open-file)
+    * [Manipulate with files (move, copy)](#manipulate-with-files--move-copy-)
+  * [Try -- Except](#try----except)
+  * [Builtin functions](#builtin-functions)
+  * [Builtin variables](#builtin-variables)
+  * [Builtin modules](#builtin-modules)
+    * [Sys](#sys)
+    * [io](#io)
+    * [os](#os)
+    * [Pathlib - Work with paths](#pathlib---work-with-paths)
+    * [Warnings](#warnings)
+    * [re - Regular expressions](#re---regular-expressions)
+    * [Subprocess - Run shell comands](#subprocess---run-shell-comands)
+    * [Pickle](#pickle)
+    * [Time and datetime](#time-and-datetime)
+    * [Argparse - Command Line Interface (cli)](#argparse---command-line-interface--cli-)
+  * [Concurrent - Asynchronous code](#concurrent---asynchronous-code)
+  * [Imported libraries](#imported-libraries)
+    * [Sphinx - Create documentation](#sphinx---create-documentation)
+    * [Tests](#tests)
+      * [Pytest](#pytest)
+    * [Plots, graphs](#plots-graphs)
+      * [Plotly](#plotly)
+      * [Matplotlib](#matplotlib)
+    * [Web](#web)
+      * [Requests - API - GET, POST](#requests---api---get-post)
+      * [Beautiful soup - web scrapping](#beautiful-soup---web-scrapping)
+    * [Images, pictures](#images-pictures)
+    * [Mathematics, statistics, linear algebra](#mathematics-statistics-linear-algebra)
+    * [Signal processing and controll](#signal-processing-and-controll)
+    * [Database](#database)
+      * [pyodbc, sqlalchemy](#pyodbc-sqlalchemy)
+    * [GUI](#gui)
+    * [Misc](#misc)
+      * [Tables](#tables)
+    * [Jupyter, IPython](#jupyter-ipython)
+      * [Magic](#magic)
+      * [Misc](#misc-1)
+  * [Building app (executables) - Pyinstaller](#building-app--executables----pyinstaller)
+  * [Performance](#performance)
+    * [Profiling](#profiling)
+      * [Line profiling](#line-profiling)
+    * [Max execution time function](#max-execution-time-function)
+    * [Numba](#numba)
+    * [Dask](#dask)
+  * [Garbage collector](#garbage-collector)
+  * [Miscellaneous](#miscellaneous)
+  * [Misc](#misc-2)
+    * [Snippets - examples](#snippets---examples)
+<!-- TOC -->
 
-Note 3: Jupyter need some libraries for particular tasks. Install it when reach the error, or if you don't want to install them manually, use chapter 1 Requirements - bulk libraries install, and install all of them from [My requirements](https://github.com/Malachov/mypythontools/tree/master/content/requirements)
-
-Note 4: Table of Content is not working in jupyter, so delete it. Use nbextensions and extension table of content. If you have no nbextensions, than use:
-
-    # !  pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install
-
-    # I recommend Table Of contents, Variable inspector, ExecuteTime, Code Prettify and Autopep8. Just restart jupyter and choose from tab nbextensions.
-
-# Table of Content
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk__output -->
-
-- [Python](#python)
-- [Table of Content](#table-of-content)
-- [General](#general)
-- [Cookiecutter - Project scaffolding](#cookiecutter---project-scaffolding)
-- [Libraries (packages)](#libraries-packages)
-  - [Pushing to PyPi](#pushing-to-pypi)
-- [Virtual environment (venv)](#virtual-environment-venv)
-- [Requirements](#requirements)
-- [Building app - Pyinstaller](#building-app---pyinstaller)
-- [Style guide (linting, formatting)](#style-guide-linting-formatting)
-  - [PEP 8](#pep-8)
-  - [Black](#black)
-  - [Linting](#linting)
-    - [Flake8](#flake8)
-    - [Pylint](#pylint)
-    - [Pylance](#pylance)
-    - [Pydocstyle](#pydocstyle)
-    - [Bandit](#bandit)
-    - [Ignore formatting for selection](#ignore-formatting-for-selection)
-  - [Multi line code](#multi-line-code)
-- [Type hints - annotations](#type-hints---annotations)
-  - [Type validation](#type-validation)
-- [Comments](#comments)
-- [Documentation - docstrings](#documentation---docstrings)
-- [Logical conditions (and, or, not...)](#logical-conditions-and-or-not)
-  - [None](#none)
-- [Variables](#variables)
-- [Data types](#data-types)
-  - [String](#string)
-  - [List](#list)
-  - [Tuple](#tuple)
-  - [Dictionary](#dictionary)
-  - [Named tuple](#named-tuple)
-  - [Deque](#deque)
-  - [Set](#set)
-  - [Dataframe](#dataframe)
-  - [Numpy Array](#numpy-array)
-  - [HDF5](#hdf5)
-  - [Decimal](#decimal)
-- [Iterators](#iterators)
-- [Conditions (if, else...)](#conditions-if-else)
-- [Loops](#loops)
-  - [For](#for)
-  - [WHILE](#while)
-- [Functions](#functions)
-    - [map(), filter(), reduce()\*\*](#map-filter-reduce)
-- [Generators](#generators)
-- [Decorators](#decorators)
-- [Modules](#modules)
-- [Classes](#classes)
-  - [Magic methods (dunder methods)](#magic-methods-dunder-methods)
-- [Bitwise operations](#bitwise-operations)
-- [File I/O](#file-io)
-  - [Open file](#open-file)
-  - [Manipulate with files (move, copy)](#manipulate-with-files-move-copy)
-- [Try -- Except](#try----except)
-- [Built in functions](#built-in-functions)
-- [Built in variables](#built-in-variables)
-- [Built in modules](#built-in-modules)
-  - [Sys](#sys)
-  - [io](#io)
-  - [os](#os)
-  - [Pathlib - Work with paths](#pathlib---work-with-paths)
-  - [Warnings](#warnings)
-  - [re - Regular expressions](#re---regular-expressions)
-  - [Subprocess - Run shell comands](#subprocess---run-shell-comands)
-  - [Pickle](#pickle)
-  - [Time and datetime](#time-and-datetime)
-- [Imported libraries](#imported-libraries)
-  - [Tests](#tests)
-    - [Pytest](#pytest)
-    - [Doctest](#doctest)
-- [doctest: +IGNORE_EXCEPTION_DETAIL](#doctest-ignore_exception_detail)
-  - [Command Line Arguments - argparse](#command-line-arguments---argparse)
-  - [Plots, graphs](#plots-graphs)
-    - [Plotly](#plotly)
-    - [Matplotlib](#matplotlib)
-  - [Tables](#tables)
-  - [Web](#web)
-    - [Requests - API - GET, POST](#requests---api---get-post)
-    - [Beautiful soup - web scrapping](#beautiful-soup---web-scrapping)
-  - [Images, pictures](#images-pictures)
-  - [Mathematics, statistics, linear algebra](#mathematics-statistics-linear-algebra)
-  - [Signal processing and controll](#signal-processing-and-controll)
-  - [Database](#database)
-    - [pyodbc, sqlalchemy](#pyodbc-sqlalchemy)
-  - [GUI](#gui)
-  - [Misc](#misc)
-    - [Jupyter](#jupyter)
-- [Performance](#performance)
-  - [Profiling](#profiling)
-    - [Line profiling](#line-profiling)
-  - [Garbage collector](#garbage-collector)
-  - [Threading](#threading)
-  - [Max execution time function](#max-execution-time-function)
-  - [Numba](#numba)
-  - [Dask](#dask)
-- [Miscellaneous](#miscellaneous)
-  - [Push own library to PyPi](#push-own-library-to-pypi)
-  - [CI/CD](#cicd)
-  - [Create documentation - Sphinx](#create-documentation---sphinx)
-    - [Format](#format)
-  - [Snippets - examples](#snippets---examples)
-    - [Measure time](#measure-time)
-    - [Show bytecode](#show-bytecode)
-    - [Encoding JSON with Python](#encoding-json-with-python)
-
-<!-- /code_chunk__output -->
-
-# General
+## General
 
 **Show where python is installed**
 
@@ -145,7 +112,7 @@ Note 4: Table of Content is not working in jupyter, so delete it. Use nbextensio
 
 Add to source ~/.bashrc
 
-```console
+```shell
 alias python=python3
 alias pip=pip3
 ```
@@ -165,7 +132,7 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
 sudo update-alternatives --config python
 ```
 
-# Cookiecutter - Project scaffolding
+## Cookiecutter - Project scaffolding
 
 You can find typical python project structure here
 
@@ -173,7 +140,7 @@ You can find typical python project structure here
 
 It contains testing files, files for sphinx auto documentation, licence and more.
 
-# Libraries (packages)
+## Package management
 
 **Install library**
 
@@ -187,18 +154,6 @@ conda install library_name
 conda install -c anaconda library_name
 ```
 
-**Install develop version**
-This will create links to local pacages, so if you change source and save, it will work in other packages
-
-```console
-pip install -e /path/to/locations/repo
-```
-
-**Install locally**
-```console
-pip install .
-```
-
 **Show installed libraries**
 
 ```console
@@ -207,25 +162,15 @@ pip list
 
 **Show outdated libraries**
 
-    pip list --outdated
+```console
+pip list --outdated
+```
 
-
-**If pip cannot be installed by SSL errorr**
+**If pip cannot be installed by SSL error**
 
     pip install ipykernel --upgrade pip --trusted-host pypi.org
 
-## Pushing to PyPi
-
-**Build dist**
-
-    python setup.py sdist bdist_wheel
-
-**Push to PyPi**
-
-    twine upload -u user_name -p password dist/*
-
-
-# Virtual environment (venv)
+### Virtual environment (venv)
 
 ```console
 
@@ -238,7 +183,7 @@ virtualenv venv
 vevn\Scripts\activate.bat
 ```
 
-# Requirements
+### Requirements
 
 File that describe all used libraries for some project. You can install all the libraries at once.
 
@@ -254,25 +199,11 @@ pipreqs --encoding=utf8 C:\VSCODE\Diplomka
 
 You can find much more about libraries in `Modules` section.
 
+## Style guide (linting, formatting)
 
-# Building app - Pyinstaller
+**pylint** - show you where problems are
 
-You can create binaries with pyinstaller, so other user can run an app even with no python installed.
-
-You don't even need to install pyinstaller and you can use mypythontools build module (you can use VS Code Task to build an app with single click)
-
-[Documentation](https://mypythontools.readthedocs.io/mypythontools.build.html) for how to do it.
-
-Build bootloader locally to avoid false positive antivirus alert (in tutorial).
-
-# Style guide (linting, formatting)
-
-## PEP 8
-
-If you are not sure how to format code, you can try [pep 8](https://www.python.org/dev/peps/pep-0008/) or [google style guide](https://google.github.io/styleguide/pyguide.html)
-
-## Black
-Strict auto formatting. Setup longer default line length for better user experience
+**Black** - Strict auto formatting. Setup longer default line length for better user experience
 
 Example for how to use it in VS Code - Add to settings.json:
 
@@ -281,163 +212,74 @@ Example for how to use it in VS Code - Add to settings.json:
 "python.formatting.blackArgs": ["--line-length", "110"],
 ```
 
-## Linting
+If you are not sure how to format code, you can try [pep 8](https://www.python.org/dev/peps/pep-0008/) or [google style guide](https://google.github.io/styleguide/pyguide.html)
 
-Show you where problems are. You can use for example Pylint (raise more warnings) or Flake8 (more tolerant)
-
-### Flake8
-
-Mostly for formatting (PEP8) issues
-
-This is not necessary as using some autoformating tool
-
-** Ignore line in linting
-
-    code   =   8  # noqa
-
-### Pylint
-
-Also for non-optimal code hints
-
-**Ignore for rest all file or block of code**
-
-    # pylint: disable=W0201
-
-    code_here
-
-    # pylint: disable=W0201  # Enable from here on
-
-
-**Ignore message on particular line**
-
-    code_here  # pylint: disable=W0201
-    
-### Pylance
-
-Used for type validation
-
-    a: int = "bad format"  # type: ignore
-
-### Pydocstyle
-
-Checks you docstrings.
-
-Omit lint for function
-
-    def bad_function():  # noqa: D400
-        """Omit a period in the docstring as an exception"""
-        pass
-
-### Bandit
-
-For security issues
-
-### Ignore formatting for selection
-
-```python
-# fmt: off
-
-your_code =    "here"
-
-# fmt: on
-```
-
-## Multi line code
-
-    poi = { "1": 3,
-            "2": 4,
-            "6": 8 }
-
-    a = (   1 + 2
-            + 3 + 4 )
-
-    f = range(  1 + 2
-            + 3 - 4)  # Function example
-
-    # or use \
-    a = 1 + 2 \
-        + 3
-
-# Type hints - annotations
-
-As from python 3.9 it's not necessary to use typing List, Tuple etc.
-
-For pytnon 3.7, 3.8 you need to add (python 3.6 and less is not supported)
-
-    from __future__ import annotations, TYPE_CHECKING, get_type_hints
-    from typing import Any 
-
-How to annotate basic data types
-
-    class MyClass:
-        unknown: Any
-        names: list[str] = ["Guido", "Jukka", "Ivan"]
-        version: tuple[int, int, int] = (3, 7, 1)
-        tuple_unknown: tuple[str, ...] = ('one', 'two', 'three')
-        options: dict[str, bool] = {"centered": False, "capitalize": True}
-
-How to annotate function return
-
-    def say_it(word: str) -> str:
-        return word
-
-It's possible in class to return itself ()
-
-    class ReturnMe:
-        def(self) -> ReturnMe:
-            return self
- 
-If type not exists yet, you can use Forward Reference (use a string literal). Types are still processed even if in string.
-If you need to run some code only for type hints (like import lazy loaded library for type)
-
-from typing TYPE_CHECKING
-
-    if TYPE_CHECKING:
-        import pandas as pd
-
-    class Tree:
-        def __init__(self, left: 'pd.DataFrame', right: 'pd.DataFrame'):
-            self.left = left
-            self.right = right
-
-If you need type hints dynamically in code (for example for type checking)
-
-hints = get_type_hints()
-
-## Type validation
-
-from typeguard import typechecked
-
-@typechecked
-def some_function(a: int, b: float, c: str, *args: str) -> bool:
-    ...
-    return retval
-
-@typechecked
-class SomeClass:
-    # All type annotated methods (including static and class methods and properties)
-    # are type checked.
-    # Does not apply to inner classes!
-    def method(x: int) -> int:
-        pass
-
-# Comments
-
-    # One line comment
-
-    ## Multiline comment
-    """ Víceřádkové komentáře používají tři uvozovky nebo apostrofy
-    a jsou často využívány jako dokumentační komentáře k metodám
-    """
-
-# Documentation - docstrings
+## Documentation - docstrings
 
 Posible modes - DocBlockR, ReST, Numpy, Google
 
 **Google**
 [Sphinx example](https://www.sphinx-doc.org/en/master/usage/extensions/example_google.html)
+```python
+"""One sentance overview.
 
-[Google example]
+Long description...
+
+Example:
+    Examples can be given using either the ``Example`` or ``Examples``
+    sections. Sections support any reStructuredText formatting, including
+    literal blocks::
+
+        $ python example_google.py
+
+Section breaks are created by resuming unindented text. Section breaks
+are also implicitly created anytime a new section starts.
+
+Attributes:
+    module_level_variable1 (int): Module level variables may be documented in
+        either the ``Attributes`` section of the module docstring, or in an
+        inline docstring immediately following the variable.
+
+        Either form is acceptable, but the two should not be mixed. Choose
+        one convention to document module level variables and be consistent
+        with it.
+
+Todo:
+    * For module TODOs
+    * You have to also use ``sphinx.ext.todo`` extension
+
+.. _Google Python Style Guide:
+   https://google.github.io/styleguide/pyguide.html
+
+"""
+
+module_level_variable2 = 1
+"""int: Module level variable documented inline.
+
+The docstring may span multiple lines. The type may optionally be specified
+on the first line, separated by a colon.
+"""
+
+def function_with_types_in_docstring(param1, param2):
+    """Example function with types documented in the docstring.
+    
+    :pep:`484` type annotations are supported. If attribute, parameter, and
+    return types are annotated according to `PEP 484`_, they do not need to be
+    included in the docstring:
+    
+    Args:
+        param1 (int): The first parameter.
+        param2 (str): The second parameter.
+    
+    Returns:
+        bool: The return value. True for success, False otherwise.
+    
+    Raises:
+        AttributeError: The ``Raises`` section is a list of all exceptions
+            that are relevant to the interface.
+        ValueError: If `param2` is equal to `param1`.
+    """
+```
 
 **Numpy**
 [Sphinx example](https://www.sphinx-doc.org/en/master/usage/extensions/example_numpy.html)
@@ -445,16 +287,48 @@ Posible modes - DocBlockR, ReST, Numpy, Google
 **reStructured text**
 
 ```
-restr = ''' # remove the variable - it's just for jupyter
 Section Header
 ==============
 
 Subsection Header
 -----------------
 
-- A bullet list item
+Other headers
 
-- A sub item
+# with overline, for parts
+* with overline, for chapters
+  =, for sections
+  -, for subsections
+  ^, for subsubsections
+  “, for paragraphs
+
+Link
+`Python <http://www.python.org/>`_
+
+Internal link
+`Internal and External links`_
+
+List and bullets
+* This is a bulleted list.
+* It has two items, the second
+  item uses two lines. (note the indentation)
+
+1. This is a numbered list.
+2. It has two items too.
+
+#. This is a numbered list.
+#. It has two items too.
+
+.. image:: stars.jpg
+  :width: 200px
+  :align: center
+  :height: 100px
+  :alt: alternate text
+
+Code reference
+
+:py:mod:`mypythontools.helpers`
+-------------------------------
 
 1) An enumerated list item
 
@@ -472,42 +346,42 @@ A sentence with links to `Wikipedia`_
 | body row 2             | Cells may span        |
 +------------------------+-----------------------+
 
-Literal - no linebreaks etc.
+Literal - no linebreaks etc. (empty line and indentation necessary) ::
 
-::
-
-some literal text.
-
+    Some literal text.
 
 Python code in docstrings
 
 .. code:: python
 
-print("A literal block directive explicitly marked as python code")
-'''
+    print("A literal block directive explicitly marked as python code")
 ```
 
-**docBlockR**
+## Multi line code
+    # This is one string
+    long_string = (
+        "Lorem ipsum long "
+        "Lorem ipsum long"
+        "Lorem ipsum long."
+    )
 
-```python
-"""Function to find optimal parameters of function
-======
-Output:
-------
-    Optimized parameters {dict}
+    poi = { 
+        "1": 3,
+        "2": 4,
+        "6": 8,
+    }
 
-Arguments:
-------
-    model {func} -- Function to be optimized (eg: ridgeregression)
-    kwargs {dict} -- Initial arguments (eg: {"alpha": 0.1, "n_steps_in": 10})
-    kwargs_limits {dict} -- Bounds of arguments (eg: {"alpha": [0.1, 1], "n_steps_in":[2, 30]})
-    data {list, array, dataframe col} -- Data on which function is optimized (eg: data1)
-    fragments {int} -- Number of optimized intervals (default: 10)
-    predicts {int} -- Number of predicted values (default: 7)
-"""
-```
+## Comments
 
-# Logical conditions (and, or, not...)
+    # One line comment
+
+    ## Multiline comment
+    """Are usually used for documentation reasons.
+
+    Like that
+    """
+
+### Logical conditions (and, or, not...)
 
 **Not**
 
@@ -531,24 +405,12 @@ Arguments:
 
     1 < 2 < 3 # => True
 
-## None
+## Type hints
 
-    # None is object (NULL, nil, ...)
+    def sentence_has_animal(sentence: str) -> bool:
+        return "animal" in sentence
 
-    None  # => None
-
-    # So don't use "==" for comparison. Rather use "is"
-
-    None is None # => True
-
-    # None, 0, and empty string/list/dictionary is False, everything else True
-
-    bool(0) # => False
-    bool("") # => False
-    bool([]) # => False
-    bool({}) # => False
-
-# Variables
+## Variables
 
     y = int(2.8)
 
@@ -603,7 +465,7 @@ config.x = 2 ....
     var = 3
     my_var_name = [k for k,v in globals().items() if v == var][0]
 
-# Data types
+## Builtin Data types
 
     a = type(var)  # Return type
 
@@ -623,7 +485,25 @@ config.x = 2 ....
 
     # Also work if object is includes in class
 
-## String
+
+### None
+
+    # None is object (NULL, nil, ...)
+
+    None  # => None
+
+    # So don't use "==" for comparison. Rather use "is"
+
+    None is None # => True
+
+    # None, 0, and empty string/list/dictionary is False, everything else True
+
+    bool(0) # => False
+    bool("") # => False
+    bool([]) # => False
+    bool({}) # => False
+
+### String
 
 ```python
 
@@ -700,7 +580,7 @@ print(f'He said his name is {name!r}.')  # "He said his name is 'Fred'."
     words = ["this", 'is', 'a', 'list', 'of', "strings"]
     ' '.join(words)  #returns "This is a list of strings"
 
-## List
+### List
 
 ```python
 
@@ -868,7 +748,7 @@ import collections
 print( collections.Counter(['a', 'b', 'c', 'a', 'b', 'b']))
 ```
 
-## Tuple
+### Tuple
 
 Tuple is like list but imutable !!! [] i can change - () i cannot change !!!
 
@@ -878,7 +758,7 @@ Tuple is like list but imutable !!! [] i can change - () i cannot change !!!
 
     a, = 5  # (5)
 
-## Dictionary
+### Dictionary
 
     empty_dic = {}
     dic = {"jedna": 1, "dva": 2, "tři": 3}
@@ -1016,21 +896,7 @@ for key, value in modelsparameters.items():
     set( a.keys() ) & set( b.keys() )  # Output set(['y', 'x'])
     set( a.items() ) & set( b.items())  # Output set([('y', 2), ('x', 1)])
 
-## Named tuple
-
-    from typing import NamedTuple
-
-    class class_name(NamedTuple):
-        field1: datatype
-        field2: datatype
-
-This is equivalent to:
-
-    class_name = collections.namedtuple('class_name', ['field1', 'field2'])
-
-Named tuples are very good when function returns complicated structure. This can brings docstrings, type hints and same structure like classical return.
-
-## Deque
+### Deque
 
 ```python
 You can iterate from both sides
@@ -1050,7 +916,7 @@ de.rotate(1)  # Rotate the deque n steps to the right. If n is negative, rotate 
 de.clear()  # Remove all elements from the deque leaving it with length 0.
 ```
 
-## Set
+### Set
 
 It is not oredered and every value is just once!
 
@@ -1078,7 +944,26 @@ sett | jina_set # => {1, 2, 3, 4, 5, 6}
 9 in sett # => False
 ```
 
-## Dataframe
+### Decimal
+
+```python
+
+In normal float 1 + 1 is not 2 (but 2.0000000000001...)
+In decimal it's equal
+
+import decimal
+# Decimal
+a = decimal.Decimal('0.1')
+b = decimal.Decimal('0.2')
+c = a + b # returns a Decimal representing exactly 0.3
+
+# Rounding
+"%.3f" % 1.2399 # returns "1.240"
+"%.2f" % 1.2 # returns "1.20"
+```
+
+## Imported data types
+### Dataframe
 
 Panda library is necessary
 If there is a parameter inplace=True, then changes are made on original, otherwise change is only made for new variable assign
@@ -1341,7 +1226,7 @@ gpd = gpd.select_dtypes(['number'])
 df = df.T
 ```
 
-## Numpy Array
+### Numpy Array
 
 ```python
 
@@ -1782,7 +1667,7 @@ def azip(*args):
 np.__config__.show()
 ```
 
-## HDF5
+### HDF5
 
 ```python
 '''
@@ -1812,25 +1697,7 @@ with h5py.File('several_datasets.hdf5', 'w') as f:
 '''
 ```
 
-## Decimal
-
-```python
-
-In normal float 1 + 1 is not 2 (but 2.0000000000001...)
-In decimal it's equal
-
-import decimal
-# Decimal
-a = decimal.Decimal('0.1')
-b = decimal.Decimal('0.2')
-c = a + b # returns a Decimal representing exactly 0.3
-
-# Rounding
-"%.3f" % 1.2399 # returns "1.240"
-"%.2f" % 1.2 # returns "1.20"
-```
-
-# Iterators
+## Iterators
 
     iterable = [1, 2, 3]
     iterator = iter(iterable)
@@ -1839,7 +1706,7 @@ Next value
 
     next(iterator) # => "one"
 
-# Conditions (if, else...)
+## Conditions (if, else...)
 
     variable = [10, 20, 30]
     for i in variable:
@@ -1868,9 +1735,9 @@ Next value
     y = 66
     result = (y, x)[a > b]  # y if [True], x if [False]
 
-# Loops
+## Loops
 
-## For
+### For
 
     for zvire in ["pes", "kočka", "myš"]:
         print("zvire")
@@ -1924,7 +1791,7 @@ Next value
     a = [[1,2,3],[2,3,4],[5,6,7]]
     print(a[1][1])
 
-## WHILE
+### While
 
     x = 0
     while x < 4:
@@ -1936,7 +1803,7 @@ Next value
     while True:
         listen_forever()
 
-# Functions
+## Functions
 
     def secist(x, y):  # Create new function with def
         return x + y  # Return values with return
@@ -2024,7 +1891,7 @@ Is object function or not
     frame = inspect.currentframe()
     args, _, _, values = inspect.getargvalues(frame)
 
-### map(), filter(), reduce()\*\*
+## map, filter, reduce
 
 From the functional programming
 
@@ -2044,7 +1911,7 @@ Reduce - Input sequention into function
     def do_sum(x1, x2): return x1 + x2
     reduce(do_sum, [1, 2, 3, 4]) # 10
 
-# Generators
+## Generators
 
 Generators are functions, that instead return have yield
 
@@ -2055,10 +1922,10 @@ Generators are functions, that instead return have yield
 Generator generate values one after one, when it\s needed. Instead of been generated all at once
 Example of generator is range(10000)
 
-# Decorators
+## Decorators
 
 Dekorators are functions, that wrap other functions, by that
-it can change it's behavior.
+it can change it's behaviour.
 
     def nekolikrat(puvodni_funkce):
         def repeat_function(*args, **kwargs):
@@ -2087,7 +1954,7 @@ it can change it's behavior.
     def fu():
         print('content')
 
-# Modules
+## Modules
 
 Module in python is file with .py on the end. It is also imported python library (e.g. numpy...).
 
@@ -2127,11 +1994,9 @@ You can create your own and import it.
     modules = glob.glob(join(dirname(__file__), "*.py"))
     __all__ = [ basename(f)[:-3] for f in modules if isfile(f) and not f.endswith('__init__.py')]
 
-# Classes
+## Classes
 
 ```python
-
-
 class Clovek(object):  # Class Human is child (it inherits from) class object
 
     druh = "H. sapiens"  # Class variable - it's shared with all objects
@@ -2150,6 +2015,7 @@ class Clovek(object):  # Class Human is child (it inherits from) class object
     def odkaslej_si():
         return "*ehm*"
 
+
 # If no inheritance, no parenthesses prefered, just class Clovek:
 # Class can inherit from more classes at once...
 # class Clovek(tvor, bytost):
@@ -2161,6 +2027,7 @@ class DecoratorExample:
 
     def example_function(self):
         print('I\'m an instance method!')
+
 
 de = DecoratorExample()
 de.example_function()
@@ -2186,6 +2053,7 @@ class Date(object):
         day, month, year = map(int, date_as_string.split('-'))
         return day <= 31 and month <= 12 and year <= 3999
 
+
 date2 = Date.from_string('11-09-2012')
 is_date = Date.is_date_valid('11-09-2012')
 
@@ -2198,16 +2066,16 @@ print(a.rekni("nazdar"))  # "Adéla: nazdar"
 
 ### Call class method
 
-d.vrat_druh() # => "H. sapiens"
+d.vrat_druh()  # => "H. sapiens"
 
 ### Change atribute of class
 
-d.vrat_druh() # => "H. neanderthalensis"
-a.vrat_druh() # => "H. neanderthalensis"
+d.vrat_druh()  # => "H. neanderthalensis"
+a.vrat_druh()  # => "H. neanderthalensis"
 
 ### Call static method
 
-Clovek.odkaslej_si() # => "*ehm*"
+Clovek.odkaslej_si()  # => "*ehm*"
 
 ### Check if class has atribute (method or )
 if hasattr(Clovek, 'rekni'):
@@ -2219,9 +2087,10 @@ print(Clovek.__dict__)
 
 ### Get all instances name
 import gc
+
 for obj in gc.get_objects():
     if isinstance(obj, Clovek):
-        print (obj.jmeno)
+        print(obj.jmeno)
 ```
 
 ## Magic methods (dunder methods)
@@ -2255,7 +2124,7 @@ The \_\_call** method can be used to turn the instances of the class into callab
     for i in range(1, 10):
         print(i, p1(i), p2(i), p3(i))
 
-Magic methods (For example for change of + behavior)
+Magic methods (For example for change of + behaviour)
 What happens when we create an object in python class ?
 
     '''
@@ -2351,7 +2220,7 @@ self.ingredients = ingredients
 
 If Pizza() return **repr**
 
-# Bitwise operations
+## Bitwise operations
 
 Unsigned integers can hold bigger values, but cannot be negative!!!
 
@@ -2412,7 +2281,7 @@ oct = "{0:o}".format(i) # octal: 377
 
 ```
 
-# File I/O
+## File I/O
 
 **Import fuction from other file**
 
@@ -2479,7 +2348,7 @@ data_names_list = list(glob.glob((script_dir / '\*.dat').as_posix()))
     from numpy import loadtxt
     # x=loadtxt('realna_data_klapky.txt')
 
-## Open file
+### Open file
 
     f = open("test.txt", "w+") # open file in current directory
 
@@ -2514,7 +2383,7 @@ data_names_list = list(glob.glob((script_dir / '\*.dat').as_posix()))
     f.read()  # Return all
     '''
 
-## Manipulate with files (move, copy)
+### Manipulate with files (move, copy)
 
     '''
     ### Copy file ###
@@ -2551,7 +2420,7 @@ data_names_list = list(glob.glob((script_dir / '\*.dat').as_posix()))
             print('FILE INSIDE ' + folderName + ': '+ filename)
     '''
 
-# Try -- Except
+## Try -- Except
 
     try:
         print(znam)
@@ -2605,7 +2474,7 @@ data_names_list = list(glob.glob((script_dir / '\*.dat').as_posix()))
     except Exception as e:
         print(traceback.format_exc())
 
-# Built in functions
+## Builtin functions
 
 **Print**
 
@@ -2621,7 +2490,7 @@ data_names_list = list(glob.glob((script_dir / '\*.dat').as_posix()))
     for i in reversed(range(5)):
         print(i) # 4, 3, 2, 1
 
-# Built in variables
+## Builtin variables
 
 **\_\_name\_\_**
 
@@ -2630,9 +2499,9 @@ If file is runned from inside or is imported, code inside condition will not be 
     if __name__ == "__main__":
         pass
 
-# Built in modules
+## Builtin modules
 
-## Sys
+### Sys
 
 **Get size on memory**
 
@@ -2644,7 +2513,7 @@ If file is runned from inside or is imported, code inside condition will not be 
 
 sys.path.insert(0, "/path/to/your/package_or_module")
 
-## io
+### io
 
 **Capture everything printed plus warnings**
 
@@ -2661,7 +2530,7 @@ sys.path.insert(0, "/path/to/your/package_or_module")
 
     print(output)
 
-## os
+### os
 
 **Change working directory**
 
@@ -2673,7 +2542,7 @@ sys.path.insert(0, "/path/to/your/package_or_module")
     import os
     env_var = os.environ['ENV_VAR']
 
-## Pathlib - Work with paths
+### Pathlib - Work with paths
 
 ```python
 
@@ -2771,7 +2640,7 @@ abs_file_path = os.path.join(script_dir, rel_path)
 '''
 ```
 
-## Warnings
+### Warnings
 
     import warnings
     warnings.warn("Warning...........Message")
@@ -2794,7 +2663,7 @@ abs_file_path = os.path.join(script_dir, rel_path)
 
 print the first occurrence of matching warnings for each module where the warning is issued (regardless of line number)
 
-## re - Regular expressions
+### re - Regular expressions
 
     regs = '''
     import re
@@ -2835,19 +2704,19 @@ print the first occurrence of matching warnings for each module where the warnin
 
     '''
 
-## Subprocess - Run shell comands
+### Subprocess - Run shell comands
 
     # Subprocess replace the os.system()
     import subprocess
 
     subprocess.run('ls')
-    p1 = subprocess.run(['ls', '-la']) # with capture__output=True only save to variable
+    p1 = subprocess.run(['ls', '-la']) # with capture_output=True only save to variable
     print(p1.stdout)
 
     # More general - can define stdout and more here
     sts = subprocess.Popen("mycmd" + " myarg", shell=True).wait()
 
-## Pickle
+### Pickle
 
 Save file in binary format
 
@@ -2861,7 +2730,7 @@ Load files
 
 Result is `e = {"a": 1, "b": 2}`
 
-## Time and datetime
+### Time and datetime
 
     import datetime as dt
     import time
@@ -2882,11 +2751,90 @@ Result is `e = {"a": 1, "b": 2}`
 
     time.sleep(1) # wait 1 second
 
-# Imported libraries
+### Argparse - Command Line Interface (cli)
+argparse
 
-## Tests
+If you want to call a script from terminal like `python myscript.py` and want to add some optional arguments (one letter -a , -b etc. or word with two dashes --var)
 
-### Pytest
+Nowadays argparse is better and more often used than sys.argv, getopt
+
+    import argparse
+
+    parser = argparse.ArgumentParser(description='A tutorial of argparse!')
+    parser.add_argument('-l','--list', default=1, type=int, help="This is the 'l' variable")
+    parser.add_argument("--education",
+                        choices=["highschool", "college", "university", "other"],
+                        required=True, type=str, help="Your name") # If type list, just append action='append'
+
+    args = parser.parse_args()
+
+    # If error with jupyter, then !!!
+    par_args = parser.parse_known_args()
+    myarg = par_args[0].myarg
+
+    ed = args.education
+
+    if ed == "college" or ed == "university":
+        print("Has degree")
+    elif ed == "highschool":
+    print("Finished Highschool")
+    else:
+        print("Does not have degree")
+
+## Concurrent - Asynchronous code
+
+    from concurrent.futures import ThreadPoolExecutor
+
+    executor = ThreadPoolExecutor(max_workers=3)
+    executor.submit(myFunction())
+
+    # Or use
+    with ThreadPoolExecutor(max_workers=3) as executor:
+            future = executor.submit(task, (2))
+            future = executor.submit(task, (3))
+            future = executor.submit(task, (4))
+
+## Imported libraries
+
+### Documentation
+#### Sphinx - Create documentation
+
+```console
+
+pip install sphinx
+
+# And
+pip install alabaster
+
+# Or
+pip install sphinx_rtd_theme
+
+# And if you want to use markdown
+pip install recommonmark
+pip install sphinxcontrib-napoleon
+
+# Create documentation files
+
+sphinx-quickstart
+
+# Use separate build and source: yes
+```
+
+Fill in the `config.py` and `index.rst`
+
+You can use mypythontools [project-starterexample](https://github.com/Malachov/mypythontools/tree/master/content/project-starter/docs/source)
+
+You can build it locally with
+
+```console
+make html
+```
+
+Or you can make account on [readthedocs](https://readthedocs.org/) - It's free.
+And the documentation will be automatically made on every github push to master.
+
+### Tests
+#### Pytest
 
 ```python
 # Write test file
@@ -2933,45 +2881,9 @@ def test_some_holidays(year, month, day):
     assert (day, month) in holidays
 ```
 
-### Doctest
+### Plots, graphs
 
-**Directives**
-Ignore exception detail
-
-# doctest: +IGNORE_EXCEPTION_DETAIL
-
-## Command Line Arguments - argparse
-
-If you want to call a script from terminal like `python myscript.py` and want to add some optional arguments (one letter -a , -b etc. or word with two dashes --var)
-
-Nowadays argparse is better and more often used than sys.argv, getopt
-
-    import argparse
-
-    parser = argparse.ArgumentParser(description='A tutorial of argparse!')
-    parser.add_argument('-l','--list', default=1, type=int, help="This is the 'l' variable")
-    parser.add_argument("--education",
-                        choices=["highschool", "college", "university", "other"],
-                        required=True, type=str, help="Your name") # If type list, just append action='append'
-
-    args = parser.parse_args()
-
-    # If error with jupyter, then !!!
-    par_args = parser.parse_known_args()
-    myarg = par_args[0].myarg
-
-    ed = args.education
-
-    if ed == "college" or ed == "university":
-        print("Has degree")
-    elif ed == "highschool":
-    print("Finished Highschool")
-    else:
-        print("Does not have degree")
-
-## Plots, graphs
-
-### Plotly
+#### Plotly
 
 ```python
 pltl = '''
@@ -3029,7 +2941,7 @@ static_image_bytes = pio.to_image(fig, format='png')
 '''
 ```
 
-### Matplotlib
+#### Matplotlib
 
 ```python
 mtpltlb = ''' Just to not load in jupyter...
@@ -3201,17 +3113,9 @@ plt.loglog(x, y)  # Both axis are log
 '''
 ```
 
-## Tables
+### Web
 
-    from prettytable import PrettyTable
-    models_table = PrettyTable()
-    models_table = PrettyTable().field_names = ["City name", "Area", "Population", "Annual Rainfall"]
-    models_table = PrettyTable().add_row(["Adelaide", 1295, 1158259, 600.5])
-    print (models_table)
-
-## Web
-
-### Requests - API - GET, POST
+#### Requests - API - GET, POST
 
     rqsts = '''
     import getpass
@@ -3238,7 +3142,7 @@ plt.loglog(x, y)  # Both axis are log
     r.json()  # {'headers': {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Connection': 'close', 'Cookie': 'mipyt=best', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.19.1', 'X-Test': 'true', 'X-Test2': 'true'}}
     '''
 
-### Beautiful soup - web scrapping
+#### Beautiful soup - web scrapping
 
     # Stuff for soup
     soup = """
@@ -3310,7 +3214,7 @@ plt.loglog(x, y)  # Both axis are log
     httpd.serve_forever()
     """
 
-## Images, pictures
+### Images, pictures
 
     pctrs = '''
     from PIL import Image
@@ -3340,7 +3244,7 @@ plt.loglog(x, y)  # Both axis are log
     img=np.array(img)
     '''
 
-## Mathematics, statistics, linear algebra
+### Mathematics, statistics, linear algebra
 
 !! Matrix and liear algebra operations discussed in Numpy aray section !!
 
@@ -3705,7 +3609,7 @@ scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
 ### The same way you can use preprocessing.RobustScaler, that is not as much influenced by outliers !!
 ```
 
-## Signal processing and controll
+### Signal processing and controll
 
 ```python
 ## Signal
@@ -3909,9 +3813,9 @@ def fdxdt(x,t,u,Omega,eta,b0,b1):    # x=[x1 x2 ... xn]
     show()
 ```
 
-## Database
+### Database
 
-### pyodbc, sqlalchemy
+#### pyodbc, sqlalchemy
 
 **Read**
 
@@ -3935,61 +3839,75 @@ conn_str = 'mssql+pyodbc:///?odbc_connect={}'.format(params)
 engine = create_engine(conn_str)
 dataframe_to_sql.to_sql(name='FactProduction', con=engine, schema='Stage', if_exists='append', index=False)
 
-## GUI
+### GUI
 
 **VUE and EEl (Electron JS like library)**
 
 You can use mypythontools pyvueeel for building an app with graphical interface. It contains working examples.
 
-## Misc
+### Misc
+#### Tables
 
-### Jupyter
+    from prettytable import PrettyTable
+    models_table = PrettyTable()
+    models_table = PrettyTable().field_names = ["City name", "Area", "Population", "Annual Rainfall"]
+    models_table = PrettyTable().add_row(["Adelaide", 1295, 1158259, 600.5])
+    print (models_table)
 
-    """
-    # !  jupyter kernelspec list # Ukáže seznam kernelů
-    # !  jupyter kernelspec uninstall nazev # Odinstaluje kernel
-    ## Install jupyter extensions
+### Jupyter, IPython
+```
+jupyter kernelspec list  # List available kernels
+jupyter kernelspec uninstall nazev  # Uninstall kernel
 
-    pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install
+# Install jupyter extensions
+pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install
 
-    # Test if running on jupyter
+jupyter nbextension enable --py rise  # Enable extension
 
-    if 'ipykernel' in sys.modules:
-        print('jup')
+```
 
-    # Or
+**Run with ipython from python**
+```
+# Test if running on jupyter
 
-    # if hasattr(builtins, '__IPYTHON__'):
-    #     print('IPython')
-    # else:
-    #     print('Nope')
+if 'ipykernel' in sys.modules:
+    print('jup')
 
-    ## If jupyter and run from normal python
+# Or
 
-    try:
-        __IPYTHON__
+# if hasattr(builtins, '__IPYTHON__'):
+#     print('IPython')
+# else:
+#     print('Nope')
 
-        from IPython.terminal.embed import InteractiveShellEmbed
-        ipshell = InteractiveShellEmbed()
-        ipshell.dummy_mode = True
-        ipshell.magic("%load_ext autoreload")
-        ipshell.magic("%autoreload")
+## If jupyter and run from normal python
 
-    except NameError:
-        print('No Jupyter')
-
-    ## Run ipython in normal python
+try:
+    __IPYTHON__
 
     from IPython.terminal.embed import InteractiveShellEmbed
-
     ipshell = InteractiveShellEmbed()
     ipshell.dummy_mode = True
-    ipshell.magic("%timeit abs(-42)");
+    ipshell.magic("%load_ext autoreload")
+    ipshell.magic("%autoreload")
 
-    ## Autoreload
+except NameError:
+    print('No Jupyter')
 
-    #Reload all modules imported with %aimport every time before executing the Python code typed, so it is not necessary to reload kernel everytime some other file changed or new library wa installed
+## Run ipython in normal python
 
+from IPython.terminal.embed import InteractiveShellEmbed
+
+ipshell = InteractiveShellEmbed()
+ipshell.dummy_mode = True
+ipshell.magic("%timeit abs(-42)");
+```
+
+#### Magic
+**Autoreload**
+
+Reload all modules imported with %aimport every time before executing the Python code typed, so it is not necessary to reload kernel everytime some other file changed or new library wa installed
+  
     %load_ext autoreload
     %autoreload  # Reload all modules (except those excluded by %aimport) automatically now.
     %autoreload 0  # Disable automatic reloading.
@@ -3999,90 +3917,76 @@ You can use mypythontools pyvueeel for building an app with graphical interface.
     %aimport foo  # Import module ‘foo’ and mark it to be autoreloaded for %autoreload 1
     %aimport -foo  # Mark module ‘foo’ to not be autoreloaded.
 
+#### Misc
+**Youtube**
 
-    ## Link
+    # from IPython.display import YouTubeVideo
+    # YouTubeVideo('7VeUPuFGJHk')
 
-    ‚''
-    [Link name](<https://www.youtube.com/>)
-    ‚''
+**Show all images from folder**
 
-    ## Image
+    import os
+    from IPython.display import display, Image
+    names = [f for f in os.listdir('../images/ml_demonstrations/') if f.endswith('.png')]
+    for name in names[:5]:
+        display(Image('../images/ml_demonstrations/' + name, width=100))
 
-    ‚''
-    <img src="img/Gini.png" width=400>
-    ‚''
+**Jupyter themes**
 
-    ## Youtube
+    pip install jupyterthemes
+    jt -t monokai -T
 
-        # from IPython.display import YouTubeVideo
-        # YouTubeVideo('7VeUPuFGJHk')
+    # Deactivate
+    jt -r
 
-    ## Show all images from folder
+**Matplotlib widget interactive backend**
 
-        import os
-        from IPython.display import display, Image
-        names = [f for f in os.listdir('../images/ml_demonstrations/') if f.endswith('.png')]
-        for name in names[:5]:
-            display(Image('../images/ml_demonstrations/' + name, width=100))
+    %matplotlib widget
+    from matplotlib import pyplot as plt
+    fig, ax = plt.subplots()
+    ax.plot([1,2,3], [4,3,2])
+    # fig.show() is not necessary
 
-    ## Jupyter themes
+    # If not working in jupyterlab, use in terminal
+    #     jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
-        pip install jupyterthemes
-        jt -t monokai -T
+    # Instead of magic you can use
 
-        # Deactivate
-        jt -r
+    import matplotlib
+    matplotlib.use('module://ipympl.backend_nbagg')
 
-    ## Matplotlib widget interactive backend
+**Dark background of matplotlib for dark themes**
 
-        %matplotlib widget
-        from matplotlib import pyplot as plt
-        fig, ax = plt.subplots()
-        ax.plot([1,2,3], [4,3,2])
-        # fig.show() is not necessary
+    # ! pip install jupyterthemes
 
-        # If not working in jupyterlab, use in terminal
-        #     jupyter labextension install @jupyter-widgets/jupyterlab-manager
+    In ~/.ipython/profile_default/startup  create startup.py file with
 
-        # Instead of magic you can use
+    import matplotlib.pyplot as plt
+    from jupyterthemes import jtplot
+    jtplot.style(theme='monokai', context='notebook', ticks=True, grid=False)
 
-        import matplotlib
-        matplotlib.use('module://ipympl.backend_nbagg')
+    # Then in extensions use theme-darcula
+    # And in to ~\AppcmdData\Local\Programs\Python\Python37\Lib\site-packages\jupyterthemes\styles\monokai.less
+    # Change on
+    /* jtplot figure style */
+    @axisFace:              #2b2b2b;
+    @figureFace:            #2b2b2b;
 
-    ## Dark background of matplotlib for dark themes
+## Building app (executables) - Pyinstaller
 
-        # ! pip install jupyterthemes
+You can create binaries with pyinstaller, so other user can run an app even with no python installed.
 
-        In ~/.ipython/profile_default/startup  create startup.py file with
+You don't even need to install pyinstaller and you can use mypythontools build module (you can use VS Code Task to build an app with single click)
 
-        import matplotlib.pyplot as plt
-        from jupyterthemes import jtplot
-        jtplot.style(theme='monokai', context='notebook', ticks=True, grid=False)
+[Documentation](https://mypythontools.readthedocs.io/mypythontools.build.html) for how to do it.
 
-        # Then in extensions use theme-darcula
-        # And in to ~\AppcmdData\Local\Programs\Python\Python37\Lib\site-packages\jupyterthemes\styles\monokai.less
-        # Change on
-        /* jtplot figure style */
-        @axisFace:              #2b2b2b;
-        @figureFace:            #2b2b2b;
+Build bootloader locally to avoid false positive antivirus alert (in tutorial).
 
-    ## Ipywidgets
+## Performance
 
-    ## Extensions
+### Profiling
 
-    pip install jupyter_contrib_nbextensions
-
-    jupyter contrib nbextension install --user
-
-    ### Enable extension (e.g. rise)
-    jupyter nbextension enable --py rise
-    """
-
-# Performance
-
-## Profiling
-
-### Line profiling
+#### Line profiling
 
 Simplest and probably best way is to use jupyter, extensions and magic.
 Simple example is in project-starter test profiling.ipynb [here](https://github.com/Malachov/mypythontools/tree/master/content/project-starter/tests)
@@ -4142,27 +4046,7 @@ If you want to use just python, you can
     print(memory_profile.read())  # Or save to variable
     memory_profile.close()
 
-## Garbage collector
-
-**Force to empty memory**
-
-    import gc
-    gc.collect()
-
-## Threading
-
-    from concurrent.futures import ThreadPoolExecutor
-
-    executor = ThreadPoolExecutor(max_workers=3)
-    executor.submit(myFunction())
-
-    # Or use
-    with ThreadPoolExecutor(max_workers=3) as executor:
-            future = executor.submit(task, (2))
-            future = executor.submit(task, (3))
-            future = executor.submit(task, (4))
-
-## Max execution time function
+### Max execution time function
 
 ```python
 import time, sys
@@ -4216,7 +4100,7 @@ with time_limit(5, 'slee'):
 '''
 ```
 
-## Numba
+### Numba
 
 ```python
 import numba as nb
@@ -4314,7 +4198,7 @@ def function(a, b):
     return a + b
 ```
 
-## Dask
+### Dask
 
 ```python
 dsk = '''
@@ -4372,66 +4256,21 @@ total = dask.delayed(sum)(output)
     .visualize()
     '''
 
-# Miscellaneous
+## Garbage collector
 
-## Push own library to PyPi
+**Force to empty memory**
 
-Mypythontools [deploy](https://mypythontools.readthedocs.io/mypythontools.deploy.html) module can be use for this purpose (it's usually one part of bigger pipeline).
+    import gc
+    gc.collect()
 
-## CI/CD
 
-**mypythontools.utils**
+## Miscellaneous
 
-Check example on mypythontools [deploy module](https://github.com/Malachov/mypythontools/blob/master/mypythontools/utils.py)
+## Misc
 
-**Travis CI - Automatic testing and deploying**
+### Snippets - examples
 
-Check example on mypythontools [project-starter](https://github.com/Malachov/mypythontools/tree/master/content/project-starter/.travis.yml)
-
-## Create documentation - Sphinx
-
-```console
-
-pip install sphinx
-
-# And
-pip install alabaster
-
-# Or
-pip install sphinx_rtd_theme
-
-# And if you want to use markdown
-pip install recommonmark
-pip install sphinxcontrib-napoleon
-
-# Create documentation files
-
-sphinx-quickstart
-
-# Use separate build and source: yes
-```
-
-Fill in the `config.py` and `index.rst`
-
-You can use mypythontools [project-starterexample](https://github.com/Malachov/mypythontools/tree/master/content/project-starter/docs/source)
-
-You can build it locally with
-
-```console
-make html
-```
-
-Or you can make account on [readthedocs](https://readthedocs.org/) - It's free.
-And the documentation will be automatically made on every github push to master.
-
-### Format
-
-**code**
-If you use one bacticks around, it will have grey background. If you will use double backticks around, it will be also formated as code.
-
-## Snippets - examples
-
-### Measure time
+**Measure time**
 
 ```python
 """
@@ -4456,7 +4295,7 @@ print (t.timeit(20))
 """
 ```
 
-### Show bytecode
+**Show bytecode**
 
     import dis
     dis.dis("dict()")
@@ -4465,7 +4304,7 @@ print (t.timeit(20))
         #              2 CALL_FUNCTION            0
         #              4 RETURN_VALUE
 
-### Encoding JSON with Python
+**Encoding JSON with Python**
 
     import json
 
