@@ -3,57 +3,78 @@
 ## TOC
 
 <!-- TOC -->
-* [Documentation](#documentation)
-  * [TOC](#toc)
-  * [OS](#os)
-    * [Linux](#linux)
-      * [Essentials](#essentials)
-      * [Do after every fresh install](#do-after-every-fresh-install)
-  * [Terminals](#terminals)
-    * [Linux](#linux-1)
-      * [Bash](#bash)
-    * [Windows](#windows)
-      * [PowerShell](#powershell)
-      * [Cmd](#cmd)
-  * [Git](#git)
-    * [Glossary](#glossary)
-    * [Essentials](#essentials-1)
-    * [Misc](#misc)
-    * [.gitignore](#gitignore)
-    * [Git hooks](#git-hooks)
-  * [Docker](#docker)
-    * [Installation](#installation)
-    * [Commands](#commands)
-    * [DOCKERFILE](#dockerfile)
-  * [Misc](#misc-1)
-    * [LDAP](#ldap)
+- [Documentation](#documentation)
+  - [TOC](#toc)
+  - [OS](#os)
+    - [Linux](#linux)
+      - [Distros](#distros)
+      - [Packages](#packages)
+      - [Essentials](#essentials)
+      - [Folder structure](#folder-structure)
+      - [Do after every fresh install](#do-after-every-fresh-install)
+  - [Terminals](#terminals)
+    - [Linux](#linux-1)
+      - [Bash](#bash)
+    - [Windows](#windows)
+      - [PowerShell](#powershell)
+      - [Cmd](#cmd)
+  - [Git](#git)
+    - [Glossary](#glossary)
+    - [Essentials](#essentials-1)
+    - [Misc](#misc)
+    - [.gitignore](#gitignore)
+    - [Git hooks](#git-hooks)
+  - [Docker](#docker)
+    - [Installation](#installation)
+    - [Commands](#commands)
+    - [DOCKERFILE](#dockerfile)
+  - [Misc](#misc-1)
+    - [LDAP](#ldap)
 <!-- TOC -->
 
 ## OS
+
 ### Linux
-#### Essentials
+
+#### Distros
+
+Ubuntu: Most used as desktop distro
+Alpine: Tiny, used for small docker containers
+RHEL (RedHat): Used in corporat production. Known for stability
+
+Other: Arch, CentOS
+
+#### Packages
+Debian based distros like ubuntu support `apt` and `apt-get`. As a user preffer `apt` as it's more higher level
 
 ```shell
-# Update all packages
-sudo apt-get update
+sudo apt update  # Update all packages
 
-# Upgrade all packages
-sudo apt-get update
+sudo apt edit-sources  # Change repositories from where you can download packages
 
-# Install package
-sudo apt-get install python3.5-dev
+apt search python  # List possible packages containing defined name
+
+sudo apt update  # Upgrade all packages
+
+sudo apt install python3.5-dev  # Install package
+
+apt show package_name  # Show details about package
 ```
+
+#### Essentials
 
 Run on bash startup - `~/.bashrc`
 Run on every startup - `~/.profile`
 
+#### Folder structure
 TODO add folders description, fstab description etc.
 
 #### Do after every fresh install
 
 ```shell
-# Install all building compilers (g++ error etc...)
-sudo apt-get install build-essential
+sudo apt-get install build-essential  # Install all building compilers (g++ error etc...)
+
+sudo apt-get install nautilus-open-terminal  # Open terminal in current folder
 ```
 
 ## Terminals
@@ -78,11 +99,8 @@ List environment variables
 
     env
 
-Where command binaries are located
-
-    where python
-
 **which**
+
 Print where command binaries are located
 
     which python
@@ -163,35 +181,28 @@ Where command binaries are located
     git config --global user.name "Your name"
     git config --global user.email "yourname@provider.com"
 
-    # Print what is changed
-    git status
+    git status  # Print what is changed
 
-    # Stage
-    git add add.js
+    git add add.js  # Stage
 
-    # Reset to commit and keep changes in code in stage
-    git reset --soft 852309
+    git reset --soft 852309  # Reset to commit and keep changes in code in stage
 
-    # Reset 5 commits back
-    git reset --soft 'HEAD{5}'
+    git reset --soft 'HEAD{5}'  # Reset 5 commits back
 
-    # Reset to commit and delete changes
-    git reset --hard 852309
+    git reset --hard 852309  # Reset to commit and delete changes
 
-    # Create branch
-    git branch dev
+    git branch dev  # Create branch
 
-    # Move to branch
-    git checkout dev
+    git checkout dev  # Move to branch
 
-    # Merge branches (if join master with dev branch, first checkout back to master then)
-    git merge dev
+    git merge dev  # Merge branches (if join master with dev branch, first checkout back to master then)
 
-    # Delete branch locally
-    git branch -d dev
+    git branch -d dev  # Delete branch locally
 
-    # Delete branch remotely
-    git push --delete origin dev
+    git push --delete origin dev  # Delete branch remotely
+
+    git remote -v  # Verify whether origin and upstream both configured
+
 ```
 
 ### Misc
@@ -327,7 +338,11 @@ docker run --detach --publish 80:80 --name webserver nginx
 
 # Stop container
 docker container stop webserver
-````
+
+# Push container to registry
+    docker image tag rhel-httpd:latest registry-host:5000/myadmin/rhel-httpd:latest
+    docker image push registry-host:5000/myadmin/rhel-httpd:latest
+```
 
 ### DOCKERFILE
 
@@ -349,6 +364,7 @@ docker container stop webserver
     COPY - (Preferred) Add directories/files to your image
     ADD - Add directories/files to your image
 ```
+
 
 ## Misc
 ### LDAP

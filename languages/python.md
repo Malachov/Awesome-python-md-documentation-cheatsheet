@@ -4,96 +4,117 @@
 ## TOC
 
 <!-- TOC -->
-* [Python reference](#python-reference)
-  * [TOC](#toc)
-  * [General](#general)
-  * [Cookiecutter - Project scaffolding](#cookiecutter---project-scaffolding)
-  * [Package management](#package-management)
-    * [Virtual environment (venv)](#virtual-environment--venv-)
-    * [Requirements](#requirements)
-  * [Style guide (linting, formatting)](#style-guide--linting-formatting-)
-  * [Documentation - docstrings](#documentation---docstrings)
-  * [Multi line code](#multi-line-code)
-  * [Comments](#comments)
-    * [Logical conditions (and, or, not...)](#logical-conditions--and-or-not-)
-  * [Type hints](#type-hints)
-  * [Variables](#variables)
-  * [Builtin Data types](#builtin-data-types)
-    * [None](#none)
-    * [String](#string)
-    * [List](#list)
-    * [Tuple](#tuple)
-    * [Dictionary](#dictionary)
-    * [Deque](#deque)
-    * [Set](#set)
-    * [Decimal](#decimal)
-  * [Imported data types](#imported-data-types)
-    * [Dataframe](#dataframe)
-    * [Numpy Array](#numpy-array)
-    * [HDF5](#hdf5)
-  * [Iterators](#iterators)
-  * [Conditions (if, else...)](#conditions--if-else-)
-  * [Loops](#loops)
-    * [For](#for)
-    * [While](#while)
-  * [Functions](#functions)
-  * [map, filter, reduce](#map-filter-reduce)
-  * [Generators](#generators)
-  * [Decorators](#decorators)
-  * [Modules](#modules)
-  * [Classes](#classes)
-  * [Magic methods (dunder methods)](#magic-methods--dunder-methods-)
-  * [Bitwise operations](#bitwise-operations)
-  * [File I/O](#file-io)
-    * [Open file](#open-file)
-    * [Manipulate with files (move, copy)](#manipulate-with-files--move-copy-)
-  * [Try -- Except](#try----except)
-  * [Builtin functions](#builtin-functions)
-  * [Builtin variables](#builtin-variables)
-  * [Builtin modules](#builtin-modules)
-    * [Sys](#sys)
-    * [io](#io)
-    * [os](#os)
-    * [Pathlib - Work with paths](#pathlib---work-with-paths)
-    * [Warnings](#warnings)
-    * [re - Regular expressions](#re---regular-expressions)
-    * [Subprocess - Run shell comands](#subprocess---run-shell-comands)
-    * [Pickle](#pickle)
-    * [Time and datetime](#time-and-datetime)
-    * [Argparse - Command Line Interface (cli)](#argparse---command-line-interface--cli-)
-  * [Concurrent - Asynchronous code](#concurrent---asynchronous-code)
-  * [Imported libraries](#imported-libraries)
-    * [Sphinx - Create documentation](#sphinx---create-documentation)
-    * [Tests](#tests)
-      * [Pytest](#pytest)
-    * [Plots, graphs](#plots-graphs)
-      * [Plotly](#plotly)
-      * [Matplotlib](#matplotlib)
-    * [Web](#web)
-      * [Requests - API - GET, POST](#requests---api---get-post)
-      * [Beautiful soup - web scrapping](#beautiful-soup---web-scrapping)
-    * [Images, pictures](#images-pictures)
-    * [Mathematics, statistics, linear algebra](#mathematics-statistics-linear-algebra)
-    * [Signal processing and controll](#signal-processing-and-controll)
-    * [Database](#database)
-      * [pyodbc, sqlalchemy](#pyodbc-sqlalchemy)
-    * [GUI](#gui)
-    * [Misc](#misc)
-      * [Tables](#tables)
-    * [Jupyter, IPython](#jupyter-ipython)
-      * [Magic](#magic)
-      * [Misc](#misc-1)
-  * [Building app (executables) - Pyinstaller](#building-app--executables----pyinstaller)
-  * [Performance](#performance)
-    * [Profiling](#profiling)
-      * [Line profiling](#line-profiling)
-    * [Max execution time function](#max-execution-time-function)
-    * [Numba](#numba)
-    * [Dask](#dask)
-  * [Garbage collector](#garbage-collector)
-  * [Miscellaneous](#miscellaneous)
-  * [Misc](#misc-2)
-    * [Snippets - examples](#snippets---examples)
+- [Python reference](#python-reference)
+  - [TOC](#toc)
+  - [General](#general)
+    - [Python on linux](#python-on-linux)
+  - [Cookiecutter - Project scaffolding](#cookiecutter---project-scaffolding)
+  - [Package management](#package-management)
+- [-e will create links to local pacages, so if you change source and save,](#-e-will-create-links-to-local-pacages-so-if-you-change-source-and-save)
+- [it will work in other packages](#it-will-work-in-other-packages)
+    - [Push to PyPi](#push-to-pypi)
+    - [Virtual environment (venv)](#virtual-environment-venv)
+    - [Requirements](#requirements)
+  - [Formatting](#formatting)
+    - [PEP 8](#pep-8)
+    - [Black - Strict auto formatting.](#black---strict-auto-formatting)
+  - [Linting](#linting)
+    - [Flake8](#flake8)
+    - [Pylint](#pylint)
+    - [Pylance](#pylance)
+    - [Pydocstyle](#pydocstyle)
+    - [Bandit](#bandit)
+    - [Ignore formatting for selection](#ignore-formatting-for-selection)
+  - [Documentation - docstrings](#documentation---docstrings)
+  - [Multi line code](#multi-line-code)
+  - [Comments](#comments)
+    - [Logical conditions (and, or, not...)](#logical-conditions-and-or-not)
+  - [Type hints - annotations](#type-hints---annotations)
+  - [Type validation](#type-validation)
+  - [Variables](#variables)
+  - [Builtin Data types](#builtin-data-types)
+    - [None](#none)
+    - [String](#string)
+    - [List](#list)
+    - [Tuple](#tuple)
+    - [Dictionary](#dictionary)
+    - [Named tuple](#named-tuple)
+    - [Deque](#deque)
+    - [Set](#set)
+    - [Decimal](#decimal)
+  - [Imported data types](#imported-data-types)
+    - [Dataframe](#dataframe)
+    - [Numpy Array](#numpy-array)
+    - [HDF5](#hdf5)
+  - [Iterators](#iterators)
+  - [Conditions (if, else...)](#conditions-if-else)
+  - [Loops](#loops)
+    - [For](#for)
+    - [While](#while)
+  - [Functions](#functions)
+  - [map, filter, reduce](#map-filter-reduce)
+  - [Generators](#generators)
+  - [Decorators](#decorators)
+  - [Modules](#modules)
+  - [Classes](#classes)
+    - [Dataclasses](#dataclasses)
+  - [Magic methods (dunder methods)](#magic-methods-dunder-methods)
+  - [Bitwise operations](#bitwise-operations)
+  - [File I/O](#file-io)
+    - [Open file](#open-file)
+    - [Manipulate with files (move, copy)](#manipulate-with-files-move-copy)
+  - [Try -- Except](#try----except)
+  - [Builtin functions](#builtin-functions)
+  - [Builtin variables](#builtin-variables)
+  - [Builtin modules](#builtin-modules)
+    - [Sys](#sys)
+    - [io](#io)
+    - [os](#os)
+    - [Pathlib - Work with paths](#pathlib---work-with-paths)
+    - [Warnings](#warnings)
+    - [re - Regular expressions](#re---regular-expressions)
+    - [Subprocess - Run shell comands](#subprocess---run-shell-comands)
+    - [Pickle](#pickle)
+    - [Time and datetime](#time-and-datetime)
+    - [Argparse - Command Line Interface (cli)](#argparse---command-line-interface-cli)
+  - [Concurrent - Asynchronous code](#concurrent---asynchronous-code)
+  - [Imported libraries](#imported-libraries)
+    - [Documentation](#documentation)
+      - [Sphinx - Create documentation](#sphinx---create-documentation)
+    - [Tests](#tests)
+      - [Pytest](#pytest)
+      - [Add doctest](#add-doctest)
+- [doctest: +IGNORE\_EXCEPTION\_DETAIL](#doctest-ignore_exception_detail)
+    - [Plots, graphs](#plots-graphs)
+      - [Plotly](#plotly)
+      - [Matplotlib](#matplotlib)
+    - [Web](#web)
+      - [Requests - API - GET, POST](#requests---api---get-post)
+      - [Beautiful soup - web scrapping](#beautiful-soup---web-scrapping)
+    - [Images, pictures](#images-pictures)
+      - [PIL](#pil)
+    - [Mathematics, statistics, linear algebra](#mathematics-statistics-linear-algebra)
+    - [Signal processing and controll](#signal-processing-and-controll)
+    - [Database](#database)
+      - [pyodbc, sqlalchemy](#pyodbc-sqlalchemy)
+    - [GUI](#gui)
+    - [Misc](#misc)
+      - [Tables](#tables)
+        - [Prettytable](#prettytable)
+    - [Jupyter, IPython](#jupyter-ipython)
+      - [Magic](#magic)
+      - [Misc](#misc-1)
+  - [Building app (executables) - Pyinstaller](#building-app-executables---pyinstaller)
+  - [Performance](#performance)
+    - [Profiling](#profiling)
+      - [Line profiling](#line-profiling)
+    - [Max execution time function](#max-execution-time-function)
+    - [Numba](#numba)
+    - [Dask](#dask)
+  - [Garbage collector](#garbage-collector)
+  - [Miscellaneous](#miscellaneous)
+  - [Misc](#misc-2)
+    - [Snippets - examples](#snippets---examples)
 <!-- TOC -->
 
 ## General
@@ -106,7 +127,16 @@
     # On linux
     which python
 
-**Python on linux**
+**Python luncher**
+Shows installed versions. 
+
+    py --list
+
+Instal venv
+
+    py -3.10-64 -m venv venv
+
+### Python on linux
 
 **Use python instead of python3**
 
@@ -115,12 +145,6 @@ Add to source ~/.bashrc
 ```shell
 alias python=python3
 alias pip=pip3
-```
-
-**Open terminal in current folder**
-
-```console
-sudo apt-get install nautilus-open-terminal
 ```
 
 **Set default python on linux**
@@ -147,17 +171,19 @@ It contains testing files, files for sphinx auto documentation, licence and more
 ```console
 pip install library_name
 
-# For anaconda
-conda install library_name
+conda install library_name  # For anaconda
 
-# If conda not work
-conda install -c anaconda library_name
+conda install -c anaconda library_name  # If conda doesn't work
 ```
 
-**Show installed libraries**
+# -e will create links to local pacages, so if you change source and save,
+# it will work in other packages
 
-```console
-pip list
+pip install -e /path/to/locations/repo
+
+pip install .  # Install locally from setup.py
+
+pip list  # Show installed libraries
 ```
 
 **Show outdated libraries**
@@ -169,6 +195,17 @@ pip list --outdated
 **If pip cannot be installed by SSL error**
 
     pip install ipykernel --upgrade pip --trusted-host pypi.org
+
+
+### Push to PyPi
+
+**Build dist**
+
+    python setup.py sdist bdist_wheel
+
+**Push to PyPi**
+
+    twine upload -u user_name -p password dist/*
 
 ### Virtual environment (venv)
 
@@ -199,11 +236,17 @@ pipreqs --encoding=utf8 C:\VSCODE\Diplomka
 
 You can find much more about libraries in `Modules` section.
 
-## Style guide (linting, formatting)
+## Formatting
 
-**pylint** - show you where problems are
+### PEP 8
 
-**Black** - Strict auto formatting. Setup longer default line length for better user experience
+If you are not sure how to format code, you can try [pep 8](https://www.python.org/dev/peps/pep-0008/) or [google style guide](https://google.github.io/styleguide/pyguide.html)
+
+Usually it's more convenient to use some autoformatter like black. Then PEP 8 is not an issue anymore
+
+### Black - Strict auto formatting.
+
+Setup longer default line length for better user experience
 
 Example for how to use it in VS Code - Add to settings.json:
 
@@ -212,7 +255,74 @@ Example for how to use it in VS Code - Add to settings.json:
 "python.formatting.blackArgs": ["--line-length", "110"],
 ```
 
-If you are not sure how to format code, you can try [pep 8](https://www.python.org/dev/peps/pep-0008/) or [google style guide](https://google.github.io/styleguide/pyguide.html)
+Ignore formatting for specific lines
+
+```python
+# fmt: off
+no =    "formatted"
+# fmt: on
+```
+
+## Linting
+
+Show you where problems are. You can use for example Pylint (raise more warnings) or Flake8 (more tolerant)
+
+### Flake8
+
+Mostly for formatting (PEP8) issues
+
+This is not necessary as using some autoformating tool
+
+** Ignore line in linting
+
+    code   =   8  # noqa
+
+### Pylint
+
+Also for non-optimal code hints
+
+**Ignore for rest all file or block of code**
+
+    # pylint: disable=W0201
+
+    code_here
+
+    # pylint: disable=W0201  # Enable from here on
+
+
+**Ignore message on particular line**
+
+    code_here  # pylint: disable=W0201
+    
+### Pylance
+
+Used for type validation
+
+    a: int = "bad format"  # type: ignore
+
+### Pydocstyle
+
+Checks you docstrings.
+
+Omit lint for function
+
+    def bad_function():  # noqa: D400
+        """Omit a period in the docstring as an exception"""
+        pass
+
+### Bandit
+
+For security issues
+
+### Ignore formatting for selection
+
+```python
+# fmt: off
+
+your_code =    "here"
+
+# fmt: on
+```
 
 ## Documentation - docstrings
 
@@ -405,10 +515,69 @@ Python code in docstrings
 
     1 < 2 < 3 # => True
 
-## Type hints
+## Type hints - annotations
 
-    def sentence_has_animal(sentence: str) -> bool:
-        return "animal" in sentence
+As from python 3.9 it's not necessary to use typing List, Tuple etc.
+
+For pytnon 3.7, 3.8 you need to add (python 3.6 and less is not supported)
+
+    from __future__ import annotations, TYPE_CHECKING, get_type_hints
+    from typing import Any 
+
+How to annotate basic data types
+
+    class MyClass:
+        unknown: Any
+        names: list[str] = ["Guido", "Jukka", "Ivan"]
+        version: tuple[int, int, int] = (3, 7, 1)
+        tuple_unknown: tuple[str, ...] = ('one', 'two', 'three')
+        options: dict[str, bool] = {"centered": False, "capitalize": True}
+
+How to annotate function return
+
+    def say_it(word: str) -> str:
+        return word
+
+It's possible in class to return itself ()
+
+    class ReturnMe:
+        def(self) -> ReturnMe:
+            return self
+ 
+If type not exists yet, you can use Forward Reference (use a string literal). Types are still processed even if in string.
+If you need to run some code only for type hints (like import lazy loaded library for type)
+
+from typing TYPE_CHECKING
+
+    if TYPE_CHECKING:
+        import pandas as pd
+
+    class Tree:
+        def __init__(self, left: 'pd.DataFrame', right: 'pd.DataFrame'):
+            self.left = left
+            self.right = right
+
+If you need type hints dynamically in code (for example for type checking)
+
+hints = get_type_hints()
+
+## Type validation
+
+from typeguard import typechecked
+
+@typechecked
+def some_function(a: int, b: float, c: str, *args: str) -> bool:
+    ...
+    return retval
+
+@typechecked
+class SomeClass:
+    # All type annotated methods (including static and class methods and properties)
+    # are type checked.
+    # Does not apply to inner classes!
+    def method(x: int) -> int:
+        pass
+
 
 ## Variables
 
@@ -895,6 +1064,20 @@ for key, value in modelsparameters.items():
     b = { 'u' : 1, 'v' : 2, 'w' : 3, 'x'  : 1, 'y': 2 }
     set( a.keys() ) & set( b.keys() )  # Output set(['y', 'x'])
     set( a.items() ) & set( b.items())  # Output set([('y', 2), ('x', 1)])
+
+### Named tuple
+
+    from typing import NamedTuple
+
+    class class_name(NamedTuple):
+        field1: datatype
+        field2: datatype
+
+This is equivalent to:
+
+    class_name = collections.namedtuple('class_name', ['field1', 'field2'])
+
+Named tuples are very good when function returns complicated structure. This can brings docstrings, type hints and same structure like classical return.
 
 ### Deque
 
@@ -1922,6 +2105,11 @@ Generators are functions, that instead return have yield
 Generator generate values one after one, when it\s needed. Instead of been generated all at once
 Example of generator is range(10000)
 
+
+Get default value
+
+    next(path.iterdir(), None)
+
 ## Decorators
 
 Dekorators are functions, that wrap other functions, by that
@@ -2091,6 +2279,35 @@ import gc
 for obj in gc.get_objects():
     if isinstance(obj, Clovek):
         print(obj.jmeno)
+```
+
+
+### Dataclasses
+
+Simplified class providing some automatic functions to remove boilerplate. Usually used to store data.
+
+Example of how to return dataclass from function
+
+```python
+from dataclasses import dataclass, astuple
+
+@dataclass
+class PreprocessedData(Generic[DataFrameOrArrayGeneric]):
+    """Describtion.
+
+    Attributes:
+        one (int): One description.
+        two (str): Twodescription.
+    """
+
+    __slots__ = ("one", "two")
+
+    one: int
+    two: str
+
+    def __iter__(self):
+        """So it can be unpacked when returning from a function."""
+        yield from astuple(self)
 ```
 
 ## Magic methods (dunder methods)
@@ -2581,6 +2798,9 @@ path.resolve() # /home/gahjelle/realpython/test.md'
 # Compare paths
 path.resolve().parent == pathlib.Path.cwd() # False
 
+# Is directory empty
+next(path.iterdir(), None)
+
 # Work with file
 
 filename = pathlib.Path("source_data/text_files/raw_data.txt")
@@ -2833,6 +3053,13 @@ make html
 Or you can make account on [readthedocs](https://readthedocs.org/) - It's free.
 And the documentation will be automatically made on every github push to master.
 
+**Formating **
+
+Inline code is like `some code` or ``another code``
+
+If you use one bacticks around, it will have grey background. If you will use double backticks around, it will be also formated as code.
+
+
 ### Tests
 #### Pytest
 
@@ -2880,6 +3107,14 @@ def test_some_holidays(year, month, day):
     holidays = isholiday.getholidays(year)
     assert (day, month) in holidays
 ```
+
+#### Add doctest
+
+**Directives**
+Ignore exception detail
+
+# doctest: +IGNORE_EXCEPTION_DETAIL
+
 
 ### Plots, graphs
 
@@ -3216,6 +3451,8 @@ plt.loglog(x, y)  # Both axis are log
 
 ### Images, pictures
 
+#### PIL
+
     pctrs = '''
     from PIL import Image
     from resizeimage import resizeimage
@@ -3372,9 +3609,7 @@ z = np.diff(y)
 # display(Math(r'F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx'))
 
 
-########################################
-####### Symbolic python - sympy #######
-#######################################
+#### Sympy - Symbolic python
 
 import sympy as sp
 
@@ -3472,21 +3707,6 @@ sqr_mat = A**2
 mat_mul = A*b
 det = A.det()
 inv = A.inv()
-
-### Fast fourier transform
-
-from numpy.fft import fft, fftfreq, ifft
-import numpy as np
-
-t = np.arange(0, 10, 0.1)
-y = np.sin(t)
-
-ffty = fft(y)
-
-real_ffty = ffty.real
-imag_ffty = ffty.imag
-
-freqs = fftfreq(N, dt)  # Frequentions assigned to values - 0, 0.1, 0.2...
 
 ### Sympy plotting
 
@@ -3629,7 +3849,7 @@ w = hanning(N)
 
 w = sig.tukey(N)
 
-## Fourier transform
+## Fast Fourier transform - fft
 
 dt = 1./1024
 t = np.arange(0,2,dt)
@@ -3638,6 +3858,8 @@ y = sig.sawtooth(2*np.pi/T1*t,0.5)
 
 freq = np.fft.fftfreq(N,dt)  # Return frequencies
 ffty = np.fft.fft(y)
+real_ffty = ffty.real
+imag_ffty = ffty.imag
 rffty = np.real(ffty)  # Real part
 iffty = np.imag(ffty)  # Imaginary part
 
@@ -3847,6 +4069,7 @@ You can use mypythontools pyvueeel for building an app with graphical interface.
 
 ### Misc
 #### Tables
+##### Prettytable
 
     from prettytable import PrettyTable
     models_table = PrettyTable()
