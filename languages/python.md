@@ -3108,13 +3108,37 @@ def test_some_holidays(year, month, day):
     assert (day, month) in holidays
 ```
 
-#### Add doctest
+#### Doctest
 
-**Directives**
-Ignore exception detail
+Tests documentation. To activate it automatically when pytest runs, add to `pyproject.toml` these
 
-# doctest: +IGNORE_EXCEPTION_DETAIL
+    [tool.pytest.ini_options]
+    addopts = " --doctest-modules"
+    doctest_optionflags = "NORMALIZE_WHITESPACE NUMBER ELLIPSIS IGNORE_EXCEPTION_DETAIL"
 
+If you want to have tests in one code block in documentation, do not use empty line, but three dots
+
+    def fu(a: int):
+        """Docs
+
+        Example:
+            >>> fu(1)
+            1
+            ...
+            >>> multiline_command = {
+            ...     "key": 1
+            ... }
+
+            >>> fu(0)  # doctest: +IGNORE_EXCEPTION_DETAIL
+            Traceback (most recent call last):
+            NameError: name 'scope' is not defined
+            ...
+            >>> fu(0)  # doctest:
+            Traceback (most recent call last):
+                ...
+            OverflowError: n too large
+        """
+            return 1/a
 
 ### Plots, graphs
 
